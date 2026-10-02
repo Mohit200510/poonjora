@@ -111,7 +111,9 @@
     display: flex;
     /* margin: 0 auto; */
     margin-bottom: 17px;
-    background-color: var(--color-primary-light);
+        padding: 16px;
+    /* background-color: var(--color-primary-light); */
+        background-color: var(--color-bg);
 }
 .featureProductBoxImgWrapper img{
     width: 300px;

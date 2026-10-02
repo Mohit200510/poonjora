@@ -5,7 +5,8 @@
         justify-content: center;
     width: 30dvw;
     max-height: 90dvh;
-    height: auto;
+    /* height: 90dvh; */
+    /* height: auto; */
     position: fixed;
     top: 50%;
     left: 50%;
@@ -15,11 +16,13 @@
     box-shadow: var(--shadow-md);
     overflow: hidden;
     z-index: 1000;
-    padding: 40px  35px 50px 35px;
-    background: url("../../assets/checkout_bg.png");
-    background-position: top;
-    background-size: cover;
+    /* padding: 40px  35px 50px 35px; */
+    /* padding: 15px; */
+    /* background: url("../../assets/checkout_bg.png"); */
+    /* background-position: top; */
+    /* background-size: cover; */
     text-align: center;
+    background-color: #FFF;
 
 }
 
@@ -40,9 +43,177 @@
 }
 
 
+
+
+
+
+
+/* checkout form */
+
+
+
+
+.CheckoutForm {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+    height: 100%;
+}
+
+
+
+ /*  checkout form   header  */ 
+
+
+.CheckoutFormHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 16px 15px 20px 15px ;
+    box-shadow: var(--shadow-sm);
+    /* background: var(--color-primary); */
+    /* border-bottom-left-radius: 10px; */
+    /* border-bottom-right-radius: 10px; */
+    
+    
+}
+.CheckoutFormHeader div{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.CheckoutFormHeader img{
+    width: 124px;
+}
+
+.checkotFormArrow{
+    font-size: 26px;
+    color: var(--color-text-muted);
+
+}
+.CheckoutFormHeader p{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    font-family: "inter",sans-serif;
+    
+    font-weight: 400;
+}
+
+
+
+
+/* .chechout form bodyyyy */
+
+
+
+
+.CheckoutFormBody {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* background-color: #FAFAFA; */
+    padding: 15px;
+    margin-top: 1px;
+}
+.CheckoutFormBody::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+
+
+
+
+/* checkout box bottommmmmm */
+
+.checkoutFormBottom{
+    background-color: #fff;
+    box-shadow: var(--shadow-lg);
+    padding: 0 15px 15px 15px;
+}
+
+.checkoutFormBottomCollaspseBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 12px 12px 12px;
+}
+
+.checkoutFormBottomCollaspseBoxLeft{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.checkoutFormBottomCollaspseBoxLeft svg {
+    font-size: 22px;
+    color: var(--color-primary);
+    
+}
+.checkoutFormBottomCollaspseBoxLeft span{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-priamry);
+}
+.angleDown{
+    font-size: 22px;
+    color: var(--color-text-secondary);
+    color: var(--color-primary);
+    /* color: var(--color-text-); */
+}
+
+
+
+
+.checkoutFormBottomButtonArea button{
+    width: 100%;
+    background-color: var(--color-primary);
+    color: #fff;
+    border: none;
+    padding: 16px 0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.1s all ease-out;
+
+    &:hover{
+        cursor: pointer;
+        background-color: var(--color-primary-dark);
+    }
+    &:disabled{
+        
+        background: #e2e2e2;
+        color: #8a8a8a;
+        cursor: not-allowed;
+        /* opacity: 0.7; */
+
+    }
+}
+
+
+
+
+
+
+
+
+
+/* login box of poonjora css separate */
+
 .loginBox{
     
-
 }
 .loginBoxCrossIcon{
     position: absolute;
@@ -74,7 +245,7 @@
 .loginBoxMid{
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 19px;
     /* align-items: center; */
     justify-content: center;
 }
@@ -123,11 +294,13 @@
     justify-content: center;
     gap: 12px;
 }
+
 .loginBoxDividerLine span{
     height: 1px;
     flex: 1;
     background-color: var(--color-text-muted);
 }
+
 .loginBoxDividerLine p{
     color: var(--color-text-secondary);
     margin: 0;

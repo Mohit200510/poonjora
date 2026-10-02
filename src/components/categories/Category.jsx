@@ -22,7 +22,6 @@ function Category(prop) {
                         </div>
                                 
                         <div className={styles.CategoryBoxArrow}>
-                            <span>Explore</span>
                             <ArrowRight stroke='var(--color-surface)'></ArrowRight>
                         </div>
 

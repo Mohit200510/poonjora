@@ -1,0 +1,558 @@
+
+*{
+    font-family: "inter",sans-serif;
+}
+/* user box */
+.userBox {
+    border-radius: 8px;
+    padding: 10px 14px;
+    border: 1px solid var(--color-border);
+}
+
+.userBoxMain{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.userBoxLeft{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.userBoxLeft div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.userBoxLeft span{
+    font-family: "inter",sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: var(--color-primary); */
+        background: var(--color-text-primary);
+    color: #fff;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.userBoxLeft h4{
+    font-family: "inter",sans-serif;
+
+    color: var(--color-text);
+    font-size: 13px;
+    font-weight: 500;
+}
+.userBoxLeft h5{
+    color: var(--color-text-secondary);
+    font-family: "inter",sans-serif;
+    font-weight: 500;
+}
+
+.userBoxRight{
+    font-family: "inter",sans-serif;
+
+    /* color: var(--color-primary); */
+    font-size: 13px;
+    font-weight: 600;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+
+/* address Box */
+
+
+
+.addressBoxHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.addressBoxHeaderLeft{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.addressBoxHeaderLeft svg{
+    font-size: 22px;
+    color: var(--color-primary);
+
+}
+.addressBoxHeaderLeft h5{
+    font-size: 14px;
+    font-weight: 700;
+}
+.addressBoxHeaderRight span{
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-primary);
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.AddressBoxAdresses{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.addressBoxAddress {
+    padding: 14px;
+    background: #FAFAFA;
+    display: flex;
+    align-items: start;
+    gap: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    justify-content: space-between;
+    &:hover{
+        cursor: pointer;
+    }
+}
+.addressBoxAddress:has(input:checked){
+    background-color: var(--color-primary-light);
+    border: 1px solid #6b2d7c;
+
+}
+.AddressBoxAdressInner, .paymentBoxMethodLeft {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: start;
+    gap: 14px;
+}
+.AddressBoxText, .paymentBoxMethodText {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: start;
+}
+.AddressBoxText label, .paymentBoxMethodText label{
+    font-weight: 600;
+    font-size: 14px;
+}
+.addressBoxAddress p, .paymentBoxMethod p{
+    color: var(--color-text-primary);
+    text-align: left;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5
+    
+}
+.addressBoxAddressEdit{
+    font-size: 13px;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+input[type="radio"]{
+    accent-color: var(--color-primary);
+    width: 18px;
+    height: 18px;
+}
+
+
+
+
+/* delivery & offers section */
+
+
+.offersBoxHeader{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+.offersBoxHeader svg{
+    font-size: 22px;
+    color: var(--color-primary);
+}
+.offersBoxHeader h5{
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.offersBoxBody{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.offersBoxBodyFreeDelivery, .offersBoxBodyPreapidOffer{
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    background-color: #DDF9EB;
+    border-radius: 8px;
+}
+.offersBoxBodyFreeDelivery svg{
+    color: #025713;
+}
+.offersBoxBodyFreeDelivery span{
+    color: #025713;
+    font-size: 12px;
+    font-weight: 800;
+
+}
+
+.offersBoxBodyCouponBox input{
+    width: 100%;
+    border-radius: 8px;
+    padding: 12px 14px;
+    border: 1px solid var(--color-text-muted);
+}
+
+.offersBoxBodyPreapidOffer{
+    background-color:#c3e6fa ;
+}
+
+.offersBoxBodyPreapidOffer svg{
+    color: var(--color-primary);
+
+}
+.offersBoxBodyPreapidOffer span{
+    color: var(--color-primary);
+    font-size: 12px;
+    font-weight: 800;
+
+}
+
+
+/* payemnt method UX */
+
+
+.paymentBox{
+
+    /* border-radius: 8px; */
+    
+}
+.paymentBoxBody{
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+
+}
+.paymentBoxHeader{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+
+}
+.paymentBoxHeader svg{
+    font-size: 22px;
+    color: var(--color-primary);
+}
+.paymentBoxHeader h5{
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.paymentBoxMethod {
+    padding: 14px;
+    /* background-color: var(--color-primary-light); */
+    display: flex;
+    align-items: start;
+    gap: 14px;
+    /* border-radius: 8px; */
+    /* border: 1px solid var(--color-primary); */
+    border: 1px solid #fff;
+    border-bottom: 1px solid var(--color-border);
+    justify-content: space-between;
+    &:hover{
+        cursor: pointer;
+    }
+}
+.paymentBoxMethod:has(input:checked) {
+    background-color: var(--color-primary-light);
+    border: 1px solid #6b2d7c;
+    border-radius: 8px;
+    
+}
+
+.paymentBoxMethodRight{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.phonePe{
+    font-size: 30px;
+    color: var(--color-primary);
+}
+.amazonPay{
+    font-size: 30px;
+
+}
+.paytm{
+    font-size: 30px;
+    color: #01A7FC;
+}
+.visa{
+    font-size: 30px;
+    
+}
+.master{
+    font-size: 30px;
+}
+
+
+
+
+
+
+
+/* checkout review order suumary box popup   (REVIEW BOXXXXX */
+
+
+.reviewBoxCloseButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    background-color: var(--color-bg);
+    border: none;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    &:hover{
+        cursor: pointer;
+    }
+}
+.reviewBoxCloseButton svg{
+    font-size: 24px;
+}
+.reviewBox{
+    width: 100%;
+    height: 80%;
+    background: #fff;
+    border: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+    padding: 20px 16px 22px 16px;
+    overflow: hidden;
+    /* overflow-y: auto; */
+    /* scrollbar-width: none; */
+    /* -ms-overflow-style: none; */
+    /* transition: 1s all ease-out; */
+    animation: openReviewBox 0.4s ease-out;
+
+}
+@keyframes openReviewBox {
+    0%{
+        bottom: -100%
+    }
+    100%{
+        bottom: 0;
+    }
+}
+
+.reviewBoxInner{
+    display: flex;
+    flex-direction: column;
+     height: 100%;
+    min-height: 0;
+}
+
+
+.reviewBoxHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+
+.reviewBoxHeaderHeading{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.reviewBoxHeaderHeading h5{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+.reviewBoxHeaderHeading svg{
+    color: var(--color-primary);
+    font-size: 22px;
+
+}
+.reviewBoxHeader span{
+    font-size: 14px;
+}
+
+
+.reviewBoxBody {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.reviewBoxBody::-webkit-scrollbar{
+    display: none;
+}
+
+
+.reviewBoxBodyCartItem{     
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: start; */
+    gap: 16px;
+    border-bottom: 1px solid var(--color-border);
+
+}
+
+.reviewBoxBodyCartItemLeft{
+    display: flex;
+    gap: 8px;
+}
+
+.reviewBoxBodyCartItemImgWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px var(--color-border) solid; */
+    background: var(--color-bg);
+    border-radius: 12px;
+    /* width: 23%; */
+    width: 72px !important;
+    height: 72px !important;
+    padding: 2px;
+
+}
+
+.reviewBoxBodyCartItemLeft img{
+    width: stretch;
+}
+.reviewBoxBodyCartItemLeftText{
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+    text-align: left;
+}
+
+.reviewBoxBodyCartItemLeftText h3{
+    font-size: 13px;
+    font-weight: 500;
+        line-height: 1.4;
+}
+
+.reviewBoxBodyCartItemLeftText p{
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+
+.reviewBoxBodyCartItemRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:end;
+}
+
+.reviewBoxBodyCartItemRight P{
+    font-size: 15px;
+}
+
+.reviewBoxBodyCartItemRight span{
+    font-size: 14px;
+    color: var(--color-text-secondary);
+}
+
+
+
+
+.reviewBoxFooter{
+    flex-shrink: 0;
+
+    
+}
+.reviewBoxFooterTop{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-border);
+
+}
+.reviewBoxFooterInnerRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.reviewBoxFooterInnerRow p{
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+}
+.reviewBoxFooterInnerRow span{
+    color: var(--color-text-primary);
+    font-size: 14px;
+    font-weight: 600;
+}
+#reviewBoxFreeDeliveryText{
+    color: #03851d;
+    font-size: 15px;
+}
+
+.reviewBoxFooterMainTotal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+}
+.reviewBoxFooterMainTotal p {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--color-text);
+    /* color: var(--color-text-primary); */
+    font-family: "poppins",s"";
+    font-family: 'Poppins',sans-serif;
+}
+.reviewBoxFooterMainTotal h5{
+    
+    font-size: 20px;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+
+
+
+
+.loadingScreen{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f2f29c;
+    z-index: 10;
+}

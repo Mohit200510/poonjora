@@ -111,7 +111,8 @@
     
     overflow-y: auto;
     overscroll-behavior: contain;
-    /* height: 67vh; */
+     -ms-overflow-style: none;
+     scrollbar-width: none;
 }
 .cartBody::-webkit-scrollbar {
     display: none;

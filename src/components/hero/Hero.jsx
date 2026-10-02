@@ -8,6 +8,7 @@ import Mobbanner from "../../assets/better_mob.png"
 import { LayoutGrid,ShoppingBag } from 'lucide-react';
 
 
+
 function Hero() {
   return (
     <section className={styles.hero}>

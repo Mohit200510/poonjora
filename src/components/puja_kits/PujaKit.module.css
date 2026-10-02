@@ -1,0 +1,247 @@
+
+
+/* Puja Kits Section */
+/* .overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.354);
+    z-index: 1;
+} */
+ .secPujaKit{
+    margin-top: 50px;
+    padding: 70px 0 80px;
+    background: url("../../assets/pujakitbg.png");
+    background-size: cover;
+    background-position: center;
+    background-color: #FFFAF3;
+ }
+ 
+  .secPujaKitHeader{
+    margin-bottom: 40px;
+  }
+ .secPujaKitHeader h2{
+    font-size: 42px;
+    font-weight: 700;
+    font-family: "cormonant", sans-serif;
+    color: var(--color-primary);
+    margin: 0;
+    margin-bottom: 14px;
+}
+
+.secPujaKitHeader p{
+    font-size: 18px;
+    font-weight: 400;
+    font-family: "inter",sans-serif;
+    /* line-height: 1.7; */
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+
+
+.pujaKitBody{
+    position: relative;
+}
+.pujaKitBoxes{
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+     -ms-overflow-style: none;
+}
+.pujaKitBoxes::-webkit-scrollbar{
+    display: none;
+}
+.PujaKitBox{
+
+    isolation: isolate;
+    position: relative;
+    width: 30%;
+    flex-shrink: 0;
+    padding: 20px;
+    height: auto;
+    border-radius: 16px;
+    /* z-index: 1; */
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-accent)
+    
+}
+.PujaKitBox img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right;
+}
+
+.PujaKitBox::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+ background: linear-gradient(
+        90deg,
+        rgba(255, 248, 240, 0.88) 0%,
+        rgba(255, 248, 240, 0.68) 42%,
+        rgba(255, 248, 240, 0.12) 72%,
+        rgba(255, 248, 240, 0) 100%
+    );
+  z-index: 0;
+}
+.PujaKitBoxInner{
+    width: 55%;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+}
+.PujaKitBoxTopTag svg{
+    font-size: 16px;
+    color: var(--color-primary-dark);
+}
+.PujaKitBoxTopTag{
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 50px;
+    padding: 6px 10px;
+    background-color: var(--color-primary-light);
+   
+}
+.PujaKitBoxTopTag p {
+    font-size: 12px;
+    color: var(--color-primary-dark);
+    font-family: "Lora", serif;
+}
+
+.pujakitBoxHeading{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pujakitBoxHeading h2{
+    color: #360800;
+    font-size: 26px;
+    /* color: var(--color-primary-dark); */
+    font-weight: 800;
+    font-family: "Lora", serif;
+
+}
+.pujakitBoxHeading p{
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.PujaKitBoxSize{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.PujaKitBoxSize svg{
+    border-radius: 50%;
+    padding: 4px;
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    font-size: 30px;
+
+}
+.PujaKitBoxSize span{
+     font-size: 13px;
+     font-weight: 600;
+     color: var(--color-primary-dark);
+}
+
+.PujaKitBoxPrice{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.PujaKitBoxPrice h3{
+    font-size: 24px;
+    color: #360800;
+}
+.PujaKitBoxPrice h4{
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-size: 15px
+}
+.PujaKitBoxPrice span{
+    font-size: 12px;
+    font-weight: 500;
+    background-color: rgb(124, 235, 124);
+    color: var(--color-primary-dark);
+    border-radius: 50px;
+    padding: 5px 12px;
+}
+.PujaKitBoxbtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-primary-dark);
+    /* padding: 15px; */
+    border-radius: 50%;
+    border: none;
+
+}
+.PujaKitBoxbtn svg{
+    color: #fff;
+    font-size: 22px;
+}
+
+
+
+/* /scroll btns */
+
+
+.PujaKitBoxScrolBtns{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary-light);
+    font-size: 22px;
+    color: var(--color-primary);
+    border-radius: 50%;
+    /* width: 50px; */
+    /* height: 50px; */
+    padding: 15px;
+    border: none; 
+    /* border: 1px solid var(--color-text-muted); */
+
+    
+}
+.PujaKitBoxScrolBtns svg{
+    color: ;
+}
+.PujaKitBoxScrolBtn1 {
+    z-index: 10;
+    position: absolute;
+    left: -2%;
+    top: 50%;
+    transform: translateY(-50%);
+    /* top: 50%; */
+    /* left: 50%; */
+}
+.PujaKitBoxScrolBtn2{
+   z-index: 10;
+    position: absolute;
+    right: -2%;
+    top: 50%;
+    transform: translateY(-50%);
+
+}

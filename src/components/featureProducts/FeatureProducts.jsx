@@ -24,7 +24,7 @@ function FeatureProducts() {
         console.log("error",error);
         return;   
     }
-    console.log("products:",data);
+    // console.log("products:",data);
     setProducts(data);
     
     }
