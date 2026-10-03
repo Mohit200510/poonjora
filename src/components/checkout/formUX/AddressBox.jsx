@@ -106,7 +106,9 @@ function AddressBox({setOpenAddressForm,openAddressForm,selectedAddress,setSelec
 
                     <div className={styles.addressBoxEmptyContainer}>
                         <FaPlus/>
-                        <p>Add Delivery Address</p>
+                        <p onClick={()=>{
+                            setOpenAddressForm(true)
+                        }}>Add Delivery Address</p>
                     </div>
 
                     
