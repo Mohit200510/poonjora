@@ -4,6 +4,9 @@ import styles from "./FormUX.module.css"
 import { IoLocationSharp } from "react-icons/io5";
 import { ClipLoader } from "react-spinners";
 
+import { FaPlus } from "react-icons/fa6";
+
+
 
 
 
@@ -65,7 +68,7 @@ function AddressBox({setOpenAddressForm,openAddressForm,selectedAddress,setSelec
                 <div className={styles.addressBoxHeaderLeft}>
                      <IoLocationSharp/>
 
-                    <h5>Delivery Address</h5>
+                    <h5>Delivery Details</h5>
                 </div>
                 
                 <div onClick={()=>{
@@ -101,12 +104,11 @@ function AddressBox({setOpenAddressForm,openAddressForm,selectedAddress,setSelec
                         
                     ))}
 
-                    {/* <div className={styles.addressBoxAddress}>
-                        <input type='radio' name='address' id='office'></input>
+                    <div className={styles.addressBoxEmptyContainer}>
+                        <FaPlus/>
+                        <p>Add Delivery Address</p>
+                    </div>
 
-                        <label for="office">Office</label>
-                        
-                    </div> */}
                     
                 </div>
 

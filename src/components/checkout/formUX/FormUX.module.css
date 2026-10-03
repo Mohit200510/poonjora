@@ -163,6 +163,37 @@ input[type="radio"]{
 
 
 
+.addressBoxEmptyContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 16px 14px;
+    border: 1px solid var(--color-border);
+    /* background-color: var(--color-primary-light); */
+}
+.addressBoxEmptyContainer p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    color: var(--color-primary);
+    font-weight: 600;
+    &:hover{
+        cursor: pointer;
+    }
+}
+.addressBoxEmptyContainer svg{
+    font-size: 20px;
+    color: var(--color-primary);
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+
+
+
 /* delivery & offers section */
 
 
