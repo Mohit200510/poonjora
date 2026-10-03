@@ -19,6 +19,7 @@
     -ms-overflow-style: none;
     transition: 1s all ease-out;
     animation: openAddressForm 0.4s ease-out;
+    touch-action: none;
     
 
 }
