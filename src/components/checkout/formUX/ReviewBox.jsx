@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from "./FormUX.module.css"
+import { useContext } from 'react';
+import CartContext from '../../../context/CartContext';
 
 
 import { BsCart2 } from "react-icons/bs";
@@ -8,6 +10,12 @@ import { IoCloseSharp } from 'react-icons/io5';
 
 
 function ReviewBox({setOpenReviewBox}) {
+
+  const {cartPriceTotal,cartMRPTotal,cartDiscount,cartItems}= useContext(CartContext)
+
+
+
+
   return (
     <div className={styles.reviewBox}>
 
@@ -24,7 +32,7 @@ function ReviewBox({setOpenReviewBox}) {
             </div>
 
             <div>
-              <span>3 items</span>
+              <span>{cartItems.length}  Items</span>
 
             </div>
           </div>
@@ -32,15 +40,16 @@ function ReviewBox({setOpenReviewBox}) {
             <div className={styles.reviewBoxBody}>
               <div>
 
-                <div className={styles.reviewBoxBodyCartItem}>
+                {cartItems.map((item)=>(
+                  <div className={styles.reviewBoxBodyCartItem}>
                   <div className={styles.reviewBoxBodyCartItemLeft}>
                     <div className={styles.reviewBoxBodyCartItemImgWrapper}>
-                      <img src={product}></img>
+                      <img src={item.image_url}></img>
 
                     </div>
                     <div className={styles.reviewBoxBodyCartItemLeftText}>
-                      <h3>Speicial Chameli oil for Religous Ceremonies good for daily Use</h3>
-                      <p>900ml</p>
+                      <h3>{item.name}</h3>
+                      <p>{item.weight}</p>
 
 
                     </div>
@@ -48,12 +57,13 @@ function ReviewBox({setOpenReviewBox}) {
                   </div>
 
                   <div className={styles.reviewBoxBodyCartItemRight}>
-                    <p>₹499.00</p>
+                    <p>₹{item.sale_price}</p>
                     <span>Qty: 1</span>
                     
                   </div>
 
                 </div>
+                ))}
 
                 <div className={styles.reviewBoxBodyCartItem}>
                   <div className={styles.reviewBoxBodyCartItemLeft}>
@@ -135,11 +145,11 @@ function ReviewBox({setOpenReviewBox}) {
               <div className={styles.reviewBoxFooterTop}>
                 <div className={styles.reviewBoxFooterInnerRow}>
                   <p>MRP Total</p>
-                  <span>₹499.00</span>
+                  <span>₹{cartMRPTotal}.00</span>
                 </div>
                 <div className={styles.reviewBoxFooterInnerRow}>
                   <p>Dicount</p>
-                  <span>-₹199.00</span>
+                  <span>-₹{cartDiscount}.00</span>
                 </div>
                 <div className={styles.reviewBoxFooterInnerRow}>
                   <p>Delivery Charges</p>
@@ -150,7 +160,7 @@ function ReviewBox({setOpenReviewBox}) {
               <div className=''>
                 <div className={styles.reviewBoxFooterMainTotal}>
                   <p>Total Amount</p>
-                  <h5>₹499.00</h5>
+                  <h5>₹{cartPriceTotal}.00</h5>
                 </div>
               </div>
             </div>

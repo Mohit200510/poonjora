@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 import styles from "./Checkout.module.css"
+import { supabase } from '../../supabaseClient';
+import { useContext } from 'react';
+import CartContext from '../../context/CartContext';
+import { PulseLoader } from "react-spinners";
+
 import { GoArrowLeft } from "react-icons/go";
 import { IoMdLock } from "react-icons/io";
 import { FiShoppingBag } from "react-icons/fi";
@@ -24,6 +29,36 @@ function CheckoutForm() {
 
     const [selectedAddress, setSelectedAddress] = useState(null);
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
+
+    const [loading,setLoading] = useState(false)
+
+    const {cartItems,cartPriceTotal} = useContext(CartContext)
+
+    const placeOrder = async ()=>{
+
+      setLoading(true)
+      const {data,error} =  await supabase
+      .from("orders")
+      .insert([{
+        shipping_address: selectedAddress,
+        items: cartItems,
+        total_amount: cartPriceTotal,
+        payment_method: selectedPaymentOption
+      }])
+      .select()
+      .single();
+
+
+
+         if (error) {
+         console.log("Order error:", error);
+         return;
+         }
+
+        // console.log("Order placed successfully");
+        setLoading(false)
+    
+      }
 
 
 
@@ -72,7 +107,11 @@ function CheckoutForm() {
             <div className={styles.checkoutFormBottomButtonArea}>
               
               <div>
-                <button disabled={!selectedAddress || ! selectedPaymentOption} type='button'>Pay ₹499.00</button>
+                <button
+                onClick={placeOrder}
+                 disabled={!selectedAddress || ! selectedPaymentOption || loading} type='button'>
+                  {loading?<PulseLoader color='#fff'
+                  size={10}/>:(`Pay ₹${cartPriceTotal}.00`)}</button>
               </div>
             </div>
 

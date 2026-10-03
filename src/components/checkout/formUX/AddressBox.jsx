@@ -110,7 +110,6 @@ function AddressBox({setOpenAddressForm,openAddressForm,selectedAddress,setSelec
                             setOpenAddressForm(true)
                         }}>Add Delivery Address</p>
                     </div>
-                    {/* <heY></heY> */}
 
                     
                 </div>
