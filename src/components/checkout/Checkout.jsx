@@ -66,6 +66,7 @@ const handleGoogleLogin = async () => {
     //     <button onClick={handleGoogleLogin}>Continue with GOOGLE</button>
 
     // </div> */}
+    {/* <he></he> */}
     <Overlay/>
 
     <div className={styles.checkoutWindow}>
