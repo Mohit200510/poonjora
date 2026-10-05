@@ -1,11 +1,9 @@
 import React from 'react'
 import styles from "./FormUX.module.css"
 import { IoCardOutline } from "react-icons/io5";
-import { SiPhonepe } from "react-icons/si";
-import { FaAmazonPay } from "react-icons/fa6";
-import { SiPaytm } from "react-icons/si";
-import { RiVisaLine } from "react-icons/ri";
-import { FaCcMastercard } from "react-icons/fa";
+
+import paymentIcon from "../../../assets/payment_logo.png"
+import cardIcon from "../../../assets/card_icon.png"
 
 
 
@@ -44,9 +42,7 @@ console.log("payemnt method",selectedPaymentOption);
                             </div>
                         </div>
                         <div className={styles.paymentBoxMethodRight}>
-                            <SiPhonepe className={styles.phonePe}/>
-                            <FaAmazonPay className={styles.amazonPay}/>
-                            <SiPaytm className={styles.paytm}/>
+                            <img src={paymentIcon}></img>
 
 
                         </div>
@@ -64,8 +60,7 @@ console.log("payemnt method",selectedPaymentOption);
                             </div>
                         </div>
                         <div style={{alignItems:"center"}} className={styles.paymentBoxMethodRight}>
-                            <RiVisaLine className={styles.visa}/>
-                            <FaCcMastercard className={styles.master}/>
+                            <img src={cardIcon}></img>
 
 
                         </div>

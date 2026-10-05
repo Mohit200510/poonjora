@@ -121,7 +121,7 @@ const pujaKits = [
     <section className={styles.secPujaKit}>
         <Container>
             <div className={styles.secPujaKitHeader}>
-                <h2>Kits for Every Sacred Occasion</h2>
+                <h2>Puja Kits for Every Sacred Occasion</h2>
                 <p>Complete puja samagri, thoughtfully curated for your spiritual needs</p>
             </div>
 
@@ -153,13 +153,14 @@ const pujaKits = [
                                 <span> {kit.essentials}+ Essentials</span>
                             </div>
 
-                            <div className={styles.PujaKitBoxPrice}>
+                            {/* <div className={styles.PujaKitBoxPrice}>
                                 <h3>₹{kit.price}</h3>
                                 <h4><del>₹{kit.mrp}</del></h4>
                                 <span> {kit.discount}% OFF</span>
-                            </div>
+                            </div> */}
                             <div className={styles.PujaKitBoxbtn}>
-                                <FiArrowRight/>
+                                <button type='button'>Explore Kit<FiArrowRight/></button>
+                                
 
                             </div>
                         </div>

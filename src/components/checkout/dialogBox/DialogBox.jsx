@@ -4,7 +4,7 @@ import { GiExitDoor } from "react-icons/gi";
 import { IoCloseSharp } from 'react-icons/io5';
 
 
-function DialogBox({setOpenDialogBox}) {
+function DialogBox({setOpenDialogBox,setOpenCheckout}) {
   return (
     <div className={styles.dialogBox}>
 
@@ -25,8 +25,12 @@ function DialogBox({setOpenDialogBox}) {
             </div>
 
             <div className={styles.DialogBoxBtns}>
-                <button id={styles.DialogBoxRejectBtn} type='button'>Stay in Checkout</button>
-                <button type='button'>Yes, exit</button>
+                <button onClick={()=>{
+                    setOpenDialogBox(false)
+                }} id={styles.DialogBoxRejectBtn} type='button'>Stay in Checkout</button>
+                <button onClick={()=>{
+                    setOpenCheckout(false)
+                }} type='button'>Yes, exit</button>
             </div>
 
             

@@ -66,11 +66,12 @@ function Address({setOpenAddressForm}) {
                <form onSubmit={handleSubmit}>
                 <legend><MdOutlineLocalShipping className={styles.addressTruck}/>Add Delivey Address</legend>
                 <fieldset>
+                    <div className={styles.addressBody}>
                     <div className={styles.addressShippingInfo}>
                         <h6 className={styles.addressSubHeading} >Shipping Address</h6>
 
                         <div className={styles.addressFormField}>
-                            <input type='number' name='pincode'  id='pincode' placeholder='' minLength={6} maxLength={6} required ></input>
+                            <input type="text" name="pincode" id="pincode" placeholder="" inputMode="numeric" pattern="[0-9]{6}" maxLength={6} required ></input>
                             <label htmlFor="pincode">Pincode</label>
                         </div>
                         
@@ -128,36 +129,37 @@ function Address({setOpenAddressForm}) {
 
                         <div className={styles.addressSaveTypes}>
 
-                            <label for="home">
+                            <label htmlFor="home">
                             <div  className={styles.addressTypeRadioField}>
-                                <input type='radio' name='address_type' id='home' value="Home"></input>
+                                <input type='radio' name='address_type' id='home' value="Home" required></input>
                                 <span><AiOutlineHome/>Home</span>
                             </div>
                             </label>
 
-                            <label for="office">
+                            <label htmlFor="office">
                             <div className={styles.addressTypeRadioField}>
-                                <input type='radio' name='address_type' id='office' value="Office"></input>
+                                <input type='radio' name='address_type' id='office' value="Office" required></input>
                                 <span><HiOutlineOfficeBuilding/>Office</span>
                             </div>
                             </label>
 
-                            <label for="shop">
+                            <label htmlFor="shop">
                             <div className={styles.addressTypeRadioField}>
-                                <input type='radio' name='address_type' id='shop' value="Shop"></input>
+                                <input type='radio' name='address_type' id='shop' value="Shop" required></input>
                                 <span ><AiOutlineShop/>Shop</span>
                             </div>
                             </label>
 
-                            <label for="others">
+                            <label htmlFor="others">
                             <div className={styles.addressTypeRadioField}>
-                                <input type='radio' name='address_type' id='others' value="others"></input>
+                                <input type='radio' name='address_type' id='others' value="others" required></input>
                                 <span ><LuMapPin/>Others</span>
                             </div>
                             </label>
 
                         </div>
 
+                    </div>
                     </div>
 
                     <div className={styles.addressFinalBtn}>

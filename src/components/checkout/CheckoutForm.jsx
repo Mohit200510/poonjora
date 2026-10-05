@@ -25,7 +25,7 @@ import Overlay from '../common/Overlay';
 import ReviewBox from './formUX/ReviewBox';
 import DialogBox from './dialogBox/DialogBox';
 
-function CheckoutForm() {
+function CheckoutForm({setOpenCheckout}) {
 
 
   const naviagte = useNavigate();
@@ -39,6 +39,7 @@ function CheckoutForm() {
     const [loading,setLoading] = useState(false)
 
     const [openDialogBox,setOpenDialogBox] = useState(false)
+    const [closeCheckout,setCloseCheckout] = useState(false)
 
 
     const {cartItems,cartPriceTotal,clearCart} = useContext(CartContext)
@@ -68,6 +69,7 @@ function CheckoutForm() {
         naviagte(`/order-confirmation/${data.id}`,{
           state: {order: data}
         });
+        setOpenCheckout(false)  
         setLoading(false)
 
 
@@ -105,7 +107,7 @@ function CheckoutForm() {
 
         {openAddressForm?<Address setOpenAddressForm={setOpenAddressForm} openAddressForm={openAddressForm} />:null}
         {openReviewBox?<ReviewBox setOpenReviewBox={setOpenReviewBox} openReviewBox={openReviewBox} />:null}
-        {openDialogBox?<DialogBox setOpenDialogBox={setOpenDialogBox}/>:null}
+        {openDialogBox?<DialogBox setOpenDialogBox={setOpenDialogBox} setOpenCheckout={setOpenCheckout}/>:null}
 
         </div>
 
