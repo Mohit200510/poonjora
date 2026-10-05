@@ -219,7 +219,8 @@
     background-size: cover;
     background-position: left;
     width: 100%;
-    /* padding: 30px; */
+    height: 100%;
+    padding: 30px;
     
 }
 .loginBoxCrossIcon{
