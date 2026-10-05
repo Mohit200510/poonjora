@@ -5,7 +5,7 @@ import banner from "../../assets/hero_bg.webp";
 // import Mobbanner from "../../assets/mob2.png"
 // import Mobbanner from "../../assets/newherobg.png"
 // import Mobbanner from "../../assets/better_mob.png"
-import Mobbanner from "../../assets/mobile_new.png"
+import Mobbanner from "../../assets/mobile_neww.png"
 import { LayoutGrid,ShoppingBag } from 'lucide-react';
 
 

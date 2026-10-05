@@ -93,6 +93,10 @@
 .checkotFormArrow{
     font-size: 26px;
     color: var(--color-text-muted);
+    color: var(--color-text-secondary);
+    &:hover{
+        cursor: pointer;
+    }
 
 }
 .CheckoutFormHeader p{

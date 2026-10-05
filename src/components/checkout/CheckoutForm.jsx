@@ -23,6 +23,7 @@ import PaymentBox from './formUX/PaymentBox';
 import Address from './addressForm/Address';
 import Overlay from '../common/Overlay';
 import ReviewBox from './formUX/ReviewBox';
+import DialogBox from './dialogBox/DialogBox';
 
 function CheckoutForm() {
 
@@ -36,6 +37,8 @@ function CheckoutForm() {
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
 
     const [loading,setLoading] = useState(false)
+
+    const [openDialogBox,setOpenDialogBox] = useState(false)
 
 
     const {cartItems,cartPriceTotal,clearCart} = useContext(CartContext)
@@ -70,6 +73,7 @@ function CheckoutForm() {
 
     
       }
+     
 
       
       
@@ -82,7 +86,9 @@ function CheckoutForm() {
       
         <div className={styles.CheckoutFormHeader}>
           <div >
-           <GoArrowLeft className={styles.checkotFormArrow}/>
+           <GoArrowLeft onClick={()=>{
+            setOpenDialogBox(true)
+           }} className={styles.checkotFormArrow}/>
            <img src={logo}></img>
           </div>
           <p>100% Secured Checkout <IoMdLock/></p>
@@ -95,11 +101,11 @@ function CheckoutForm() {
         <PaymentBox selectedPaymentOption={selectedPaymentOption} setSelectedPaymentOption={setSelectedPaymentOption} />
         <UserBox/>
 
-        {openAddressForm || openReviewBox?<Overlay/>:null}
+        {openAddressForm || openReviewBox || openDialogBox ?<Overlay/>:null}
 
         {openAddressForm?<Address setOpenAddressForm={setOpenAddressForm} openAddressForm={openAddressForm} />:null}
         {openReviewBox?<ReviewBox setOpenReviewBox={setOpenReviewBox} openReviewBox={openReviewBox} />:null}
-
+        {openDialogBox?<DialogBox setOpenDialogBox={setOpenDialogBox}/>:null}
 
         </div>
 

@@ -40,14 +40,17 @@ function LoginBox({googleLoginForm,setOpenCheckout}) {
                     <div className={styles.loginBoxGoogleBtn}>
                         <button onClick={googleLoginForm} type='button'><FcGoogle className={styles.googleIcon}/><PiLineVerticalThin className={styles.line} />Continue with Google<FiArrowRight className={styles.arrow}/></button>
                     </div>
+
                     <div className={styles.loginBoxDividerLine}>
                         <span></span>
                         <p>OR</p>
                         <span></span>
                     </div>
+
                     <div className={styles.loginBoxGuestBtn}>
                         <a href=''>Continue as Guest</a>
                     </div>
+                    
 
                 </div>
 

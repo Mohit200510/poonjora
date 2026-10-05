@@ -1,0 +1,98 @@
+
+
+/* Dialog Boxx style */
+
+.dialogBox{
+    width: 100%;
+    height: 53%;
+    background: #fff;
+    border: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+    padding: 25px 16px 16px 16px;
+    transition: 1s all ease-out;
+    animation: openDialogBox 0.4s ease-out;
+    touch-action: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+@keyframes openDialogBox {
+    0%{
+        bottom: -100%
+    }
+    100%{
+        bottom: 0;
+    }
+}
+
+.dialogBoxtop svg{
+    font-size: 70px;
+    color: var(--color-primary);
+
+}
+.dialogBoxtop h2{
+    font-size: 19px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 7px;
+
+}
+.dialogBoxtop p{
+    font-size: 14px;
+    color: var(--color-text-primary);
+}
+.DialogBoxBtns{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-top: 30px;
+
+}
+.DialogBoxBtns button{
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 0;
+    background: var(--color-primary);
+    color: #fff;
+    transition: 0.2s all ease-out;
+    &:hover{
+        cursor: pointer;
+        background-color: var(--color-primary-dark);
+    }
+
+}
+#DialogBoxRejectBtn{
+    border: 1px solid var(--color-primary);
+    background: #fff;
+    color: var(--color-primary);
+    font-weight: 600;
+    padding: 14px 0;
+}
+.DialogCloseButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    position: fixed;
+    top: 36%;
+    left: 50%;
+    background-color: var(--color-bg);
+    border: none;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    &:hover{
+        cursor: pointer;
+    }
+}
+.DialogCloseButton svg{
+    font-size: 24px;
+
+}

@@ -70,7 +70,7 @@ const handleGoogleLogin = async () => {
     <Overlay/>
 
     <div className={styles.checkoutWindow}>
-    {user?<CheckoutForm/>:<LoginBox googleLoginForm = {handleGoogleLogin} setOpenCheckout= {setOpenCheckout}/>}
+    {user?<LoginBox googleLoginForm = {handleGoogleLogin} setOpenCheckout= {setOpenCheckout}/>:<CheckoutForm/>}
     </div>
     
 </>
