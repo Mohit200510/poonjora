@@ -4,6 +4,8 @@ import { supabase } from '../../supabaseClient';
 import { useContext } from 'react';
 import CartContext from '../../context/CartContext';
 import { PulseLoader } from "react-spinners";
+import OrderSuccess from './orderSuccess/OrderSuccess';
+import { useNavigate } from 'react-router-dom';
 
 import { GoArrowLeft } from "react-icons/go";
 import { IoMdLock } from "react-icons/io";
@@ -24,6 +26,9 @@ import ReviewBox from './formUX/ReviewBox';
 
 function CheckoutForm() {
 
+
+  const naviagte = useNavigate();
+
   const [openAddressForm,setOpenAddressForm] = useState(false)
   const [openReviewBox,setOpenReviewBox] = useState(false)
 
@@ -32,7 +37,8 @@ function CheckoutForm() {
 
     const [loading,setLoading] = useState(false)
 
-    const {cartItems,cartPriceTotal} = useContext(CartContext)
+
+    const {cartItems,cartPriceTotal,clearCart} = useContext(CartContext)
 
     const placeOrder = async ()=>{
 
@@ -48,17 +54,25 @@ function CheckoutForm() {
       .select()
       .single();
 
-
-
-         if (error) {
+      if (error) {
          console.log("Order error:", error);
          return;
          }
 
         // console.log("Order placed successfully");
+        clearCart()
+
+        naviagte(`/order-confirmation/${data.id}`,{
+          state: {order: data}
+        });
         setLoading(false)
+
+
     
       }
+
+      
+      
 
 
 

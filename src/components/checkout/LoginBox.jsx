@@ -5,6 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 import { PiLineVerticalThin } from "react-icons/pi";
 import { FiArrowRight } from "react-icons/fi";
 import { X } from 'lucide-react'
+import bag from "../../assets/login_new2.webp"
+import { IoMdLock } from "react-icons/io";
+
 
 
 
@@ -28,6 +31,10 @@ function LoginBox({googleLoginForm,setOpenCheckout}) {
                     <p>Sign in for a faster seemless exprience</p>
                 </div>
 
+                <div className={styles.LoginBoxBrandImage}>
+                    <img src={bag}></img>
+                </div>
+
                 <div className={styles.loginBoxMid}>
 
                     <div className={styles.loginBoxGoogleBtn}>
@@ -42,6 +49,13 @@ function LoginBox({googleLoginForm,setOpenCheckout}) {
                         <a href=''>Continue as Guest</a>
                     </div>
 
+                </div>
+
+                <div className={styles.loginBoxBottom}>
+                    <p>
+                    <span><IoMdLock/> By continuing, you agree to our</span><br/>
+                    <a href=''>Terms of Service</a> and <a href=''>Privacy Policy.</a>
+                    </p>
                 </div>
 
             </div>

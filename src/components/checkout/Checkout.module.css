@@ -1,8 +1,8 @@
 
 .checkoutWindow{
-            display: flex;
-        flex-direction: column;
-        justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 30dvw;
     max-height: 90dvh;
     /* height: 90dvh; */
@@ -123,7 +123,7 @@
     overscroll-behavior: contain;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    /* background-color: #FAFAFA; */
+    background-color: #FAFAFA;
     padding: 15px;
     margin-top: 1px;
 }
@@ -213,6 +213,13 @@
 /* login box of poonjora css separate */
 
 .loginBox{
+    /* background: url("../../assets/login_bg.webp"); */
+    background: url("../../assets/checkout_bg.png");
+
+    background-size: cover;
+    background-position: left;
+    width: 100%;
+    padding: 30px;
     
 }
 .loginBoxCrossIcon{
@@ -228,7 +235,7 @@
     width: 56px;
 }
 .LoginBoxHeading{
-    margin: 10px 0 50px 0;
+    margin: 10px 0 10px 0;
 }
 .LoginBoxHeading h3{
     font-size: 26px;
@@ -239,6 +246,9 @@
 }
 .LoginBoxHeading p{
     color: var(--color-text-secondary);
+}
+.LoginBoxBrandImage img{
+    width: 250px;
 }
 
 
@@ -263,6 +273,7 @@
     color: #fff;
     border: none;
     margin-bottom: 12px;
+    margin-top: 28px;
     transition: 0.09s all ease-out;
     &:hover{
         cursor: pointer;
@@ -313,6 +324,25 @@
     text-decoration:  none;
     font-weight: 500;
 
+}
+.loginBoxBottom{
+    margin-top: 20px;
+}
+.loginBoxBottom span{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    color: var(--color-text-secondary);
+}
+.loginBoxBottom p{
+    font-size: 14px;
+    text-align: center;
+    color: var(--color-text-secondary);
+    line-height: 0.6;
+}
+.loginBoxBottom svg{
+    font-size: 19px;
 }
 
 
