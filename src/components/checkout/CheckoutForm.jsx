@@ -6,6 +6,9 @@ import CartContext from '../../context/CartContext';
 import { PulseLoader } from "react-spinners";
 import OrderSuccess from './orderSuccess/OrderSuccess';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
+
 
 import { GoArrowLeft } from "react-icons/go";
 import { IoMdLock } from "react-icons/io";
@@ -30,8 +33,8 @@ function CheckoutForm({setOpenCheckout}) {
 
   const naviagte = useNavigate();
 
-  const [openAddressForm,setOpenAddressForm] = useState(false)
-  const [openReviewBox,setOpenReviewBox] = useState(false)
+    const [openAddressForm,setOpenAddressForm] = useState(false)
+    const [openReviewBox,setOpenReviewBox] = useState(false)
 
     const [selectedAddress, setSelectedAddress] = useState(null);
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
@@ -133,7 +136,7 @@ function CheckoutForm({setOpenCheckout}) {
                 onClick={placeOrder}
                  disabled={!selectedAddress || ! selectedPaymentOption || loading} type='button'>
                   {loading?<PulseLoader color='#fff'
-                  size={10}/>:(`Pay ₹${cartPriceTotal}.00`)}</button>
+                  size={10}/>:(`Pay ₹${cartPriceTotal}.00`)}<FaArrowRightLong/></button>
               </div>
             </div>
 

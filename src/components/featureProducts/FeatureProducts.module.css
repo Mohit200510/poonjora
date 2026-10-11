@@ -213,15 +213,16 @@
     height: 62px;
     border-bottom-left-radius: 18px;
     border-bottom-right-radius: 18px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    /* border-top-left-radius: 8px; */
+    /* border-top-right-radius: 8px; */
     font-size: 15px;
     font-weight: 700;
     border: none;
     transition: 0.3s all ease-out;
 
     &:hover{
-        background-color: var(--color-primary-dark);
+        background: var(--color-primary-dark);
+        cursor: pointer;
     }
 }
 

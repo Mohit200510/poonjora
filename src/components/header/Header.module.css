@@ -2,6 +2,7 @@
     width: 132px;
     /* height: 20px; */
     margin-top: 5px;
+    cursor: pointer;
 }
 .logoWrap img{
     width: 155px;
@@ -274,6 +275,100 @@
     }
 
 }
+
+.location{
+    position: relative;
+}
+.locationOuterText{
+    display: flex;
+    flex-direction: column;
+    gap: -10px;
+    cursor: pointer;
+   
+}
+.location p{
+    color: #c2bbb1;
+
+    font-size: 15px;
+    font-family: "inter",sans-serif;
+}
+.location span{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: "inter",sans-serif ;
+    cursor: pointer;
+}
+
+.locationToggleBox{
+    width: 28vw;
+    background-color: #fff;
+    position: absolute;
+    color: #111;
+    /* bottom: 0; */
+    right: -25%;
+
+    /* display: none; */
+    /* transform: translateX(-57%); */
+    top: 56px;
+
+    /* width: 22vw; */
+    height: max-content;
+    padding: 22px 22px 22px 22px;
+    border-radius: 8px;
+    border: none;
+    background: var(--color-surface);
+    /* transition: 5s all ease-in; */
+    box-shadow: var(--shadow-lg);
+    z-index: 10;
+    
+}
+.locationToggleBoxContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.locationToggleBox h4{
+    font-size: 18px;
+    font-weight: 600;
+
+}
+.locationToggleBox p{
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    margin-bottom: 5px;
+}
+
+.locationToggleBox h6{
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+
+}
+.locationToggleBox svg{
+    font-size: 20px;
+}
+.locationToggleClose{
+    /* font-size: 40px; */
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+.locationToggleClose svg{
+    font-size: 24px;
+    color: var(--color-text-secondary);
+}
+
+
 
 /* .cartPreviewbtn{
     width: 45%;

@@ -32,7 +32,7 @@ function Hero() {
 
 
                 
-                  <button className={styles.heroBtnOne}><ShoppingBag style={{display: "block" ,position:"absolute"}}  stroke='var(--color-accent' />  Shop Now</button>
+                  <button className={styles.heroBtnOne}><ShoppingBag style={{display: "block" ,position:"absolute"}}  stroke='var(--color-accent)' />  Shop Now</button>
                   
                   <button className={styles.heroBtnTwo}><LayoutGrid style={{display: "block" ,position:"absolute"}} /> Explore Categories</button>
                   

@@ -1,0 +1,832 @@
+.productDetail {
+    width: 100%;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.productHero {
+    position: relative;
+
+    width: 100%;
+    min-height: 680px;
+
+    background-image: url("../../assets/universal_bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   IVORY FADE BEHIND DETAILS
+========================= */
+
+.productHero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+
+        /* IMAGE SIDE */
+        rgba(110, 88, 65, 0.22) 0%,
+        rgba(125, 102, 78, 0.17) 18%,
+        rgba(145, 120, 92, 0.10) 32%,
+
+        /* TRANSITION */
+        rgba(65, 35, 10, 0.08) 42%,
+        rgba(255, 253, 249, 0.12) 48%,
+
+        /* DETAILS SIDE */
+        rgba(255, 253, 249, 0.65) 58%,
+        rgba(255, 253, 249, 0.92) 70%,
+        rgba(255, 253, 249, 0.98) 100%
+    );
+
+    z-index: 1;
+    pointer-events: none;
+}
+
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.productHeroContent {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    min-height: 680px;
+
+    display: flex;
+}
+
+
+/* =========================
+   LEFT PRODUCT AREA
+========================= */
+
+.productVisualMain {
+    width: 55%;
+    min-height: 680px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 60px 30px 70px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   PRODUCT GALLERY
+========================= */
+
+.productGalleryContainer {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    flex-shrink: 0;
+}
+
+
+.productGalleryBox {
+    width: 78px;
+    height: 78px;
+
+    min-width: 78px;
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.18);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+.productGalleryBox img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    transform: none;
+    filter: none;
+}
+
+
+/* Selected gallery image */
+
+.productGalleryBoxSelected {
+    border: 2px solid var(--color-primary);
+
+    background: rgba(255, 255, 255, 0.28);
+}
+
+
+/* =========================
+   MAIN PRODUCT GLASS BOX
+========================= */
+
+.productVisual {
+    position: relative;
+
+    flex: 1;
+
+    /*
+        IMPORTANT:
+        This is now the ACTUAL visible glass box.
+        Its size doesn't depend on the product image.
+    */
+
+    height: 520px;
+
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 248, 235, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.42);
+
+    border-radius: 24px;
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    box-shadow:
+        0 16px 40px rgba(67, 38, 15, 0.07),
+        inset 0 1px 0 rgba(255, 255, 255, 0.30);
+
+    overflow: hidden;
+}
+
+
+/*
+    Old pseudo element is no longer needed
+*/
+
+.productVisual::before {
+    display: none;
+}
+
+
+/* =========================
+   MAIN PRODUCT IMAGE
+========================= */
+
+.productMainImage {
+    position: relative;
+
+    z-index: 2;
+
+    /*
+        Image uses available space inside
+        the fixed glass box.
+    */
+
+    width: 100%;
+    height: 100%;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: contain;
+
+    transform: none;
+
+    filter:
+        drop-shadow(0 12px 16px rgba(58, 34, 15, 0.14));
+}
+
+
+/* =========================
+   PRODUCT INFORMATION
+========================= */
+
+.productInfo {
+    width: 45%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 55px 0px 55px 25px;
+
+    box-sizing: border-box;
+}
+
+
+.productInfoInner {
+    width: 100%;
+    max-width: 620px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+.heading h1 {
+    margin: 0 0 8px;
+
+    font-size: clamp(32px, 2.7vw, 46px);
+    line-height: 1.05;
+
+    font-weight: 600;
+
+    color: var(--color-primary);
+}
+
+
+.heading p {
+    margin: 0;
+
+    max-width: 540px;
+
+    font-size: 17px;
+    line-height: 1.5;
+
+    color: var(--color-text-primary);
+}
+
+
+/* =========================
+   RATING
+========================= */
+
+.rating {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.stars {
+    color: #d99b32;
+
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+
+.rating span {
+    font-size: 14px;
+
+    color: var(--color-text-primary);
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+.price {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.price strong {
+    font-size: 38px;
+    line-height: 1;
+
+    color: var(--color-primary);
+}
+
+
+.price > span {
+    font-size: 20px;
+
+    color: var(--color-text-secondary);
+
+    text-decoration: line-through;
+}
+
+
+.discount {
+    padding: 7px 12px;
+
+    border-radius: 100px;
+
+    background: #e3f5e7;
+
+    color: #16863c;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   PACK OPTIONS
+========================= */
+
+.packSection > p,
+.quantityRow p,
+.delivery > p {
+    margin: 0 0 9px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: var(--color-text-primary);
+}
+
+
+.packOptions {
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.packOptions button {
+    min-width: 105px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    padding: 11px 20px;
+
+    background: rgba(255, 255, 255, 0.45);
+
+    border: 1px solid rgba(54, 1, 79, 0.18);
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    color: var(--color-text-primary);
+}
+
+
+.packOptions button strong {
+    color: var(--color-primary);
+}
+
+
+.packOptions .selectedPack {
+    border: 2px solid var(--color-primary);
+
+    background: rgba(255, 255, 255, 0.65);
+}
+
+
+/* =========================
+   QUANTITY
+========================= */
+
+.quantityRow {
+    display: flex;
+    align-items: flex-end;
+
+    gap: 30px;
+}
+
+
+.quantity {
+    display: flex;
+
+    border: 1px solid rgba(54, 1, 79, 0.18);
+
+    border-radius: 6px;
+
+    overflow: hidden;
+}
+
+
+.quantity button,
+.quantity span {
+    width: 44px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.quantity button {
+    border: none;
+
+    background: rgba(255, 255, 255, 0.5);
+
+    color: var(--color-primary);
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+.stock {
+    margin-bottom: 10px;
+
+    font-size: 13px;
+
+    color: #188b42;
+}
+
+
+/* =========================
+   DELIVERY
+========================= */
+
+.delivery > div {
+    display: flex;
+
+    max-width: 420px;
+}
+
+
+.delivery input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 13px 15px;
+
+    border: 1px solid rgba(54, 1, 79, 0.18);
+
+    border-radius: 7px 0 0 7px;
+
+    background: rgba(255, 255, 255, 0.65);
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+
+.delivery button {
+    padding: 0 24px;
+
+    border: none;
+
+    border-radius: 0 7px 7px 0;
+
+    background: var(--color-primary);
+
+    color: #fff;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   CTA BUTTONS
+========================= */
+
+.actions {
+    display: flex;
+
+    gap: 12px;
+
+    width: 100%;
+}
+
+
+.actions button {
+    flex: 1;
+
+    min-height: 54px;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+
+.cartButton {
+    border: 1.5px solid var(--color-primary);
+
+    color: var(--color-primary);
+
+    background: rgba(255, 255, 255, 0.55);
+}
+
+
+.buyButton {
+    border: 1.5px solid var(--color-primary);
+
+    background: var(--color-primary);
+
+    color: #fff;
+}
+
+
+/* =========================
+   TRUST ROW
+========================= */
+
+.trust {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 18px;
+
+    padding-top: 10px;
+}
+
+
+.trustItem {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.trustItem svg {
+    font-size: 40px;
+
+    background-color: var(--color-primary-light);
+
+    color: var(--color-primary);
+
+    border-radius: 50%;
+
+    padding: 7px;
+}
+
+
+.trustItem h3 {
+    font-size: 14px;
+
+    color: var(--color-primary);
+}
+
+
+.trustItem p {
+    margin-top: 3px;
+
+    color: var(--color-text-secondary);
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1000px) {
+
+    .productHero,
+    .productHeroContent {
+        min-height: 600px;
+    }
+
+
+    .productVisualMain {
+        width: 50%;
+        min-height: 600px;
+
+        gap: 14px;
+
+        padding: 40px 20px;
+    }
+
+
+    .productVisual {
+        height: 450px;
+
+        padding: 30px;
+
+        border-radius: 20px;
+    }
+
+
+    .productMainImage {
+        width: 100%;
+        height: 100%;
+
+        max-width: 100%;
+        max-height: 100%;
+
+        object-fit: contain;
+
+        transform: none;
+    }
+
+
+    .productGalleryBox {
+        width: 65px;
+        height: 65px;
+
+        min-width: 65px;
+        min-height: 65px;
+    }
+
+
+    .productInfo {
+        width: 50%;
+
+        padding-right: 35px;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .productHero {
+        min-height: auto;
+
+        background-position: 25% center;
+    }
+
+
+    .productHero::after {
+        background: linear-gradient(
+            180deg,
+
+            rgba(255, 253, 249, 0) 0%,
+            rgba(255, 253, 249, 0.30) 30%,
+            rgba(255, 253, 249, 0.94) 48%,
+            #fffdf9 65%
+        );
+    }
+
+
+    .productHeroContent {
+        min-height: auto;
+
+        flex-direction: column;
+    }
+
+
+    /* =========================
+       MOBILE PRODUCT AREA
+    ========================= */
+
+    .productVisualMain {
+        width: 100%;
+        min-height: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 14px;
+
+        padding: 35px 20px 30px;
+    }
+
+
+    /* Main image box */
+
+    .productVisual {
+        width: 100%;
+        height: 380px;
+
+        padding: 25px;
+
+        border-radius: 20px;
+    }
+
+
+    .productMainImage {
+        width: 100%;
+        height: 100%;
+
+        max-width: 100%;
+        max-height: 100%;
+
+        object-fit: contain;
+
+        transform: none;
+    }
+
+
+    /* Gallery becomes horizontal on mobile */
+
+    .productGalleryContainer {
+        width: 100%;
+
+        flex-direction: row;
+
+        justify-content: center;
+
+        gap: 10px;
+
+        order: 2;
+
+        overflow-x: auto;
+
+        scrollbar-width: none;
+    }
+
+
+    .productGalleryContainer::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .productGalleryBox {
+        width: 62px;
+        height: 62px;
+
+        min-width: 62px;
+        min-height: 62px;
+    }
+
+
+    /* =========================
+       MOBILE PRODUCT DETAILS
+    ========================= */
+
+    .productInfo {
+        width: 100%;
+
+        padding: 35px 20px 45px;
+    }
+
+
+    .productInfoInner {
+        max-width: none;
+    }
+
+
+    .heading h1 {
+        font-size: 32px;
+    }
+
+
+    .packOptions {
+        overflow-x: auto;
+
+        scrollbar-width: none;
+    }
+
+
+    .packOptions::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .actions {
+        flex-direction: column;
+    }
+
+
+    .trust {
+        flex-wrap: wrap;
+    }
+}

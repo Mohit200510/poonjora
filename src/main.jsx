@@ -17,15 +17,18 @@ import "@fontsource/inter/700.css";
 import "@fontsource/lora/600.css";
 import "@fontsource/lora/700.css";
 import { CartProvider } from './context/CartContext.jsx'
+import { PincodeProvider } from './context/PincodeContext.jsx'
 import { BrowserRouter } from 'react-router-dom'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <CartProvider>
-      <BrowserRouter>
-        <App />
+      <PincodeProvider>
+        <BrowserRouter>
+          <App />
         </BrowserRouter>
+      </PincodeProvider>
     </CartProvider>
   </StrictMode>,
 )

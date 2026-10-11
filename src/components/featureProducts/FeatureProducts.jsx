@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { supabase } from '../../supabaseClient'
 import styles from './FeatureProducts.module.css'
 import Container from '../common/Container'
@@ -10,6 +11,8 @@ import { ArrowRight } from 'lucide-react'
 function FeatureProducts() {
 
     const [products,setProducts] = useState([]);
+
+    const navigate = useNavigate()
 
     useEffect(()=>{
         getProducts();
@@ -30,6 +33,8 @@ function FeatureProducts() {
     }
 
 
+   
+
 
   return (
 
@@ -47,7 +52,13 @@ function FeatureProducts() {
                 <div className={styles.featureProductsBoxes}>
 
                     {products.map((product,index)=>(
-                        <div className={styles.featureProductsBox} key={product.id}>
+                        <div 
+                        onClick={()=>{
+                           navigate(`/product/${product.id}`);
+                            
+                        }}
+                        className={styles.featureProductsBox}
+                         key={product.id}>
                             <FeatureProduct product ={product}></FeatureProduct>
                         </div>
                     ))}

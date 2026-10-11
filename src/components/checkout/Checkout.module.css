@@ -183,6 +183,10 @@
 
 
 .checkoutFormBottomButtonArea button{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
     width: 100%;
     background-color: var(--color-primary);
     color: #fff;
@@ -205,6 +209,9 @@
         /* opacity: 0.7; */
 
     }
+}
+.checkoutFormBottomButtonArea button svg{
+    font-size: 18px;
 }
 
 
@@ -268,6 +275,7 @@
 }
      
 .loginBoxGoogleBtn button{
+    
     width: 100%;
     display: flex;
     align-items: center;

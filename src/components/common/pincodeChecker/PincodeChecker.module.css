@@ -1,0 +1,100 @@
+/* =========================
+   DELIVERY
+========================= */
+
+.delivery .deliveryField {
+    position: relative;
+    display: flex;
+
+    max-width: 420px;
+}
+
+
+.delivery input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 13px 15px;
+
+    border: 1px solid rgba(54, 1, 79, 0.18);
+
+    border-radius: 7px 0 0 7px;
+
+    background: rgba(255, 255, 255, 0.65);
+
+    outline: none;
+
+    font-size: 14px;
+}
+.delivery input:focus {
+   outline: none;
+    border: 1px solid #9B75AD;
+    box-shadow: 0 0 0 3px rgba(54, 1, 79, 0.05);
+}
+
+
+.delivery p{
+    margin-top: 6px;
+    font-size: 15px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+
+.delivery button {
+    padding: 0 24px;
+
+    border: none;
+
+    border-radius: 0 7px 7px 0;
+
+    background: var(--color-primary);
+
+    color: #fff;
+
+    cursor: pointer;
+}
+.delivery button:disabled {
+     background: #f2f0ee;
+    color: #77716d;
+    border: 1px solid #e3dfdb;
+    cursor: not-allowed;
+    opacity: 1;
+}
+.deliveryAvaialblity{
+    /* position: absolute; */
+
+
+}
+.deliveryAvaialblityTrue{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #035511;
+}
+.deliveryAvaialblityTrue span{
+    font-size: 15px;
+    font-weight: 600;
+}
+.deliveryAvaialblityTrue svg{
+    font-size: 20px;
+}
+
+.deliveryAvaialblityFalse{
+     margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #AA122A;
+}
+.deliveryAvaialblityFalse span{
+    font-size: 15px;
+    font-weight: 600;
+}
+.deliveryAvaialblityFalse svg{
+    font-size: 22px;
+}

@@ -141,6 +141,9 @@
     font-weight: 600;
     font-size: 14px;
 }
+.AddressBoxText h5{
+    margin-bottom: 4px;
+}
 .addressBoxAddress p, .paymentBoxMethod p{
     color: var(--color-text-primary);
     text-align: left;

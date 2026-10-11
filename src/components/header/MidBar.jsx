@@ -1,6 +1,7 @@
 import React from 'react'
 import Container from '../common/Container'
 import styles from "./Header.module.css";
+import { useNavigate } from 'react-router-dom';
 // import logo from "../../assets/PujoraLogo.svg";
 import logo from "../../assets/poonjora_logo.png";
 // import logo from "../../assets/test.png";
@@ -20,10 +21,15 @@ import CartContext from '../../context/CartContext';
 function MidBar() {
 
     const {closeCart,setCloseCart,cartItems} = useContext(CartContext)
+    const navigate =useNavigate();
 
     
     function OpenCart(){
         setCloseCart(false)
+    }
+
+    function navigateHome(){
+        navigate("/")
     }
 
 
@@ -37,7 +43,7 @@ function MidBar() {
                     <Menu size={28}  color="#f7f3ee" ></Menu>
                 </div>
 
-                <div className={styles.logoWrap}>
+                <div onClick={navigateHome} className={styles.logoWrap}>
                     <img src={logo}></img>
                 </div>
 

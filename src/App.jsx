@@ -10,6 +10,7 @@ import { useContext } from 'react'
 import CartContext from './context/CartContext'
 import Toast from './components/common/toast/Toast'
 import OrderSuccess from './pages/orderSuccess/OrderSuccess'
+import Product from './pages/productDetail/Product'
 
 
 
@@ -38,8 +39,12 @@ function App() {
     <Routes>
       <Route path='/' element={<Home/>}></Route>
       <Route path='/order-confirmation/:orderId' element={<OrderSuccess/>}></Route>
+      <Route path='/product/:id' element={<Product/>}></Route>
      
     </Routes>
+
+    {/* <Product></Product> */}
+
 
 
     
