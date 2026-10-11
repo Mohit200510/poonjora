@@ -2,11 +2,9 @@ import React from 'react'
 import Container from '../common/Container'
 import styles from "./Header.module.css";
 import { useNavigate } from 'react-router-dom';
-// import logo from "../../assets/PujoraLogo.svg";
-import logo from "../../assets/poonjora_logo.png";
-// import logo from "../../assets/test.png";
-// import logo from "../../assets/test6.png";
-// import logo from "../../assets/new_logo.png";
+// import logo from "../../assets/poonjora_logo.png";
+import logo from "../../assets/logooo.png";
+// import logo from "../../assets/recently.png";
 import SearchBar from './SearchBar';
 import Location from './Location';
 import ShopingCart from './ShopingCart';

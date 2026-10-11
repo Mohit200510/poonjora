@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from "./Home.module.css"
 import Hero from '../../components/hero/Hero'
 import Categories from '../../components/categories/Categories'
 // import banner from "../../assets/puja_banner.png"
@@ -9,7 +10,7 @@ import PujaKit from '../../components/puja_kits/PujaKit'
 
 function Home() {
   return (
-    <div>
+    <div className={styles.homeBG}>
         <Hero/>
         <PujaKit/>
         <Categories/>
