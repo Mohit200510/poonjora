@@ -11,6 +11,11 @@ import CartContext from './context/CartContext'
 import Toast from './components/common/toast/Toast'
 import OrderSuccess from './pages/orderSuccess/OrderSuccess'
 import Product from './pages/productDetail/Product'
+import PrivacyPolicy from './pages/privacyPolicy/PrivacyPolicy'
+import TermsConditions from './pages/terms&Conditions/TermsConditions'
+import ShippingPolicy from './pages/shippingPolicy/ShippingPolicy'
+import RefundCancellation from './pages/refund&Cancellation/RefundCancellation'
+import PanchangPage from './pages/panchangPage/PanchangPage'
 
 
 
@@ -40,6 +45,11 @@ function App() {
       <Route path='/' element={<Home/>}></Route>
       <Route path='/order-confirmation/:orderId' element={<OrderSuccess/>}></Route>
       <Route path='/product/:id' element={<Product/>}></Route>
+      <Route path='/privacy-policy' element={<PrivacyPolicy/>}></Route>
+      <Route path='/terms-and-conditions' element={<TermsConditions/>}></Route>
+      <Route path='/shipping-policy' element={<ShippingPolicy/>}></Route>
+      <Route path="/refund-cancellation-policy" element={<RefundCancellation/>}></Route>
+      <Route path="/panchang" element={<PanchangPage/>}></Route>
      
     </Routes>
 

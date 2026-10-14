@@ -1,5 +1,9 @@
+.temple img{
+    width: 100%;
+}
 .sectionCategories{
-    margin: 90px 0 0 0;
+    /* margin: 90px 0 0 0; */
+    margin: 32px 0 0 0;
 }
 .secCategoriesHeader{
     text-align: center;
@@ -38,7 +42,7 @@
     background-size: cover;
     background-position: center;
     /* position: relative; */
-    padding: 80px 0 0 0;
+    /* padding: 80px 0 0 0; */
     
 }
 
@@ -144,7 +148,7 @@
 
 
 .CategoriesSeeMore{
-    margin: 67px 0 0 0;
+    /* margin: 67px 0 0 0; */
 }
 .CategoriesSeeMore button{
     

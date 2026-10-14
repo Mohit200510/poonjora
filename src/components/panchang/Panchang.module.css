@@ -1,0 +1,119 @@
+
+
+
+.panchang {
+  width: 100%;
+}
+
+.topPanel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  padding: 12px 8px 28px;
+  border-bottom: 1px solid #efe2d2;
+}
+
+.cityPanel,
+.datePanel {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+}
+
+.cityPanel {
+  padding-right: 28px;
+  border-right: 1px solid #ead9c4;
+}
+
+.panelContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.panelIcon,
+.dateIcon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 23px;
+}
+
+.panelIcon {
+  color: #36014f;
+  background: #f4e9f7;
+}
+
+.dateIcon {
+  color: #36014f;
+  background: #ffedca;
+}
+
+.panelLabel {
+  display: block;
+  color: #663e72;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.datePanel h2 {
+  color: #36014f;
+  font-size: clamp(18px, 2vw, 25px);
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.locationText {
+  color: #786b7b;
+  font-size: 13px;
+  margin: 7px 0 0;
+}
+
+.status,
+.error,
+.emptyState {
+  text-align: center;
+  padding: 40px 16px;
+  font-size: 15px;
+}
+
+.status,
+.emptyState {
+  color: #76677a;
+}
+
+.error {
+  color: #b42318;
+}
+
+@media (max-width: 768px) {
+  .topPanel {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 6px 0 24px;
+  }
+
+  .cityPanel {
+    border-right: none;
+    padding-right: 0;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #efe2d2;
+  }
+
+  .panelIcon,
+  .dateIcon {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+  }
+
+  .datePanel h2 {
+    font-size: 19px;
+  }
+}

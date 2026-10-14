@@ -1,0 +1,97 @@
+
+
+
+.shippingPage {
+  width: 100%;
+  background: #fff;
+  padding: 55px 20px 80px;
+  color: #444;
+}
+
+.shippingContainer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.pageHeader h1 {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.pageHeader p {
+  font-size: 14px;
+  color: #777;
+}
+
+.introduction {
+  margin-bottom: 32px;
+}
+
+.shippingContainer section {
+  margin-bottom: 32px;
+}
+
+.shippingContainer h2 {
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.shippingContainer p {
+  font-size: 15px;
+  line-height: 1.85;
+  margin-bottom: 12px;
+}
+
+.shippingContainer ul {
+  padding-left: 25px;
+  margin: 12px 0 18px;
+}
+
+.shippingContainer li {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.shippingContainer a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.shippingContainer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .shippingPage {
+    padding: 35px 18px 55px;
+  }
+
+  .pageHeader h1 {
+    font-size: 27px;
+  }
+
+  .shippingContainer h2 {
+    font-size: 19px;
+  }
+
+  .shippingContainer p,
+  .shippingContainer li {
+    font-size: 14px;
+  }
+
+  .shippingContainer section {
+    margin-bottom: 27px;
+  }
+}

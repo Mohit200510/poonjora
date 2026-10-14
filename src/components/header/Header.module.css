@@ -419,6 +419,84 @@
 
 
 
+
+/* PANCHANG BUTTON */
+
+.panchangButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 10px 20px;
+  border: 1.5px solid #f3b83f;
+  border-radius: 50px;
+
+  background: linear-gradient(
+    135deg,
+    #fff7e7 0%,
+    #ffebc3 100%
+  );
+
+  color: #36014f;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+
+  box-shadow:
+    0 3px 10px rgba(186, 124, 28, 0.16),
+    0 1px 3px rgba(54, 1, 79, 0.06);
+
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.panchangIcon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.panchangArrow {
+  font-size: 17px;
+  margin-left: 4px;
+  transition: transform 0.25s ease;
+}
+
+.panchangButton:hover {
+  background: linear-gradient(
+    135deg,
+    #ffefcb 0%,
+    #ffdfa0 100%
+  );
+
+  box-shadow:
+    0 5px 16px rgba(186, 124, 28, 0.24),
+    0 2px 5px rgba(54, 1, 79, 0.08);
+
+  transform: translateY(-2px);
+}
+
+.panchangButton:hover .panchangArrow {
+  transform: translateX(3px);
+}
+
+.panchangButton:active {
+  transform: translateY(0);
+}
+
+.panchangButton:focus-visible {
+  outline: 2px solid #36014f;
+  outline-offset: 3px;
+}
+
+
+
+
+
 /* media quires */
 
 
@@ -470,7 +548,21 @@
     }
 }
 
+@media (max-width: 768px) {
+  .panchangButton {
+    padding: 8px 14px;
+    font-size: 13px;
+    gap: 7px;
+  }
 
+  .panchangIcon {
+    font-size: 17px;
+  }
+
+  .panchangArrow {
+    font-size: 15px;
+  }
+}
 
 @media  screen and (min-width:992px){
     .hamBurgerIcon{

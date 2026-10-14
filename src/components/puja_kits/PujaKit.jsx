@@ -7,6 +7,9 @@ import { SiHackthebox } from "react-icons/si";
 import { FiArrowRight } from "react-icons/fi";
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
+
+
 
 
 
@@ -14,7 +17,7 @@ import { FaAngleLeft } from "react-icons/fa6";
 import satyanarayanBg from "../../assets/puja_kit1.png";
 import shivBg from "../../assets/shivBg.webp";
 import hanumanBg from "../../assets/hanumanji.webp";
-import lakshmiBg from "../../assets/laxmiMata.webp";
+import lakshmiBg from "../../assets/laxmiji.webp";
 import grihaPraveshBg from "../../assets/pravesh.webp";
 import navgrahBg from "../../assets/navgrah.webp";
 
@@ -121,8 +124,11 @@ const pujaKits = [
     <section className={styles.secPujaKit}>
         <Container>
             <div className={styles.secPujaKitHeader}>
+                <div>
                 <h2>Puja Kits for Every Sacred Occasion</h2>
                 <p>Complete puja samagri, thoughtfully curated for your spiritual needs</p>
+                </div>
+                <button type='button'>View All Kits <FaArrowRightLong/></button>
             </div>
 
             <div className={styles.pujaKitBody}>

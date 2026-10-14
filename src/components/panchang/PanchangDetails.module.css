@@ -1,0 +1,266 @@
+
+.container {
+  padding-top: 28px;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.heading h3 {
+  color: #36014f;
+  font-size: 23px;
+  font-weight: 700;
+  margin: 0 0 5px;
+}
+
+.heading p {
+  color: #8b7c8c;
+  font-size: 13px;
+  margin: 0;
+}
+
+.dayBadge {
+  background: #f6edf7;
+  color: #36014f;
+  border: 1px solid #ead8ee;
+  padding: 8px 15px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+
+  min-width: 0;
+  min-height: 205px;
+  padding: 24px 12px;
+
+  border-radius: 16px;
+  border: 1px solid rgba(54, 1, 79, 0.035);
+}
+
+.tithi {
+  background: #fff0ec;
+}
+
+.nakshatra {
+  background: #f2edf9;
+}
+
+.yoga {
+  background: #edf5ee;
+}
+
+.karana {
+  background: #fff4dd;
+}
+
+.detailIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+
+  font-size: 26px;
+  color: #36014f;
+}
+
+.tithi .detailIcon {
+  background: #ffdbdc;
+  color: #a52c58;
+}
+
+.nakshatra .detailIcon {
+  background: #e5d8f3;
+  color: #69328e;
+}
+
+.yoga .detailIcon {
+  background: #d5ebd9;
+  color: #327b58;
+}
+
+.karana .detailIcon {
+  background: #ffe7b0;
+  color: #a16a18;
+}
+
+.label {
+  color: #36014f;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.detail strong {
+  color: #36014f;
+  font-size: clamp(17px, 1.8vw, 23px);
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.detail small {
+  color: #665a68;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.sunTimes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 20px;
+
+  padding: 24px 16px;
+  background: #fffcf7;
+  border: 1px solid #f0e6d9;
+  border-radius: 16px;
+}
+
+.timeItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 0 10px;
+}
+
+.timeItem:not(:last-child) {
+  border-right: 1px solid #eaded0;
+}
+
+.timeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  background: #fff0d6;
+  color: #a46a22;
+  font-size: 23px;
+}
+
+.timeItem:nth-child(2) .timeIcon {
+  background: #ffe3d8;
+  color: #bf542b;
+}
+
+.timeItem:nth-child(3) .timeIcon,
+.timeItem:nth-child(4) .timeIcon {
+  background: #eee6f7;
+  color: #69328e;
+}
+
+.timeItem > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.timeItem > div > span {
+  color: #66526c;
+  font-size: 13px;
+}
+
+.timeItem strong {
+  color: #36014f;
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sunTimes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 24px;
+  }
+
+  .timeItem:nth-child(2) {
+    border-right: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding-top: 22px;
+  }
+
+  .heading h3 {
+    font-size: 19px;
+  }
+
+  .grid {
+    gap: 10px;
+  }
+
+  .detail {
+    padding: 20px 9px;
+    min-height: 185px;
+    gap: 8px;
+  }
+
+  .detailIcon {
+    width: 46px;
+    height: 46px;
+    font-size: 22px;
+  }
+
+  .label {
+    font-size: 15px;
+  }
+
+  .detail strong {
+    font-size: 17px;
+  }
+
+  .detail small {
+    font-size: 12px;
+  }
+
+  .sunTimes {
+    padding: 18px 10px;
+    gap: 20px 0;
+  }
+
+  .timeItem {
+    gap: 8px;
+    padding: 0 6px;
+  }
+
+  .timeIcon {
+    width: 38px;
+    height: 38px;
+    font-size: 19px;
+  }
+
+  .timeItem strong {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,250 @@
+
+.container {
+  margin-top: 24px;
+}
+
+/* Section Heading */
+
+.heading {
+  margin-bottom: 18px;
+}
+
+.heading h3 {
+  margin: 0 0 5px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #36014f;
+}
+
+.heading p {
+  margin: 0;
+  font-size: 13px;
+  color: #847488;
+}
+
+/* Muhurat Cards */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  padding: 20px 14px;
+  border: 1px solid #f0e6dd;
+  border-radius: 14px;
+  background: #fffcf8;
+}
+
+/* New Outlined Icon Style */
+
+.icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border-radius: 0;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.icon svg {
+  width: 28px;
+  height: 28px;
+  stroke-width: 2;
+}
+
+/* Icon Colors */
+
+.auspicious .icon {
+  color: #16844b;
+}
+
+.rahu .icon {
+  color: #e63820;
+}
+
+.yamaganda .icon {
+  color: #d97706;
+}
+
+.gulika .icon {
+  color: #e63820;
+}
+
+/* Wednesday: Abhijit Unavailable */
+
+.unavailable {
+  background: #fffcf8;
+  border-color: #f0e6dd;
+}
+
+.unavailable .icon {
+  color: #827587;
+  background: transparent;
+}
+
+.unavailable .content strong {
+  color: #766b7b;
+}
+
+/* Card Text */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #36014f;
+}
+
+.content strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: #36014f;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.content small {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #847488;
+}
+
+/* Optional Disclaimer */
+
+.disclaimer {
+  margin: 16px 0 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #88798b;
+}
+
+/* Information Note */
+
+.infoNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  margin-top: 24px;
+  padding: 18px 20px;
+
+  background: #fff9ee;
+  border: 1px solid #f0e3cb;
+  border-radius: 12px;
+}
+
+.infoIcon {
+  flex-shrink: 0;
+  color: #a67c37;
+  font-size: 19px;
+  margin-top: 2px;
+}
+
+.infoNote p {
+  margin: 0;
+  color: #756478;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.infoNote strong {
+  color: #36014f;
+  font-weight: 600;
+}
+
+/* Prokerala Attribution */
+
+.attribution {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-top: 16px;
+  padding: 12px 4px;
+
+  font-size: 12px;
+  color: #847488;
+}
+
+.attribution a {
+  color: #36014f;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.attribution a:hover {
+  color: #8b4a9e;
+}
+
+/* Responsive Layout */
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .heading h3 {
+    font-size: 19px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .card {
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+  }
+
+  .icon svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .content strong {
+    font-size: 14px;
+  }
+
+  .infoNote {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .infoNote p {
+    font-size: 12px;
+  }
+
+  .attribution {
+    font-size: 11px;
+  }
+}

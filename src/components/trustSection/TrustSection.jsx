@@ -10,37 +10,48 @@ function TrustSection() {
     <section className={styles.trustSection}>
 
 
-            <div className={styles.trustSectionHeader}>
-                <h2>Why Choose <span> Poonjora</span></h2>
-                <p>Bringing purity, authenticity, and devotion to every home with handpicked selected puja essentials.</p>
-            </div>
+            
         
 
             <div className={styles.trustSectionBody}>
             <Container>
 
+              <div style={{marginBottom: "50px"}} className={styles.trustSectionHeader}>
+                <h2><span> Devotion </span>You Can Trust</h2>
+                <p>Bringing purity, authenticity, and devotion to every home with handpicked selected puja essentials.</p>
+            </div>
+
 
               <div className={styles.trustSectionBodyBadges}>
-                <div className={styles.trustSectionBodyBadge}>
-                  <Truck size={50}/>
-                  <h4>Free Shipping</h4>
-                  <p>On orders above ₹499</p>
-                </div>
 
                 <div className={styles.trustSectionBodyBadge}>
-                  <ShieldCheck size={50}/>
+                  <span><Truck size={68}/></span>
+                  <h4>Free Shipping</h4>
+                  <p>Free shipping on all orders</p>
+                </div>
+
+                <span className={styles.dividerLine}></span>
+
+                <div className={styles.trustSectionBodyBadge}>
+                  <span> <ShieldCheck size={68}/> </span>
                   <h4>100% Authentic</h4>
                   <p>Temple-quality puja products</p>
                 </div>
 
+                <span className={styles.dividerLine}></span>
+
+
                 <div className={styles.trustSectionBodyBadge}>
-                  <Lock size={50}/>
+                  <span><Lock size={68}/></span>
                   <h4>Secure Payments</h4>
                   <p>UPI • Cards • COD</p>
                 </div>
 
+                <span className={styles.dividerLine}></span>
+
+
                 <div className={styles.trustSectionBodyBadge}>
-                  <UserRoundCheck size={50}/>
+                  <span><UserRoundCheck size={68}/></span>
                   <h4>Trusted By Devotees</h4>
                   <p>Thousands of happy customers</p>
                 </div>

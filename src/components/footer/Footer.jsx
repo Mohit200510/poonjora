@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from "./Footer.module.css"
 import Container from '../common/Container';
+import { Link } from 'react-router-dom';
 import logo from "../../assets/footer-logo.png";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
@@ -59,10 +60,11 @@ function Footer() {
                 <div className=''>
                     <h4>Account Info</h4>
                     <ul>
-                        <li><a href=''>My Account</a></li>
-                        <li><a href=''>Privacy Policy</a></li>
-                        <li><a href=''>Return Policy</a></li>
-                        <li><a href=''>Terms & Conditions</a></li>
+                        <Link to="/privacy-policy"><li><a href=''>Privacy Policy</a></li></Link>
+                        <Link to="/shipping-policy"><li><a href=''>Shipping & Delivery Policy</a></li></Link>
+                        <Link to="/refund-cancellation-policy"><li><a href=''>Refund & Cancellation Policy</a></li></Link>
+                        <Link to="/terms-and-conditions"><li><a href=''>Terms & Conditions</a></li></Link>
+
                     </ul>
 
                 </div>
@@ -83,7 +85,7 @@ function Footer() {
                         <div>
                         <Mail size={40}/>
                         </div>
-                        <a href="mailto:jain.janinder@gmail.com">noreply@pujora.com</a>
+                        <a href="mailto:support@poonjora.in">support@poonjora.in</a>
                     </div>
 
                     <div className={styles.footerContactDiv}>

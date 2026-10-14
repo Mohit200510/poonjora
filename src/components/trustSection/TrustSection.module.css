@@ -6,13 +6,15 @@
 }
 .trustSectionHeader h2{
     font-size: 42px;
-    color: var(--color-primary);
+    color: var(--color-primary-dark);
     font-family: "cormonant" , sans-serif;
     font-weight: 700;
     margin-bottom: 12px;
 }
 .trustSectionHeader h2 span{
-    color: var(--color-primary-dark);
+    color: var(--color-primary);
+    font-family: "lora",sans-serif;
+    font-size: 45px;
 }
 .trustSectionHeader p{
     font-size: 18px;
@@ -34,17 +36,18 @@
 /*trust section body */
 
 .trustSectionBody{
-    background: url("../../assets/trustBanner.jpg");
+    /* background: url("../../assets/trustBanner.jpg"); */
+    background: url("../../assets/trust_bg.png");
     background-position: top;
     background-size: cover;
-    padding: 65px 0;
+    padding: 65px 0 80px 0;
     margin: 50px 0 80px 0;
 
 }
 
 .trustSectionBodyBadges{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .trustSectionBodyBadge{
     display: flex;
@@ -53,16 +56,34 @@
     justify-content: center;
     /* gap: 8px; */
 }
+.trustSectionBodyBadge span{
+    border-radius: 50%;
+    background-color: #FDEFDE;
+
+}
+
+.dividerLine{
+      display: block;
+  width: 1px;
+  /* height: 180px; */
+  background-color: #C58A27;
+}
+
 .trustSectionBodyBadge svg{
-    color: var(--color-accent);
-    font-size: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    color: var(--color-primary);
 }
 .trustSectionBodyBadge h4{
     font-family: "cormonant", sans-serif;
-    color: var(--color-surface);
+    /* color: var(--color-surface); */
+    color: var(--color-primary-dark);
     font-size: 22px;
     font-weight: 600;
     margin-top: 18px;
+    margin-bottom: 3px;
 }
     
 .trustSectionBodyBadge p{

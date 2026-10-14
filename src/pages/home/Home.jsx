@@ -7,13 +7,22 @@ import FeatureProducts from '../../components/featureProducts/FeatureProducts'
 import TrustSection from '../../components/trustSection/TrustSection'
 import Footer from '../../components/footer/Footer'
 import PujaKit from '../../components/puja_kits/PujaKit'
+import chameli from "../../assets/chamelibanner.webp"
+
 
 function Home() {
   return (
     <div className={styles.homeBG}>
         <Hero/>
-        <PujaKit/>
+      
+
         <Categories/>
+        <PujaKit/>
+
+        <div className={styles.chamelOilBanner}>
+          <img src={chameli}></img>
+        </div>
+
         {/* <div>
         <img style={{width: "100%" , marginTop: "70px"}} src={banner}></img>
         </div> */}

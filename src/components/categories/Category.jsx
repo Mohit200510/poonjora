@@ -8,8 +8,8 @@ function Category(prop) {
   return (
     <div className={styles.CategoryBox}>
         <div className={styles.CategoryBoxImgWrap}>
-                            <img src={prop.image}></img>
-                             <CategorySvgLine className={styles.categoryImgDivider}></CategorySvgLine>
+            <img src={prop.image}></img>
+            <CategorySvgLine className={styles.categoryImgDivider}></CategorySvgLine>
         </div>
 
         <div className={styles.categoryBoxContent}>

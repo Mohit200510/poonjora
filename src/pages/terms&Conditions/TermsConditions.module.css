@@ -1,0 +1,106 @@
+
+
+.termsPage {
+  width: 100%;
+  background: #fff;
+  padding: 55px 20px 80px;
+  color: #444;
+}
+
+.termsContainer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.pageHeader h1 {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.pageHeader p {
+  font-size: 14px;
+  color: #777;
+}
+
+.introduction {
+  margin-bottom: 32px;
+}
+
+.termsContainer section {
+  margin-bottom: 32px;
+}
+
+.termsContainer h2 {
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.termsContainer p {
+  font-size: 15px;
+  line-height: 1.85;
+  margin-bottom: 12px;
+}
+
+.termsContainer ul {
+  padding-left: 25px;
+  margin: 12px 0 18px;
+}
+
+.termsContainer li {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.termsContainer a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.termsContainer a:hover {
+  text-decoration: underline;
+}
+
+.pageFooter {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #e8e2eb;
+}
+
+.pageFooter p {
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .termsPage {
+    padding: 35px 18px 55px;
+  }
+
+  .pageHeader h1 {
+    font-size: 27px;
+  }
+
+  .termsContainer h2 {
+    font-size: 19px;
+  }
+
+  .termsContainer p,
+  .termsContainer li {
+    font-size: 14px;
+  }
+
+  .termsContainer section {
+    margin-bottom: 27px;
+  }
+}
