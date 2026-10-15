@@ -8,12 +8,14 @@ import TrustSection from '../../components/trustSection/TrustSection'
 import Footer from '../../components/footer/Footer'
 import PujaKit from '../../components/puja_kits/PujaKit'
 import chameli from "../../assets/chamelibanner.webp"
+import HomePanchang from '../../components/homePanchang/HomePanchang'
 
 
 function Home() {
   return (
     <div className={styles.homeBG}>
         <Hero/>
+        <HomePanchang/>
       
 
         <Categories/>
