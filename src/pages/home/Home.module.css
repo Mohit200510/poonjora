@@ -11,26 +11,41 @@
 
 } */
 
-.chamelOilBanner img{
-  width: 100%;
-  object-fit: contain;
-  
-}
+
+
+
+
 .chamelOilBanner {
-  margin-top: 70px;
   width: 100%;
-  height: auto;
-  overflow: hidden;
-  /* height: 500px; */
+  height: clamp(300px, 70vh, 480px);
   overflow: hidden;
   cursor: pointer;
-
 }
-  
+
 .chamelOilBanner img {
   width: 100%;
-  height: 72vh;
+  height: 100%;
   display: block;
+  object-fit: cover;
+  object-position: center;
+}
 
-  object-fit: contain;
+/* Tablet */
+@media (max-width: 1024px) {
+  .chamelOilBanner {
+    height: 48vh;
+  }
+
+  
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .chamelOilBanner {
+    height: 30vh;
+    min-height: 180px;
+    max-height: 260px;
+  }
+
+  
 }

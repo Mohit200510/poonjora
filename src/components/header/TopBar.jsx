@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './Header.module.css';
 import Container from '../common/Container';
 import { BadgePercent } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 function TopBar() {
   return (
@@ -12,10 +11,10 @@ function TopBar() {
             <div className={styles.topBarContent}>
                 <div className={styles.topBarOffer}>
                     <BadgePercent style={{color: "#b98423"}}></BadgePercent>
-                    <Link to="/panchang">
+                    
                     <span className={styles.topNavOffer}>Free puja samagri pouch on orders above ₹ 999</span>
 
-                    </Link>
+                    
                     
                 </div>
 

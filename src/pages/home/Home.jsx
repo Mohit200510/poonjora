@@ -7,7 +7,7 @@ import FeatureProducts from '../../components/featureProducts/FeatureProducts'
 import TrustSection from '../../components/trustSection/TrustSection'
 import Footer from '../../components/footer/Footer'
 import PujaKit from '../../components/puja_kits/PujaKit'
-import chameli from "../../assets/chamelibanner.webp"
+import chameli from "../../assets/oil_banner.png"
 import HomePanchang from '../../components/homePanchang/HomePanchang'
 
 

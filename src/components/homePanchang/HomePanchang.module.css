@@ -30,7 +30,8 @@
   height: 150px;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-between;
 
   padding: 18px 32px;
   box-sizing: border-box;
@@ -66,6 +67,55 @@
   text-align: left;
 }
 
+
+/* live badge */
+
+.panchangLiveBadge{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 11px;
+  background: #eaf7ee;
+  color: #16803c;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.liveDot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  background: #16a34a;
+  border-radius: 50%;
+}
+.liveDot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #16a34a;
+  border-radius: 50%;
+  animation: livePulse 2s ease-out infinite;
+}
+@keyframes livePulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liveDot::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+/* /////////// */
+
 .eyebrow {
   display: block;
   margin-bottom: 5px;
@@ -79,7 +129,6 @@
 
 .heading h2 {
   margin: 0;
-
   color: #36014f;
   font-size: 30px;
   font-weight: 700;
@@ -114,7 +163,7 @@
   align-items: center;
   gap: 6px;
 
-  padding: 5px 11px;
+  padding: 8px 11px;
 
   background: rgba(255, 248, 235, 0.9);
   border: 1px solid #d9bd94;

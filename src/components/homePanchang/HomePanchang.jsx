@@ -196,6 +196,11 @@ function HomePanchang() {
             </Link>
           </div>
         </div>
+
+        <div className={styles.panchangLiveBadge}>
+          <span className={styles.liveDot}></span>
+          LIVE
+        </div>
       </div>
 
       {/* Panchang information */}
