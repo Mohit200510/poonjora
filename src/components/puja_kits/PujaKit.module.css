@@ -79,6 +79,7 @@
     display: none;
 }
 .PujaKitBox{
+    box-sizing: border-box;
 
     isolation: isolate;
     position: relative;
@@ -90,7 +91,10 @@
     /* z-index: 1; */
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    border: 1px solid var(--color-accent)
+    border: 1px solid var(--color-accent);
+    min-width: 0;
+    scroll-snap-align: start;
+    
     
 }
 .PujaKitBox img{
@@ -119,6 +123,7 @@
   z-index: 0;
 }
 .PujaKitBoxInner{
+      min-width: 0;
     width: 55%;
     position: relative;
     z-index: 1;
@@ -132,6 +137,7 @@
     color: var(--color-primary-dark);
 }
 .PujaKitBoxTopTag{
+    max-width: 100%;
     width: max-content;
     display: flex;
     align-items: center;
@@ -146,6 +152,7 @@
     font-size: 12px;
     color: var(--color-primary-dark);
     font-family: "Lora", serif;
+    margin: 0;
 }
 
 .pujakitBoxHeading{
@@ -162,6 +169,7 @@
     font-weight: 600;
     /* font-family: "Lora", serif; */
     font-family: "cormorant-garamond",sans-serif;
+    margin: 0;
 
 
 }
@@ -169,6 +177,7 @@
     font-size: 15px;
     font-weight: 500;
     color: var(--color-text-secondary);
+    margin: 0;
 }
 
 .PujaKitBoxSize{
@@ -237,6 +246,7 @@
     border-radius: 50px;
     padding: 12px;
     margin-top: 4px;
+    cursor: pointer;
 }
 .PujaKitBoxbtn svg{
     color: #fff;
@@ -286,4 +296,312 @@
     top: 50%;
     transform: translateY(-50%);
 
+}
+
+
+
+
+/* =========================================
+   PUJA KITS - RESPONSIVE CSS
+========================================= */
+
+/* Small Desktop / Tablet */
+@media (max-width: 1200px) {
+  .secPujaKit {
+    padding: 55px 0 70px;
+  }
+
+  .secPujaKitHeader {
+    margin-bottom: 38px;
+    gap: 20px;
+  }
+
+  .secPujaKitHeader h2 {
+    font-size: 36px;
+  }
+
+  .secPujaKitHeader p {
+    font-size: 16px;
+  }
+
+  .secPujaKitHeader button {
+    flex-shrink: 0;
+    padding: 14px 24px;
+  }
+
+  .pujaKitBoxes {
+    gap: 18px;
+  }
+
+  .PujaKitBox {
+    flex: 0 0 44%;
+    padding: 18px 18px 24px;
+  }
+
+  .PujaKitBoxInner {
+    width: 62%;
+    gap: 14px;
+  }
+
+  .pujakitBoxHeading h2 {
+    font-size: 24px;
+  }
+
+  .pujakitBoxHeading p {
+    font-size: 14px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .secPujaKit {
+    margin-top: 35px;
+    padding: 45px 0 55px;
+  }
+
+  .secPujaKitHeader {
+    align-items: flex-start;
+    margin-bottom: 28px;
+    gap: 18px;
+  }
+
+  .secPujaKitHeader h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .secPujaKitHeader p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .secPujaKitHeader button {
+    padding: 12px 16px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .pujaKitBoxes {
+    gap: 16px;
+  }
+
+  .PujaKitBox {
+    flex: 0 0 65%;
+    min-height: 310px;
+    padding: 18px;
+  }
+
+  .PujaKitBoxInner {
+    width: 65%;
+    gap: 13px;
+  }
+
+  .pujakitBoxHeading h2 {
+    font-size: 23px;
+  }
+
+  .pujakitBoxHeading p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .PujaKitBoxScrolBtns {
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  .PujaKitBoxScrolBtn1 {
+    left: -10px;
+  }
+
+  .PujaKitBoxScrolBtn2 {
+    right: -10px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+@media (max-width: 600px) {
+  .secPujaKit {
+    margin-top: 25px;
+    padding: 35px 0 35px;
+    background-position: center;
+  }
+
+  .secPujaKitHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .secPujaKitHeader h2 {
+    font-size: clamp(25px, 6vw, 30px);
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .secPujaKitHeader p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .secPujaKitHeader button {
+    padding: 10px 16px;
+    font-size: 12px;
+    border-radius: 7px;
+    gap: 8px;
+  }
+
+  /* Horizontal swipe carousel */
+  .pujaKitBoxes {
+    gap: 12px;
+    overflow-x: auto;
+    align-items: stretch;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Compact cards */
+  .PujaKitBox {
+    flex: 0 0 88%;
+     flex-basis: 84%;
+    width: auto;
+    height: auto;
+    min-height: 0;
+    padding: 14px;
+    border-radius: 14px;
+    scroll-snap-align: start;
+  }
+
+  .PujaKitBox img {
+    object-fit: cover;
+    object-position: 65% center;
+  }
+
+  /* Keep text readable over image */
+  .PujaKitBox::after {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 250, 245, 0.99) 0%,
+      rgba(255, 250, 245, 0.95) 35%,
+      rgba(255, 250, 245, 0.65) 60%,
+      rgba(255, 250, 245, 0.05) 100%
+    );
+  }
+
+  .PujaKitBoxInner {
+    width: 68%;
+    min-width: 0;
+    gap: 10px;
+  }
+
+  /* Category tag */
+  .PujaKitBoxTopTag {
+    padding: 5px 9px;
+    gap: 6px;
+    max-width: 100%;
+  }
+
+  .PujaKitBoxTopTag svg {
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .PujaKitBoxTopTag p {
+    font-size: 10px;
+    margin: 0;
+  }
+
+  /* Heading and description */
+  .pujakitBoxHeading {
+    gap: 6px;
+  }
+
+  .pujakitBoxHeading h2 {
+    font-size: 19px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .pujakitBoxHeading p {
+    font-size: 11px;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* Essentials */
+  .PujaKitBoxSize {
+    gap: 8px;
+  }
+
+  .PujaKitBoxSize svg {
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+
+  .PujaKitBoxSize span {
+    font-size: 11px;
+  }
+
+  /* Explore Kit button */
+  .PujaKitBoxbtn {
+    width: 90%;
+  }
+
+  .PujaKitBoxbtn button {
+    width: 100%;
+     padding: 10px 8px;
+    font-size: 11px;
+    gap: 8px;
+    margin-top: 0;
+    white-space: nowrap;
+  }
+
+  .PujaKitBoxbtn svg {
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  /* Swipe instead of arrows */
+  .PujaKitBoxScrolBtns {
+    display: none;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+@media (max-width: 380px) {
+  .secPujaKitHeader h2 {
+    font-size: 25px;
+  }
+
+  .PujaKitBox {
+    flex-basis: 92%;
+    padding: 13px;
+  }
+
+  .PujaKitBoxInner {
+    width: 76%;
+    gap: 9px;
+  }
+
+  .pujakitBoxHeading h2 {
+    font-size: 18px;
+  }
+
+  .pujakitBoxHeading p {
+    font-size: 11px;
+  }
+
+  .PujaKitBoxTopTag p {
+    font-size: 9px;
+  }
+
+  .PujaKitBoxbtn button {
+    padding: 10px 8px;
+    font-size: 11px;
+  }
 }

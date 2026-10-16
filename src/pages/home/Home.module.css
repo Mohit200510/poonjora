@@ -16,6 +16,7 @@
 
 
 .chamelOilBanner {
+  margin: 50px 0;
   width: 100%;
   height: clamp(300px, 70vh, 480px);
   overflow: hidden;

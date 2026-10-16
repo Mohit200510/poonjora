@@ -140,8 +140,8 @@ const pujaKits = [
 
 
                     {pujaKits.map((kit)=>(
-                        <div className={styles.PujaKitBox}>
-                        <img src={kit.image}></img>
+                        <div key={kit.id} className={styles.PujaKitBox}>
+                        <img src={kit.image} alt={kit.name} loading="lazy"></img>
                         
                         <div className={styles.PujaKitBoxInner}>
                             <div className={styles.PujaKitBoxTopTag}>
