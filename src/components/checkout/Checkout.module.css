@@ -380,6 +380,7 @@
     min-height: 0;
     overflow-y: auto;
     align-content: start;
+    background-color: #fafafa;
   }
 
   .checkoutFormBottom {

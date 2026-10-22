@@ -46,6 +46,13 @@ const getTodayIST = () => {
   return `${get("year")}-${get("month")}-${get("day")}`;
 };
 
+const DEFAULT_CITY = {
+  id: 382,
+  city: "Chandigarh",
+  state: "Chandigarh",
+  latitude: 30.7333,
+  longitude: 76.7794,
+};
 
 // ======================================================
 // PANCHANG
@@ -73,6 +80,8 @@ function Panchang() {
     selectedCity,
     setSelectedCity
   } = useContext(CityContext);
+
+  const activeCity = selectedCity || DEFAULT_CITY;
 
 
   // ----------------------------------------------------
@@ -233,23 +242,12 @@ function Panchang() {
   // FETCH WHEN SHARED CITY CHANGES
   // ====================================================
 
-  useEffect(() => {
+ useEffect(() => {
+  cityRef.current = activeCity;
 
-    if (!selectedCity) {
-      return;
-    }
+  fetchPanchang(activeCity);
 
-
-    cityRef.current =
-      selectedCity;
-
-
-    fetchPanchang(
-      selectedCity
-    );
-
-
-  }, [selectedCity?.id]);
+}, [activeCity.id]);
 
 
   // ====================================================
@@ -326,7 +324,7 @@ function Panchang() {
 
             <CitySelector
 
-              selectedCity={selectedCity}
+              selectedCity={activeCity}
 
               onCitySelect={
                 handleCitySelect
@@ -393,10 +391,7 @@ function Panchang() {
             {selectedCity && (
 
               <p className={styles.locationText}>
-
-                {selectedCity.city},{" "}
-                {selectedCity.state}
-
+               {activeCity.city}, {activeCity.state}
               </p>
 
             )}

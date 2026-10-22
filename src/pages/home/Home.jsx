@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from "react-helmet-async";
 import styles from "./Home.module.css"
 import Hero from '../../components/hero/Hero'
 import Categories from '../../components/categories/Categories'
@@ -12,6 +13,20 @@ import HomePanchang from '../../components/homePanchang/HomePanchang'
 
 function Home() {
   return (
+    <>
+    <Helmet>
+  <title>Poonjora - Puja Items & Puja Essentials Online</title>
+
+  <meta
+    name="description"
+    content="Shop authentic puja items and puja essentials online at Poonjora. Discover products for everyday worship, festivals, puja rituals and sacred occasions."
+  />
+
+  <link
+    rel="canonical"
+    href="https://poonjora.in/"
+  />
+</Helmet>
     <div className={styles.homeBG}>
         <Hero/>
         <HomePanchang/>
@@ -35,6 +50,7 @@ function Home() {
 
 
     </div>
+    </>
   )
 }
 

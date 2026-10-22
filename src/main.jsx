@@ -20,10 +20,11 @@ import { CartProvider } from './context/CartContext.jsx'
 import { PincodeProvider } from './context/PincodeContext.jsx'
 import { CityProvider } from './context/CityContext.jsx'
 import { BrowserRouter } from 'react-router-dom'
-
+import { HelmetProvider } from "react-helmet-async";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <HelmetProvider>
     <CityProvider>
       <CartProvider>
         <PincodeProvider>
@@ -33,5 +34,6 @@ createRoot(document.getElementById('root')).render(
         </PincodeProvider>
       </CartProvider>
     </CityProvider>
+    </HelmetProvider>
   </StrictMode>,
 )
