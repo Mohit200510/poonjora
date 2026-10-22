@@ -162,24 +162,20 @@ function PaymentBox({
               },
             }
           );
-          if (error) {
+
+        
+if (error) {
   const response = error.context;
 
   const details = response
     ? await response.clone().json().catch(() => null)
     : null;
 
-  alert(details?.error || error.message);
-
-  return;
+  throw new Error(
+    details?.error || "Could not create payment session."
+  );
 }
 
-        if (error) {
-          throw new Error(
-            data?.error ||
-            "Could not create payment session."
-          );
-        }
 
         if (!data?.paymentSessionId || !data?.orderId) {
           throw new Error(
@@ -224,7 +220,7 @@ function PaymentBox({
           redirectTarget: checkoutRef.current,
           appearance: {
             width: "100%",
-            height: "370px",
+            height: window.innerWidth <= 780 ? "450px" : "370px",
           },
           headerless: true
         });
@@ -360,12 +356,11 @@ function PaymentBox({
         )}
 
        <div
-         ref={checkoutRef}
-         style={{
-            width: "100%",
-            minHeight: selectedAddress ?  "370px" : 0,
-           display: selectedAddress ? "block" : "none",
-        }}
+             ref={checkoutRef}
+            className={styles.cashfreeCheckout}
+            style={{
+            display: selectedAddress ? "block" : "none",
+            }}
         />
 
         <label htmlFor="COD">

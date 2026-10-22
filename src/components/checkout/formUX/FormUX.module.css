@@ -344,6 +344,12 @@ input[type="radio"]{
     font-size: 30px;
 }
 
+.cashfreeCheckout {
+  width: 100%;
+  min-height: 370px;
+}
+
+
 
 
 
@@ -593,4 +599,12 @@ input[type="radio"]{
     justify-content: center;
     background-color: #f7f2f29c;
     z-index: 10;
+}
+
+
+
+@media (max-width: 780px) {
+  .cashfreeCheckout {
+    min-height: 450px;
+  }
 }
