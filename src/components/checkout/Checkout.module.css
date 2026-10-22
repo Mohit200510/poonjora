@@ -370,5 +370,21 @@
         max-height: 100dvh;
         border-radius: 0;
     }
+    .CheckoutForm {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .CheckoutFormBody {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    align-content: start;
+  }
+
+  .checkoutFormBottom {
+    flex-shrink: 0;
+  }
+
     
 }
