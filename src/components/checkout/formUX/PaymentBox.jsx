@@ -162,6 +162,17 @@ function PaymentBox({
               },
             }
           );
+          if (error) {
+  const response = error.context;
+
+  const details = response
+    ? await response.clone().json().catch(() => null)
+    : null;
+
+  alert(details?.error || error.message);
+
+  return;
+}
 
         if (error) {
           throw new Error(
