@@ -94,7 +94,7 @@
   inset: 0;
   background: #16a34a;
   border-radius: 50%;
-  animation: livePulse 2s ease-out infinite;
+  animation: livePulse 2.2s ease-out infinite;
 }
 @keyframes livePulse {
   0% {
@@ -285,10 +285,16 @@
 /* Icon and label */
 
 .detailTop {
+ display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.detailLabel {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
+  gap: 7px;
 }
 
 .detailTop span {

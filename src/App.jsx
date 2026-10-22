@@ -16,6 +16,7 @@ import TermsConditions from './pages/terms&Conditions/TermsConditions'
 import ShippingPolicy from './pages/shippingPolicy/ShippingPolicy'
 import RefundCancellation from './pages/refund&Cancellation/RefundCancellation'
 import PanchangPage from './pages/panchangPage/PanchangPage'
+import FestivalCalender from './pages/festivalCalender/FestivalCalender'
 
 
 
@@ -39,7 +40,9 @@ function App() {
 
 
     {!location.pathname.includes("order-confirmation") && <Header />}
+   <FestivalCalender/>
     {/* <Header/> */}
+
 
     <Routes>
       <Route path='/' element={<Home/>}></Route>
@@ -50,6 +53,7 @@ function App() {
       <Route path='/shipping-policy' element={<ShippingPolicy/>}></Route>
       <Route path="/refund-cancellation-policy" element={<RefundCancellation/>}></Route>
       <Route path="/panchang" element={<PanchangPage/>}></Route>
+      {/* <Route path="/hindu-calender" element={<FestivalCalender/>}></Route> */}
      
     </Routes>
 

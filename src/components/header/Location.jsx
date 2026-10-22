@@ -13,7 +13,7 @@ import { PincodeContext } from '../../context/PincodeContext';
 
 function Location() {
 
-  const[openToggle,setOpenToggle] = useState(true);
+  const[openToggle,setOpenToggle] = useState(false);
 
   const{pincode,deliveryResult} =useContext(PincodeContext)
   

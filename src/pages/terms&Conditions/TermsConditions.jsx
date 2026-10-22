@@ -7,7 +7,7 @@ function TermsConditions() {
       <div className={styles.termsContainer}>
         <header className={styles.pageHeader}>
           <h1>Terms & Conditions</h1>
-          <p>Last Updated: 13 October 2026</p>
+          <p>Last Updated: 22 October 2026</p>
         </header>
 
         <div className={styles.introduction}>
@@ -110,40 +110,59 @@ function TermsConditions() {
           </p>
         </section>
 
+        
         <section>
           <h2>6. Payment Methods</h2>
+
           <p>
-            Poonjora offers the following payment options, subject to
-            availability:
+           Poonjora offers the following payment options, subject to
+           availability:
           </p>
+
           <ul>
-            <li>
-              Online payments through PhonePe Payment Gateway, once
-              integrated and activated.
-            </li>
-            <li>
-              Cash on Delivery (COD) for eligible orders and serviceable
-              PIN codes.
-            </li>
-          </ul>
-          <p>
+             <li>
+               Online payments securely processed through Cashfree Payments,
+               our authorised third-party payment gateway.
+             </li>
+
+              <li>
+                  Cash on Delivery (COD) for eligible orders and serviceable
+                   PIN codes.
+              </li>
+           </ul>
+
+            <p>
             Available online payment methods may include UPI, debit cards,
-            credit cards, and other methods supported by the payment gateway.
-          </p>
-          <p>
-            Online payments are processed through authorised third-party
-            payment service providers. Poonjora does not intentionally
-            collect or store customers' complete card details, CVV, or UPI PIN.
-          </p>
-          <p>
-            Cash on Delivery availability may depend on the delivery location,
-            order value, product eligibility, and courier serviceability.
-          </p>
-          <p>
-            Customers must pay the applicable order amount using the payment
-            method selected during checkout.
-          </p>
+            credit cards, net banking, and other payment options supported
+            by Cashfree Payments and displayed during checkout.
+            </p>
+
+             <p>
+             Online payments are processed through authorised third-party
+             payment service providers. Poonjora does not intentionally
+             collect or store customers' complete card details, CVV,
+             or UPI PIN.
+             </p>
+
+            <p>
+             Online orders are confirmed only after successful payment
+            verification. If a payment is deducted but the order is not
+             confirmed, customers may contact us at support@poonjora.in
+            for assistance.
+            </p>
+
+            <p>
+            Cash on Delivery availability may depend on the delivery
+             location, order value, product eligibility, and courier
+             serviceability.
+             </p>
+
+             <p>
+              Customers must pay the applicable order amount using the
+               payment method selected during checkout.
+             </p>
         </section>
+
 
         <section>
           <h2>7. Shipping and Delivery</h2>

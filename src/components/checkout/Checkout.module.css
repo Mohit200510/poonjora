@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30dvw;
+    /* width: 30dvw; */
     max-height: 90dvh;
     /* height: 90dvh; */
     /* height: auto; */
@@ -17,6 +17,7 @@
     box-shadow: var(--shadow-md);
     overflow: hidden;
     z-index: 1000;
+    overscroll-behavior: contain;
     /* padding: 40px  35px 50px 35px; */
     /* padding: 15px; */
     /* background: url("../../assets/checkout_bg.png"); */
@@ -361,7 +362,7 @@
 }
 
 
-@media screen and (max-width:560px) {
+@media screen and (max-width:780px) {
     .checkoutWindow{
         width: 100dvw;
         height: 100dvh;

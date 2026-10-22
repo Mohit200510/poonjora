@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
 import { FaAngleDown } from "react-icons/fa6";
+import LiveCountdown from "../panchang/LiveCountdown";
 
 
 import {
@@ -102,7 +103,7 @@ function HomePanchang() {
   useEffect(() => {
     const interval = setInterval(() => {
       setNow(Date.now());
-    }, 30000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -225,9 +226,18 @@ function HomePanchang() {
                     key={item.label}
                   >
                     <div className={styles.detailTop}>
-                      <Icon className={styles.detailIcon} />
-                      <span>{item.label}</span>
-                    </div>
+                       <div className={styles.detailLabel}>
+                    <Icon className={styles.detailIcon} />
+                    <span>{item.label}</span>
+                   </div>
+
+                 {item.end && (
+                  <LiveCountdown
+                      endTime={item.end}
+                        now={now}
+                    />
+                     )}
+                  </div>
 
                     <strong>{item.value}</strong>
 

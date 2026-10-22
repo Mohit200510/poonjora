@@ -5,7 +5,7 @@ function PrivacyPolicy() {
   return (
     <main className={styles.privacyPolicy}>
       <h1>Privacy Policy</h1>
-      <p><strong>Last Updated: 13 October 2026</strong></p>
+      <p><strong>Last Updated: 22 October 2026</strong></p>
 
       <p>
         Welcome to <strong>Poonjora</strong> (
@@ -107,31 +107,55 @@ function PrivacyPolicy() {
         <p>Poonjora does not collect or store your Google account password.</p>
       </section>
 
+      
       <section>
         <h2>4. Payment Processing</h2>
+
         <p>
-          Poonjora plans to integrate <strong>PhonePe Payment Gateway</strong>
-          {" "}to process online payments.
+          Poonjora uses <strong>Cashfree Payments</strong>, an
+          authorised third-party payment service provider, to
+          securely process online payments.
         </p>
+
         <p>
-          Once the payment gateway is activated, relevant transaction information
-          may be processed by PhonePe to authorize payments, verify transactions,
-          process refunds, prevent fraud, and comply with applicable regulations.
+          When customers choose to pay online, relevant payment
+          and transaction information may be processed by Cashfree
+          Payments to authorise payments, verify transactions,
+          facilitate refunds, prevent fraud, and comply with
+          applicable legal and regulatory requirements.
         </p>
+
         <p>
-          Poonjora does not intend to collect or store complete card numbers,
-          CVVs, or UPI PINs in its own database.
+          Poonjora does not intentionally collect or store
+          customers' complete card numbers, CVVs, or UPI PINs
+          in its own database. Sensitive payment credentials
+          are handled through the payment service provider's
+          payment infrastructure.
         </p>
+
         <p>
-          We may store payment references, transaction status, order amounts,
-          and related information for order processing, customer support,
-          accounting, and legal compliance.
+          We may store payment references, transaction statuses,
+          order amounts, payment methods, and related transaction
+          information for order processing, payment verification,
+          customer support, accounting, refunds, fraud prevention,
+          and legal compliance.
         </p>
+
         <p>
-          Payment processing may also be subject to the applicable privacy
-          policy and terms of the payment service provider.
+          Cash on Delivery (COD) orders may also be recorded
+          and managed through our order processing system,
+          including the order amount, selected payment method,
+          and payment status.
+        </p>
+
+        <p>
+          Payment processing may also be subject to the privacy
+          policy and applicable terms of Cashfree Payments.
+          Customers may review the payment service provider's
+          privacy practices on its official website.
         </p>
       </section>
+
 
       <section>
         <h2>5. Shipping and Delivery</h2>

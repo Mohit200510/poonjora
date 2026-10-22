@@ -10,7 +10,6 @@ import PujaKit from '../../components/puja_kits/PujaKit'
 import chameli from "../../assets/oil_banner.png"
 import HomePanchang from '../../components/homePanchang/HomePanchang'
 
-
 function Home() {
   return (
     <div className={styles.homeBG}>

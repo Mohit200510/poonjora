@@ -152,7 +152,7 @@ function Footer() {
 
         <div className={styles.footerLower}>
             <div className=''>
-                <p>Copyright @ 2026 <b>Pujora</b> . All Rights Reserved.</p>
+                <p>Copyright @ 2026 <b>Poonjora</b> . All Rights Reserved.</p>
 
             </div>
             <div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from "./Checkout.module.css"
+import stles from "../checkout/Checkout.module.css"
 import { useEffect,useState } from 'react'
 import { supabase } from '../../supabaseClient'
 import LoginBox from './LoginBox'
@@ -39,7 +40,7 @@ const handleGoogleLogin = async () => {
     provider: "google",
 
     options: {
-      redirectTo: "http://localhost:5173/",
+      redirectTo: "http://poonjora.in/",
       queryParams: {
         prompt: "select_account",
       },
