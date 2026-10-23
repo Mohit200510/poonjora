@@ -255,16 +255,25 @@
 }
 .LoginBoxHeading h3{
     font-size: 26px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--color-text-priamry);
+    font-family: "lora",sans-serif;
+    margin-bottom: 8px;
+    color: var(--color-accent);
+}
+.LoginBoxHeading h3 span{
+    color: var(--color-primary);
     font-family: "inter",sans-serif;
-    margin-bottom: 6px;
+    font-size: 26px;
+    font-weight: 600;
+    
 }
 .LoginBoxHeading p{
     color: var(--color-text-secondary);
+    font-size: 15px;
 }
 .LoginBoxBrandImage img{
-    width: 250px;
+    width: 275px;
 }
 
 
@@ -286,7 +295,7 @@
     font-size: 18px;
     background-color: var(--color-primary);
     border-radius: 8px;
-    padding: 12px 0;
+       padding: 12px 40px 12px 25px;
     color: #fff;
     border: none;
     margin-bottom: 12px;
@@ -386,6 +395,14 @@
   .checkoutFormBottom {
     flex-shrink: 0;
   }
+
+  .loginBoxGoogleBtn button{
+    
+    gap: 10px;
+    font-size: 15px;
+    padding: 12px 25px 12px 15px;
+   
+}
 
     
 }

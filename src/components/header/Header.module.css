@@ -406,6 +406,7 @@
     list-style: none;
 }
 
+
 .bottomBarNavItemsLink{
     text-decoration: none;
     color: var(--color-text-primary);
@@ -522,7 +523,7 @@
   padding: 10px 4px;
   position: relative;
   color: #36014F;
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 600;
   font-family: inherit;
 

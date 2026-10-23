@@ -6,6 +6,8 @@ import { PiLineVerticalThin } from "react-icons/pi";
 import { FiArrowRight } from "react-icons/fi";
 import { X } from 'lucide-react'
 import bag from "../../assets/login_new2.webp"
+import box from "../../assets/box1.png"
+
 import { IoMdLock } from "react-icons/io";
 
 
@@ -23,16 +25,17 @@ function LoginBox({googleLoginForm,setOpenCheckout}) {
         }} className={styles.loginBoxCrossIcon}/>
         <div>
             <div className={styles.loginBoxWrappper}>
+                
                 <div className={styles.loginBoxLogo}>
                     <img src={logo}></img>
                 </div>
                 <div className={styles.LoginBoxHeading}>
-                    <h3>Sign In</h3>
-                    <p>Sign in for a faster seemless exprience</p>
+                    <h3>Welcome to <span>Poonjora</span></h3>
+                    <p>Your spiritual essentials,<br/> just a step away.</p>
                 </div>
 
                 <div className={styles.LoginBoxBrandImage}>
-                    <img src={bag}></img>
+                    <img src={box}></img>
                 </div>
 
                 <div className={styles.loginBoxMid}>
