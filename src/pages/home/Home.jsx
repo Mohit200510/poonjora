@@ -14,6 +14,7 @@ import HomePanchang from '../../components/homePanchang/HomePanchang'
 function Home() {
   return (
     <>
+
     <Helmet>
   <title>Poonjora - Puja Items & Puja Essentials Online</title>
 
@@ -26,23 +27,26 @@ function Home() {
     rel="canonical"
     href="https://poonjora.in/"
   />
-</Helmet>
+  </Helmet>
+
+
     <div className={styles.homeBG}>
         <Hero/>
         <HomePanchang/>
       
 
         <Categories/>
-        <PujaKit/>
-
-        <div className={styles.chamelOilBanner}>
+        
+        {/* <div className={styles.chamelOilBanner}>
           <img src={chameli}></img>
-        </div>
+        </div> */}
 
         {/* <div>
         <img style={{width: "100%" , marginTop: "70px"}} src={banner}></img>
         </div> */}
         <FeatureProducts/>
+        <PujaKit/>
+
         <TrustSection/>
         <Footer/>
 

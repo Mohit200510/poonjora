@@ -77,6 +77,7 @@ function Product() {
   category: "Puja Essentials"
 };
 
+{/* <he */}
 
 if (!product) {
     return <ProductSkeleton/>;

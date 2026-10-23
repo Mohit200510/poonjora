@@ -65,74 +65,11 @@ function ReviewBox({setOpenReviewBox}) {
                 </div>
                 ))}
 
-                <div className={styles.reviewBoxBodyCartItem}>
-                  <div className={styles.reviewBoxBodyCartItemLeft}>
-                    <div className={styles.reviewBoxBodyCartItemImgWrapper}>
-                      <img src={product}></img>
+                
 
-                    </div>
-                    <div className={styles.reviewBoxBodyCartItemLeftText}>
-                      <h3>Speicial Chameli oil for Religous Ceremonies good for daily Use</h3>
-                      <p>900ml</p>
+                
 
-
-                    </div>
-
-                  </div>
-
-                  <div className={styles.reviewBoxBodyCartItemRight}>
-                    <p>₹499.00</p>
-                    <span>Qty: 1</span>
-                    
-                  </div>
-
-                </div>
-
-                <div className={styles.reviewBoxBodyCartItem}>
-                  <div className={styles.reviewBoxBodyCartItemLeft}>
-                    <div className={styles.reviewBoxBodyCartItemImgWrapper}>
-                      <img src={product}></img>
-
-                    </div>
-                    <div className={styles.reviewBoxBodyCartItemLeftText}>
-                      <h3>Speicial Chameli oil for Religous Ceremonies good for daily Use</h3>
-                      <p>900ml</p>
-
-
-                    </div>
-
-                  </div>
-
-                  <div className={styles.reviewBoxBodyCartItemRight}>
-                    <p>₹499.00</p>
-                    <span>Qty: 1</span>
-                    
-                  </div>
-
-                </div>
-
-                 <div className={styles.reviewBoxBodyCartItem}>
-                  <div className={styles.reviewBoxBodyCartItemLeft}>
-                    <div className={styles.reviewBoxBodyCartItemImgWrapper}>
-                      <img src={product}></img>
-
-                    </div>
-                    <div className={styles.reviewBoxBodyCartItemLeftText}>
-                      <h3>Speicial Chameli oil for Religous Ceremonies good for daily Use</h3>
-                      <p>900ml</p>
-
-
-                    </div>
-
-                  </div>
-
-                  <div className={styles.reviewBoxBodyCartItemRight}>
-                    <p>₹499.00</p>
-                    <span>Qty: 1</span>
-                    
-                  </div>
-
-                </div>
+                 
 
               </div>
 

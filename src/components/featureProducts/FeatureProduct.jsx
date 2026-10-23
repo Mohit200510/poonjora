@@ -7,6 +7,8 @@ import { useContext } from 'react'
 import CartContext from '../../context/CartContext'
 import { MdOutlineStar } from "react-icons/md";
 import { MdDone } from "react-icons/md";
+import { PiShoppingCartSimpleBold } from "react-icons/pi";
+
 
 
 
@@ -61,7 +63,7 @@ function FeatureProduct({product}) {
 
                             <button style={{background:isInCart?"#36014F": "#36014f"}} onClick={()=>{
                                 addToCart(product)
-                            }} type='button'>{isInCart?" ✓ Added to Cart ":"Add to Cart"}</button>
+                            }} type='button'><PiShoppingCartSimpleBold size={22}/>{isInCart?" ✓ Added to Cart ":"Add to Cart"}</button>
 
                         </div>
 

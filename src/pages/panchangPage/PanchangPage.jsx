@@ -8,7 +8,7 @@ const PanchangPage = () => {
   return (
     <>
 
-    <Helmet>
+  <Helmet>
   <title>आज का पंचांग | Aaj Ka Panchang Today – Poonjora</title>
 
   <meta
@@ -20,7 +20,7 @@ const PanchangPage = () => {
     rel="canonical"
     href="https://poonjora.in/panchang"
   />
-</Helmet>
+  </Helmet>
     
     <main className={styles.panchangPage}>
       <div className={styles.breadcrumb}>

@@ -12,11 +12,11 @@
 } */
  .secPujaKit{
     margin-top: 50px;
-    padding: 70px 0 90px;
-    background: url("../../assets/kits_bg_new.webp");
+    padding: 40px 0 90px;
+    /* background: url("../../assets/kits_bg_new.webp"); */
     background-size: cover;
     background-position: center;
-    background-color: #FFFAF3;
+    /* background-color: #FFFAF3; */
  }
  
   .secPujaKitHeader{

@@ -40,7 +40,7 @@ function App() {
 
 
     {!location.pathname.includes("order-confirmation") && <Header />}
-   {/* <FestivalCalender/> */}
+   <FestivalCalender/>
     {/* <Header/> */}
 
 
@@ -53,7 +53,7 @@ function App() {
       <Route path='/shipping-policy' element={<ShippingPolicy/>}></Route>
       <Route path="/refund-cancellation-policy" element={<RefundCancellation/>}></Route>
       <Route path="/panchang" element={<PanchangPage/>}></Route>
-      {/* <Route path="/hindu-calender" element={<FestivalCalender/>}></Route> */}
+      <Route path="/hindu-festival-calender" element={<FestivalCalender/>}></Route>
      
     </Routes>
 

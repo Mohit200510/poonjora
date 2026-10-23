@@ -497,6 +497,94 @@
 
 
 
+/* CALEDNER BUTTON */
+
+
+.calendarNavGroup {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navDivider {
+  width: 1.5px;
+  height: 30px;
+  background: #b5b0b5;
+  flex-shrink: 0;
+}
+
+.festivalCalendarLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 10px 4px;
+  position: relative;
+  color: #36014F;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition: color 0.3s ease;
+}
+
+/* Calendar icon */
+.festivalCalendarLink svg {
+     /* color: #C89432; */
+  width: 23px;
+  height: 23px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+/* Golden underline */
+.festivalCalendarLink::after {
+  content: "";
+  position: absolute;
+
+  bottom: 2px;
+  left: 50%;
+
+  width: 0;
+  height: 2px;
+
+  background-color: #e6aa35;
+  border-radius: 10px;
+
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+/* Hover effects */
+.festivalCalendarLink:hover {
+  color: #5b1674;
+}
+
+.festivalCalendarLink:hover::after {
+  width: 85%;
+}
+
+.festivalCalendarLink:hover svg {
+  transform: translateY(-2px);
+}
+
+/* Keyboard accessibility */
+.festivalCalendarLink:focus-visible {
+  outline: 2px solid #e6aa35;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+
+
+
+
+
 /* media quires */
 
 
@@ -562,6 +650,16 @@
   .panchangArrow {
     font-size: 15px;
   }
+  .festivalCalendarLink {
+    font-size: 14px;
+    gap: 7px;
+    padding: 8px 2px;
+  }
+
+  .festivalCalendarLink svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 @media  screen and (min-width:992px){
@@ -569,3 +667,18 @@
         display: none;
     }
 }   
+
+
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .festivalCalendarLink {
+    font-size: 15px;
+    gap: 8px;
+  }
+
+  .festivalCalendarLink svg {
+    width: 20px;
+    height: 20px;
+  }
+}

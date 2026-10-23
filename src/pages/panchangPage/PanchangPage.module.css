@@ -32,7 +32,7 @@
   text-align: center;
   overflow: hidden;
 
-  background:
+  background-color:
     radial-gradient(
       circle at 88% 15%,
       rgba(232, 183, 95, 0.18),
@@ -43,6 +43,9 @@
       #fff9ed 0%,
       #f9efdf 100%
     );
+    background: url("../../assets/panchangbg1.png");
+    background-size: cover;
+    background-position: center;
 }
 
 .heroContent {
@@ -102,6 +105,7 @@
   .hero {
     min-height: 200px;
     padding: 35px 18px 48px;
+    background-position: left;
   }
 
   .hero p {
@@ -114,4 +118,5 @@
     padding: 16px;
     border-radius: 14px;
   }
+  
 }
