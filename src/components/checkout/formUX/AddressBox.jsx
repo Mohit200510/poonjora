@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from "./FormUX.module.css"
-import AddressSelection from '../addressSelectionPopup/addressSelection'
+import AddressSelection from '../addressSelectionPopup/AddressSelection'
 
 import { FaTruckFast } from "react-icons/fa6";
 
