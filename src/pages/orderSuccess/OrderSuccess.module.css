@@ -258,3 +258,408 @@
     font-size: 17px;
     font-weight: 600;
 }
+
+
+/* =========================================
+   ORDER SUCCESS - RESPONSIVE CSS
+   ========================================= */
+
+/* General fixes */
+.orderSuccess,
+.orderSuccess * {
+  box-sizing: border-box;
+}
+
+.orderSuccess {
+  position: relative;
+  min-height: 100dvh;
+  height: auto;
+  padding: 50px 0;
+}
+
+.orderSuccessContainer {
+  position: relative;
+  z-index: 1;
+}
+
+.orderSuccessLeftContainer,
+.orderSuccessRightContainer {
+  min-width: 0;
+}
+
+.orderSuccessRightBoxMidItemLeft {
+  min-width: 0;
+  flex: 1;
+}
+
+.orderSuccessRightBoxMidItemLeft > div:last-child {
+  min-width: 0;
+}
+
+.orderSuccessRightBoxMidItemLeft h3 {
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+}
+
+.orderSuccessRightBoxMidItemPrice {
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+
+.orderSuccessRightBoxTopBodyRow p {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   SMALL DESKTOP / LAPTOP
+   ========================================= */
+
+@media (max-width: 1200px) {
+
+  .orderSuccessContainer {
+    gap: 35px;
+  }
+
+  .orderSuccessLeftContainer {
+    flex: 1;
+  }
+
+  .orderSuccessRightContainer {
+    width: 45%;
+    flex-shrink: 0;
+  }
+
+  .orderSuccessLeft h2 {
+    font-size: 34px;
+  }
+
+  .orderSuccessRightBoxTopBodyRow div {
+    width: 150px;
+  }
+
+  .orderSuccessRightBox {
+    padding: 20px;
+  }
+}
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 992px) {
+
+  .orderSuccess {
+    padding: 45px 0 60px;
+    background-position: center;
+  }
+
+  .orderSuccessContainer {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .orderSuccessLeftContainer {
+    width: 100%;
+  }
+
+  .orderSuccessLeft {
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .orderSuccessLeft span svg {
+    font-size: 85px;
+  }
+
+  .orderSuccessLeft h2 {
+    font-size: 36px;
+  }
+
+  .orderSuccessLeft p {
+    font-size: 16px;
+  }
+
+  .orderSuccessLeftUpdateBox {
+    text-align: left;
+  }
+
+  .orderSuccessLeft button {
+    width: 75%;
+  }
+
+  .orderSuccessRightContainer {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .orderSuccessRightBoxTopBodyRow div {
+    width: 200px;
+  }
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .orderSuccess {
+    min-height: 100dvh;
+    height: auto;
+    padding: 35px 0 50px;
+    background-position: center;
+  }
+
+  .orderSuccessContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 30px;
+  }
+
+  /* Left confirmation section */
+
+  .orderSuccessLeftContainer {
+    width: 100%;
+  }
+
+  .orderSuccessLeft {
+    width: 100%;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .orderSuccessLeft span svg {
+    font-size: 70px;
+  }
+
+  .orderSuccessLeft h2 {
+    font-size: 29px;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .orderSuccessLeft > p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Success message */
+
+  .orderSuccessLeftUpdateBox {
+    width: 100%;
+    padding: 14px;
+    gap: 10px;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .orderSuccessLeftUpdateBox svg {
+    flex-shrink: 0;
+    font-size: 28px;
+  }
+
+  .orderSuccessLeftUpdateBox p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .orderSuccessLeftUpdateBox span {
+    font-size: 13px;
+  }
+
+  /* Continue shopping button */
+
+  .orderSuccessLeft button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px 18px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .orderSuccessLeft button svg {
+    font-size: 20px;
+  }
+
+  /* Right order details section */
+
+  .orderSuccessRightContainer {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .orderSuccessRightBox {
+    width: 100%;
+    padding: 18px 15px 22px;
+    border-radius: 10px;
+  }
+
+  /* Order details heading */
+
+  .orderSuccessRightBoxHeading {
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-bottom: 14px;
+  }
+
+  .orderSuccessRightBoxHeading h5 {
+    font-size: 16px;
+  }
+
+  .orderSuccessRightBoxHeading span {
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  /* Order information */
+
+  .orderSuccessRightBoxTopBody {
+    padding: 12px 0;
+  }
+
+  .orderSuccessRightBoxTopBodyRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .orderSuccessRightBoxTopBodyRow div {
+    width: 42%;
+    flex-shrink: 0;
+    gap: 8px;
+  }
+
+  .orderSuccessRightBoxTopBodyRow div svg {
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .orderSuccessRightBoxTopBodyRow span {
+    font-size: 12px;
+  }
+
+  .orderSuccessRightBoxTopBodyRow p {
+    flex: 1;
+    min-width: 0;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  #orderSuccessBoxAddress {
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  /* Order items */
+
+  .orderSuccessMidRightBoxHeading {
+    font-size: 15px;
+    padding: 14px 0 10px;
+  }
+
+  .orderSuccessRightBoxMidItem {
+    gap: 10px;
+    padding: 12px 0;
+  }
+
+  .orderSuccessRightBoxMidItemLeft {
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .orderSuccessRightBoxMidItemImageContainer {
+    width: 55px;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .orderSuccessRightBoxMidItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .orderSuccessRightBoxMidItemLeft h3 {
+    font-size: 12px;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  .orderSuccessRightBoxMidItemLeft p {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  .orderSuccessRightBoxMidItemPrice {
+    font-size: 12px;
+    margin-left: 4px;
+  }
+
+  /* Grand total */
+
+  .orderSuccessMidRightBoxBottom {
+    padding-top: 15px;
+  }
+
+  .orderSuccessMidRightBoxBottom h5 {
+    font-size: 15px;
+  }
+
+  .orderSuccessMidRightBoxBottom span {
+    font-size: 17px;
+    color: var(--color-primary);
+  }
+}
+
+/* =========================================
+   SMALL MOBILE - 360px and below
+   ========================================= */
+
+@media (max-width: 360px) {
+
+  .orderSuccessLeft h2 {
+    font-size: 26px;
+  }
+
+  .orderSuccessLeftUpdateBox {
+    padding: 12px;
+  }
+
+  .orderSuccessRightBox {
+    padding: 15px 12px;
+  }
+
+  .orderSuccessRightBoxTopBodyRow div {
+    width: 40%;
+    gap: 6px;
+  }
+
+  .orderSuccessRightBoxTopBodyRow span,
+  .orderSuccessRightBoxTopBodyRow p {
+    font-size: 11px;
+  }
+
+  .orderSuccessRightBoxMidItemImageContainer {
+    width: 45px;
+    height: 55px;
+  }
+
+  .orderSuccessRightBoxMidItemLeft h3 {
+    font-size: 11px;
+  }
+
+  .orderSuccessRightBoxMidItemPrice {
+    font-size: 11px;
+  }
+}
