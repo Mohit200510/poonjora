@@ -9,7 +9,7 @@ import OrderSuccess from './orderSuccess/OrderSuccess';
 import PaymentScreen from './paymentPopup/PaymentScreen';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowRightLong } from "react-icons/fa6";
-import { FaArrowRight } from "react-icons/fa6";
+// import { FaArrowRight } from "react-icons/fa6";
 
 
 import { GoArrowLeft } from "react-icons/go";

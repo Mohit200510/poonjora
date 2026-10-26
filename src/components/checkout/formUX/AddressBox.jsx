@@ -2,13 +2,10 @@ import React, { useState } from 'react'
 import styles from "./FormUX.module.css"
 import AddressSelection from '../addressSelectionPopup/addressSelection'
 
-import { IoLocationOutline } from "react-icons/io5";
 import { FaTruckFast } from "react-icons/fa6";
 
 import { GrLocation } from "react-icons/gr";
-import { HiOutlineTruck } from "react-icons/hi2";
 import { LuPlus } from "react-icons/lu";
-import { Weight } from 'lucide-react';
 
 
 

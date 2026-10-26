@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import styles from "./AddressSelection.module.css"
 import { supabase } from '../../../supabaseClient.js';
-import { GrLocation } from "react-icons/gr";
+// import { GrLocation } from "react-icons/gr";
 
 import { ClipLoader } from "react-spinners";
 import { FaPlus } from "react-icons/fa6";
