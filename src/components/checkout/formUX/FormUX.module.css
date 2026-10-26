@@ -277,6 +277,18 @@
     border-radius: 8px;
     
 }
+.paymentBoxMethodLeft {
+    display: flex;
+    align-items: start;
+    gap: 19px;
+}
+.paymentBoxMethodText h5{
+    text-align: left;
+    margin-bottom: 4px;
+}
+.paymentBoxMethodText p{
+    font-size: 13px;
+}
 
 .paymentBoxMethodRight{
     display: flex;

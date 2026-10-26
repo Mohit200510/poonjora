@@ -93,7 +93,18 @@ function AddressSelection({setOpenAddressForm,openAddressForm,selectedAddress,se
    
                        {savedAddresses.map((address)=>(
    
-                           <label key={address.id} htmlFor={address.id}>
+                           <label
+                           onClick={()=>{
+                                setLoading(true)
+
+                            setTimeout(() => {
+                            setOpenAddressSelection(false)
+                            setLoading(false)
+                                
+                            }, 1000);
+
+                           }}
+                            key={address.id} htmlFor={address.id}>
                        <div className={styles.addressBoxAddress}>
                            <div className={styles.AddressBoxAdressInner}>
                            <input type='radio' name='address' id={address.id} onChange={()=>{
