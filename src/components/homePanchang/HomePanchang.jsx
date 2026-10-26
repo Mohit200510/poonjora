@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
 import { FaAngleDown } from "react-icons/fa6";
-import LiveCountdown from "../panchang/LiveCountdown";
+import PanchangProgress, {
+  calculateProgress,
+} from "../panchang/PanchangProgress";
 
 
 import {
@@ -113,41 +115,53 @@ function HomePanchang() {
   const yoga = getActiveEntry(panchang?.yoga, now);
   const karana = getActiveEntry(panchang?.karana, now);
 
-  const details = [
-    {
-      label: "तिथि",
-      value: tithi
-        ? `${translate(tithi.paksha)} ${translate(tithi.name)}`
-        : "—",
-      end: tithi?.end,
-      icon: LuMoon,
-    },
-    {
-       label: "वार",
-      value: translate(panchang?.vaara),
-      english: panchang?.vaara,
-      end: null,
-      icon: LuCalendarDays,
-    },
-    {
-      label: "नक्षत्र",
-      value: translate(nakshatra?.name),
-      end: nakshatra?.end,
-      icon: LuStar,
-    },
-    {
-      label: "योग",
-      value: translate(yoga?.name),
-      end: yoga?.end,
-      icon: LuFlower2,
-    },
-    {
-      label: "करण",
-      value: translate(karana?.name),
-      end: karana?.end,
-      icon: LuOrbit,
-    },
-  ];
+  
+const details = [
+  {
+    label: "तिथि",
+    value: tithi
+      ? `${translate(tithi.paksha)} ${translate(tithi.name)}`
+      : "—",
+    start: tithi?.start,
+    end: tithi?.end,
+    icon: LuMoon,
+  },
+  {
+    label: "वार",
+    value: translate(panchang?.vaara),
+    english: panchang?.vaara,
+    start: panchang?.sunrise,
+    end: panchang?.sunrise
+    ? new Date(
+        new Date(panchang.sunrise).getTime() +
+          24 * 60 * 60 * 1000
+      ).toISOString()
+    : null,
+    icon: LuCalendarDays,
+  },
+  {
+    label: "नक्षत्र",
+    value: translate(nakshatra?.name),
+    start: nakshatra?.start,
+    end: nakshatra?.end,
+    icon: LuStar,
+  },
+  {
+    label: "योग",
+    value: translate(yoga?.name),
+    start: yoga?.start,
+    end: yoga?.end,
+    icon: LuFlower2,
+  },
+  {
+    label: "करण",
+    value: translate(karana?.name),
+    start: karana?.start,
+    end: karana?.end,
+    icon: LuOrbit,
+  },
+];
+
 
   const rahu = getRahuKaal(
     panchang?.sunrise,
@@ -217,42 +231,47 @@ function HomePanchang() {
         ) : (
           <>
             <div className={styles.details}>
-              {details.map((item) => {
-                const Icon = item.icon;
+              
+{details.map((item) => {
+  const Icon = item.icon;
 
-                return (
-                  <div
-                    className={styles.detail}
-                    key={item.label}
-                  >
-                    <div className={styles.detailTop}>
-                       <div className={styles.detailLabel}>
-                    <Icon className={styles.detailIcon} />
-                    <span>{item.label}</span>
-                   </div>
+  const progress = calculateProgress(
+    item.start,
+    item.end,
+    now
+  );
 
-                 {item.end && (
-                  <LiveCountdown
-                      endTime={item.end}
-                        now={now}
-                    />
-                     )}
-                  </div>
+  return (
+    <div
+      className={styles.detail}
+      key={item.label}
+    >
+      <div className={styles.detailTop}>
+        <div className={styles.detailLabel}>
+          <Icon className={styles.detailIcon} />
+          <span>{item.label}</span>
+        </div>
 
-                    <strong>{item.value}</strong>
+        {progress !== null && (
+          <span className={styles.progressBadge}>
+            {Math.round(progress)}% पूरी
+          </span>
+        )}
+      </div>
 
-                      {item.english && (
-                     <small className={styles.englishDay}>
-                      {item.english}
-                      </small>
-                      )}
+      <strong>{item.value}</strong>
 
-                      {item.end && (
-                      <small>{formatEndTime(item.end, today)}</small>
-                     )}
-                  </div>
-                );
-              })}
+      <PanchangProgress progress={progress} />
+
+      
+
+      {item.end && (
+        <small>{formatEndTime(item.end, today)}</small>
+      )}
+    </div>
+  );
+})}
+
             </div>
 
             <div className={styles.rightPanel}>
