@@ -30,7 +30,6 @@ import Address from './addressForm/Address';
 import Overlay from '../common/Overlay';
 import ReviewBox from './formUX/ReviewBox';
 import DialogBox from './dialogBox/DialogBox';
-import AddressSelection from './addressSelectionPopup/addressSelection';
 
 function CheckoutForm({setOpenCheckout}) {
 
