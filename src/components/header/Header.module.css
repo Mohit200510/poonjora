@@ -54,6 +54,16 @@
 
 /* midBar */
 
+.midBarContainer{
+
+    position:sticky;
+    z-index: 1000;
+    top: 0;
+
+
+
+}
+
 .midBar{
     background-color: var(--color-primary);
     width: 100%;
@@ -402,8 +412,12 @@
     display: flex;
     /* gap: 90px; */
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     list-style: none;
+}
+.bottomBarUl li{
+    display: inline-block;
+    margin-right: 80px ;
 }
 
 

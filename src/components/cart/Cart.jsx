@@ -70,10 +70,11 @@ function Cart() {
                         
 
                         <div key={item.id} className={styles.cartItem}>
+
                         <div className={styles.cartItemImage}>
                             <img src={item.image_url}></img>
-
                         </div>
+
                         <div className={styles.cartItemDetails}>
                             <div className={styles.cartItemMid}>
                                 <h2>{item.name}</h2>
@@ -86,6 +87,7 @@ function Cart() {
                                     </div>
 
                                     <div className={styles.cartQtynBox}>
+                                        
                                         <div onClick={()=>{
                                             decreaseQuantity(item.id)
                                         }}>

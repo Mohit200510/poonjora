@@ -11,9 +11,11 @@ function Header() {
     <header className={styles.header}>
 
       
+        <div className={styles.midBarContainer}>
 
         <TopBar></TopBar>
         <MidBar></MidBar>
+        </div>
         <BottomBar></BottomBar>
        
     

@@ -16,7 +16,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 import satyanarayanBg from "../../assets/puja_kit1.png";
 import shivBg from "../../assets/shivBg.webp";
-import hanumanBg from "../../assets/hanumanji.webp";
+import hanumanBg from "../../assets/hanumanPujaKitBg.webp";
 import lakshmiBg from "../../assets/laxmiji.webp";
 import grihaPraveshBg from "../../assets/pravesh.webp";
 import navgrahBg from "../../assets/navgrah.webp";

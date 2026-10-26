@@ -1,123 +1,107 @@
-import React, { useState,useEffect } from 'react'
-import { supabase } from '../../../supabaseClient';
+import React, { useState } from 'react'
 import styles from "./FormUX.module.css"
-import { IoLocationSharp } from "react-icons/io5";
-import { ClipLoader } from "react-spinners";
+import AddressSelection from '../addressSelectionPopup/addressSelection'
 
-import { FaPlus } from "react-icons/fa6";
+import { IoLocationOutline } from "react-icons/io5";
+import { FaTruckFast } from "react-icons/fa6";
 
-
-
-
-
-function AddressBox({setOpenAddressForm,openAddressForm,selectedAddress,setSelectedAddress}) {
-
-
-    const[savedAddresses,setSavedAddresses] =useState([]);
-
-    const [loading,setLoading] =useState(false)
-
-    const fetchAddresses = async ()=>{
-        setLoading(true)
-
-        const {data,error} = await supabase
-        .from("addresses")
-        .select("*");
-
-        if(error){
-            console.log("error while fetching addreses",error);
-        setLoading(false)
-
-            return;
-        }
-
-
-        setSavedAddresses(data)
-        setLoading(false)
-
-
-
-    }
-
-    useEffect(() => {
-      if (!openAddressForm) {
-        fetchAddresses();
-     }
-     }, [openAddressForm]);
+import { GrLocation } from "react-icons/gr";
+import { HiOutlineTruck } from "react-icons/hi2";
+import { LuPlus } from "react-icons/lu";
+import { Weight } from 'lucide-react';
 
 
 
 
-     
-     console.log("selectedAddress", selectedAddress);
-     
-    
+
+
+
+function AddressBox({setOpenAddressForm,openAddressForm,selectedAddress,setSelectedAddress,openAdressSelection,setOpenAddressSelection}) {
+ 
     
 
-    
   return (
+    <>
+
     <div>
-        <div>
+        
 
-            <div style={{display:loading?"flex":"none"}} className={styles.loadingScreen}>
-                <ClipLoader color='#240138' size={50}/>
-            </div>
+        <h3 className={styles.deliveryAddressBoxHeading}><FaTruckFast size={22}/> Shipping Address</h3>
 
+            {selectedAddress?( <div className={styles.AddressBox}>
 
-            <div className={styles.addressBoxHeader}>
-                <div className={styles.addressBoxHeaderLeft}>
-                     <IoLocationSharp/>
+                <div className={styles.addressBoxHeadder}>
+                    <div>
+                        <GrLocation/>
+                        <h5>Deliver To <span className={styles.addresCustomerName}>{selectedAddress?.full_name}</span></h5>
 
-                    <h5>Delivery Details</h5>
+                    </div>
+                    <span
+                    onClick={()=>{
+                        setOpenAddressSelection(true)
+                    }}
+                     className={styles.addressBoxEditbtn}>Edit</span>
+
                 </div>
+
+                <div className={styles.addressBoxAddress}>
+
+                    <p>{selectedAddress?.full_address}<br/>
+                    <span>{selectedAddress?.state}, {selectedAddress?.pincode}</span><br/>
+                    <h6>{selectedAddress?.phone}</h6>
+                    </p>
+                </div>
+
+            </div>):(<div className={styles.AddressBox}>
+
+                <div className={styles.addressBoxHeadder}>
+                    <div>
+                        <GrLocation/>
+                        <h5 style={{color: "#6b6660" ,fontWeight: "600"}}>No Saved Address</h5>
+
+                    </div>
+                    <span
+                    onClick={()=>{
+                        setOpenAddressSelection(true)
+                    }}
+                     className={styles.addressBoxEditbtn}></span>
+
+                </div>
+
+                <div 
+                onClick={()=>{
+                        setOpenAddressSelection(true)
+                    }}
                 
-                <div onClick={()=>{
-                    setOpenAddressForm(true)
-                }} className={styles.addressBoxHeaderRight}>
-                    <span>Add New Address</span>
-                </div>
+                className={styles.addressBoxNoAddressSelected}>
 
 
-            </div>
-            <div className={styles.AddressBoxBody}>
-                <div className={styles.AddressBoxAdresses}>
-
-
-                    {savedAddresses.map((address)=>(
-
-                        <label key={address.id} htmlFor={address.id}>
-                    <div className={styles.addressBoxAddress}>
-                        <div className={styles.AddressBoxAdressInner}>
-                        <input type='radio' name='address' id={address.id} onChange={()=>{
-                            setSelectedAddress(address)
-                        }}></input>
-                        <div className={styles.AddressBoxText}>
-                        <h5>{address.address_type}</h5>
-                        <p>{address.full_name}</p>
-                        <p>{address.full_address}</p>
-                        <p>{address.phone}</p>
-                        </div>
-                        </div>
-                        <div className={styles.addressBoxAddressEdit}>Edit</div>
-                    </div>
-                    </label>
-                        
-                    ))}
-
-                    <div className={styles.addressBoxEmptyContainer}>
-                        <FaPlus/>
-                        <p onClick={()=>{
-                            setOpenAddressForm(true)
-                        }}>Add Delivery Address</p>
-                    </div>
-
-                    
+                    <LuPlus/>
+                    Add a New Address
                 </div>
 
             </div>
-        </div>
+
+                
+
+            
+            )}
+
+        
     </div>
+
+
+    {openAdressSelection? <AddressSelection setOpenAddressForm={setOpenAddressForm}openAddressForm={openAddressForm} selectedAddress={selectedAddress} setSelectedAddress={setSelectedAddress} setOpenAddressSelection={setOpenAddressSelection}/>:null}
+   
+
+
+    </>
+
+    
   )
+
 }
+
+
 
 export default AddressBox

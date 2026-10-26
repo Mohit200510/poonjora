@@ -11,6 +11,7 @@ import styles from "./PanchangMuhurat.module.css";
 
 // Weekday indexes: Sunday = 0, Monday = 1...
 // Each number identifies one of 8 daylight segments.
+
 const weekdaySegments = {
   rahu: [8, 2, 7, 5, 6, 4, 3],
   yamaganda: [5, 4, 3, 2, 1, 7, 6],
@@ -114,6 +115,7 @@ function PanchangMuhurat({ sunrise, sunset, date }) {
       theme: "yamaganda",
       note: "परंपरागत अशुभ अवधि",
     },
+
     {
       label: "गुलिक काल",
       time: formatRange(gulika.start, gulika.end),
@@ -121,6 +123,7 @@ function PanchangMuhurat({ sunrise, sunset, date }) {
       theme: "gulika",
       note: "परंपरा के अनुसार महत्व",
     },
+    
   ];
 
   return (

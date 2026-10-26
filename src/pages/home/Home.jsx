@@ -4,11 +4,12 @@ import styles from "./Home.module.css"
 import Hero from '../../components/hero/Hero'
 import Categories from '../../components/categories/Categories'
 // import banner from "../../assets/puja_banner.png"
-import FeatureProducts from '../../components/featureProducts/FeatureProducts'
+import FeatureProducts from '../../components/featureProducts/featureProducts';
 import TrustSection from '../../components/trustSection/TrustSection'
 import Footer from '../../components/footer/Footer'
 import PujaKit from '../../components/puja_kits/PujaKit'
-import chameli from "../../assets/oil_banner.png"
+import chameli from "../../assets/new_banner4.png"
+
 import HomePanchang from '../../components/homePanchang/HomePanchang'
 
 function Home() {
@@ -37,9 +38,9 @@ function Home() {
 
         <Categories/>
         
-        {/* <div className={styles.chamelOilBanner}>
+        <div className={styles.chamelOilBanner}>
           <img src={chameli}></img>
-        </div> */}
+        </div>
 
         {/* <div>
         <img style={{width: "100%" , marginTop: "70px"}} src={banner}></img>

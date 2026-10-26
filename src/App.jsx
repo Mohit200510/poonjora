@@ -40,7 +40,7 @@ function App() {
 
 
     {!location.pathname.includes("order-confirmation") && <Header />}
-   <FestivalCalender/>
+   {/* <FestivalCalender/> */}
     {/* <Header/> */}
 
 

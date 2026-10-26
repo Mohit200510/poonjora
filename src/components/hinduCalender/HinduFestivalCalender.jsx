@@ -1060,6 +1060,9 @@ const filteredFestivals = festivals
   const tithiEnd =
     formatTithiTiming(item.sourceEnd);
 
+    const hasTithiTimings =
+  Boolean(item.sourceStart && item.sourceEnd);
+
   
     const festivalName = item.name;
 
@@ -1148,69 +1151,73 @@ const filteredFestivals = festivals
           </p>
 
 
-          <div className={styles.tithiTimings}>
+         <div className={styles.tithiTimings}>
 
-            {/* BEGINS */}
+  {/* BEGINS */}
 
-            <div className={styles.tithiTime}>
+  <div className={styles.tithiTime}>
 
-              <span className={styles.tithiIcon}>
-                ◐
-              </span>
+    <span className={styles.tithiIcon}>
+      ◐
+    </span>
 
-              <div>
+    <div>
 
-                <small>
-                  Begins
-                </small>
+      <small>
+        Begins
+      </small>
 
-                <strong>
-                  {tithiStart.date}
-                </strong>
+      <strong>
+        {item.sourceStart
+          ? tithiStart.date
+          : "Timing unavailable"}
+      </strong>
 
-                {tithiStart.time && (
-                  <span>
-                    {tithiStart.time}
-                  </span>
-                )}
+      {item.sourceStart && tithiStart.time && (
+        <span>
+          {tithiStart.time}
+        </span>
+      )}
 
-              </div>
+    </div>
 
-            </div>
-
-
-            <span className={styles.tithiDivider} />
+  </div>
 
 
-            {/* ENDS */}
+  <span className={styles.tithiDivider} />
 
-            <div className={styles.tithiTime}>
 
-              <span className={styles.tithiIcon}>
-                ◉
-              </span>
+  {/* ENDS */}
 
-              <div>
+  <div className={styles.tithiTime}>
 
-                <small>
-                  Ends
-                </small>
+    <span className={styles.tithiIcon}>
+      ◉
+    </span>
 
-                <strong>
-                  {tithiEnd.date}
-                </strong>
+    <div>
 
-                {tithiEnd.time && (
-                  <span>
-                    {tithiEnd.time}
-                  </span>
-                )}
+      <small>
+        Ends
+      </small>
 
-              </div>
+      <strong>
+        {item.sourceEnd
+          ? tithiEnd.date
+          : "Timing unavailable"}
+      </strong>
 
-            </div>
+      {item.sourceEnd && tithiEnd.time && (
+        <span>
+          {tithiEnd.time}
+        </span>
+      )}
 
-          </div>
+    </div>
+
+  </div>
+
+</div>
 
         </div>
 

@@ -1,0 +1,210 @@
+/* styles of addres  selciton */
+
+/* address Box */
+
+.addressSelectionBox{
+    width: 100%;
+    height: 70%;
+    /* max-height: 60%; */
+
+    background: var(--color-surface);
+    border: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+    padding: 25px 16px 16px 16px;
+    transition: 1s all ease-out;
+    animation: openAddressSelection 0.4s ease-out;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    overflow: hidden;
+
+
+}
+
+@keyframes openAddressSelection {
+    0%{
+        bottom: -100%
+    }
+    100%{
+        bottom: 0;
+    }
+}
+
+.DialogCloseButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    background-color: var(--color-bg);
+    border: none;
+    border-radius: 50%;
+        z-index: 100;
+
+    transform: translateX(-50%);
+    &:hover{
+        cursor: pointer;
+    }
+}
+.DialogCloseButton svg{
+    font-size: 24px;
+
+}
+
+
+
+
+
+
+/*  */
+
+.addressBoxHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+.addressBoxHeaderLeft{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.addressBoxHeaderLeft svg{
+    font-size: 22px;
+    color: var(--color-primary);
+
+}
+.addressBoxHeaderLeft h5{
+    font-size: 14px;
+    font-weight: 500;
+}
+.addressBoxHeaderRight span{
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-primary);
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+
+.AddressBoxBody{
+    /* flex: 1; */
+    overflow: hidden;
+    overflow-y: scroll;
+    
+}
+
+
+.AddressBoxAdresses{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.addressBoxAddress {
+    padding: 14px;
+    background: #FAFAFA;
+    display: flex;
+    align-items: start;
+    gap: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    justify-content: space-between;
+    &:hover{
+        cursor: pointer;
+    }
+}
+.addressBoxAddress:has(input:checked){
+    background-color: var(--color-primary-light);
+    border: 1px solid #6b2d7c;
+
+}
+.AddressBoxAdressInner, .paymentBoxMethodLeft {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: start;
+    gap: 14px;
+}
+.AddressBoxText, .paymentBoxMethodText {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: start;
+}
+.AddressBoxText label, .paymentBoxMethodText label{
+    font-weight: 600;
+    font-size: 14px;
+}
+.AddressBoxText h5{
+    margin-bottom: 4px;
+}
+.addressBoxAddress p, .paymentBoxMethod p{
+    color: var(--color-text-primary);
+    text-align: left;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5
+    
+}
+.addressBoxAddressEdit{
+    font-size: 13px;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+input[type="radio"]{
+    accent-color: var(--color-primary);
+    width: 18px;
+    height: 18px;
+}
+
+
+
+
+.addressBoxEmptyContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 16px 14px;
+    border: 1px solid var(--color-border);
+    /* background-color: var(--color-primary-light); */
+}
+.addressBoxEmptyContainer p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    color: var(--color-primary);
+    font-weight: 600;
+    &:hover{
+        cursor: pointer;
+    }
+}
+.addressBoxEmptyContainer svg{
+    font-size: 20px;
+    color: var(--color-primary);
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.loadingScreen{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f2f29c;
+    z-index: 10000;
+}

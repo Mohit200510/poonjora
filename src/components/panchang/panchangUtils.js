@@ -187,7 +187,7 @@ export const getRahuKaal = (sunrise, sunset, date) => {
   const segment = rahuSegments[weekday];
 
   const rahuStart =
-    start + (segment - 1) * segmentLength;
+  start + (segment - 1) * segmentLength;
 
   const rahuEnd = rahuStart + segmentLength;
 

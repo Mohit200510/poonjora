@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-width: 28dvw;
     /* width: 30dvw; */
     max-height: 90dvh;
     /* height: 90dvh; */
@@ -86,10 +87,10 @@
 .CheckoutFormHeader div{
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 0px;
 }
 .CheckoutFormHeader img{
-    width: 124px;
+    width: 150px;
 }
 
 .checkotFormArrow{
@@ -402,6 +403,20 @@
     font-size: 15px;
     padding: 12px 25px 12px 15px;
    
+}
+
+@media screen and (max-width:480px) {
+    .CheckoutFormHeader img{
+        width: 104px;
+    }
+    .CheckoutFormHeader p{
+        gap: 3px;
+        font-size: 11px;
+    
+   }
+   .CheckoutFormHeader{
+        padding: 13px 15px 16px 15px ;
+    }
 }
 
     

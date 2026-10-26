@@ -18,7 +18,8 @@ import { FiShoppingBag } from "react-icons/fi";
 import { FaAngleDown } from "react-icons/fa6";
 
 
-import logo from "../../assets/footer-logo.png";
+// import logo from "../../assets/footer-logo.png";
+import logo from "../../assets/footer_logo_reasnparent.png"
 
 import UserBox from './formUX/UserBox';
 import AddressBox from './formUX/AddressBox';
@@ -29,6 +30,7 @@ import Address from './addressForm/Address';
 import Overlay from '../common/Overlay';
 import ReviewBox from './formUX/ReviewBox';
 import DialogBox from './dialogBox/DialogBox';
+import AddressSelection from './addressSelectionPopup/addressSelection';
 
 function CheckoutForm({setOpenCheckout}) {
 
@@ -37,6 +39,8 @@ function CheckoutForm({setOpenCheckout}) {
 
     const [openAddressForm,setOpenAddressForm] = useState(false)
     const [openReviewBox,setOpenReviewBox] = useState(false)
+    const [openAdressSelection,setOpenAddressSelection] = useState(false)
+    
 
     const [selectedAddress, setSelectedAddress] = useState(null);
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
@@ -273,12 +277,12 @@ const { data, error } = await supabase.functions.invoke(
 
         <div className={styles.CheckoutFormBody}>
 
-        <AddressBox setOpenAddressForm={setOpenAddressForm} openAddressForm={openAddressForm} selectedAddress={selectedAddress} setSelectedAddress={setSelectedAddress}/>
+        <AddressBox setOpenAddressForm={setOpenAddressForm} openAddressForm={openAddressForm} selectedAddress={selectedAddress} setSelectedAddress={setSelectedAddress} openAdressSelection={openAdressSelection} setOpenAddressSelection={setOpenAddressSelection}/>
         <OffersBox/>
         {/* <PaymentBox selectedAddress={selectedAddress} cartItems={cartItems} selectedPaymentOption={selectedPaymentOption} setSelectedPaymentOption={setSelectedPaymentOption} onPaymentVerified={handlePaymentVerified}/> */}
         <UserBox/>
 
-        {openAddressForm || openReviewBox || openDialogBox ?<Overlay/>:null}
+        {openAddressForm || openReviewBox || openDialogBox || openAdressSelection ?<Overlay/>:null}
 
         {openAddressForm?<Address setOpenAddressForm={setOpenAddressForm} openAddressForm={openAddressForm} />:null}
         {openReviewBox?<ReviewBox setOpenReviewBox={setOpenReviewBox} openReviewBox={openReviewBox} />:null}
@@ -336,7 +340,7 @@ const { data, error } = await supabase.functions.invoke(
 
         </div>
 
-        {paymentScreen && (
+         {paymentScreen && (
    <PaymentScreen
     onClose={() => openPaymentScreen(false)}
     selectedAddress={selectedAddress}

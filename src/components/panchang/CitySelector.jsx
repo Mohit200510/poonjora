@@ -9,9 +9,11 @@ import {
   MapPin,
   Search,
   LoaderCircle
-} from "lucide-react";
+} 
+from "lucide-react";
 
 import styles from "./CitySelector.module.css";
+
 
 
 export default function CitySelector({

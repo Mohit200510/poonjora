@@ -42,7 +42,7 @@ function FeatureProducts() {
         <Container>
             <div className={styles.featureProductsSecHeader}>
                 <h2>Handpicked for Your Puja</h2>
-                <p>Handpicked essentials for your daily puja and religious ceremonies</p>
+                {/* <p>Handpicked essentials for your daily puja and religious ceremonies</p> */}
             </div>
 
             <div className={styles.FeatureProductsMain}>

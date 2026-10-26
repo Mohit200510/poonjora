@@ -47,7 +47,9 @@ function Footer() {
 
             <div className={styles.footerFirst}>
                 <img src={logo}></img>
+                
                 <p>Pujora brings devotion closer to home with thoughtfully selected puja essentials, crafted to add purity, beauty, and meaning to every sacred moment.</p>
+
                 <div className={styles.footerSocialIcons}>
                     <FaFacebookF/>
                     <FaTwitter/>

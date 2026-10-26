@@ -2,6 +2,8 @@ import React from 'react'
 import styles from "./FormUX.module.css"
 import { FaTruckFast } from "react-icons/fa6";
 import { FiGift } from "react-icons/fi";
+import { BiSolidOffer } from "react-icons/bi";
+
 
 
 
@@ -11,7 +13,7 @@ function OffersBox() {
     <div className={styles.offersBox}>
         <div>
             <div className={styles.offersBoxHeader}>
-                <FaTruckFast/>
+                <BiSolidOffer/>
                 <h5>Delivery & Offers</h5>
                 
             </div>
