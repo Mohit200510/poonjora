@@ -110,7 +110,15 @@ function Address({setOpenAddressForm}) {
                         <div className={styles.addressMailPhone}>
 
                             <div className={styles.addressFormField}>
-                                <input type='tel' name='phone' id='phone' placeholder='' minLength={10} maxLength={10}  required></input>
+                                <input type='tel' onChange={(e) => {
+                             let value = e.target.value.replace(/\D/g, "");
+
+                               if (value && !/^[6-9]/.test(value)) {
+                             value = "";
+                            }
+
+                           e.target.value = value.slice(0, 10);
+                            }}  inputMode="numeric"  pattern="[6-9][0-9]{9}" name='phone' id='phone' placeholder='' minLength={10} maxLength={10}  required></input>
                                 <label htmlFor="phone">Contact Number</label>
                             </div>
 

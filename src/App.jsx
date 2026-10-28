@@ -17,6 +17,8 @@ import ShippingPolicy from './pages/shippingPolicy/ShippingPolicy'
 import RefundCancellation from './pages/refund&Cancellation/RefundCancellation'
 import PanchangPage from './pages/panchangPage/PanchangPage'
 import FestivalCalender from './pages/festivalCalender/FestivalCalender'
+import AllProducts from './components/allProducts/AllProducts'
+import Footer from './components/footer/Footer'
 
 
 
@@ -40,9 +42,7 @@ function App() {
 
 
     {!location.pathname.includes("order-confirmation") && <Header />}
-   {/* <FestivalCalender/> */}
-    {/* <Header/> */}
-
+  
 
     <Routes>
       <Route path='/' element={<Home/>}></Route>
@@ -54,10 +54,13 @@ function App() {
       <Route path="/refund-cancellation-policy" element={<RefundCancellation/>}></Route>
       <Route path="/panchang" element={<PanchangPage/>}></Route>
       <Route path="/hindu-festival-calender" element={<FestivalCalender/>}></Route>
+      <Route path='/collections/products' element={<AllProducts/>}></Route>
      
     </Routes>
 
-    {/* <Product></Product> */}
+    {!location.pathname.includes("order-confirmation") && <Footer />}
+
+
 
 
 

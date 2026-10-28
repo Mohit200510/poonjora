@@ -98,7 +98,12 @@
     align-items: center;
     gap: 22px;
 }
-.heroBtnOne{
+.heroBtnOne {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
     padding: 0px 16px;
     background-color: var(--color-primary);
     color: var(--color-surface);
@@ -108,16 +113,17 @@
     height: 58px;
     font-size: 16px;
     font-weight: 600;
+    box-sizing: border-box;
     transform: translateY(0);
     transition: 0.3s transform ease-out;
-    
-    &:hover{
-        background-color: var(--color-primary-dark);
-        transform: translateY(-5px);
-        cursor: pointer;
-        
-    }
+    text-decoration: none;
+    cursor: pointer;
 
+    &:hover {
+        background-color: var(--color-primary-dark);
+        color: var(--color-surface);
+        transform: translateY(-5px);
+    }
 }
 .heroBtnTwo{
     padding: 0px 16px;

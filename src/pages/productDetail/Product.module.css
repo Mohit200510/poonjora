@@ -830,3 +830,31 @@
         flex-wrap: wrap;
     }
 }
+/* ===== Interactive enhancements ===== */
+.actions button {
+  transition: background-color .25s ease, color .25s ease,
+              border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.cartButton:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(54, 1, 79, .18);
+}
+.buyButton:hover:not(:disabled) {
+  background: #50076c;
+  border-color: #50076c;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(54, 1, 79, .22);
+}
+.actions button:active:not(:disabled) { transform: translateY(0) scale(.98); }
+.actions button:disabled { opacity: .65; cursor: not-allowed; }
+.quantity button { transition: background-color .2s ease, color .2s ease; }
+.quantity button:hover:not(:disabled) { background: var(--color-primary); color: #fff; }
+.quantity button:disabled { opacity: .4; cursor: not-allowed; }
+.productGalleryBox { font: inherit; }
+.productGalleryBox:hover { border-color: var(--color-primary); background: rgba(255,255,255,.45); }
+.productError { padding: 80px 20px; text-align: center; color: var(--color-primary); }
+@media (prefers-reduced-motion: reduce) {
+  .actions button, .quantity button, .productGalleryBox { transition: none; }
+}

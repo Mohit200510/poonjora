@@ -17,14 +17,16 @@ function BottomBar() {
             <div>
                 <ul className={styles.bottomBarUl}>
                     <div className={styles.bottomBarLeftLinks}>
+                        <Link to="/collections/products" >
                         <li><a className={styles.bottomBarNavItemsLink} href=''>All</a></li> 
+                        </Link>
                         <li><a className={styles.bottomBarNavItemsLink} href=''>Puja Kits</a></li>
-                        <li><a className={styles.bottomBarNavItemsLink} href=''>Incense</a></li>
-                        <li><a className={styles.bottomBarNavItemsLink} href=''>Idols</a></li>
+                        <li><a className={styles.bottomBarNavItemsLink} href=''>Chameli Oil</a></li>
+                        <li><a className={styles.bottomBarNavItemsLink} href=''>Kapoor</a></li>
                         {/* <li><a className={styles.bottomBarNavItemsLink} href=''>Brass Items</a></li> */}
-                        <li><a className={styles.bottomBarNavItemsLink} href=''>Temple Decor</a></li>
+                        <li><a className={styles.bottomBarNavItemsLink} href=''>Gangajal</a></li>
                         {/* <li><a className={styles.bottomBarNavItemsLink} href=''>Rudraksha</a></li> */}
-                        <li><a className={styles.bottomBarNavItemsLink} href=''>Books</a></li>
+                        <li><a className={styles.bottomBarNavItemsLink} href=''>Puja Oil</a></li>
                         <li><a className={styles.bottomBarNavItemsLink} href=''>Festive</a></li>
                     </div>
 

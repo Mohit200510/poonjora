@@ -1,0 +1,655 @@
+
+/* ==============================
+   POONJORA — ALL PRODUCTS PAGE
+============================== */
+
+.page {
+  width: 100%;
+  background: #fffdfb;
+  color: #211923;
+}
+/* ==============================
+   HERO BANNER
+============================== */
+
+.hero {
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(255, 249, 245, 0.92) 0%,
+      rgba(255, 249, 245, 0.55) 35%,
+      transparent 70%
+    ),
+    var(--hero-image);
+
+  background-size: cover;
+  background-position: center 65%;
+  background-repeat: no-repeat;
+  /* background-image: url("../../");    */
+}
+
+.heroInner {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+  padding: 35px 0;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #36014f;
+  margin-bottom: 24px;
+}
+
+.breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.heroOrnament {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #c99c66;
+  margin-bottom: 12px;
+}
+
+.heroOrnament span {
+  width: 42px;
+  height: 1px;
+  background: #c99c66;
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 600;
+  color: #36014f;
+  margin: 0 0 12px;
+  line-height: 1.15;
+}
+
+.hero p {
+  max-width: 520px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #5b5057;
+  margin: 0;
+}
+
+/* ==============================
+   PRODUCTS SECTION
+============================== */
+
+.collection {
+  padding: 40px 0 70px;
+  background: #fffdfb;
+  /* background: url("../../assets/products_bg1.png"); */
+}
+
+.container {
+  width: min(1200px, 90%);
+  margin: 0 auto;
+}
+
+.collectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.collectionHeader p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #36014f;
+  margin: 0;
+}
+
+/* ==============================
+   PRODUCT GRID
+============================== */
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+/* ==============================
+   PRODUCT CARD
+============================== */
+
+.productCard {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+  border: 1px solid #eee5e9;
+  border-radius: 12px;
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.productCard:hover {
+  transform: translateY(-4px);
+  border-color: #e3d4e7;
+  box-shadow: 0 12px 30px rgba(54, 1, 79, 0.09);
+}
+
+/* ==============================
+   PRODUCT IMAGE
+============================== */
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.25;
+  overflow: hidden;
+
+  background: #f8f2ed;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageWrapper a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.imageWrapper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  padding: 12px;
+  box-sizing: border-box;
+
+  transition: transform 0.4s ease;
+}
+
+.productCard:hover .imageWrapper img {
+  transform: scale(1.045);
+}
+
+/* ==============================
+   DISCOUNT BADGE
+============================== */
+
+.discountBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+
+  background: #36014f;
+  color: #ffffff;
+
+  border-radius: 20px;
+  padding: 6px 12px;
+
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* ==============================
+   PRODUCT DETAILS
+============================== */
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 15px;
+}
+
+.productName {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #201820;
+  text-decoration: none;
+  line-height: 1.4;
+  min-height: 40px;
+}
+.productWeight {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #786b7e;
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+.productName:hover {
+  color: #36014f;
+}
+
+/* ==============================
+   PRICE ROW
+============================== */
+
+.priceRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin: 12px 0 15px;
+}
+
+.priceRow strong {
+  color: #36014f;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.priceRow del {
+  color: #999;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.saving {
+  display: inline-flex;
+  align-items: center;
+
+  background: #f9e6f0;
+  color: #820d59;
+
+  padding: 4px 7px;
+  border-radius: 5px;
+
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ==============================
+   ADD TO CART BUTTON
+============================== */
+
+.cartButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+
+  width: 100%;
+  min-height: 43px;
+  margin-top: auto;
+  padding: 11px 12px;
+
+  background: #36014f;
+  border: 1px solid #36014f;
+  border-radius: 7px;
+
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.cartButton svg {
+  flex-shrink: 0;
+}
+
+.cartButton:hover {
+  background: #570b74;
+  border-color: #570b74;
+  box-shadow: 0 5px 12px rgba(54, 1, 79, 0.15);
+}
+
+.cartButton:active {
+  transform: scale(0.98);
+}
+
+.cartButton:focus-visible {
+  outline: 2px solid #c99c66;
+  outline-offset: 3px;
+}
+
+/* ==============================
+   EMPTY / ERROR MESSAGE
+============================== */
+
+.message {
+  padding: 40px 0;
+  text-align: center;
+  color: #665a66;
+  font-size: 15px;
+}
+
+/* ==============================
+   TRUST STRIP
+============================== */
+
+.trustStrip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  padding: 28px max(5%, calc((100% - 1200px) / 2));
+
+  background: #36014f;
+  color: #fff8ef;
+
+  text-align: center;
+  font-size: 13px;
+}
+
+.trustStrip > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.trustStrip > div:last-child {
+  border-right: none;
+}
+
+/* ==============================
+   LAPTOP / TABLET
+============================== */
+
+@media (max-width: 1024px) {
+  .productGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .productInfo {
+    padding: 13px;
+  }
+}
+
+/* ==============================
+   TABLET / MOBILE
+============================== */
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 230px;
+    background-position: 62% center;
+  }
+
+  .heroInner {
+    padding: 30px 0;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 14px;
+    max-width: 380px;
+  }
+
+  .collection {
+    padding: 30px 0 50px;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .imageWrapper {
+    aspect-ratio: 1.15;
+  }
+
+  .imageWrapper img {
+    padding: 10px;
+  }
+
+  .productInfo {
+    padding: 12px;
+  }
+
+  .productName {
+    font-size: 13px;
+    min-height: 58px;
+  }
+
+  .priceRow strong {
+    font-size: 17px;
+  }
+
+  .trustStrip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .trustStrip > div:nth-child(2) {
+    border-right: none;
+  }
+
+  .trustStrip > div {
+    padding: 15px 10px;
+  }
+}
+
+/* ==============================
+   SMALL MOBILE
+============================== */
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 220px;
+
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(255, 249, 245, 0.97),
+        rgba(255, 249, 245, 0.82)
+      ),
+      var(--hero-image);
+
+    background-position: 65% center;
+  }
+
+  .heroInner,
+  .container {
+    width: 92%;
+  }
+
+  .breadcrumb {
+    font-size: 11px;
+    margin-bottom: 18px;
+    gap: 8px;
+  }
+
+  .heroOrnament {
+    margin-bottom: 10px;
+  }
+
+  .heroOrnament span {
+    width: 30px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 300px;
+  }
+
+  .collection {
+    padding: 25px 0 40px;
+  }
+
+  .collectionHeader {
+    margin-bottom: 16px;
+  }
+
+  .collectionHeader p {
+    font-size: 13px;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .productCard {
+    border-radius: 9px;
+  }
+
+  .imageWrapper {
+    aspect-ratio: 1;
+  }
+
+  .imageWrapper img {
+    padding: 8px;
+  }
+
+  .discountBadge {
+    top: 7px;
+    left: 7px;
+    padding: 4px 7px;
+    font-size: 9px;
+  }
+
+  .productInfo {
+    padding: 9px;
+  }
+
+  .productName {
+    font-size: 12px;
+    line-height: 1.45;
+    min-height: 52px;
+  }
+
+  .priceRow {
+    gap: 5px;
+    margin: 9px 0 12px;
+  }
+
+  .priceRow strong {
+    font-size: 15px;
+  }
+
+  .priceRow del {
+    font-size: 11px;
+  }
+
+  .saving {
+    font-size: 9px;
+    padding: 3px 5px;
+  }
+
+  .cartButton {
+    min-height: 38px;
+    padding: 9px 5px;
+    font-size: 11px;
+    gap: 6px;
+    border-radius: 6px;
+  }
+
+  .cartButton svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .trustStrip {
+    padding: 15px 4%;
+    font-size: 11px;
+  }
+
+  .trustStrip > div {
+    padding: 12px 7px;
+  }
+}
+
+/* ==============================
+   VERY SMALL PHONES
+============================== */
+
+@media (max-width: 360px) {
+  .hero h1 {
+    font-size: 27px;
+  }
+
+  .productGrid {
+    gap: 8px;
+  }
+
+  .productInfo {
+    padding: 8px;
+  }
+
+  .productName {
+    font-size: 11px;
+  }
+
+  .priceRow strong {
+    font-size: 14px;
+  }
+
+  .cartButton {
+    font-size: 10px;
+  }
+}
+
+/* ==============================
+   REDUCED MOTION
+============================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .productCard,
+  .imageWrapper img,
+  .cartButton,
+  .productName {
+    transition: none;
+  }
+
+  .productCard:hover,
+  .productCard:hover .imageWrapper img {
+    transform: none;
+  }
+}

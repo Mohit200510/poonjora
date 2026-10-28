@@ -6,7 +6,6 @@ import Categories from '../../components/categories/Categories'
 // import banner from "../../assets/puja_banner.png"
 import FeatureProducts from '../../components/featureProducts/FeatureProducts';
 import TrustSection from '../../components/trustSection/TrustSection'
-import Footer from '../../components/footer/Footer'
 import PujaKit from '../../components/puja_kits/PujaKit'
 import chameli from "../../assets/new_banner4.png"
 
@@ -49,7 +48,6 @@ function Home() {
         <PujaKit/>
 
         <TrustSection/>
-        <Footer/>
 
 
 

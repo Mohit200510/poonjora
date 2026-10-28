@@ -254,7 +254,7 @@ const details = [
 
         {progress !== null && (
           <span className={styles.progressBadge}>
-            {Math.round(progress)}% पूरी
+            {Math.round(progress)}% पूर्ण
           </span>
         )}
       </div>

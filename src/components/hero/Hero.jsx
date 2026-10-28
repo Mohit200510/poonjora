@@ -7,6 +7,7 @@ import banner from "../../assets/hero_bg.webp";
 // import Mobbanner from "../../assets/better_mob.png"
 import Mobbanner from "../../assets/mobile_neww.png"
 import { LayoutGrid,ShoppingBag } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 
 
@@ -31,9 +32,12 @@ function Hero() {
               <div className={styles.heroBtn}>
 
 
-                
-                  <button className={styles.heroBtnOne}><ShoppingBag style={{display: "block" ,position:"absolute"}}  stroke='var(--color-accent)' />  Shop Now</button>
-                  
+                <Link
+                   to="/collections/products"
+                   className={styles.heroBtnOne}>
+                   <ShoppingBag stroke="var(--color-accent)"/>Shop Now
+                </Link>
+
                   <button className={styles.heroBtnTwo}><LayoutGrid style={{display: "block" ,position:"absolute"}} /> Explore Categories</button>
                   
 
