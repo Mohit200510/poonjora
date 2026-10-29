@@ -50,7 +50,6 @@ function App() {
 
     <Routes>
       <Route path='/' element={<Home/>}></Route>
-      {/* < */}
       <Route path='/order-confirmation/:orderId' element={<OrderSuccess/>}></Route>
       <Route path='/product/:id' element={<Product/>}></Route>
       <Route path='/privacy-policy' element={<PrivacyPolicy/>}></Route>

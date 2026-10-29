@@ -102,113 +102,258 @@
 /* media */
 
 
-/* =========================
-   TABLET
-========================= */
+
+/* ==========================================
+   TRUST SECTION - RESPONSIVE
+   ========================================== */
+
+/* General improvements */
+
+.trustSection,
+.trustSectionBody,
+.trustSectionBodyBadges {
+  box-sizing: border-box;
+}
+
+.trustSectionBodyBadge {
+  min-width: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.trustSectionBodyBadge h4,
+.trustSectionBodyBadge p {
+  overflow-wrap: break-word;
+}
+
+.trustSectionBodyBadge p {
+  max-width: 230px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dividerLine {
+  flex: 0 0 1px;
+  align-self: stretch;
+}
+
+/* ==========================================
+   TABLET - 901px to 1200px
+   ========================================== */
+
+@media (max-width: 1200px) {
+
+  .trustSectionBodyBadges {
+    gap: 15px;
+  }
+
+  .trustSectionBodyBadge h4 {
+    font-size: 19px;
+  }
+
+  .trustSectionBodyBadge p {
+    font-size: 13px;
+  }
+
+  .trustSectionBodyBadge svg {
+    width: 62px;
+    height: 62px;
+  }
+}
+
+/* ==========================================
+   TABLET - 601px to 900px
+   ========================================== */
 
 @media (max-width: 900px) {
 
-    .trustSectionHeader h2 {
-        font-size: 36px;
-    }
+  .trustSectionHeader h2 {
+    font-size: 36px;
+  }
 
-    .trustSectionHeader p {
-        font-size: 16px;
-        padding: 0 20px;
-    }
+  .trustSectionHeader h2 span {
+    font-size: 38px;
+  }
 
-    .trustSectionBody {
-        padding: 50px 0;
-        margin: 40px 0 60px;
-    }
+  .trustSectionHeader p {
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 0 auto;
+  }
 
-    .trustSectionBodyBadges {
-        flex-wrap: wrap;
-        row-gap: 40px;
-    }
+  .trustSectionBody {
+    padding: 55px 0;
+    margin: 40px 0 60px;
+    background-position: center;
+  }
 
-    .trustSectionBodyBadge {
-        flex: 0 0 50%;
-    }
+  .trustSectionBodyBadges {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 25px;
+    row-gap: 40px;
+  }
+
+  .trustSectionBodyBadge {
+    width: 100%;
+  }
+
+  .trustSectionBodyBadge h4 {
+    font-size: 20px;
+  }
+
+  .trustSectionBodyBadge p {
+    font-size: 14px;
+  }
+
+  /* Hide dividers in grid layout */
+
+  .dividerLine {
+    display: none;
+  }
 }
 
-
-/* =========================
-   MOBILE
-========================= */
+/* ==========================================
+   MOBILE - 381px to 600px
+   ========================================== */
 
 @media (max-width: 600px) {
 
-    .trustSectionHeader h2 {
-        font-size: 32px;
-    }
+  .trustSectionBody {
+    padding: 45px 0 50px;
+    margin: 30px 0 45px;
+    background-position: center;
+    background-size: cover;
+  }
 
-    .trustSectionHeader p {
-        font-size: 15px;
-        line-height: 1.6;
-        padding: 0 15px;
-    }
+  /* Header */
 
-    .trustSectionHeader::after {
-        margin-top: 18px;
-    }
+  .trustSectionHeader {
+    margin-bottom: 35px !important;
+  }
 
-    .trustSectionBody {
-        padding: 40px 0;
-        margin: 35px 0 50px;
-    }
+  .trustSectionHeader h2 {
+    font-size: 29px;
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
 
-    .trustSectionBodyBadges {
-        row-gap: 35px;
-    }
+  .trustSectionHeader h2 span {
+    font-size: 30px;
+  }
 
-    .trustSectionBodyBadge {
-        flex: 0 0 50%;
-        text-align: center;
-    }
+  .trustSectionHeader p {
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 0 8px;
+    max-width: 400px;
+  }
 
-    .trustSectionBodyBadge svg {
-        width: 42px;
-        height: 42px;
-    }
+  .trustSectionHeader::after {
+    width: 55px;
+    height: 3px;
+    margin-top: 18px;
+  }
 
-    .trustSectionBodyBadge h4 {
-        font-size: 18px;
-        margin-top: 12px;
-    }
+  /* Badges: 2 columns */
 
-    .trustSectionBodyBadge p {
-        font-size: 13px;
-        line-height: 1.5;
-        margin-top: 2px;
-    }
+  .trustSectionBodyBadges {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 12px;
+    row-gap: 32px;
+    align-items: start;
+  }
+
+  .trustSectionBodyBadge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    min-width: 0;
+  }
+
+  .dividerLine {
+    display: none;
+  }
+
+  /* Icons */
+
+  .trustSectionBodyBadge > span {
+    width: 62px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .trustSectionBodyBadge svg {
+    width: 58px;
+    height: 58px;
+    padding: 12px;
+  }
+
+  /* Titles */
+
+  .trustSectionBodyBadge h4 {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-top: 12px;
+    margin-bottom: 4px;
+  }
+
+  /* Descriptions */
+
+  .trustSectionBodyBadge p {
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 160px;
+    margin: 0 auto;
+  }
 }
 
-
-/* =========================
-   VERY SMALL MOBILE
-========================= */
+/* ==========================================
+   VERY SMALL MOBILE - 380px and below
+   ========================================== */
 
 @media (max-width: 380px) {
 
-    .trustSectionHeader h2 {
-        font-size: 29px;
-    }
+  .trustSectionHeader h2 {
+    font-size: 25px;
+  }
 
-    .trustSectionHeader p {
-        font-size: 14px;
-        padding: 0 10px;
-    }
+  .trustSectionHeader h2 span {
+    font-size: 26px;
+  }
 
-    .trustSectionBody {
-        padding: 35px 0;
-    }
+  .trustSectionHeader p {
+    font-size: 13px;
+  }
 
-    .trustSectionBodyBadge h4 {
-        font-size: 16px;
-    }
+  .trustSectionBodyBadges {
+    column-gap: 8px;
+    row-gap: 28px;
+  }
 
-    .trustSectionBodyBadge p {
-        font-size: 12px;
-    }
+  .trustSectionBodyBadge > span {
+    width: 55px;
+    height: 55px;
+  }
+
+  .trustSectionBodyBadge svg {
+    width: 53px;
+    height: 53px;
+    padding: 11px;
+  }
+
+  .trustSectionBodyBadge h4 {
+    font-size: 14px;
+  }
+
+  .trustSectionBodyBadge p {
+    font-size: 11px;
+  }
 }

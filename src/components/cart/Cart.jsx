@@ -37,7 +37,7 @@ function Cart() {
 
   return (
     
-    <div style={{right: closeCart?"-400px":"0"}} className={styles.cartMain}>
+    <div style={{right: closeCart?"-100vw":"0%"}} className={styles.cartMain}>
     
    
             <div style={{visibility: cartItems.length >=1?"hidden":"visible"}} className={styles.emptyCartContent}>

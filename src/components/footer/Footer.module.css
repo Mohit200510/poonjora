@@ -1,5 +1,5 @@
 .footer{
-    padding: 60px 0 10px 0;
+    padding: 60px 0 0px 0;
     background: url("../../assets/footer-bg.png");
     background-position: center;
     background-size: cover;
@@ -24,7 +24,7 @@
     color:  var(--color-text-secondary);
     padding: 0px 0 12px 0;
     line-height: 1.8;
-        font-family: 'poppins', sans-serif;
+    font-family: 'poppins', sans-serif;
 }
 .footerSocialIcons svg{
     font-size: 23px;
@@ -62,10 +62,13 @@
     color: var(--color-text-secondary);
 }
 .footerQuickLinks ul li a{
-    
     text-decoration: none;
     color: var(--color-text-secondary);
     font-family: "lora", sans-serif;
+}
+.footerQuickLinks ul a {
+  text-decoration: none;
+  color: var(--color-text-secondary);
 }
 
 
@@ -76,7 +79,6 @@
 .footerContactDetails{
     border-left: 1px solid #EAD6BD;
     padding-left: 40px;
-
 }
 
 .footerContactDiv{
@@ -104,8 +106,7 @@
 }
 .contactIconConatiner{
     margin-right: 16px;
-
-      display: flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -119,6 +120,7 @@
     flex-direction: column;
     gap: 3px;
 }
+
 .ContactInfo h6{
     font-size: 14px;
     color: var(--color-primary-dark);
@@ -139,72 +141,497 @@
 
 }
 
-.footerLower{
+
+/* trust barr */
+
+
+
+
+/* MAIN TRUST BAR */
+
+.trustBar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+  border-top: 1px solid #dfc49d;
+  gap: 0;
+}
+
+/* THREE TRUST ITEMS */
+
+.trustItem {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 0 18px;
+  border-right: 1px solid #dfc49d;
+}
+
+.trustItem:first-child {
+  padding-left: 0;
+}
+
+.trustItem svg {
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  color: #36014f;
+  stroke-width: 1.6;
+}
+
+.trustItem > div {
+  min-width: 0;
+}
+
+.trustItem h4 {
+  font-family: "lora", serif;
+  color: #36014f;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 5px;
+  line-height: 1.3;
+}
+
+.trustItem p {
+  color: #685b55;
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* PAYMENT BADGES */
+
+.paymentItem {
+  flex: 1.5;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+.paymentItem img {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+
+
+/*  footer bottom copyright*/
+
+
+.footerCopyright {
+    background-color: var(--color-primary);
+    padding: 24px 0;
+}
+.footerCopyright p{
+    color: var(--color-surface);
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+}
+
+
+
+
+
+
+
+/* =====================================
+   TABLET RESPONSIVE - FLEXBOX ONLY
+===================================== */
+
+@media screen and (max-width: 1200px) {
+
+  .footer {
+    padding: 35px 0 0;
+  }
+
+  .footerUpper {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 26px;
+    padding-bottom: 25px;
+  }
+
+  /* BRAND */
+
+  .footerFirst {
+    width: 100%;
+    padding-right: 0;
     align-items: center;
-    padding: 10px 0;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .footerFirst img {
+    width: 200px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .footerFirst p {
+    max-width: 600px;
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .footerSocialIcons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .footerSocialIcons svg {
+    margin-right: 0;
+  }
+
+  /* NAVIGATION GROUPS - ONE BELOW ANOTHER */
+
+  .footerQuickLinks {
+    width: 100%;
+    flex: none;
+    min-width: 0;
+    padding: 0 0 20px;
+    border-left: none;
+    border-bottom: 1px solid #ead6bd;
+  }
+
+  .footerQuickLinks h4 {
+    font-size: 17px;
+    padding-bottom: 14px;
+  }
+
+  .footerQuickLinks ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 22px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footerQuickLinks ul li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+    padding: 0;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  .footerQuickLinks ul li a {
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .footerQuickLinks ul li svg {
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  /* CONTACT */
+
+  .footerContactDetails {
+    width: 100%;
+    flex: none;
+    min-width: 0;
+    padding: 0;
+    border-left: none;
+  }
+
+  .footerContactDetails h4 {
+    margin-bottom: 18px;
+  }
+
+  .ContactInfo {
+    min-width: 0;
+  }
+
+  .ContactInfo p,
+  .ContactInfo a {
+    overflow-wrap: anywhere;
+  }
+
+  /* TRUST BAR */
+
+  .trustBar {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+  }
+
+  .trustItem {
+    flex: 1 1 33.333%;
+    padding: 0 12px;
+  }
+
+  .trustItem:nth-child(3) {
+    border-right: none;
+  }
+
+  .paymentItem {
+    flex: 1 1 100%;
+    padding: 18px 0 0;
+    border-top: 1px solid #dfc49d;
+  }
+
+  .paymentItem img {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+  }
 }
-.footerLower p{
-    color: var(--color-text-secondary);
+
+/* =====================================
+   MOBILE RESPONSIVE
+===================================== */
+
+@media screen and (max-width: 600px) {
+
+  .footer {
+    padding: 30px 0 0;
+    background-position: center top;
+  }
+
+  .footerUpper {
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 22px;
+  }
+
+  /* BRAND */
+
+  .footerFirst {
+    width: 100%;
+    padding: 0;
+    gap: 10px;
+  }
+
+  .footerFirst img {
+    width: 175px;
+  }
+
+  .footerFirst p {
+    font-size: 12px;
+    line-height: 1.7;
+    max-width: 100%;
+  }
+
+  .footerSocialIcons {
+    gap: 17px;
+  }
+
+  .footerSocialIcons svg {
+    font-size: 21px;
+    margin-right: 0;
+  }
+
+  /* NAVIGATION GROUPS */
+
+  .footerQuickLinks {
+    width: 100%;
+    flex: none;
+    padding: 0 0 18px;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #ead6bd;
+  }
+
+  .footerQuickLinks h4 {
+    font-size: 16px;
+    gap: 7px;
+    padding-bottom: 12px;
+  }
+
+  .footerQuickLinks h4 svg {
+    font-size: 20px;
+  }
+
+  /* FLEX LINKS WITHIN EACH GROUP */
+
+  .footerQuickLinks ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 18px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footerQuickLinks ul li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
+    padding: 0;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .footerQuickLinks ul li a {
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .footerQuickLinks ul li svg {
+    font-size: 9px;
+    flex-shrink: 0;
+  }
+
+  /* CONTACT */
+
+  .footerContactDetails {
+    width: 100%;
+    padding: 0;
+    border: none;
+  }
+
+  .footerContactDetails h4 {
+    margin-bottom: 16px;
+  }
+
+  .footerContactHeading {
+    font-size: 16px;
+  }
+
+  .footerContactMain {
+    gap: 8px;
+  }
+
+  .footerContactDiv {
+    margin-bottom: 8px;
+  }
+
+  .contactIconConatiner {
+    flex-shrink: 0;
+    margin-right: 12px;
+    padding: 7px;
+  }
+
+  .footerContactDetails svg {
+    font-size: 23px;
+  }
+
+  .ContactInfo h6 {
+    font-size: 13px;
+  }
+
+  .ContactInfo p,
+  .ContactInfo a {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  /* TRUST BAR */
+
+  .trustBar {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    row-gap: 0;
+  }
+
+  .trustItem {
+    flex: 0 0 50%;
+    min-width: 0;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    padding: 14px 8px;
+    border-right: none;
+  }
+
+  .trustItem:first-child {
+    border-right: 1px solid #dfc49d;
+  }
+
+  .trustItem:nth-child(3) {
+    flex: 0 0 100%;
+    border-top: 1px solid #dfc49d;
+  }
+
+  .trustItem svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .trustItem h4 {
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+
+  .trustItem p {
+    font-size: 12px;
+  }
+
+  .paymentItem {
+    flex: 0 0 100%;
+    padding: 18px 0 0;
+    margin-top: 5px;
+  }
+
+  .paymentItem img {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+  }
+
+  /* COPYRIGHT */
+
+  .footerCopyright {
+    padding: 18px 12px;
+  }
+
+  .footerCopyright p {
+    font-size: 12px;
+    line-height: 1.6;
+  }
 }
 
-.footerLower svg{
-    font-size: 30px;
-    margin-left: 16px;
+/* =====================================
+   SMALL MOBILE
+===================================== */
+
+@media screen and (max-width: 380px) {
+
+  .footerQuickLinks h4 {
+    font-size: 14px;
+  }
+
+  .footerQuickLinks ul {
+    gap: 9px 12px;
+  }
+
+  .footerQuickLinks ul li a {
+    font-size: 11px;
+  }
+
+  .trustItem h4 {
+    font-size: 13px;
+  }
+
+  .trustItem p {
+    font-size: 11px;
+  }
+
+  .trustItem svg {
+    width: 31px;
+    height: 31px;
+  }
 }
-.footer a{
-    text-decoration: none;
-}
 
-
-/* media quries */
-
-
-@media screen and (max-width:1200px){
-    .footer{
-        padding: 25px 0 10px 0;
-    }
-    .footerUpper{
-         flex-direction: column;
-         padding-bottom: 0px;
-         gap: 26px
-    }
-    .footerFirst{
-        align-items: center;
-        width: 100%;
-        gap: 10px;
-    }
-    .footerFirst img {
-        width: 185px;
-    }
-
-    .footerQuickLinks{
-        padding: 0 0;
-    }
-    .footerQuickLinks h4 {
-        padding-bottom: 8px;
-    }
-    .footerQuickLinks ul li {
-        
-        width: max-content;
-        padding: 0;
-        padding-right: 26px;
-        display: inline;
-    }
-
-    .footerContactDetails h4 {
-         margin-bottom: 8px;
-    }
-
-    .footerLower{
-        flex-direction: column;
-        gap: 6px;
-        padding: 10px 0;
-    }
-
-    .footerLower p {
-        text-align: center;
-    }
-
-}

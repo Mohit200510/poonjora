@@ -14,15 +14,13 @@ import { VscLocation } from "react-icons/vsc";
 import { RiCustomerService2Line } from "react-icons/ri";
 
 
-import { RiVisaFill } from "react-icons/ri";
-import { FaPaypal } from "react-icons/fa";
-import { FaCcMastercard } from "react-icons/fa";
-import { FaStripe } from "react-icons/fa";
+
 import { PiFlowerLotusLight } from "react-icons/pi";
 import { LuUserRoundSearch } from "react-icons/lu";
 import { LiaNewspaper } from "react-icons/lia";
 import { FaAngleRight } from "react-icons/fa6";
 import { PiPhoneLight } from "react-icons/pi";
+import FooterTrustBar from './FooterTrustBar';  
 
 
 
@@ -152,21 +150,18 @@ function Footer() {
             </div>
         </div>
 
-        <div className={styles.footerLower}>
-            <div className=''>
-                <p>Copyright @ 2026 <b>Poonjora</b> . All Rights Reserved.</p>
+        
 
-            </div>
-            <div>
-                <RiVisaFill/>
-                <FaPaypal/>
-                <FaCcMastercard/>
-                <FaStripe/>
+        <FooterTrustBar/>
 
-            </div>
+        
 
-        </div>
         </Container>
+
+          <div className={styles.footerCopyright}>
+             <p>Copyright @ 2026 <b>Poonjora</b> . All Rights Reserved.</p>
+          </div>
+
     </div>
     </footer>
 
