@@ -1,81 +1,98 @@
-import React from 'react'
-import styles from "./Checkout.module.css"
-import stles from "../checkout/Checkout.module.css"
-import { useEffect,useState } from 'react'
-import { supabase } from '../../supabaseClient'
-import LoginBox from './LoginBox'
-import CheckoutForm from './CheckoutForm'
-import Overlay from '../common/Overlay'
 
+import React, { useEffect, useState } from "react";
+import styles from "./Checkout.module.css";
+import { supabase } from "../../supabaseClient";
+import LoginBox from "./LoginBox";
+import CheckoutForm from "./CheckoutForm";
+import Overlay from "../common/Overlay";
 
-function Checkout({setOpenCheckout}) {
+function Checkout({ setOpenCheckout }) {
+  const [user, setUser] = useState(null);
+  const [loadingGuest, setLoadingGuest] = useState(false);
 
-const [user,setUser]= useState(null)
+  // Check existing login session
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data } = await supabase.auth.getSession();
 
+      setUser(data.session?.user ?? null);
+    };
 
+    checkUser();
 
-// fetching login session data if aplicable
+    const { data: { subscription } } =
+      supabase.auth.onAuthStateChange((_event, session) => {
+        setUser(session?.user ?? null);
+      });
 
-useEffect(() => {
+    return () => subscription.unsubscribe();
+  }, []);
 
-  const checkUser = async () => {
+  // Google login
+  const handleGoogleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: "http://poonjora.in/",
+        queryParams: {
+          prompt: "select_account",
+        },
+      },
+    });
 
-    const { data } = await supabase.auth.getSession();
-
-    if (data.session) {
-      setUser(data.session.user);
+    if (error) {
+      console.error("Google login failed:", error);
     }
-
   };
 
-  checkUser();
+  // Guest login
+  const handleGuestContinue = async () => {
+    if (loadingGuest) return;
 
-}, []);
+    setLoadingGuest(true);
 
-// google login function
+    try {
+      const { data, error } = await supabase.auth.getSession();
 
-const handleGoogleLogin = async () => {
+      if (error) throw error;
 
-  const { error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
+      if (data.session?.user) {
+        setUser(data.session.user);
+        return;
+      }
 
-    options: {
-      redirectTo: "http://poonjora.in/",
-      queryParams: {
-        prompt: "select_account",
-      },
-    },
-    
+      const { data: guestData, error: guestError } =
+        await supabase.auth.signInAnonymously();
 
+      if (guestError) throw guestError;
 
-  });
-
-  if (error) {
-    console.log(error);
-  }
-};
-
-
-
-
+      setUser(guestData.user);
+    } catch (error) {
+      console.error("Guest login failed:", error);
+      alert("Unable to continue as guest. Please try again.");
+    } finally {
+      setLoadingGuest(false);
+    }
+  };
 
   return (
     <>
-    {/* // <div className={styles.checkoutBox}>
-    //     Checkout
-    //     {user ? <p>Logged in</p> : <p>Guest user</p>}
-    //     <button onClick={handleGoogleLogin}>Continue with GOOGLE</button>
+      <Overlay />
 
-    // </div> */}
-    {/* <he></he> */}
-    <Overlay/>
-
-    <div className={styles.checkoutWindow}>
-    {user?<CheckoutForm setOpenCheckout={setOpenCheckout}/>:<LoginBox googleLoginForm = {handleGoogleLogin} setOpenCheckout= {setOpenCheckout}/>}
-    </div>
-    
-</>
-  )
+      <div className={styles.checkoutWindow}>
+        {user ? (
+          <CheckoutForm setOpenCheckout={setOpenCheckout} />
+        ) : (
+          <LoginBox
+            googleLoginForm={handleGoogleLogin}
+            setOpenCheckout={setOpenCheckout}
+            handleGuestContinue={handleGuestContinue}
+            loadingGuest={loadingGuest}
+          />
+        )}
+      </div>
+    </>
+  );
 }
 
-export default Checkout
+export default Checkout;

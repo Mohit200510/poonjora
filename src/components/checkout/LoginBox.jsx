@@ -15,7 +15,7 @@ import { IoMdLock } from "react-icons/io";
 
 
 
-function LoginBox({googleLoginForm,setOpenCheckout}) {
+function LoginBox({googleLoginForm,setOpenCheckout,handleGuestContinue,loadingGuest}) {
 
 
   return (
@@ -29,6 +29,7 @@ function LoginBox({googleLoginForm,setOpenCheckout}) {
                 <div className={styles.loginBoxLogo}>
                     <img src={logo}></img>
                 </div>
+
                 <div className={styles.LoginBoxHeading}>
                     <h3>Welcome to <span>Poonjora</span></h3>
                     <p>Your spiritual essentials,<br/> just a step away.</p>
@@ -51,7 +52,13 @@ function LoginBox({googleLoginForm,setOpenCheckout}) {
                     </div>
 
                     <div className={styles.loginBoxGuestBtn}>
-                        <a href=''>Continue as Guest</a>
+                      <button
+                        type="button"
+                        onClick={handleGuestContinue}
+                        disabled={loadingGuest}
+                        >
+                        {loadingGuest ? "Please wait..." : "Continue as Guest"}
+                      </button>
                     </div>
                     
 

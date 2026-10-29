@@ -199,7 +199,7 @@ if (error) {
         });
 
         const cashfree = await load({
-          mode: "sandbox",
+            mode: "production",
         });
 
         if (!cashfree) {

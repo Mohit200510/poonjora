@@ -98,7 +98,7 @@ function Product() {
                 />
               </div>
             </div>
-{/* <sddn */}
+        {/* <sddn */}
             <div className={styles.productInfo}>
               <div className={styles.productInfoInner}>
                 <div className={styles.heading}>
