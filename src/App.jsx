@@ -19,6 +19,7 @@ import PanchangPage from './pages/panchangPage/PanchangPage'
 import FestivalCalender from './pages/festivalCalender/FestivalCalender'
 import AllProducts from './components/allProducts/AllProducts'
 import Footer from './components/footer/Footer'
+import GoogleAnalyticsTracker from './components/GoogleAnalyticsTracker'
 
 
 
@@ -32,6 +33,9 @@ function App() {
   return (
     
     <>
+    <GoogleAnalyticsTracker/>
+
+
     {showToast && <Toast message="Product added to cart" />}
 
 
@@ -46,6 +50,7 @@ function App() {
 
     <Routes>
       <Route path='/' element={<Home/>}></Route>
+      {/* < */}
       <Route path='/order-confirmation/:orderId' element={<OrderSuccess/>}></Route>
       <Route path='/product/:id' element={<Product/>}></Route>
       <Route path='/privacy-policy' element={<PrivacyPolicy/>}></Route>
