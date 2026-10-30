@@ -8,6 +8,7 @@ import banner from "../../assets/hero_bg.webp";
 import Mobbanner from "../../assets/mobile_neww.png"
 import { LayoutGrid,ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import aggarbatti from "../../assets/smoke5.webp"
 
 
 
@@ -29,8 +30,8 @@ function Hero() {
             <div className={styles.herotext}>
 
               <h1>Bringing Devotion Closer to Home</h1>
-              
               <p>Authentic puja essentials for everyday worship, festivals and sacred occasions.</p>
+
               <div className={styles.heroBtn}>
 
 
@@ -40,10 +41,16 @@ function Hero() {
                    <ShoppingBag stroke="var(--color-accent)"/>Shop Now
                 </Link>
 
-                  <button className={styles.heroBtnTwo}><LayoutGrid style={{display: "block" ,position:"absolute"}} /> Explore Categories</button>
+                  <button  className={styles.heroBtnTwo}><LayoutGrid style={{display: "block" ,position:"absolute"}} /> Explore Categories</button>
                   
 
               </div>
+
+              <img
+                 src={aggarbatti}
+                 alt="Animated Agarbatti"
+                style={{  position: "absolute" ,left: "-57px" , bottom: "-168px", zIndex: "-1"}}
+              />
 
             </div>
 
