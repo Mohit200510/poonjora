@@ -13,42 +13,335 @@
 
 
 
-.topBar{
+
+/* ==========================================
+   POONJORA ANIMATED TOP BAR
+========================================== */
+
+.topBar {
+  width: 100%;
+  background-color: var(--color-primary-dark);
+  overflow: hidden;
+}
+
+/* MAIN LAYOUT */
+
+.topBarContent {
+  width: 100%;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  position: relative;
+}
+
+/* ==========================================
+   LEFT - POONJORA EXCLUSIVE
+========================================== */
+
+.topBarBrand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+
+  padding-right: 24px;
+  border-right: 1px solid rgba(212, 165, 58, 0.35);
+
+  color: #e6b64c;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+}
+
+.topBarBrand svg {
+  width: 16px;
+  height: 16px;
+  color: #e6b64c;
+  stroke-width: 2;
+}
+
+/* ==========================================
+   CENTER - VERTICAL ANNOUNCEMENT SLIDER
+========================================== */
+
+.topBarSlider {
+  height: 42px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.topBarTrack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 42px;
+  will-change: transform;
+}
+
+.topBarSlide {
+  width: 100%;
+  height: 42px;
+  min-height: 42px;
+  flex: 0 0 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.topBarIcon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: #e6b64c;
+  stroke-width: 2;
+}
+
+.topNavOffer {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* ==========================================
+   RIGHT - GOLD PROGRESS BAR
+========================================== */
+
+.topBarProgress {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.topBarProgressLine {
+  width: 135px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.topBarProgressFill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #e6b64c;
+  border-radius: 10px;
+
+  animation-name: topBarProgressAnimation;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes topBarProgressAnimation {
+  from {
+    width: 0;
+  }
+
+  to {
     width: 100%;
-    height: auto;
-    background-color: var(--color-primary-dark);
+  }
 }
-.topNavOffer{
+
+/* SLIDE COUNTER */
+
+.topBarCounter {
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================
+   MOBILE INDICATORS
+========================================== */
+
+.topBarMobileDots {
+  display: none;
+}
+
+.topBarMobileDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background 0.3s ease;
+}
+
+.topBarMobileDotActive {
+  background: #e6b64c;
+}
+
+/* ==========================================
+   TABLET RESPONSIVE
+========================================== */
+
+@media screen and (max-width: 1050px) {
+  .topBarContent {
+    gap: 14px;
+  }
+
+  .topBarBrand {
+    font-size: 10px;
+    padding-right: 14px;
+    gap: 6px;
+  }
+
+  .topBarProgress {
+    gap: 9px;
+  }
+
+  .topBarProgressLine {
+    width: 70px;
+  }
+
+  .topNavOffer {
     font-size: 11px;
-    font-weight: 500px;
-    letter-spacing: 0.5px;
-    /* font-family: "cormonant", sans-serif; */
-    color: var(--color-bg);
+  }
+
+  .topBarIcon {
+    width: 16px;
+    height: 16px;
+  }
 }
 
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
 
-.topNavLinksItem{
-    display: inline-block;
-    padding:  0 10px;
-}
-.topNavLinksItemA{
-    font-size: 14px;
-    color: var(--color-bg);
-    cursor: pointer;
-
-
-}
-.topBarContent{
+@media screen and (max-width: 700px) {
+  .topBarContent {
+    height: 66px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
     padding: 6px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  }
 
-}
-.topBarOffer{
+  /* HIDE DESKTOP SIDE ELEMENTS */
+
+  .topBarBrand,
+  .topBarProgress {
+    display: none;
+  }
+
+  /* SLIDER */
+
+  .topBarSlider {
+    width: 100%;
+    height: 38px;
+    flex: none;
+    min-width: 0;
+  }
+
+  .topBarTrack {
+    width: 100%;
+    height: 38px;
+  }
+
+  .topBarSlide {
+    width: 100%;
+    height: 38px;
+    min-height: 38px;
+    flex: 0 0 38px;
+
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 0 8px;
+  }
+
+  .topBarIcon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .topNavOffer {
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+
+  /* MOBILE DOTS */
+
+  .topBarMobileDots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .topBarMobileDot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .topBarMobileDotActive {
+    width: 7px;
+    height: 7px;
+  }
+}
+
+/* ==========================================
+   SMALL MOBILE RESPONSIVE
+========================================== */
+
+@media screen and (max-width: 380px) {
+  .topBarContent {
+    height: 62px;
+    padding: 5px 0;
+  }
+
+  .topBarSlide {
     gap: 5px;
+    padding: 0 2px;
+  }
+
+  .topNavOffer {
+    font-size: 10px;
+  }
+
+  .topBarIcon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .topBarTrack {
+    transition-duration: 0ms !important;
+  }
+
+  .topBarProgressFill {
+    animation: none;
+    width: 100%;
+  }
+
+  .topBarMobileDot {
+    transition: none;
+  }
 }
 
 
