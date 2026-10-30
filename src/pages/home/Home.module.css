@@ -30,6 +30,28 @@
   display: block;
 }
 
+.chamelOilBannerMob{
+  height: 0vh;
+  min-height: 160px;
+    /* max-height: 260px; */
+    width: 100%;
+  /* height: 520px; */
+  overflow: hidden;
+  margin-top: 50px;
+  display: none;
+
+}
+
+.chamelOilBannerMob img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+
+}
+
+
 /* Tablet */
 @media (max-width: 1024px) {
   .chamelOilBanner {
@@ -45,6 +67,10 @@
     height: 0vh;
     min-height: 140px;
     max-height: 260px;
+    display: none;
+  }
+  .chamelOilBannerMob{
+    display: block;
   }
 
   

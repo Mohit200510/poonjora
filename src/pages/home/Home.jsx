@@ -3,11 +3,13 @@ import { Helmet } from "react-helmet-async";
 import styles from "./Home.module.css"
 import Hero from '../../components/hero/Hero'
 import Categories from '../../components/categories/Categories'
-// import banner from "../../assets/puja_banner.png"
+
 import FeatureProducts from '../../components/featureProducts/FeatureProducts';
 import TrustSection from '../../components/trustSection/TrustSection'
 import PujaKit from '../../components/puja_kits/PujaKit'
 import chameli from "../../assets/new_banner4.png"
+        
+import mobbanner from "../../assets/chamelibanner.webp"
 
 import HomePanchang from '../../components/homePanchang/HomePanchang'
 
@@ -35,15 +37,18 @@ function Home() {
         <HomePanchang/>
       
 
-        <Categories/>
+        {/* <Categories/> */}
         
         <div className={styles.chamelOilBanner}>
           <img src={chameli}></img>
         </div>
 
-        {/* <div>
-        <img style={{width: "100%" , marginTop: "70px"}} src={banner}></img>
-        </div> */}
+        <div className={styles.chamelOilBannerMob}>
+          <img src={mobbanner}></img>
+        </div>
+
+
+        
         <FeatureProducts/>
         <PujaKit/>
 
