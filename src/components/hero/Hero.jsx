@@ -17,7 +17,9 @@ function Hero() {
       <div className={styles.bannerOverlay}>
       
         <img className={styles.bannerImg} src={banner}></img>
+        <Link to="collections/products">
         <img className={styles.mobbanner} src={Mobbanner}></img>
+        </Link>
         <Container>
 
         <div className={styles.heroWraper}>

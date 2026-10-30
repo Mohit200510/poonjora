@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import styles from "./Cart.module.css"
 import { X } from 'lucide-react'
 import { GoTrash } from "react-icons/go";
-import { Minus,Plus } from 'lucide-react';
+// import { Minus,Plus } from 'lucide-react';
 import { FiMinus} from "react-icons/fi";
 import { FaPlus } from "react-icons/fa6";
 import { PiNewspaperFill } from "react-icons/pi";
 import { FaArrowRightLong } from "react-icons/fa6";
-import product from "../../assets/featureCard5.png"
+// import product from "../../assets/featureCard5.png"
 import { useContext } from 'react';
 import CartContext from '../../context/CartContext';
 import bagImg from "../../assets/pujora_bag.png"

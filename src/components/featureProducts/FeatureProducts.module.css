@@ -696,3 +696,291 @@
         transform: none;
     }
 }
+
+
+/* ======================================
+   MOBILE - TWO PRODUCTS PER ROW
+====================================== */
+
+@media screen and (max-width: 480px) {
+
+  .featureProductsBoxes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .featureProductsBox {
+    min-width: 0;
+    border-radius: 12px;
+  }
+
+  /* PRODUCT IMAGE */
+
+  .featureProductBoxImgWrapper {
+    height: 155px;
+    padding: 8px;
+    margin-bottom: 6px;
+  }
+
+  .featureProductBoxImgWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* WISHLIST */
+
+  .featureProductBoxWishlist {
+    width: 28px;
+    height: 28px;
+    top: 7px;
+    right: 7px;
+  }
+
+  /* DISCOUNT BADGE */
+
+  .featureProductBoxBadge {
+    top: 7px;
+    left: 7px;
+    font-size: 9px;
+    padding: 4px 6px;
+  }
+
+  /* PRODUCT DETAILS */
+
+  .featureProductBoxText {
+    padding: 0 9px 10px;
+  }
+
+  .featureProductBoxText h3 {
+    font-size: 12px;
+    line-height: 17px;
+    min-height: 34px;
+    margin: 3px 0 6px;
+  }
+
+  .featureProductBoxWeight {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+
+  /* RATING */
+
+  .featureProductBoxRating {
+    gap: 4px;
+  }
+
+  .featureProductBoxRating svg {
+    font-size: 13px;
+  }
+
+  .featureProductBoxRating span {
+    font-size: 10px;
+  }
+
+  /* PRICE */
+
+  .featureProductBoxPrice {
+    gap: 5px;
+    margin: 9px 0 11px;
+  }
+
+  .featureProductBoxPrice h4 {
+    font-size: 17px;
+  }
+
+  .featureProductBoxPrice h5 del {
+    font-size: 11px;
+  }
+
+  .featureProductBoxPrice h6 {
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+
+  /* ADD TO CART */
+
+  .featureProductBoxText button {
+    width: 100%;
+    min-height: 36px;
+    padding: 8px 4px;
+    font-size: 11px;
+    gap: 5px;
+    border-radius: 7px;
+  }
+
+  .featureProductBoxText button svg {
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+}
+
+/* EXTRA SMALL MOBILE */
+
+@media screen and (max-width: 359px) {
+
+  .featureProductsBoxes {
+    gap: 8px;
+  }
+
+  .featureProductBoxImgWrapper {
+    height: 130px;
+  }
+
+  .featureProductBoxText {
+    padding: 0 7px 8px;
+  }
+
+  .featureProductBoxPrice h4 {
+    font-size: 15px;
+  }
+
+  .featureProductBoxText button {
+    font-size: 10px;
+  }
+}
+
+
+/* ======================================
+   MOBILE - TWO PRODUCTS PER ROW
+====================================== */
+
+@media screen and (max-width: 480px) {
+
+  .featureProductsBoxes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .featureProductsBox {
+    min-width: 0;
+    border-radius: 12px;
+  }
+
+  /* PRODUCT IMAGE */
+
+  .featureProductBoxImgWrapper {
+    height: 155px;
+    padding: 8px;
+    margin-bottom: 6px;
+  }
+
+  .featureProductBoxImgWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* WISHLIST */
+
+  .featureProductBoxWishlist {
+    width: 28px;
+    height: 28px;
+    top: 7px;
+    right: 7px;
+  }
+
+  /* DISCOUNT BADGE */
+
+  .featureProductBoxBadge {
+    top: 7px;
+    left: 7px;
+    font-size: 9px;
+    padding: 4px 6px;
+  }
+
+  /* PRODUCT DETAILS */
+
+  .featureProductBoxText {
+    padding: 0 9px 10px;
+  }
+
+  .featureProductBoxText h3 {
+    font-size: 12px;
+    line-height: 17px;
+    min-height: 34px;
+    margin: 3px 0 6px;
+  }
+
+  .featureProductBoxWeight {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+
+  /* RATING */
+
+  .featureProductBoxRating {
+    gap: 4px;
+  }
+
+  .featureProductBoxRating svg {
+    font-size: 13px;
+  }
+
+  .featureProductBoxRating span {
+    font-size: 10px;
+  }
+
+  /* PRICE */
+
+  .featureProductBoxPrice {
+    gap: 5px;
+    margin: 9px 0 11px;
+  }
+
+  .featureProductBoxPrice h4 {
+    font-size: 17px;
+  }
+
+  .featureProductBoxPrice h5 del {
+    font-size: 11px;
+  }
+
+  .featureProductBoxPrice h6 {
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+
+  /* ADD TO CART */
+
+  .featureProductBoxText button {
+    width: 100%;
+    min-height: 36px;
+    padding: 8px 4px;
+    font-size: 11px;
+    gap: 5px;
+    border-radius: 7px;
+  }
+
+  .featureProductBoxText button svg {
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+}
+
+/* EXTRA SMALL MOBILE */
+
+@media screen and (max-width: 359px) {
+
+  .featureProductsBoxes {
+    gap: 8px;
+  }
+
+  .featureProductBoxImgWrapper {
+    height: 130px;
+  }
+
+  .featureProductBoxText {
+    padding: 0 7px 8px;
+  }
+
+  .featureProductBoxPrice h4 {
+    font-size: 15px;
+  }
+
+  .featureProductBoxText button {
+    font-size: 10px;
+  }
+}
