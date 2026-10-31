@@ -7,7 +7,7 @@ import Categories from '../../components/categories/Categories'
 import FeatureProducts from '../../components/featureProducts/FeatureProducts';
 import TrustSection from '../../components/trustSection/TrustSection'
 import PujaKit from '../../components/puja_kits/PujaKit'
-import chameli from "../../assets/new_banner4.png"
+import chameli from "../../assets/desktop_banner_chameli.webp"
         
 import mobbanner from "../../assets/chamelibanner.webp"
 
