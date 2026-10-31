@@ -36,9 +36,20 @@ function FeatureProduct({product}) {
                             23% OFF
                         </div>
 
-                        <div className={styles.featureProductBoxImgWrapper}>
-                            <img src={product.image_url}></img>
-                        </div>
+                        
+<div className={styles.featureProductBoxImgWrapper}>
+  <img src={product.image_url} alt={product.name} />
+
+  <button
+    type="button"
+    className={styles.mobileCartButton}
+    onClick={() => addToCart(product)}
+  >
+    <PiShoppingCartSimpleBold size={17} />
+    <span>{isInCart ? "Added" : "Add to Cart"}</span>
+  </button>
+</div>
+
 
                         <div className={styles.featureProductBoxText}>
                             <h3>{product.name}</h3>
