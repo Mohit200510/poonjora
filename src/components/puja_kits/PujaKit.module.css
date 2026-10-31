@@ -1,319 +1,652 @@
 
+/* =========================================
+   POONJORA - PUJA KITS SECTION
+========================================= */
 
-/* Puja Kits Section */
-/* .overlay{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.354);
-    z-index: 1;
-} */
- .secPujaKit{
-    margin-top: 50px;
-    padding: 40px 0 90px;
-    /* background: url("../../assets/kits_bg_new.webp"); */
-    background-size: cover;
-    background-position: center;
-    /* background-color: #FFFAF3; */
- }
- 
-  .secPujaKitHeader{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 56px;
+.secPujaKit {
+  margin-top: 50px;
+  padding: 40px 0 90px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+
+.secPujaKitHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 45px;
+}
+
+.secPujaKitHeader h2 {
+  font-size: 42px;
+  font-weight: 700;
+  font-family: "cormorant-garamond", Georgia, serif;
+  color: var(--color-primary, #36014f);
+  margin: 0 0 14px;
+  line-height: 1.15;
+}
+
+.secPujaKitHeader p {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  color: var(--color-text-secondary, #666);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.viewAllBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 15px 30px;
+  border: 1px solid #36014f;
+  border-radius: 8px;
+  background: transparent;
+  color: #36014f;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.25s, color 0.25s;
+}
+
+.viewAllBtn:hover {
+  background: #36014f;
+  color: #fff;
+}
+
+/* =========================================
+   CAROUSEL
+========================================= */
+
+.pujaKitBody {
+  position: relative;
+  min-width: 0;
+}
+
+.pujaKitBoxes {
+  display: flex;
+  align-items: stretch;
+  gap: 22px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  padding: 12px 3px 22px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pujaKitBoxes::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================
+   3D FLIP CARD
+========================================= */
+
+.PujaKitBox {
+  position: relative;
+  box-sizing: border-box;
+
+  flex: 0 0 calc((100% - 44px) / 3);
+  width: calc((100% - 44px) / 3);
+  height: 350px;
+
+  min-width: 0;
+  perspective: 1600px;
+  perspective-origin: center center;
+  scroll-snap-align: start;
+}
+
+.flipInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform: rotateY(0deg);
+
+  transition: transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Desktop hover flip */
+
+@media (hover: hover) and (pointer: fine) {
+  .PujaKitBox:hover .flipInner {
+    transform: rotateY(180deg);
   }
- .secPujaKitHeader h2{
-    font-size: 42px;
-    font-weight: 700;
-    font-family: "cormonant", sans-serif;
-    color: var(--color-primary);
-    margin: 0;
-    margin-bottom: 14px;
 }
 
-.secPujaKitHeader p{
-    font-size: 18px;
-    font-weight: 400;
-    font-family: "inter",sans-serif;
-    /* line-height: 1.7; */
-    color: var(--color-text-secondary);
-    margin: 0;
+/* Mobile / button-controlled flip */
+
+.PujaKitBox.isFlipped .flipInner {
+  transform: rotateY(180deg);
 }
 
-.secPujaKitHeader button{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-radius: 8px;
-    background: none;
-    border: 1px solid var(--color-primary);
-    padding: 16px 46px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.25s all ease-out;
-    &:hover{
-        background-color: var(--color-primary);
-        color: var(--color-surface);
-    }
+/* =========================================
+   COMMON CARD FACES
+========================================= */
 
-}
+.flipFront,
+.flipBack {
+  position: absolute;
+  inset: 0;
 
+  box-sizing: border-box;
+  border-radius: 16px;
+  overflow: hidden;
 
-.pujaKitBody{
-    position: relative;
-}
-.pujaKitBoxes{
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-     -ms-overflow-style: none;
-}
-.pujaKitBoxes::-webkit-scrollbar{
-    display: none;
-}
-.PujaKitBox{
-    box-sizing: border-box;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 
-    isolation: isolate;
-    position: relative;
-    width: 30%;
-    flex-shrink: 0;
-    padding: 20px 20px 30px 20px;
-    height: auto;
-    border-radius: 16px;
-    /* z-index: 1; */
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--color-accent);
-    min-width: 0;
-    scroll-snap-align: start;
-    
-    
-}
-.PujaKitBox img{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: right;
+  border: 1px solid #eadccf;
+
+  box-shadow: 0 7px 22px
+    rgba(54, 1, 79, 0.09);
 }
 
-.PujaKitBox::after {
+/* =========================================
+   FRONT SIDE
+========================================= */
+
+.flipFront {
+  background: #fffaf5;
+
+  display: flex;
+  align-items: stretch;
+
+  padding: 20px;
+  isolation: isolate;
+}
+
+/* Kit background image */
+
+.kitImage {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: right center;
+
+  z-index: -2;
+}
+
+/* Existing image gradient */
+
+.flipFront::after {
   content: "";
   position: absolute;
   inset: 0;
 
- background: linear-gradient(
-  90deg,
-  rgba(255, 250, 245, 0.98) 0%,
-  rgba(255, 250, 245, 0.92) 32%,
-  rgba(255, 250, 245, 0.60) 50%,
-  rgba(255, 250, 245, 0.15) 68%,
-  rgba(255, 250, 245, 0) 78%
-);
-  z-index: 0;
-}
-.PujaKitBoxInner{
-      min-width: 0;
-    width: 55%;
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  z-index: -1;
+  pointer-events: none;
 
+  background: linear-gradient(
+    90deg,
+    rgba(255, 250, 245, 0.99) 0%,
+    rgba(255, 250, 245, 0.94) 32%,
+    rgba(255, 250, 245, 0.66) 53%,
+    rgba(255, 250, 245, 0.15) 76%,
+    rgba(255, 250, 245, 0) 100%
+  );
 }
-.PujaKitBoxTopTag svg{
-    font-size: 16px;
-    color: var(--color-primary-dark);
+
+/* Front content */
+
+.PujaKitBoxInner {
+  position: relative;
+  z-index: 1;
+
+  width: 62%;
+  min-width: 0;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 8px;
 }
-.PujaKitBoxTopTag{
-    max-width: 100%;
-    width: max-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border-radius: 50px;
-    padding: 6px 10px;
-    background-color: var(--color-primary-light);
-   
+
+/* Category tag */
+
+.PujaKitBoxTopTag {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  max-width: 100%;
+
+  padding: 7px 11px;
+  border-radius: 30px;
+
+  background: #f3e8f6;
+  color: #36014f;
 }
+
+.PujaKitBoxTopTag svg {
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
 .PujaKitBoxTopTag p {
-    font-size: 12px;
-    color: var(--color-primary-dark);
-    font-family: "Lora", serif;
-    margin: 0;
+  margin: 0;
+  font-size: 11px;
+  font-family: "Lora", serif;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
-.pujakitBoxHeading{
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+/* Kit heading */
+
+.pujakitBoxHeading {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
 }
 
-.pujakitBoxHeading h2{
-    color: #360800;
-    color: var(--color-text);
-    font-size: 26px;
-    /* color: var(--color-primary-dark); */
-    font-weight: 600;
-    /* font-family: "Lora", serif; */
-    font-family: "cormorant-garamond",sans-serif;
-    margin: 0;
+.pujakitBoxHeading h3 {
+  margin: 0;
 
+  font-family: "cormorant-garamond",
+    Georgia, serif;
 
-}
-.pujakitBoxHeading p{
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--color-text-secondary);
-    margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+
+  color: #36014f;
+  line-height: 1.1;
 }
 
-.PujaKitBoxSize{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.PujaKitBoxSize svg{
-    border-radius: 50%;
-    padding: 4px;
-    background-color: var(--color-primary-light);
-    color: var(--color-primary-dark);
-    font-size: 30px;
-
-}
-.PujaKitBoxSize span{
-     font-size: 13px;
-     font-weight: 600;
-     color: var(--color-primary-dark);
+.pujakitBoxHeading p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #655e61;
+  line-height: 1.5;
 }
 
-.PujaKitBoxPrice{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.PujaKitBoxPrice h3{
-    font-size: 24px;
-    color: #360800;
-}
-.PujaKitBoxPrice h4{
-    color: var(--color-text-secondary);
-    font-weight: 500;
-    font-size: 15px
-}
-.PujaKitBoxPrice span{
-    font-size: 12px;
-    font-weight: 500;
-    background-color: rgb(124, 235, 124);
-    color: var(--color-primary-dark);
-    border-radius: 50px;
-    padding: 5px 12px;
-}
-/* .PujaKitBoxbtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: var(--color-primary-dark);
-    border-radius: 50%;
-    border: none;
+/* Essentials count */
 
-} */
-.PujaKitBoxbtn button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    width: 100%;
-    background-color: var(--color-primary);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    padding: 12px;
-    margin-top: 4px;
-    cursor: pointer;
-}
-.PujaKitBoxbtn svg{
-    color: #fff;
-    font-size: 22px;
+.PujaKitBoxSize {
+  display: flex;
+  align-items: center;
+  gap: 9px;
 }
 
+.PujaKitBoxSize svg {
+  flex-shrink: 0;
 
+  font-size: 27px;
+  padding: 5px;
 
-/* /scroll btns */
-
-
-.PujaKitBoxScrolBtns{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-primary-light);
-    font-size: 22px;
-    color: var(--color-primary);
-    border-radius: 50%;
-    /* width: 50px; */
-    /* height: 50px; */
-    padding: 12px;
-    border: none; 
-    /* border: 1px solid var(--color-text-muted); */
-
-    &:hover{
-        cursor: pointer;
-    }
-    
-}
-/* .PujaKitBoxScrolBtns svg{
-    color: ;
-} */
-.PujaKitBoxScrolBtn1 {
-    z-index: 10;
-    position: absolute;
-    left: -2%;
-    top: 50%;
-    transform: translateY(-50%);
-    /* top: 50%; */
-    /* left: 50%; */
-}
-.PujaKitBoxScrolBtn2{
-   z-index: 10;
-    position: absolute;
-    right: -2%;
-    top: 50%;
-    transform: translateY(-50%);
-
+  border-radius: 50%;
+  color: #36014f;
+  background: #f3e8f6;
 }
 
-
-
+.PujaKitBoxSize span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #36014f;
+}
 
 /* =========================================
-   PUJA KITS - RESPONSIVE CSS
+   FRONT BUTTON
 ========================================= */
 
-/* Small Desktop / Tablet */
+.PujaKitBoxbtn {
+  width: 100%;
+}
+
+.PujaKitBoxbtn button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: 100%;
+  padding: 11px 12px;
+
+  background: #36014f;
+  color: #fff;
+
+  border: none;
+  border-radius: 30px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s,
+    transform 0.25s;
+}
+
+.PujaKitBoxbtn button:hover {
+  background: #520c70;
+  transform: translateY(-2px);
+}
+
+.PujaKitBoxbtn svg {
+  flex-shrink: 0;
+  font-size: 15px;
+}
+
+/* Desktop hover hint */
+
+.hoverHint {
+  position: absolute;
+  bottom: 13px;
+  right: 14px;
+  z-index: 1;
+
+  font-size: 10px;
+  font-weight: 600;
+  color: #36014f;
+
+  background: rgba(255, 250, 245, 0.9);
+  padding: 5px 9px;
+  border-radius: 20px;
+}
+
+/* =========================================
+   BACK SIDE
+========================================= */
+
+.flipBack {
+  transform: rotateY(180deg);
+
+  background: linear-gradient(
+    145deg,
+    #fffefa 0%,
+    #fff8ed 100%
+  );
+
+  padding: 17px 20px 15px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+}
+
+/* Back heading */
+
+.backHeader {
+  flex-shrink: 0;
+  margin-bottom: 12px;
+}
+
+.backEyebrow {
+  display: block;
+
+  color: #b38b55;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+
+  margin-bottom: 5px;
+}
+
+.backHeader h3 {
+  font-family: "cormorant-garamond",
+    Georgia, serif;
+
+  font-size: 27px;
+  font-weight: 700;
+  color: #36014f;
+
+  margin: 0 0 3px;
+  line-height: 1.1;
+}
+
+.backHeader p {
+  margin: 0;
+  color: #74676e;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* =========================================
+   BACK ITEM LIST
+========================================= */
+
+.backContents {
+  flex: 1;
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding: 2px 3px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #d6bedb transparent;
+}
+
+.kitItem {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+
+  padding: 5px 0;
+  text-align: left;
+}
+
+.itemName {
+  font-size: 11px;
+  font-weight: 500;
+  color: #392b35;
+  flex-shrink: 0;
+}
+
+.itemDots {
+  flex: 1;
+  min-width: 5px;
+  border-bottom: 1px dotted #d6c8be;
+}
+
+.itemQuantity {
+  font-size: 11px;
+  font-weight: 600;
+  color: #5b4b55;
+
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* More items indicator */
+
+.moreItems {
+  align-self: center;
+  flex-shrink: 0;
+
+  padding: 5px 12px;
+  margin: 8px 0;
+
+  background: #fbe9e9;
+  color: #a6384e;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  border-radius: 20px;
+}
+
+/* =========================================
+   BACK ACTIONS
+========================================= */
+
+.backActions {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+/* View Complete Kit button */
+
+.viewKitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+
+  background: #36014f;
+  color: #ffffff;
+
+  border: 1px solid #36014f;
+  border-radius: 8px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.viewKitBtn:hover {
+  background: #520c70;
+  border-color: #520c70;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 5px 14px
+    rgba(54, 1, 79, 0.16);
+}
+
+.viewKitBtn svg {
+  font-size: 15px;
+  transition: transform 0.3s ease;
+}
+
+.viewKitBtn:hover svg {
+  transform: translateX(4px);
+}
+
+/* Back to Kit hidden on desktop */
+
+.backButton {
+  display: none;
+}
+
+/* Show Back to Kit on touch devices */
+
+@media (hover: none), (pointer: coarse) {
+  .backButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    align-self: center;
+
+    background: transparent;
+    color: #36014f;
+    border: none;
+
+    padding: 6px 10px;
+
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .backButton svg {
+    font-size: 14px;
+  }
+
+  .hoverHint {
+    display: none;
+  }
+}
+
+/* =========================================
+   CAROUSEL ARROWS
+========================================= */
+
+.PujaKitBoxScrolBtns {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 43px;
+  height: 43px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f3e8f6;
+  color: #36014f;
+
+  font-size: 20px;
+
+  box-shadow: 0 3px 12px
+    rgba(54, 1, 79, 0.1);
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+
+.PujaKitBoxScrolBtns:hover {
+  background: #36014f;
+  color: #fff;
+}
+
+.PujaKitBoxScrolBtn1 {
+  left: -18px;
+}
+
+.PujaKitBoxScrolBtn2 {
+  right: -18px;
+}
+
+/* =========================================
+   SMALL DESKTOP / TABLET
+========================================= */
+
 @media (max-width: 1200px) {
   .secPujaKit {
     padding: 55px 0 70px;
   }
 
   .secPujaKitHeader {
-    margin-bottom: 38px;
-    gap: 20px;
+    margin-bottom: 35px;
   }
 
   .secPujaKitHeader h2 {
@@ -324,9 +657,8 @@
     font-size: 16px;
   }
 
-  .secPujaKitHeader button {
-    flex-shrink: 0;
-    padding: 14px 24px;
+  .viewAllBtn {
+    padding: 13px 22px;
   }
 
   .pujaKitBoxes {
@@ -334,25 +666,20 @@
   }
 
   .PujaKitBox {
-    flex: 0 0 44%;
-    padding: 18px 18px 24px;
+    flex: 0 0 calc((100% - 18px) / 2);
+    width: calc((100% - 18px) / 2);
+    height: 345px;
   }
 
   .PujaKitBoxInner {
-    width: 62%;
-    gap: 14px;
-  }
-
-  .pujakitBoxHeading h2 {
-    font-size: 24px;
-  }
-
-  .pujakitBoxHeading p {
-    font-size: 14px;
+    width: 61%;
   }
 }
 
-/* Tablet */
+/* =========================================
+   TABLET
+========================================= */
+
 @media (max-width: 768px) {
   .secPujaKit {
     margin-top: 35px;
@@ -360,9 +687,9 @@
   }
 
   .secPujaKitHeader {
-    align-items: flex-start;
-    margin-bottom: 28px;
     gap: 18px;
+    align-items: flex-start;
+    margin-bottom: 25px;
   }
 
   .secPujaKitHeader h2 {
@@ -372,23 +699,22 @@
 
   .secPujaKitHeader p {
     font-size: 14px;
-    line-height: 1.6;
   }
 
-  .secPujaKitHeader button {
-    padding: 12px 16px;
-    font-size: 13px;
+  .viewAllBtn {
+    padding: 11px 14px;
+    font-size: 12px;
     white-space: nowrap;
   }
 
   .pujaKitBoxes {
-    gap: 16px;
+    gap: 15px;
   }
 
   .PujaKitBox {
     flex: 0 0 65%;
-    min-height: 310px;
-    padding: 18px;
+    width: 65%;
+    height: 340px;
   }
 
   .PujaKitBoxInner {
@@ -396,17 +722,17 @@
     gap: 13px;
   }
 
-  .pujakitBoxHeading h2 {
-    font-size: 23px;
+  .pujakitBoxHeading h3 {
+    font-size: 24px;
   }
 
   .pujakitBoxHeading p {
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 12px;
   }
 
   .PujaKitBoxScrolBtns {
-    padding: 10px;
+    width: 38px;
+    height: 38px;
     font-size: 18px;
   }
 
@@ -422,24 +748,24 @@
 /* =========================================
    MOBILE
 ========================================= */
+
 @media (max-width: 600px) {
   .secPujaKit {
     margin-top: 25px;
-    padding: 35px 0 35px;
-    background-position: center;
+    padding: 35px 0;
   }
 
   .secPujaKitHeader {
     flex-direction: column;
     align-items: flex-start;
-    gap: 14px;
+    gap: 15px;
     margin-bottom: 22px;
   }
 
   .secPujaKitHeader h2 {
     font-size: clamp(25px, 6vw, 30px);
     line-height: 1.15;
-    margin-bottom: 10px;
+    margin-bottom: 9px;
   }
 
   .secPujaKitHeader p {
@@ -447,41 +773,43 @@
     line-height: 1.6;
   }
 
-  .secPujaKitHeader button {
+  .viewAllBtn {
     padding: 10px 16px;
     font-size: 12px;
-    border-radius: 7px;
-    gap: 8px;
   }
 
   /* Horizontal swipe carousel */
+
   .pujaKitBoxes {
     gap: 12px;
-    overflow-x: auto;
-    align-items: stretch;
+    padding: 8px 2px 18px;
+
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
   }
 
-  /* Compact cards */
   .PujaKitBox {
-    flex: 0 0 88%;
-     flex-basis: 84%;
-    width: auto;
-    height: auto;
-    min-height: 0;
-    padding: 14px;
-    border-radius: 14px;
-    scroll-snap-align: start;
+    flex: 0 0 84%;
+    width: 84%;
+    height: 325px;
   }
 
-  .PujaKitBox img {
-    object-fit: cover;
+  .flipFront,
+  .flipBack {
+    border-radius: 14px;
+  }
+
+  /* Front */
+
+  .flipFront {
+    padding: 15px;
+  }
+
+  .kitImage {
     object-position: 65% center;
   }
 
-  /* Keep text readable over image */
-  .PujaKitBox::after {
+  .flipFront::after {
     background: linear-gradient(
       90deg,
       rgba(255, 250, 245, 0.99) 0%,
@@ -493,78 +821,96 @@
 
   .PujaKitBoxInner {
     width: 68%;
-    min-width: 0;
-    gap: 10px;
+    gap: 12px;
   }
 
-  /* Category tag */
   .PujaKitBoxTopTag {
     padding: 5px 9px;
     gap: 6px;
-    max-width: 100%;
   }
 
   .PujaKitBoxTopTag svg {
     font-size: 14px;
-    flex-shrink: 0;
   }
 
   .PujaKitBoxTopTag p {
     font-size: 10px;
-    margin: 0;
   }
 
-  /* Heading and description */
   .pujakitBoxHeading {
-    gap: 6px;
+    gap: 7px;
   }
 
-  .pujakitBoxHeading h2 {
-    font-size: 19px;
-    line-height: 1.2;
-    margin: 0;
+  .pujakitBoxHeading h3 {
+    font-size: 22px;
   }
 
   .pujakitBoxHeading p {
     font-size: 11px;
-    line-height: 1.45;
-    margin: 0;
+    line-height: 1.5;
   }
 
-  /* Essentials */
   .PujaKitBoxSize {
     gap: 8px;
   }
 
   .PujaKitBoxSize svg {
-    font-size: 26px;
-    flex-shrink: 0;
+    font-size: 25px;
   }
 
   .PujaKitBoxSize span {
     font-size: 11px;
   }
 
-  /* Explore Kit button */
-  .PujaKitBoxbtn {
-    width: 90%;
-  }
-
   .PujaKitBoxbtn button {
-    width: 100%;
-     padding: 10px 8px;
+    padding: 10px 9px;
+    font-size: 10px;
+    gap: 6px;
+  }
+
+  .hoverHint {
+    display: none;
+  }
+
+  /* Back */
+
+  .flipBack {
+    padding: 16px 17px 13px;
+  }
+
+  .backHeader {
+    margin-bottom: 9px;
+  }
+
+  .backHeader h3 {
+    font-size: 25px;
+  }
+
+  .kitItem {
+    padding: 4px 0;
+  }
+
+  .itemName,
+  .itemQuantity {
     font-size: 11px;
-    gap: 8px;
-    margin-top: 0;
-    white-space: nowrap;
   }
 
-  .PujaKitBoxbtn svg {
-    font-size: 17px;
-    flex-shrink: 0;
+  .moreItems {
+    margin: 6px 0;
   }
 
-  /* Swipe instead of arrows */
+  .viewKitBtn {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .backButton {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  /* Hide arrows on mobile */
+
   .PujaKitBoxScrolBtns {
     display: none;
   }
@@ -573,6 +919,7 @@
 /* =========================================
    SMALL MOBILE
 ========================================= */
+
 @media (max-width: 380px) {
   .secPujaKitHeader h2 {
     font-size: 25px;
@@ -580,20 +927,21 @@
 
   .PujaKitBox {
     flex-basis: 92%;
-    padding: 13px;
+    width: 92%;
+    height: 315px;
   }
 
   .PujaKitBoxInner {
-    width: 76%;
-    gap: 9px;
+    width: 72%;
+    gap: 10px;
   }
 
-  .pujakitBoxHeading h2 {
-    font-size: 18px;
+  .pujakitBoxHeading h3 {
+    font-size: 20px;
   }
 
   .pujakitBoxHeading p {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .PujaKitBoxTopTag p {
@@ -601,7 +949,46 @@
   }
 
   .PujaKitBoxbtn button {
-    padding: 10px 8px;
-    font-size: 11px;
+    font-size: 10px;
+    padding: 9px 7px;
+  }
+
+  .flipBack {
+    padding: 12px 14px;
+  }
+
+  .backHeader h3 {
+    font-size: 23px;
+  }
+
+  .kitItem {
+    padding: 3px 0;
+  }
+
+  .itemName,
+  .itemQuantity {
+    font-size: 10px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+.PujaKitBox button:focus-visible,
+.PujaKitBox a:focus-visible,
+.viewAllBtn:focus-visible,
+.PujaKitBoxScrolBtns:focus-visible {
+  outline: 3px solid #b777d1;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flipInner {
+    transition-duration: 0.01ms;
+  }
+
+  .pujaKitBoxes {
+    scroll-behavior: auto;
   }
 }

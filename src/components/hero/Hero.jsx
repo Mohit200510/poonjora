@@ -46,7 +46,7 @@ function Hero() {
 
               </div>
 
-              <img
+              <img className={styles.agarabtii}
                  src={aggarbatti}
                  alt="Animated Agarbatti"
                 style={{  position: "absolute" ,left: "-57px" , bottom: "-168px", zIndex: "-1"}}
