@@ -992,3 +992,56 @@
     scroll-behavior: auto;
   }
 }
+@media (max-width: 600px) {
+  .PujaKitBox {
+    height: 285px;
+  }
+
+  .flipFront {
+    padding: 16px;
+  }
+
+  .PujaKitBoxInner {
+    width: 68%;
+    height: 100%;
+    gap: 7px;
+    justify-content: space-evenly;
+  }
+
+  .pujakitBoxHeading h3 {
+    font-size: 20px;
+    line-height: 1.12;
+  }
+
+  .pujakitBoxHeading p {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .PujaKitBoxSize svg {
+    font-size: 20px;
+  }
+
+  .PujaKitBoxSize span {
+    font-size: 10px;
+  }
+
+  .PujaKitBoxbtn button {
+    padding: 9px 10px;
+    font-size: 10px;
+  }
+
+  .flipBack {
+    padding: 13px 15px;
+  }
+
+  .backHeader h3 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 380px) {
+  .PujaKitBox {
+    height: 280px;
+  }
+}
