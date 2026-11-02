@@ -20,6 +20,7 @@ import FestivalCalender from './pages/festivalCalender/FestivalCalender'
 import AllProducts from './components/allProducts/AllProducts'
 import Footer from './components/footer/Footer'
 import GoogleAnalyticsTracker from './components/GoogleAnalyticsTracker'
+import ScrollToTop from './components/common/ScrollToTopjsx'
 
 
 
@@ -33,6 +34,7 @@ function App() {
   return (
     
     <>
+    <ScrollToTop/>
     <GoogleAnalyticsTracker/>
 
 
