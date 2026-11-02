@@ -858,3 +858,135 @@
 @media (prefers-reduced-motion: reduce) {
   .actions button, .quantity button, .productGalleryBox { transition: none; }
 }
+
+/* =========================================
+   PRODUCT PAGE — MOBILE IMPROVEMENTS
+   Desktop design remains unchanged
+========================================= */
+
+@media (max-width: 768px) {
+
+  .productHero {
+    min-height: auto;
+    background-position: center top;
+  }
+
+  .productHeroContent {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  /* Product image area */
+  .productVisualMain {
+    width: 100%;
+    min-height: 0;
+    padding: 18px 0 8px;
+    gap: 12px;
+  }
+
+  .productVisual {
+    width: 100%;
+    flex: none;
+    height: clamp(260px, 78vw, 340px);
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .productMainImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Product details */
+  .productInfo {
+    width: 100%;
+    padding: 18px 0 35px;
+  }
+
+  .productInfoInner {
+    gap: 17px;
+  }
+
+  .heading h1 {
+    font-size: clamp(24px, 6vw, 29px);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .heading p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Price */
+  .price {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .price strong {
+    font-size: 30px;
+  }
+
+  .price > span {
+    font-size: 16px;
+  }
+
+  .discount {
+    font-size: 12px;
+    padding: 5px 9px;
+  }
+
+  /* Quantity */
+  .quantityRow {
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  /* Purchase buttons */
+  .actions {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .actions button {
+    min-width: 0;
+    min-height: 48px;
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+
+  /* Trust section */
+  .trust {
+    gap: 16px;
+    padding-top: 12px;
+  }
+
+  .trustItem svg {
+    font-size: 34px;
+  }
+
+  .trustItem h3 {
+    font-size: 12px;
+  }
+
+  .trustItem p {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 380px) {
+  .productVisual {
+    height: 260px;
+    padding: 14px;
+  }
+
+  .heading h1 {
+    font-size: 23px;
+  }
+
+  .actions button {
+    font-size: 12px;
+  }
+}

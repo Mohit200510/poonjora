@@ -72,7 +72,9 @@ function FeatureProduct({product}) {
                                 <h6>Save ₹{product.mrp-product.sale_price}</h6>
                             </div>
 
-                            <button style={{background:isInCart?"#36014F": "#36014f"}} onClick={()=>{
+                            <button style={{background:isInCart?"#36014F": "#36014f"}}
+                             onClick={(e)=>{
+                                e.stopPropagation()
                                 addToCart(product)
                             }} type='button'><PiShoppingCartSimpleBold size={22}/>{isInCart?" ✓ Added to Cart ":"Add to Cart"}</button>
 

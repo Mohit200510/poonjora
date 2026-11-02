@@ -285,7 +285,7 @@
   /* MOBILE INDICATOR DOTS */
 
   .topBarMobileDots {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     gap: 7px;
@@ -992,5 +992,24 @@
   .festivalCalendarLink svg {
     width: 20px;
     height: 20px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .topBarContent {
+    height: 38px;
+    padding: 0;
+  }
+
+  .topBarSlider {
+    height: 38px;
+  }
+
+  .topBarAnimatedSlide {
+    min-height: 38px;
+  }
+
+  .topBarMobileDots {
+    display: none;
   }
 }
