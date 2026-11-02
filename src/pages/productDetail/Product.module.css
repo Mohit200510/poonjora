@@ -994,34 +994,50 @@
 @media (max-width: 768px) {
   .trust {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 6px;
-    padding-top: 12px;
-    align-items: start;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding-top: 10px;
   }
 
   .trustItem {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     text-align: center;
-    gap: 6px;
+    gap: 5px;
     min-width: 0;
+  }
+
+  .trustItem:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
   }
 
   .trustItem svg {
     font-size: 25px;
-    flex-shrink: 0;
   }
 
   .trustItem h3 {
-    font-size: 10px;
+    font-size: 11px;
     line-height: 1.3;
   }
 
   .trustItem p {
-    font-size: 9px;
+    font-size: 10px;
     line-height: 1.4;
+  }
+}
+@media (max-width: 768px) {
+  .productHero {
+    background: linear-gradient(
+      180deg,
+      #fff4df 0%,
+      #fffaf2 45%,
+      #ffffff 100%
+    );
+  }
+
+  .productHero::after {
+    display: none;
   }
 }
