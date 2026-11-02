@@ -148,7 +148,7 @@ function Product() {
                 </div>
 
                 <div className={styles.actions}>
-                  <button
+     <button
   type="button"
   className={`${styles.cartButton} ${
     alreadyInCart ? styles.cartAdded : ""
