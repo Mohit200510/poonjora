@@ -681,155 +681,7 @@
 }
 
 
-/* =========================
-   MOBILE
-========================= */
 
-@media (max-width: 768px) {
-
-    .productHero {
-        min-height: auto;
-
-        background-position: 25% center;
-    }
-
-
-    .productHero::after {
-        background: linear-gradient(
-            180deg,
-
-            rgba(255, 253, 249, 0) 0%,
-            rgba(255, 253, 249, 0.30) 30%,
-            rgba(255, 253, 249, 0.94) 48%,
-            #fffdf9 65%
-        );
-    }
-
-
-    .productHeroContent {
-        min-height: auto;
-
-        flex-direction: column;
-    }
-
-
-    /* =========================
-       MOBILE PRODUCT AREA
-    ========================= */
-
-    .productVisualMain {
-        width: 100%;
-        min-height: auto;
-
-        display: flex;
-        flex-direction: column;
-
-        gap: 14px;
-
-        padding: 35px 0px 30px;
-    }
-
-
-    /* Main image box */
-
-    .productVisual {
-        width: 100%;
-        height: 380px;
-
-        padding: 25px;
-
-        border-radius: 20px;
-    }
-
-
-    .productMainImage {
-        width: 100%;
-        height: 100%;
-
-        max-width: 100%;
-        max-height: 100%;
-
-        object-fit: contain;
-
-        transform: none;
-    }
-
-
-    /* Gallery becomes horizontal on mobile */
-
-    .productGalleryContainer {
-        width: 100%;
-
-        flex-direction: row;
-
-        justify-content: center;
-
-        gap: 10px;
-
-        order: 2;
-
-        overflow-x: auto;
-
-        scrollbar-width: none;
-    }
-
-
-    .productGalleryContainer::-webkit-scrollbar {
-        display: none;
-    }
-
-
-    .productGalleryBox {
-        width: 62px;
-        height: 62px;
-
-        min-width: 62px;
-        min-height: 62px;
-    }
-
-
-    /* =========================
-       MOBILE PRODUCT DETAILS
-    ========================= */
-
-    .productInfo {
-        width: 100%;
-
-        padding: 35px 0px 45px;
-    }
-
-
-    .productInfoInner {
-        max-width: none;
-    }
-
-
-    .heading h1 {
-        font-size: 32px;
-    }
-
-
-    .packOptions {
-        overflow-x: auto;
-
-        scrollbar-width: none;
-    }
-
-
-    .packOptions::-webkit-scrollbar {
-        display: none;
-    }
-
-
-    .actions {
-        flex-direction: column;
-    }
-
-
-    .trust {
-        flex-wrap: wrap;
-    }
-}
 /* ===== Interactive enhancements ===== */
 .actions button {
   transition: background-color .25s ease, color .25s ease,
@@ -859,332 +711,59 @@
   .actions button, .quantity button, .productGalleryBox { transition: none; }
 }
 
-/* =========================================
-   PRODUCT PAGE — MOBILE IMPROVEMENTS
-   Desktop design remains unchanged
-========================================= */
+
+/* ==========================================================
+   POONJORA — MOBILE LUXURY TRADITIONAL PRODUCT PAGE
+   One mobile layout; no duplicate pseudo-element overlays.
+   JSX must contain <img className={styles.templeArch} ... />
+   inside .productVisual, before .productMainImage.
+   ========================================================== */
+.templeArch { display: none; }
 
 @media (max-width: 768px) {
-
   .productHero {
-    min-height: auto;
-    background-position: center top;
-  }
-
-  .productHeroContent {
-    flex-direction: column;
-    min-height: auto;
-  }
-
-  /* Product image area */
-  .productVisualMain {
-    width: 100%;
     min-height: 0;
-    padding: 18px 0 8px;
-    gap: 12px;
-  }
-
-  .productVisual {
-    width: 100%;
-    flex: none;
-    height: clamp(260px, 78vw, 340px);
-    padding: 20px;
-    border-radius: 16px;
-  }
-
-  .productMainImage {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  /* Product details */
-  .productInfo {
-    width: 100%;
-    padding: 18px 0 35px;
-  }
-
-  .productInfoInner {
-    gap: 17px;
-  }
-
-  .heading h1 {
-    font-size: clamp(24px, 6vw, 29px);
-    line-height: 1.2;
-    margin-bottom: 8px;
-  }
-
-  .heading p {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  /* Price */
-  .price {
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .price strong {
-    font-size: 30px;
-  }
-
-  .price > span {
-    font-size: 16px;
-  }
-
-  .discount {
-    font-size: 12px;
-    padding: 5px 9px;
-  }
-
-  /* Quantity */
-  .quantityRow {
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  /* Purchase buttons */
-  .actions {
-    flex-direction: row;
-    gap: 10px;
-  }
-
-  .actions button {
-    min-width: 0;
-    min-height: 48px;
-    padding: 10px 8px;
-    font-size: 14px;
-  }
-
-  /* Trust section */
-  .trust {
-    gap: 16px;
-    padding-top: 12px;
-  }
-
-  .trustItem svg {
-    font-size: 34px;
-  }
-
-  .trustItem h3 {
-    font-size: 12px;
-  }
-
-  .trustItem p {
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 380px) {
-  .productVisual {
-    height: 260px;
-    padding: 14px;
-  }
-
-  .heading h1 {
-    font-size: 23px;
-  }
-
-  .actions button {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 768px) {
-  .trust {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    padding-top: 10px;
-  }
-
-  .trustItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 5px;
-    min-width: 0;
-  }
-
-  .trustItem:last-child {
-    grid-column: 1 / -1;
-    justify-self: center;
-  }
-
-  .trustItem svg {
-    font-size: 25px;
-  }
-
-  .trustItem h3 {
-    font-size: 11px;
-    line-height: 1.3;
-  }
-
-  .trustItem p {
-    font-size: 10px;
-    line-height: 1.4;
-  }
-}
-
-
-/* ====================================================
-   POONJORA — LUXURY TRADITIONAL MOBILE PRODUCT PAGE
-   Desktop styles remain unchanged.
-   Requires: src/assets/temple-arch.webp
-   ==================================================== */
-@media screen and (max-width: 768px) {
-  .productHero {
-    min-height: auto;
-    background-image:
-      radial-gradient(ellipse at 90% 15%, rgba(226, 174, 73, .18), transparent 42%),
-      linear-gradient(180deg, #fff4de 0%, #fffaf0 44%, #fffdf8 100%);
-    background-color: #fffaf0;
-    background-size: auto;
-    background-position: center;
+    overflow: hidden;
+    background: linear-gradient(180deg, #fff4df 0%, #fff9ed 46%, #fffdf8 100%);
   }
   .productHero::after { display: none; }
-  .productHeroContent { position: relative; z-index: 2; min-height: 0; flex-direction: column; }
-  .productVisualMain { width: 100%; min-height: 0; padding: 15px 0 5px; gap: 10px; }
+  .productHeroContent {
+    min-height: 0;
+    flex-direction: column;
+  }
+
+  /* Break gallery out of Container's 90% width to reach screen edges. */
+  .productVisualMain {
+    width: calc(100% + 10vw);
+    min-height: 0;
+    margin-left: -5vw;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+  }
   .productVisual {
     position: relative;
-    width: 100%;
+    display: block;
     flex: none;
-    height: clamp(270px, 76vw, 360px);
-    padding: 30px 28px 12px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    isolation: isolate;
     border: 0;
-    border-radius: 18px;
-    background:
-      radial-gradient(ellipse at 55% 44%, rgba(255, 229, 169, .85), rgba(222, 165, 88, .26) 66%, rgba(255, 248, 235, .8)),
-      #f8e8d1;
-    box-shadow: 0 10px 30px rgba(94, 52, 18, .09);
+    border-radius: 0;
+    box-shadow: none;
+    background: radial-gradient(ellipse at 50% 70%, #f9e2b8, #fff2da 75%);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    isolation: isolate;
-    overflow: hidden;
   }
-  .productVisual::before {
-    content: "";
-    display: block;
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    background: url("../../ass/temple-arch.webp") center / 100% 100% no-repeat;
-    pointer-events: none;
-  }
-  .productMainImage {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 12px 10px rgba(91, 53, 17, .15));
-  }
-  .productInfo { width: 100%; padding: 16px 0 35px; }
-  .productInfoInner { gap: 17px; }
-  .heading h1 { font-size: clamp(24px, 6vw, 29px); line-height: 1.2; color: #36014f; margin: 0 0 9px; }
-  .heading p { font-size: 14px; line-height: 1.55; }
-  .price { flex-wrap: wrap; gap: 10px; }
-  .price strong { font-size: 32px; }
-  .price > span { font-size: 16px; }
-  .discount {
-    background: #fff0cf;
-    color: #783c0a;
-    border: 1px solid #dfb761;
-    border-radius: 10px;
-    font-size: 12px;
-    padding: 5px 10px;
-  }
-  .packOptions .selectedPack { border-radius: 12px; background: #fffaf4; border-color: #36014f; }
-  .quantityRow { justify-content: space-between; gap: 12px; }
-  .actions { flex-direction: row; gap: 10px; }
-  .actions button { min-width: 0; min-height: 48px; padding: 10px 8px; font-size: 13px; border-radius: 12px; }
-  .cartButton { border: 1.5px solid #36014f; background: #36014f; color: white; }
-  .buyButton { background: #36014f; color: white; }
-  .trust {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px 8px;
-    padding: 15px 10px;
-    border: 1px solid rgba(218, 170, 83, .45);
-    border-radius: 16px;
-    background: rgba(255, 245, 224, .75);
-  }
-  .trustItem { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; min-width: 0; }
-  .trustItem:last-child { grid-column: 1 / -1; justify-self: center; }
-  .trustItem svg { font-size: 27px; color: #36014f; background: #f6e8f7; padding: 5px; }
-  .trustItem h3 { font-size: 11px; line-height: 1.3; }
-  .trustItem p { font-size: 10px; line-height: 1.4; }
-}
-@media screen and (max-width: 380px) {
-  .productVisual { height: 265px; padding: 28px 24px 12px; }
-  .heading h1 { font-size: 23px; }
-  .actions button { font-size: 12px; }
-}
-
-
-@media (max-width: 768px) {
-  .productVisual {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-  }
-
-  .productVisual::before {
-    content: "";
-    display: block;
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("../../assets/temple-arch.webp") !important;
-    background-position: center;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  .productMainImage {
-    position: relative;
-    z-index: 2;
-  }
-}
-
-@media (max-width: 768px) {
-  .productVisual::before {
-    content: "";
-    display: block !important;
-    position: absolute;
-    inset: 0;
-    background-image: url("../../assets/temple-arch.webp") !important;
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 1;
-    z-index: 10;
-    pointer-events: none;
-  }
-}
-/* Temple arch — mobile only */
-
-.templeArch {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .productVisual {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-  }
-
-  .productVisual::before {
-    display: none !important;
-  }
-
+  /* Do not use CSS background arch; the React image import is reliable. */
+  .productVisual::before { display: none !important; content: none !important; }
   .templeArch {
     display: block;
     position: absolute;
@@ -1195,10 +774,97 @@
     z-index: 3;
     pointer-events: none;
   }
-
   .productMainImage {
-    position: relative;
+    position: absolute;
+    top: 10%;
+    left: 21%;
+    width: 58%;
+    height: 80%;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    margin: 0;
+    object-fit: contain;
+    transform: none;
     z-index: 2;
+    filter: drop-shadow(0 8px 9px rgba(83, 43, 10, .18));
   }
+  .productGallery { width: 100%; padding: 10px 5vw 0; box-sizing: border-box; }
+  .productGalleryContainer {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .productGalleryContainer::-webkit-scrollbar { display: none; }
+  .productGalleryBox { width: 58px; height: 58px; min-width: 58px; min-height: 58px; }
+
+  .productInfo { width: 100%; padding: 12px 0 35px; }
+  .productInfoInner { width: 100%; max-width: none; gap: 16px; }
+  .heading h1 {
+    font-size: clamp(23px, 5.7vw, 29px);
+    line-height: 1.2;
+    margin: 0 0 7px;
+    color: #36014f;
+  }
+  .heading p { font-size: 14px; line-height: 1.55; }
+  .price { flex-wrap: wrap; gap: 10px; }
+  .price strong { font-size: 31px; }
+  .price > span { font-size: 16px; }
+  .discount {
+    background: #fff0cf;
+    color: #783c0a;
+    border: 1px solid #dfb761;
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  .packOptions { overflow-x: auto; scrollbar-width: none; }
+  .packOptions::-webkit-scrollbar { display: none; }
+  .packOptions .selectedPack {
+    border-radius: 12px;
+    background: #fffaf4;
+    border-color: #36014f;
+  }
+  .quantityRow { justify-content: space-between; gap: 12px; }
+  .actions { flex-direction: row; gap: 10px; }
+  .actions button {
+    min-width: 0;
+    min-height: 48px;
+    padding: 10px 8px;
+    font-size: 13px;
+    border-radius: 12px;
+  }
+  .cartButton { border: 1.5px solid #36014f; background: #36014f; color: #fff; }
+  .buyButton { background: #36014f; color: #fff; }
+
+  /* Two trust badges on top, third centered below. */
+  .trust {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 8px;
+    padding: 15px 10px;
+    border: 1px solid rgba(218, 170, 83, .45);
+    border-radius: 16px;
+    background: rgba(255, 245, 224, .75);
+  }
+  .trustItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+    min-width: 0;
+  }
+  .trustItem:last-child { grid-column: 1 / -1; justify-self: center; }
+  .trustItem svg { font-size: 27px; color: #36014f; background: #f6e8f7; padding: 5px; }
+  .trustItem h3 { font-size: 11px; line-height: 1.3; }
+  .trustItem p { font-size: 10px; line-height: 1.4; }
 }
 
+@media (max-width: 380px) {
+  .heading h1 { font-size: 23px; }
+  .actions button { font-size: 12px; }
+}
