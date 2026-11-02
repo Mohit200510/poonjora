@@ -70,7 +70,7 @@ function Product() {
   return (
     <main className={styles.productDetail}>
       <section className={styles.productHero}>
-        <Container>
+        
           <div className={styles.productHeroContent}>
             <div className={styles.productVisualMain}>
               {galleryImages.length > 1 && (
@@ -97,6 +97,8 @@ function Product() {
                 )}
               </div>
             </div>
+
+            <Container>
 
             <div className={styles.productInfo}>
               <div className={styles.productInfoInner}>
@@ -146,10 +148,26 @@ function Product() {
                 </div>
 
                 <div className={styles.actions}>
-                  <button type="button" className={styles.cartButton} onClick={handleAddToCart}
-                    disabled={alreadyInCart || (product.stock != null && Number(product.stock) <= 0)}>
-                    {alreadyInCart ? "Added to Cart ✓" : "Add to Cart"}
-                  </button>
+                  <button
+  type="button"
+  className={`${styles.cartButton} ${
+    alreadyInCart ? styles.cartAdded : ""
+  }`}
+  onClick={handleAddToCart}
+  disabled={
+    alreadyInCart ||
+    (product.stock != null && Number(product.stock) <= 0)
+  }
+>
+  {alreadyInCart ? (
+    <>
+      <span className={styles.cartCheck}>✓</span>
+      Added to Cart
+    </>
+  ) : (
+    "Add to Cart"
+  )}
+</button>
                   <button type="button" className={styles.buyButton} disabled title="Buy Now checkout connection pending">Buy Now</button>
                 </div>
 
@@ -165,8 +183,8 @@ function Product() {
                 </div>
               </div>
             </div>
+            </Container>
           </div>
-        </Container>
       </section>
     </main>
   );

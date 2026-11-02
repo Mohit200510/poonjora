@@ -783,3 +783,82 @@
 @media (prefers-reduced-motion: reduce) {
   .actions button { transition: none; }
 }
+
+@media (max-width: 768px) {
+
+  /* Full-width temple image section */
+  .productVisualMain {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .productVisual {
+    width: 100%;
+    height: clamp(280px, 85vw, 420px);
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: hidden;
+  }
+
+  .templeArch {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+
+  /* Full-width purchase buttons */
+  .actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .actions button {
+    width: 100%;
+    flex: none;
+    min-height: 50px;
+    border-radius: 12px;
+  }
+}
+
+/* Elegant Add to Cart success state */
+
+.cartButton {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.cartButton.cartAdded,
+.cartButton.cartAdded:disabled {
+  background: #e9f5e9;
+  color: #217a40;
+  border: 1px solid #a6d5af;
+  opacity: 1;
+  cursor: default;
+  box-shadow: none;
+}
+
+.cartCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #217a40;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+}
