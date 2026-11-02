@@ -9,6 +9,7 @@ import { FaShippingFast } from "react-icons/fa";
 import { MdOutlineLock } from "react-icons/md";
 import PincodeChecker from "../../components/common/pincodeChecker/PincodeChecker";
 import ProductSkeleton from "./productSkeleton/ProductSkeleton";
+import templeArch from "../../assets/temple-arch.webp"
 
 function Product() {
   const { id } = useParams();
@@ -91,12 +92,19 @@ function Product() {
                 </div>
               )}
               <div className={styles.productVisual}>
-                <img
-                  className={styles.productMainImage}
-                  src={galleryImages[activeImage]}
-                  alt={product.name}
-                />
-              </div>
+  <img
+    src={templeArch}
+    alt=""
+    aria-hidden="true"
+    className={styles.templeArch}
+  />
+
+  <img
+    className={styles.productMainImage}
+    src={galleryImages[activeImage]}
+    alt={product.name}
+  />
+</div>
             </div>
         {/* <sddn */}
             <div className={styles.productInfo}>
