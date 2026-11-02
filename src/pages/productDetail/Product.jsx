@@ -3,13 +3,14 @@ import styles from "./Product.module.css";
 import { useParams } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
 import Container from "../../components/common/Container";
-import { CartContext } from "../../context/CartContext"; // Adjust path if needed
+import { CartContext } from "../../context/CartContext";
 import { BiLeaf } from "react-icons/bi";
 import { FaShippingFast } from "react-icons/fa";
 import { MdOutlineLock } from "react-icons/md";
+import { FiTruck } from "react-icons/fi";
 import PincodeChecker from "../../components/common/pincodeChecker/PincodeChecker";
 import ProductSkeleton from "./productSkeleton/ProductSkeleton";
-import templeArch from "../../assets/temple-arch.webp"
+import templeArch from "../../assets/temple-arch.webp";
 
 function Product() {
   const { id } = useParams();
@@ -60,11 +61,9 @@ function Product() {
     : 0;
   const alreadyInCart = cartItems.some((item) => String(item.id) === String(product.id));
   const galleryImages = [product.image_url].filter(Boolean);
-  // Add real product.gallery_images URLs here when your database supports them.
 
   const handleAddToCart = () => {
-    if (alreadyInCart) return;
-    // CartContext must use product.quantity when creating a cart item.
+    if (alreadyInCart || (product.stock != null && Number(product.stock) <= 0)) return;
     addToCart({ ...product, quantity });
   };
 
@@ -92,23 +91,16 @@ function Product() {
                 </div>
               )}
               <div className={styles.productVisual}>
-  <img
-    src={templeArch}
-    alt=""
-    aria-hidden="true"
-    className={styles.templeArch}
-  />
-
-  <img
-    className={styles.productMainImage}
-    src={galleryImages[activeImage]}
-    alt={product.name}
-  />
-</div>
+                <img src={templeArch} alt="" aria-hidden="true" className={styles.templeArch} />
+                {galleryImages[activeImage] && (
+                  <img className={styles.productMainImage} src={galleryImages[activeImage]} alt={product.name} />
+                )}
+              </div>
             </div>
-        {/* <sddn */}
+
             <div className={styles.productInfo}>
               <div className={styles.productInfoInner}>
+                <div className={styles.productEyebrow}><BiLeaf /> Puja Essential</div>
                 <div className={styles.heading}>
                   <h1>{product.name}</h1>
                   <p>{product.description || "Pure essentials for your everyday puja, rituals and sacred occasions."}</p>
@@ -149,33 +141,27 @@ function Product() {
                     </div>
                   </div>
                   {product.stock != null && (
-                    <span className={styles.stock}>
-                      {Number(product.stock) > 0 ? "● In Stock" : "Out of Stock"}
-                    </span>
+                    <span className={styles.stock}>{Number(product.stock) > 0 ? "● In Stock" : "Out of Stock"}</span>
                   )}
                 </div>
 
-                <PincodeChecker />
-
                 <div className={styles.actions}>
-                  <button
-                    type="button"
-                    className={styles.cartButton}
-                    onClick={handleAddToCart}
-                    disabled={alreadyInCart || (product.stock != null && Number(product.stock) <= 0)}
-                  >
+                  <button type="button" className={styles.cartButton} onClick={handleAddToCart}
+                    disabled={alreadyInCart || (product.stock != null && Number(product.stock) <= 0)}>
                     {alreadyInCart ? "Added to Cart ✓" : "Add to Cart"}
                   </button>
-                  {/* Connect this to your existing checkout flow when ready. */}
-                  <button type="button" className={styles.buyButton} disabled title="Buy Now checkout connection pending">
-                    Buy Now
-                  </button>
+                  <button type="button" className={styles.buyButton} disabled title="Buy Now checkout connection pending">Buy Now</button>
+                </div>
+
+                <div className={styles.deliveryPanel}>
+                  <div className={styles.deliveryHeading}><FiTruck /> Check Delivery to Your Pincode</div>
+                  <PincodeChecker />
                 </div>
 
                 <div className={styles.trust}>
                   <div className={styles.trustItem}><BiLeaf /><div><h3>Authentic Products</h3><p>Quality Assured</p></div></div>
                   <div className={styles.trustItem}><FaShippingFast /><div><h3>Fast Shipping</h3><p>Across India</p></div></div>
-                  <div className={styles.trustItem}><MdOutlineLock /><div><h3>Secure Checkout</h3><p>Safe & protected</p></div></div>
+                  <div className={styles.trustItem}><MdOutlineLock /><div><h3>Secure Checkout</h3><p>Safe &amp; protected</p></div></div>
                 </div>
               </div>
             </div>
