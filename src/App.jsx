@@ -21,10 +21,7 @@ import AllProducts from './components/allProducts/AllProducts'
 import Footer from './components/footer/Footer'
 import GoogleAnalyticsTracker from './components/GoogleAnalyticsTracker'
 import ScrollToTop from './components/common/ScrollToTopjsx'
-
-
-
-
+import DivineGallery from './components/divineGallery/DivineGallery'
 
 function App() {
 
@@ -61,6 +58,7 @@ function App() {
       <Route path="/panchang" element={<PanchangPage/>}></Route>
       <Route path="/hindu-festival-calender" element={<FestivalCalender/>}></Route>
       <Route path='/collections/products' element={<AllProducts/>}></Route>
+      <Route path="/divine-gallery" element={<DivineGallery/>}></Route>
      
     </Routes>
 
