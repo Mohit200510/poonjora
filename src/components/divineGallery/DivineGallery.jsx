@@ -1,5 +1,6 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import {
   Download,
@@ -20,12 +21,14 @@ import newbanner from "../../assets/gallery4.png"
 import newbannerMob from "../../assets/gallerymob.png"
 import banner from "../../assets/divine-gallery-banner.webp";
 import framesBackground from "../../assets/poonjora-photo-frames-background.webp";
-import laxmiganeshKuber from "../../assets/Poonjora_Lakshmi_Ganesh_Kuber_Final_4x6.jpg";
-import radhaKrishna from "../../assets/radha-krishna-gallery.webp";
-import hanumanji from "../../assets/hanuman-ji-gallery.webp";
 
 
 const laxmiganesh = "/divine-gallery/lakshmi-ganesh-original-hd.jpg";
+const laxmiganeshKuber = "/divine-gallery/lakshmi-ganesh-kuber-original-hd.png";
+const radhaKrishna = "/divine-gallery/radha-krishna-original-hd.png";
+const hanumanji = "/divine-gallery/hanuman-ji-original-hd.png";
+
+
 
 const categories = [
   "All Photos",
@@ -46,28 +49,47 @@ const divinePhotos = [
   downloads: {
     wallpaper: "/divine-gallery/lakshmi-ganesh-phone-wallpaper.webp",
     original: "/divine-gallery/lakshmi-ganesh-original-hd.jpg",
-    print: "/divine-gallery/lakshmi-ganesh-print-4x6.jpg",
+    print:    "/divine-gallery/lakshmi-ganesh-print-4x6.jpg",
     },
 
   },
 
   {
-    id: 2,
-    title: "Lakshmi Ganesh Kuber Ji",
-    category: "Lakshmi Ganesh",
-    image: laxmiganeshKuber,
+  id: 2,
+  title: "Lakshmi Ganesh Kuber Ji",
+  category: "Lakshmi Ganesh",
+  image: laxmiganeshKuber,
+
+  downloads: {
+    wallpaper: "/divine-gallery/lakshmi-ganesh-kuber-phone-wallpaper.png",
+    original: "/divine-gallery/lakshmi-ganesh-kuber-original-hd.png",
+    print: "/divine-gallery/lakshmi-ganesh-kuber-print-4x6.png",
+    },
   },
+
   {
     id: 3,
     title: "Radha Krishna Ji",
     category: "Radha Krishna",
     image: radhaKrishna,
+
+    downloads: {
+      wallpaper: "/divine-gallery/radha-krishna-phone-wallpaper-1440x3200.png",
+      original: "/divine-gallery/radha-krishna-original-hd.png",
+      print: "/divine-gallery/radha-krishna-print-4x6-300dpi.png",
+    },
   },
   {
     id: 4,
     title: "Hanuman Ji",
     category: "Hanuman Ji",
     image: hanumanji,
+
+    downloads: {
+      wallpaper: "/divine-gallery/hanuman-ji-phone-wallpaper-1440x3200.png",
+      original: "/divine-gallery/hanuman-ji-original-hd.png",
+      print: "/divine-gallery/hanuman-ji-print-4x6-300dpi.png",
+},
   },
   {
     id: 5,
@@ -100,6 +122,56 @@ function DivineGallery() {
   const [activeCategory, setActiveCategory] = useState("All Photos");
   const [previewPhoto, setPreviewPhoto] = useState(null);
   const [openDownloadMenu, setOpenDownloadMenu] = useState(null);
+  const [menuPosition, setMenuPosition] = useState(null);
+  const downloadButtonRefs = useRef({});
+
+  const closeDownloadMenu = () => setOpenDownloadMenu(null);
+
+  useEffect(() => {
+    if (!openDownloadMenu) {
+      setMenuPosition(null);
+      return;
+    }
+
+    const updatePosition = () => {
+      if (window.innerWidth <= 768) {
+        setMenuPosition(null);
+        return;
+      }
+
+      const key = `${openDownloadMenu.location}-${openDownloadMenu.photoId}`;
+      const button = downloadButtonRefs.current[key];
+      if (!button) return;
+
+      const rect = button.getBoundingClientRect();
+      const width = 310;
+      const estimatedHeight = 275;
+     const left = Math.max(
+  width / 2 + 12,
+  Math.min(rect.left + rect.width / 2, window.innerWidth - width / 2 - 12)
+);
+      const showAbove = window.innerHeight - rect.bottom < estimatedHeight + 16 && rect.top > estimatedHeight + 16;
+      setMenuPosition({
+        left,
+        top: showAbove ? Math.max(12, rect.top - estimatedHeight - 8) : rect.bottom + 8,
+      });
+    };
+
+    updatePosition();
+    window.addEventListener("resize", updatePosition);
+    window.addEventListener("scroll", updatePosition, true);
+    return () => {
+      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("scroll", updatePosition, true);
+    };
+  }, [openDownloadMenu]);
+
+  useEffect(() => {
+    if (!openDownloadMenu || window.innerWidth > 768) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previous; };
+  }, [openDownloadMenu]);
 
   const handleDownload = (format) => {
     const photo = divinePhotos.find((item) => item.id === openDownloadMenu?.photoId);
@@ -111,12 +183,9 @@ function DivineGallery() {
   
     link.href = fileUrl;
   
-    link.download =
-      format === "wallpaper"
-        ? "Poonjora-Lakshmi-Ganesh-Wallpaper.webp"
-        : format === "original"
-        ? "Poonjora-Lakshmi-Ganesh-Original-HD.jpg"
-        : "Poonjora-Lakshmi-Ganesh-Print-4x6.jpg";
+    const fileName = fileUrl.split("/").pop();
+
+     link.download = fileName;
   
     document.body.appendChild(link);
     link.click();
@@ -138,10 +207,12 @@ function DivineGallery() {
 
   const openPreview = (photo) => {
     if (!photo.image) return;
+    closeDownloadMenu();
     setPreviewPhoto(photo);
   };
 
   const closePreview = () => {
+    closeDownloadMenu();
     setPreviewPhoto(null);
   };
 
@@ -158,6 +229,7 @@ function DivineGallery() {
       (currentIndex + direction + availablePhotos.length) %
       availablePhotos.length;
 
+    closeDownloadMenu();
     setPreviewPhoto(availablePhotos[nextIndex]);
   };
 
@@ -170,36 +242,57 @@ function DivineGallery() {
     );
   };
 
-  const renderDownloadMenu = (photo, location) => {
-    if (openDownloadMenu?.photoId !== photo.id || openDownloadMenu?.location !== location) return null;
+  const renderDownloadMenu = () => {
+    if (!openDownloadMenu) return null;
+
+    const photo = divinePhotos.find((item) => item.id === openDownloadMenu.photoId);
+    if (!photo) return null;
 
     const options = [
-      { key: "wallpaper", label: "Phone Wallpaper", description: "Perfectly sized for your mobile screen", highlight: "Mobile Optimized", Icon: Smartphone },
-      { key: "original", label: "Original HD Image", description: "High-resolution image with stunning clarity", highlight: "Full Resolution", Icon: ImageIcon },
-      { key: "print", label: "Print-Ready Photo", description: "High-quality 4 × 6 inch photo printing", highlight: "Frame Ready", Icon: Printer },
+      { key: "wallpaper", label: "Phone Wallpaper", description: "Optimized for mobile screens", Icon: Smartphone },
+      { key: "original", label: "Original HD Image", description: "Full-resolution devotional image", Icon: ImageIcon },
+      { key: "print", label: "Print-Ready Photo", description: "4 × 6 inches · 300 DPI", Icon: Printer },
     ];
 
-    return (
-      <div className={styles.compactDownloadMenu} role="group" aria-label={`Download ${photo.title}`}>
-        <div className={styles.compactDownloadHeading}>CHOOSE YOUR DOWNLOAD <Download size={15} /></div>
-        {options.map(({ key, label, description, highlight, Icon }) => (
-          <button
-            key={key}
-            type="button"
-            className={styles.compactDownloadOption}
-            disabled={!photo.downloads?.[key]}
-            onClick={() => handleDownload(key)}
-          >
-            <span className={styles.compactDownloadIcon}><Icon size={19} /></span>
-            <span className={styles.compactDownloadCopy}>
-              <strong>{label}</strong>
-              <span>{description}</span>
-              <em>{highlight}</em>
-            </span>
-            <ArrowDownToLine className={styles.compactDownloadArrow} size={19} />
-          </button>
-        ))}
-      </div>
+    return createPortal(
+      <>
+        <div className={styles.downloadBackdrop} onClick={closeDownloadMenu} aria-hidden="true" />
+        <div
+          className={styles.downloadSheet}
+          style={menuPosition || undefined}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Download ${photo.title}`}
+          data-download-control
+        >
+          <div className={styles.downloadSheetHandle} aria-hidden="true" />
+          <div className={styles.downloadSheetHeader}>
+            <strong>Choose Download</strong>
+            <button type="button" onClick={closeDownloadMenu} aria-label="Close download options">
+              <X size={19} />
+            </button>
+          </div>
+          <div className={styles.downloadSheetOptions}>
+            {options.map(({ key, label, description, Icon }) => (
+              <button
+                key={key}
+                type="button"
+                className={styles.downloadSheetOption}
+                disabled={!photo.downloads?.[key]}
+                onClick={() => handleDownload(key)}
+              >
+                <span className={styles.downloadSheetIcon}><Icon size={19} /></span>
+                <span className={styles.downloadSheetText}>
+                  <strong>{label}</strong>
+                  <small>{description}</small>
+                </span>
+                <ArrowDownToLine size={17} className={styles.downloadSheetArrow} />
+              </button>
+            ))}
+          </div>
+        </div>
+      </>,
+      document.body
     );
   };
 
@@ -240,16 +333,6 @@ function DivineGallery() {
     };
   }, [previewPhoto]);
 
-  useEffect(() => {
-    if (!openDownloadMenu) return;
-    const closeOnOutsideClick = (event) => {
-      if (!event.target.closest('[data-download-control]')) {
-        setOpenDownloadMenu(null);
-      }
-    };
-    document.addEventListener("pointerdown", closeOnOutsideClick);
-    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
-  }, [openDownloadMenu]);
 
   return (
     <main className={styles.divineGallery}>
@@ -281,6 +364,7 @@ function DivineGallery() {
             <span>✦ Free &amp; Premium Downloads</span>
           </div>
         </div> */}
+
         <img 
         src={newbannerMob}
         className={styles.bannermob}
@@ -373,6 +457,7 @@ function DivineGallery() {
                     <button
                       type="button"
                       className={styles.downloadButton}
+                      ref={(node) => { downloadButtonRefs.current[`card-${photo.id}`] = node; }}
                       onClick={() => toggleDownloadMenu(photo, "card")}
                       disabled={!photo.image}
                       aria-expanded={openDownloadMenu?.photoId === photo.id && openDownloadMenu?.location === "card"}
@@ -381,7 +466,6 @@ function DivineGallery() {
                       Download
                       <ChevronDown size={15} />
                     </button>
-                    {renderDownloadMenu(photo, "card")}
                   </div>
                 </div>
               </article>
@@ -429,6 +513,8 @@ function DivineGallery() {
           </div>
         </div>
       </section>
+
+      {renderDownloadMenu()}
 
       {/* IMAGE PREVIEW */}
       {previewPhoto && (
@@ -501,6 +587,7 @@ function DivineGallery() {
                 <button
                   type="button"
                   className={styles.previewDownload}
+                  ref={(node) => { downloadButtonRefs.current[`preview-${previewPhoto.id}`] = node; }}
                   onClick={() => toggleDownloadMenu(previewPhoto, "preview")}
                   aria-expanded={openDownloadMenu?.photoId === previewPhoto.id && openDownloadMenu?.location === "preview"}
                 >
@@ -508,7 +595,6 @@ function DivineGallery() {
                   Download
                   <ChevronDown size={15} />
                 </button>
-                {renderDownloadMenu(previewPhoto, "preview")}
               </div>
             </div>
           </div>

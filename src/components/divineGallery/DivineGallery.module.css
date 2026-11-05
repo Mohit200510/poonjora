@@ -1474,216 +1474,154 @@
 }
 
 
-/* ONLY NEW STYLES: compact download dropdown */
-.downloadControl { position: relative; width: 100%; }
-.photoCard:has(.compactDownloadMenu) { overflow: visible; }
-.photoCard:has(.compactDownloadMenu) .photoImage { border-radius: 12px 12px 0 0; }
-.compactDownloadMenu {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  right: 0;
-  z-index: 30;
-  width: min(255px, 85vw);
-  padding: 5px;
-  border: 1px solid #eadfea;
-  border-radius: 11px;
-  background: #fffdfb;
-  box-shadow: 0 12px 32px rgba(40, 10, 50, 0.18);
-}
-.compactDownloadOption {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  width: 100%;
-  padding: 11px 9px;
-  border: 0;
-  border-radius: 7px;
+/* =============================================
+   DOWNLOAD POPOVER (DESKTOP) / SHEET (MOBILE)
+   Portal renders outside cards and preview modal.
+============================================= */
+.downloadControl { width: 100%; min-width: 0; }
+.downloadBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10010;
   background: transparent;
-  color: #36014f;
-  font: inherit;
-  font-size: 12px;
-  text-align: left;
-  cursor: pointer;
 }
-.compactDownloadOption span { flex: 1; white-space: nowrap; }
-.compactDownloadOption small { color: #8a7c8b; font-size: 10px; white-space: nowrap; }
-.compactDownloadOption:hover:not(:disabled),
-.compactDownloadOption:focus-visible { background: #f7eef9; }
-.compactDownloadOption:disabled { opacity: 0.42; cursor: not-allowed; }
-@media (max-width: 480px) {
-  .compactDownloadMenu { width: min(225px, 85vw); }
-  .photoCard:nth-child(2n + 1) .compactDownloadMenu { left: 0; right: auto; }
-  .previewFooter .compactDownloadMenu { right: 0; left: auto; }
-  .photoCard:has(.compactDownloadMenu) .photoImage { border-radius: 9px 9px 0 0; }
+.downloadSheet {
+  position: fixed;
+  z-index: 10011;
+  width: 310px;
+  max-width: calc(100vw - 24px);
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #e9dce9;
+  border-radius: 15px;
+  background: #fffcf9;
+  box-shadow: 0 18px 48px rgba(54, 1, 79, 0.19);
 }
-
-
-/* PREVIEW FOOTER FIX — keep original title left and button right */
-@media (min-width: 601px) {
-  .previewFooter { flex-direction: row; align-items: center; justify-content: space-between; }
-  .previewFooter > div:first-child { flex: 1 1 auto; min-width: 0; }
-  .previewFooter > .downloadControl { flex: 0 0 auto; width: auto; margin-left: auto; }
-  .previewFooter .previewDownload { width: auto; white-space: nowrap; cursor: pointer; }
-}
-.previewFooter > .downloadControl { position: relative; }
-.previewFooter .compactDownloadMenu { right: 0; left: auto; bottom: calc(100% + 8px); }
-@media (max-width: 600px) {
-  .previewFooter { flex-direction: column; align-items: stretch; }
-  .previewFooter > div:first-child { width: 100%; min-width: 0; }
-  .previewFooter > .downloadControl { width: 100%; }
-  .previewFooter .previewDownload { width: 100%; cursor: pointer; }
-  .previewFooter .compactDownloadMenu { right: 0; left: auto; width: min(255px, 100%); }
-}
-
-
-/* Premium download options — overrides only compact dropdown styles */
-.compactDownloadMenu {
-  width: min(345px, 90vw);
-  padding: 11px;
-  background: #fffcf8;
-  border: 1px solid #e9dde9;
-  border-radius: 14px;
-  box-shadow: 0 15px 38px rgba(54, 1, 79, .17);
-}
-.compactDownloadHeading {
+.downloadSheetHandle { display: none; }
+.downloadSheetHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 5px 11px;
+  gap: 12px;
+  padding: 3px 4px 12px;
   color: #36014f;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .85px;
+  font-size: 13px;
 }
-.compactDownloadOption {
+.downloadSheetHeader button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #36014f;
+  cursor: pointer;
+}
+.downloadSheetHeader button:hover { background: #f1e6f4; }
+.downloadSheetOptions { display: grid; gap: 7px; }
+.downloadSheetOption {
   display: flex;
   align-items: center;
   gap: 10px;
   width: 100%;
-  min-height: 79px;
-  padding: 11px;
-  margin: 0 0 7px;
+  min-height: 62px;
+  box-sizing: border-box;
+  padding: 10px;
   border: 1px solid transparent;
   border-radius: 10px;
-  background: #f8f2f8;
+  background: #f8f1f8;
+  color: #36014f;
+  font: inherit;
   text-align: left;
-  white-space: normal;
-  transition: background .2s, border-color .2s, box-shadow .2s;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
-.compactDownloadOption:last-child { margin-bottom: 0; }
-.compactDownloadOption:hover:not(:disabled),
-.compactDownloadOption:focus-visible {
+.downloadSheetOption:hover:not(:disabled) {
   background: #f0e5f4;
-  border-color: #d9c2e2;
-  box-shadow: 0 3px 12px rgba(54, 1, 79, .08);
+  border-color: #dec9e4;
 }
-.compactDownloadIcon {
+.downloadSheetOption:disabled { opacity: 0.42; cursor: not-allowed; }
+.downloadSheetIcon {
   display: flex;
-  flex: 0 0 39px !important;
   align-items: center;
   justify-content: center;
-  width: 39px;
-  height: 39px;
-  border-radius: 9px;
+  flex: 0 0 38px;
+  height: 38px;
+  border-radius: 10px;
   background: #ebddef;
   color: #36014f;
 }
-.compactDownloadCopy {
+.downloadSheetText {
   display: flex;
-  flex: 1 1 auto !important;
+  flex: 1;
   flex-direction: column;
-  gap: 3px;
   min-width: 0;
-  white-space: normal !important;
+  gap: 4px;
 }
-.compactDownloadCopy strong { color: #36014f; font-size: 12px; font-weight: 750; line-height: 1.3; }
-.compactDownloadCopy > span { color: #827286; font-size: 10px; line-height: 1.4; white-space: normal; }
-.compactDownloadCopy em { color: #956b9d; font-size: 10px; font-style: normal; font-weight: 700; }
-.compactDownloadArrow { flex: 0 0 auto; color: #36014f; }
-@media (max-width: 480px) {
-  .compactDownloadMenu { width: min(310px, 90vw); }
-  .previewFooter .compactDownloadMenu { width: min(310px, 100%); }
-  .compactDownloadOption { padding: 9px; gap: 8px; }
-  .compactDownloadCopy strong { font-size: 11px; }
+.downloadSheetText strong { font-size: 12px; line-height: 1.3; }
+.downloadSheetText small { color: #827286; font-size: 10px; line-height: 1.4; }
+.downloadSheetArrow { flex-shrink: 0; color: #36014f; }
+.downloadSheetOption:focus-visible,
+.downloadSheetHeader button:focus-visible {
+  outline: 2px solid #a26cb8;
+  outline-offset: 2px;
 }
-
-
-/* Final refinement: compact menu anchored to its own Download button. */
-.photoCard .compactDownloadMenu,
-.previewFooter .compactDownloadMenu {
-  position: absolute;
-  top: auto;
-  bottom: calc(100% + 9px);
-  left: auto;
-  right: 0;
-  width: min(286px, 84vw);
-  padding: 8px;
-  border-radius: 12px;
-  box-sizing: border-box;
-  box-shadow: 0 12px 28px rgba(54, 1, 79, .15);
+/* Preserve the existing preview footer desktop alignment */
+@media (min-width: 601px) {
+  .previewFooter > div:first-child { flex: 1 1 auto; min-width: 0; }
+  .previewFooter > .downloadControl { flex: 0 0 auto; width: auto; margin-left: auto; }
+  .previewFooter .previewDownload { width: auto; white-space: nowrap; cursor: pointer; }
 }
-.compactDownloadHeading { padding: 4px 5px 9px; font-size: 10px; }
-.compactDownloadOption {
-  min-height: 66px;
-  padding: 9px;
-  gap: 9px;
-  margin-bottom: 6px;
-}
-.compactDownloadIcon { width: 34px; height: 34px; flex-basis: 34px !important; }
-.compactDownloadCopy strong { font-size: 12px; font-weight: 750; }
-.compactDownloadCopy > span { font-size: 10px; line-height: 1.35; }
-.compactDownloadCopy em { font-size: 10px; }
-.compactDownloadArrow { width: 17px; height: 17px; }
-@media (max-width: 768px) {
-  .photoCard:nth-child(2n + 1) .compactDownloadMenu { left: 0; right: auto; }
-  .photoCard:nth-child(2n) .compactDownloadMenu { left: auto; right: 0; }
-}
-@media (max-width: 480px) {
-  .photoCard .compactDownloadMenu { width: min(255px, 80vw); }
-  .previewFooter .compactDownloadMenu { width: min(286px, 100%); right: 0; left: auto; }
-  .compactDownloadOption { min-height: 62px; }
-}
-
-/* Center the compact menu over its Download button */
-.photoCard .compactDownloadMenu,
-.previewFooter .compactDownloadMenu {
-  left: 50%;
-  right: auto;
-  transform: translateX(-50%);
-}
-
-/* Keep the centered menu within narrow gallery cards */
-@media (max-width: 768px) {
-  .photoCard:nth-child(2n + 1) .compactDownloadMenu,
-  .photoCard:nth-child(2n) .compactDownloadMenu {
-    left: 50%;
-    right: auto;
-  }
-}
-/* Fix dropdown inside full-screen image preview */
-
-.previewFooter .compactDownloadMenu {
-  left: auto !important;
-  right: 0 !important;
-  transform: none !important;
-  width: 286px;
-  max-width: calc(100vw - 40px);
-}
-
-/* Keep gallery card dropdown centered */
-.photoCard .compactDownloadMenu {
-  left: 50% !important;
-  right: auto !important;
-  transform: translateX(-50%) !important;
-}
-
-/* Mobile preview */
 @media (max-width: 600px) {
-  .previewFooter .compactDownloadMenu {
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%) !important;
-    width: min(286px, 90vw);
+  .previewFooter > .downloadControl { width: 100%; }
+  .previewFooter .previewDownload { width: 100%; cursor: pointer; }
+}
+@media (max-width: 768px) {
+  .downloadBackdrop { background: rgba(20, 7, 28, 0.48); }
+  .downloadSheet {
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100%;
+    max-width: 100%;
+    max-height: 85dvh;
+    overflow-y: auto;
+    padding: 10px 18px max(24px, env(safe-area-inset-bottom));
+    border: 0;
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 -12px 45px rgba(20, 7, 28, 0.22);
+    animation: downloadSheetEnter 0.25s ease-out;
   }
+  .downloadSheetHandle {
+    display: block;
+    width: 40px;
+    height: 5px;
+    margin: 0 auto 15px;
+    border-radius: 10px;
+    background: #c7b7c7;
+  }
+  .downloadSheetHeader { padding-bottom: 14px; font-size: 17px; }
+  .downloadSheetOption { min-height: 68px; padding: 11px; }
+  .downloadSheetText strong { font-size: 13px; }
+  .downloadSheetText small { font-size: 11px; }
+}
+@keyframes downloadSheetEnter {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .downloadSheet { animation: none; }
+  .downloadSheetOption { transition: none; }
 }
 
+
+/* Center desktop popover below Download button */
+@media (min-width: 769px) {
+  .downloadSheet {
+    transform: translateX(-50%);
+  }
+}
