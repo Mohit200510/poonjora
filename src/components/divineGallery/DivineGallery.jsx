@@ -16,6 +16,8 @@ import {
 
 import styles from "./DivineGallery.module.css";
 
+import newbanner from "../../assets/gallery4.png"
+import newbannerMob from "../../assets/gallerymob.png"
 import banner from "../../assets/divine-gallery-banner.webp";
 import framesBackground from "../../assets/poonjora-photo-frames-background.webp";
 import laxmiganeshKuber from "../../assets/Poonjora_Lakshmi_Ganesh_Kuber_Final_4x6.jpg";
@@ -254,14 +256,14 @@ function DivineGallery() {
       {/* HERO SECTION */}
       <section className={styles.hero}>
         <img
-          src={banner}
+          src={newbanner}
           alt=""
           className={styles.heroBackground}
         />
+        
+        {/* <div className={styles.heroOverlay} /> */}
 
-        <div className={styles.heroOverlay} />
-
-        <div className={styles.heroContent}>
+        {/* <div className={styles.heroContent}>
           <span className={styles.eyebrow}>
             POONJORA DEVOTIONAL COLLECTION
           </span>
@@ -278,8 +280,17 @@ function DivineGallery() {
             <span>✦ Mobile &amp; Print Ready</span>
             <span>✦ Free &amp; Premium Downloads</span>
           </div>
-        </div>
+        </div> */}
+        <img 
+        src={newbannerMob}
+        className={styles.bannermob}
+        style={{width: "100%"}}
+        
+        >
+        </img>
       </section>
+      
+
 
       {/* GALLERY SECTION */}
       <section className={styles.gallerySection}>

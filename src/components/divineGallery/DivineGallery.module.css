@@ -14,6 +14,9 @@
   isolation: isolate;
   background: #36014f;
 }
+.bannermob{
+  display: none;
+}
 
 .heroBackground {
   position: absolute;
@@ -87,10 +90,18 @@
     min-height: 390px;
   }
 
+  .heroBackground {
+    display: none;
+  }
+  .bannermob{
+    display: block;
+  }
+
+
   .heroContent {
     padding: 64px 0;
   }
-
+  
   .heroDescription {
     font-size: 14px;
   }
@@ -1675,3 +1686,4 @@
     width: min(286px, 90vw);
   }
 }
+
