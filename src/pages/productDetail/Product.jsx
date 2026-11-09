@@ -70,6 +70,8 @@ function Product() {
   return (
     <main className={styles.productDetail}>
       <section className={styles.productHero}>
+            <Container>
+
         
           <div className={styles.productHeroContent}>
             <div className={styles.productVisualMain}>
@@ -95,10 +97,11 @@ function Product() {
                 {galleryImages[activeImage] && (
                   <img className={styles.productMainImage} src={galleryImages[activeImage]} alt={product.name} />
                 )}
+                
               </div>
             </div>
 
-            <Container>
+
 
             <div className={styles.productInfo}>
               <div className={styles.productInfoInner}>
@@ -183,8 +186,9 @@ function Product() {
                 </div>
               </div>
             </div>
-            </Container>
           </div>
+            </Container>
+
       </section>
     </main>
   );

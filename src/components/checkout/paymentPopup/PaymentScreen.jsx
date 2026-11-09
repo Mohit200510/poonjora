@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./PaymentScreen.module.css";
 import headerStyles from "../Checkout.module.css"
 import PaymentBox from "../formUX/PaymentBox";
-import logo from "../../../assets/footer-logo.png";
+import logo from "../../../assets/footer_logo_reasnparent.png";
 
 import { GoArrowLeft } from "react-icons/go";
 import { IoMdLock } from "react-icons/io";
