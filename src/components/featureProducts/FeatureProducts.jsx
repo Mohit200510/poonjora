@@ -77,7 +77,11 @@ function FeatureProducts() {
             </div>
 
             <div className={styles.FeatureProductsSeeMore}>
-                <button>View All Products <ArrowRight /></button>
+                <button
+                onClick={()=>{
+                    navigate("collections/products")
+                }}
+                >View All Products <ArrowRight /></button>
             </div>
 
 

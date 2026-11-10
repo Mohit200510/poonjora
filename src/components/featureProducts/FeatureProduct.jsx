@@ -8,6 +8,10 @@ import CartContext from '../../context/CartContext'
 import { MdOutlineStar } from "react-icons/md";
 import { MdDone } from "react-icons/md";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
+import { FiMinus } from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
+
+
 
 
 
@@ -15,12 +19,19 @@ import { PiShoppingCartSimpleBold } from "react-icons/pi";
 function FeatureProduct({product}) {
 
 
-    const {addToCart,cartItems} = useContext(CartContext)
+    const {addToCart,cartItems,increaseQuantity,decreaseQuantity} = useContext(CartContext)
     
 
     const isInCart = cartItems.some((item) => {
         return item.id === product.id;
     });
+    // return true adn false value only
+
+
+    const cartProduct = cartItems.find(
+     (item) => item.id === product.id
+   );
+   //    return cart sinle product object
 
 
 
@@ -72,11 +83,31 @@ function FeatureProduct({product}) {
                                 <h6>Save ₹{product.mrp-product.sale_price}</h6>
                             </div>
 
-                            <button style={{background:isInCart?"#36014F": "#36014f"}}
+                            {!isInCart?(<button style={{background:isInCart?"#36014F": "#36014f"}}
                              onClick={(e)=>{
                                 e.stopPropagation()
                                 addToCart(product)
-                            }} type='button'><PiShoppingCartSimpleBold size={22}/>{isInCart?" ✓ Added to Cart ":"Add to Cart"}</button>
+                            }} type='button'><PiShoppingCartSimpleBold size={22}/>{isInCart?" ✓ Added to Cart ":"Add to Cart"}
+                            </button>):( <div className={styles.productQtyChange}>
+                                <div className={styles.productQtyChangeInner}>
+                                    <div onClick={(e)=>{
+                                        e.stopPropagation();
+                                        decreaseQuantity(product.id)
+
+                                    }}><FiMinus/></div>
+
+                                    <span>{cartProduct.quantity}</span>
+
+                                    <div onClick={(e)=>{
+                                        e.stopPropagation()
+                                        increaseQuantity(product.id)
+                                    }}><FiPlus/> </div>
+
+                                </div>
+                            </div>)}
+                            
+
+                           
 
                         </div>
 
