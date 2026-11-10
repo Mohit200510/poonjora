@@ -377,7 +377,7 @@
 
 @media (max-width: 768px) {
   .gallerySection {
-    padding: 60px 0 75px;
+    padding: 4px 0 75px;
   }
 
   .galleryHeading {
@@ -412,7 +412,7 @@
 
 @media (max-width: 480px) {
   .gallerySection {
-    padding: 48px 0 65px;
+    padding: 0px 0 65px;
   }
 
   .galleryHeading h2 {
