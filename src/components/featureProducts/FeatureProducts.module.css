@@ -1443,3 +1443,31 @@
     display: none;
   }
 }
+
+
+@media screen and (max-width: 599px) {
+
+  .mobileQtyControl {
+    width: 105px;
+    height: 30px;
+    right: 8px;
+    bottom: 8px;
+    border-radius: 20px;
+  }
+
+  .mobileQtyControl button {
+    width: 30px;
+    min-height: 0;
+    height: 100%;
+    padding: 0;
+  }
+
+  .mobileQtyControl span {
+    font-size: 12px;
+  }
+
+  .mobileQtyControl svg {
+    width: 15px;
+    height: 15px;
+  }
+}
