@@ -48,18 +48,48 @@ function FeatureProduct({product}) {
                         </div>
 
                         
+
 <div className={styles.featureProductBoxImgWrapper}>
   <img src={product.image_url} alt={product.name} />
 
-  <button
-    type="button"
-    className={styles.mobileCartButton}
-    onClick={() => addToCart(product)}
-  >
-    <PiShoppingCartSimpleBold size={17} />
-    <span>{isInCart ? "Added" : "Add to Cart"}</span>
-  </button>
+  {!isInCart ? (
+    <button
+      type="button"
+      className={styles.mobileCartButton}
+      onClick={(e) => {
+        e.stopPropagation();
+        addToCart(product);
+      }}
+    >
+      <PiShoppingCartSimpleBold size={17} />
+      <span>Add to Cart</span>
+    </button>
+  ) : (
+    <div
+      className={styles.mobileQtyControl}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        type="button"
+        onClick={() => decreaseQuantity(product.id)}
+        aria-label="Decrease quantity"
+      >
+        <FiMinus />
+      </button>
+
+      <span>{cartProduct?.quantity ?? 0}</span>
+
+      <button
+        type="button"
+        onClick={() => increaseQuantity(product.id)}
+        aria-label="Increase quantity"
+      >
+        <FiPlus />
+      </button>
+    </div>
+  )}
 </div>
+
 
 
                         <div className={styles.featureProductBoxText}>
