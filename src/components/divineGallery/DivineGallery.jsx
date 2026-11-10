@@ -89,31 +89,63 @@ const divinePhotos = [
       wallpaper: "/divine-gallery/hanuman-ji-phone-wallpaper-1440x3200.png",
       original: "/divine-gallery/hanuman-ji-original-hd.png",
       print: "/divine-gallery/hanuman-ji-print-4x6-300dpi.png",
-},
+      },
   },
+
   {
-    id: 5,
-    title: "Shiv Parivar",
-    category: "Shiv Ji",
-    image: "",
+  id: 5,
+  title: "Shiv Parivar",
+  category: "Shiv Ji",
+  image: "/divine-gallery/shiv-parivar-original.png",
+
+  downloads: {
+    wallpaper: "/divine-gallery/shiv-parivar-phone-wallpaper.png",
+    original: "/divine-gallery/shiv-parivar-original.png",
+    print: "/divine-gallery/shiv-parivar-print-4x6.png",
+    },
+
   },
+
+
   {
-    id: 6,
-    title: "Ram Darbar",
-    category: "Other Deities",
-    image: "",
+  id: 6,
+  title: "Shri Ram Darbar",
+  category: "Other Deities",
+  image: "/divine-gallery/ram-darbar-original-with-poonjora-logo.webp",
+
+  downloads: {
+    wallpaper: "/divine-gallery/ram-darbar-phone-wallpaper-1440x3200.png",
+    original: "/divine-gallery/ram-darbar-original-with-poonjora-logo.webp",
+    print: "/divine-gallery/ram-darbar-print-4x6-300dpi.png",
+    },
   },
+
+
   {
     id: 7,
     title: "Saraswati Ji",
     category: "Other Deities",
-    image: "",
+    image: "/divine-gallery/saraswati-ji-original-hd.webp",
+
+    downloads: {
+      wallpaper: "/divine-gallery/saraswati-ji-phone-wallpaper-1440x3200.png",
+      original: "/divine-gallery/saraswati-ji-original-hd.webp",
+      print: "/divine-gallery/saraswati-ji-print-4x6-300dpi.png",
+    },
   },
+
+
   {
     id: 8,
     title: "Durga Ji",
     category: "Other Deities",
-    image: "",
+    image: "/divine-gallery/durga-mata-original-hd.webp",
+
+    downloads: {
+      wallpaper: "/divine-gallery/durga-mata-phone-wallpaper-1440x3200.png",
+      original: "/divine-gallery/durga-mata-original-hd.webp",
+      print: "/divine-gallery/durga-mata-print-4x6-300dpi.png",
+    },
   },
 ];
 
@@ -393,10 +425,11 @@ function DivineGallery() {
               </p>
             </div> */}
 
-            <span className={styles.photoCount}>
+            {/* <span className={styles.photoCount}>
               {filteredPhotos.length} 
               Divine Images
-            </span>
+            </span> */}
+            
           </div>
 
           <div className={styles.categoryFilters}>
