@@ -1,0 +1,235 @@
+/* POONJORA • FESTIVAL DETAILS — FLEXBOX ONLY
+   Works with FestivalDetails.jsx from the Festival Details bundle.
+   Images: /public/festival-assets/diwali-*.png
+*/
+.page {
+  --festival-berry: #88004f;
+  --festival-plum: var(--color-primary);
+  --festival-gold: var(--color-accent);
+  --festival-ivory: #fffaf5;
+  --festival-outline: #efdccc;
+  min-height: 100vh;
+  padding: 12px 0 48px;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+}
+.container { width: min(1200px, 90%); margin: 0 auto; }
+
+/* Breadcrumbs */
+.breadcrumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0 0 15px; color: var(--festival-berry); font-size: 13px; }
+.breadcrumbs a { color: inherit; text-decoration: none; }
+.breadcrumbs a:hover { text-decoration: underline; }
+.breadcrumbs strong { font-weight: 700; }
+
+/* HERO: fade the left and right art into ONE purple background */
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 192px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: linear-gradient(100deg, #641039 0%, #5a003a 38%, var(--color-primary) 57%, #78004e 100%);
+  color: var(--color-surface);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(ellipse at 52% 90%, rgba(174, 32, 94, .2), transparent 55%);
+  pointer-events: none;
+}
+.heroLeft, .heroRight { position: absolute; z-index: 0; top: 0; height: 100%; object-fit: cover; pointer-events: none; }
+.heroLeft {
+  left: 0;
+  width: 43%;
+  object-position: left center;
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 57%, rgba(0,0,0,.7) 76%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0%, #000 57%, rgba(0,0,0,.7) 76%, transparent 100%);
+}
+.heroRight {
+  right: 0;
+  width: 32%;
+  object-position: right center;
+  -webkit-mask-image: linear-gradient(to left, #000 0%, #000 57%, rgba(0,0,0,.7) 76%, transparent 100%);
+  mask-image: linear-gradient(to left, #000 0%, #000 57%, rgba(0,0,0,.7) 76%, transparent 100%);
+}
+.heroCopy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 55%;
+  max-width: 670px;
+  min-width: 0;
+  margin-left: 9%;
+  padding: 19px 10px 24px;
+  text-align: center;
+}
+.ornament { color: var(--festival-gold); font-size: 22px; letter-spacing: 6px; line-height: 1; }
+.heroCopy h1 { margin: 8px 0 10px; color: #fff; font: 400 clamp(30px, 3.75vw, 50px)/1.1 Georgia, serif; letter-spacing: -.5px; white-space: nowrap; text-shadow: 0 2px 7px rgba(34,0,24,.25); }
+.heroCopy h1 span { font-size: .7em; font-weight: 400; }
+.heroCopy p { display: inline-block; max-width: 100%; margin: 0; padding: 5px 24px; border-radius: 28px; background: linear-gradient(90deg, #ffe7a3, #fff0bf); color: #321323; font: italic clamp(13px, 1.6vw, 19px)/1.2 Georgia, serif; }
+
+/* Hero facts — overlaps the lower edge of banner */
+.heroFacts { position: relative; z-index: 2; display: flex; align-items: stretch; width: 80%; margin: -28px auto 18px; padding: 12px 10px; border: 1px solid var(--festival-outline); border-radius: 15px; background: #fffdfa; box-shadow: var(--shadow-md); }
+.fact { display: flex; flex: 1 1 0; align-items: center; justify-content: center; gap: 11px; min-width: 0; padding: 1px 14px; border-right: 1px solid #ddb3b8; }
+.fact:last-child { border-right: 0; }
+.fact svg { width: 29px; height: 29px; flex-shrink: 0; color: var(--festival-berry); }
+.fact > div { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.fact b { color: var(--festival-berry); font-size: 13px; line-height: 1.25; }
+.pending { display: block; color: var(--color-text-muted); font-size: 12px; line-height: 1.35; }
+
+/* One in-page navigation only */
+.tabs { display: flex; align-items: center; gap: 0; width: 100%; margin: 0 0 15px; padding: 5px 8px; border: 1px solid var(--festival-outline); border-radius: 16px; background: #fffaf6; overflow-x: auto; scrollbar-width: none; scroll-margin-top: 18px; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { position: relative; display: flex; align-items: center; justify-content: center; flex: 1 0 auto; gap: 8px; min-width: 0; padding: 11px 9px; border: 0; border-radius: 11px; background: transparent; color: var(--color-primary); font: 600 12px/1.3 inherit; font-family: inherit; white-space: nowrap; cursor: pointer; }
+.tab svg { flex-shrink: 0; }
+.tab:not(:last-child):not(.activeTab)::after { content: ""; position: absolute; right: 0; top: 24%; height: 52%; border-right: 1px solid #e8bdc9; }
+.tab:hover { background: #f7e8ef; }
+.activeTab, .activeTab:hover { color: #fff; background: linear-gradient(110deg, var(--festival-berry), var(--color-primary)); }
+.tab:focus-visible, .exploreCard:focus-visible, .cityButton:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+/* OVERVIEW desktop: accurate two-panel proportions */
+.overview { display: flex; flex-direction: column; }
+.overviewRow { display: flex; align-items: stretch; gap: 14px; width: 100%; }
+.about, .timings { position: relative; min-width: 0; padding: 14px 15px; border: 1px solid var(--festival-outline); border-radius: 18px; background: #fffdfa; }
+.about { flex: 0 1 46%; overflow: hidden; }
+.timings { flex: 1 1 54%; }
+.heading { display: flex; align-items: center; gap: 10px; color: var(--festival-berry); }
+.heading svg { width: 29px; height: 29px; flex-shrink: 0; }
+.heading h2 { margin: 0; color: var(--festival-berry); font: 700 clamp(19px, 1.8vw, 25px)/1.2 Georgia, serif; }
+
+/* About illustration: the left image from the banner doubles as a DIWA backdrop.
+   It replaces the empty star. Keep decorative art away from text. */
+.aboutCopy { position: relative; z-index: 1; max-width: 80%; margin: 12px 0 11px; font-size: 13px; line-height: 1.56; }
+.aboutDecoration { position: absolute; z-index: 0; right: -15px; top: 43px; bottom: 85px; display: block; width: 34%; font-size: 0; opacity: .86; background: url('/festival-assets/diwali-about-art.png') center center / contain no-repeat; pointer-events: none; }
+.significance { position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; min-height: 91px; padding: 10px 14px; border-radius: 14px; background: linear-gradient(105deg, #fff0ce, #fff7e7); }
+.significanceImage { display: block; flex: 0 0 73px; height: 70px; font-size: 0; background: url('/festival-assets/diwali-significance-art.png') center / contain no-repeat; }
+.significance > div { min-width: 0; }
+.significance h3 { margin: 0 0 3px; color: var(--festival-berry); font-size: 16px; line-height: 1.1; }
+.significance p { margin: 0; font-size: 11px; line-height: 1.42; }
+
+/* CITY-WISE TIMINGS — fine separators rather than separate dashboard cards */
+.timingHeader { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.cityControl { position: relative; display: flex; align-items: center; flex-shrink: 0; gap: 9px; }
+.cityLabel { font-size: 12px; white-space: nowrap; }
+.cityButton { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-width: 122px; padding: 8px 12px; border: 1px solid var(--festival-outline); border-radius: 24px; background: var(--color-surface); color: var(--color-primary); font: 12px inherit; font-family: inherit; cursor: pointer; }
+.cityPopup { position: absolute; z-index: 30; right: 0; top: calc(100% + 8px); width: min(320px, 85vw); max-height: 360px; overflow-y: auto; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-surface); box-shadow: var(--shadow-md); }
+.timingStrip { display: flex; align-items: stretch; gap: 0; min-height: 103px; padding: 5px; border: 1px solid #f1e5da; border-radius: 15px; background: #fffaf6; }
+.timingCell { display: flex; flex: 1 1 0; flex-direction: column; align-items: center; justify-content: center; gap: 5px; min-width: 0; padding: 8px 4px; text-align: center; border-right: 1px solid #dba2ba; }
+.timingCell:nth-last-child(2), .timingCell:last-child { border-right: 0; }
+.timingCell svg { width: 25px; height: 25px; flex-shrink: 0; color: var(--color-accent-dark); }
+.timingCell b { color: var(--color-text-primary); font-size: 11px; line-height: 1.2; overflow-wrap: anywhere; }
+.timingCell .pending { font-size: 10px; }
+.highlightTiming { flex: 1.18 1 0; padding: 8px 5px; border: 0; border-radius: 13px; background: linear-gradient(145deg, #960055, #630043); }
+.highlightTiming svg { color: var(--festival-gold); }
+.highlightTiming b { color: #fff; }
+.highlightTiming .pending { color: #ffe5b0; }
+.timingNote { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 9px; padding: 9px 12px; border-radius: 24px; background: #fff0d4; color: #732e16; text-align: center; font-size: 11px; line-height: 1.4; }
+.timingNote svg { flex-shrink: 0; color: #832a17; }
+
+/* EXPLORE MORE: one elegant outlined section, six image cards per wide row */
+.explore { margin-top: 23px; padding: 0 12px 13px; border: 1px solid #f2e1d4; border-radius: 18px; background: #fffaf6; }
+.exploreHeading { display: flex; align-items: center; justify-content: center; gap: 10px; margin: -16px 0 15px; color: var(--festival-berry); text-align: center; }
+.exploreHeading h2 { margin: 0; padding: 0 6px; background: var(--color-bg); color: var(--festival-berry); font: 700 clamp(20px, 1.9vw, 25px)/1.3 Georgia, serif; }
+.exploreHeading svg { width: 34px; height: 34px; background: var(--color-bg); }
+.exploreHeading > span { color: var(--color-accent-dark); font-size: 27px; }
+.exploreCards { display: flex; align-items: stretch; flex-wrap: wrap; gap: 10px; }
+.exploreCard { position: relative; display: flex; align-items: center; flex: 1 1 calc((100% - 50px)/6); gap: 9px; min-width: 0; min-height: 101px; padding: 9px; border: 1px solid #edd8ca; border-radius: 15px; background: #fffdfb; font-family: inherit; text-align: left; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+.exploreCard:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.exploreCard img { display: block; flex: 0 0 74px; width: 74px; height: 79px; border-radius: 10px; object-fit: cover; background: var(--color-primary); }
+.exploreCard > div { display: flex; flex: 1 1 auto; flex-direction: column; gap: 5px; min-width: 0; padding-bottom: 15px; }
+.exploreCard h3 { margin: 0; color: var(--festival-berry); font-size: 12px; line-height: 1.24; }
+.exploreCard p { margin: 0; color: var(--color-text-primary); font-size: 10px; line-height: 1.38; }
+.cardArrow { position: absolute; right: 8px; bottom: 7px; color: var(--festival-berry); }
+
+/* Related products — teaser only until product integration */
+.products { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; padding: 10px 15px; border: 1px solid var(--festival-outline); border-radius: 16px; background: #fff9f3; }
+.products > div { display: flex; align-items: center; gap: 12px; color: var(--festival-berry); }
+.products > div svg { width: 29px; height: 29px; flex-shrink: 0; }
+.products h2 { margin: 0; font: 700 clamp(18px, 1.8vw, 23px)/1.2 Georgia, serif; }
+.products > a { display: flex; align-items: center; justify-content: center; gap: 9px; padding: 10px 21px; border-radius: 25px; background: linear-gradient(110deg, var(--festival-berry), var(--color-primary)); color: #fff; font-size: 12px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.products > a:hover { background: var(--color-primary-dark); }
+
+/* Other tabs intentionally remain Step-1 placeholders */
+.tabContent { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; min-height: 245px; padding: 24px; border: 1px solid var(--festival-outline); border-radius: 17px; background: var(--color-surface); }
+.tabContent > p { margin: 0; font-size: 14px; line-height: 1.6; }
+.notice { width: 100%; padding: 13px; border-radius: 10px; background: var(--color-accent-light); }
+.backButton { padding: 10px 18px; border: 0; border-radius: 24px; background: var(--color-primary); color: #fff; font: inherit; font-size: 13px; cursor: pointer; }
+.notFound { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 13px; min-height: 320px; padding: 35px 20px; text-align: center; }
+.notFound p { margin: 0; }
+.notFound a { color: var(--color-primary); }
+
+@media (max-width: 1150px) {
+  .overviewRow { flex-direction: column; }
+  .about, .timings { flex: 1 1 auto; width: 100%; }
+  .aboutCopy { max-width: 83%; }
+  .aboutDecoration { width: 24%; }
+  .exploreCard { flex: 1 1 calc((100% - 20px)/3); }
+  .heroFacts { width: 89%; }
+}
+@media (max-width: 800px) {
+  .hero { min-height: 182px; }
+  .heroLeft { width: 51%; }
+  .heroRight { width: 38%; }
+  .heroCopy { margin-left: 4%; width: 75%; }
+  .heroCopy h1 { font-size: clamp(27px, 4.5vw, 38px); white-space: normal; }
+  .heroFacts { width: 95%; flex-wrap: wrap; margin-top: -24px; }
+  .fact { flex: 1 1 50%; justify-content: flex-start; min-height: 56px; padding: 8px 11px; }
+  .fact:nth-child(2) { border-right: 0; }
+  .fact:nth-child(-n+2) { border-bottom: 1px solid #ddb3b8; }
+  .fact svg { width: 24px; height: 24px; }
+  .fact b { font-size: 11px; }
+  .fact .pending { font-size: 10px; }
+  .exploreCard { flex: 1 1 calc(50% - 5px); }
+}
+@media (max-width: 600px) {
+  .container { width: 94%; }
+  .breadcrumbs { gap: 6px; font-size: 11px; }
+  .hero { min-height: 181px; border-radius: 13px; }
+  .heroLeft { width: 58%; opacity: .72; }
+  .heroRight { width: 43%; opacity: .65; }
+  .heroCopy { margin-left: 0; width: 95%; padding: 24px 8px 35px; }
+  .heroCopy h1 { font-size: clamp(25px, 7vw, 33px); text-shadow: 0 2px 8px #280026; }
+  .heroCopy h1 span { display: block; font-size: .65em; }
+  .heroCopy p { font-size: 13px; }
+  .ornament { font-size: 18px; }
+  .heroFacts { width: 97%; margin-top: -29px; padding: 9px 6px; }
+  .fact { gap: 7px; padding: 9px 6px; }
+  .tabs { padding: 5px; }
+  .tab { padding: 10px 12px; }
+  .about, .timings { padding: 13px; }
+  .heading h2 { font-size: 20px; }
+  .aboutCopy { max-width: 100%; padding-right: 15%; }
+  .aboutDecoration { top: 57px; bottom: 94px; width: 27%; opacity: .45; }
+  .significance { gap: 9px; padding: 10px; }
+  .significanceImage { flex-basis: 58px; height: 60px; }
+  .significance h3 { font-size: 15px; }
+  .timingHeader { flex-wrap: wrap; }
+  .cityControl { margin-left: auto; }
+  .timingStrip { flex-wrap: wrap; gap: 6px; padding: 7px; }
+  .timingCell { flex: 1 1 calc(50% - 6px); min-height: 82px; border: 1px solid var(--festival-outline); border-radius: 11px; }
+  .highlightTiming { flex: 1 1 100%; min-height: 85px; border: 0; }
+  .explore { padding: 0 9px 11px; }
+  .exploreHeading > span { display: none; }
+  .exploreHeading h2 { font-size: 19px; }
+  .exploreCard img { flex-basis: 62px; width: 62px; height: 68px; }
+  .products { flex-wrap: wrap; }
+  .products > a { margin-left: auto; }
+}
+@media (max-width: 410px) {
+  .heroCopy h1 { font-size: 26px; }
+  .aboutCopy { padding-right: 0; }
+  .aboutDecoration { opacity: .15; }
+  .exploreCard { flex: 1 1 100%; }
+  .exploreCard img { flex-basis: 67px; width: 67px; height: 70px; }
+  .products { flex-direction: column; align-items: stretch; }
+  .products > a { width: 100%; }
+}
+

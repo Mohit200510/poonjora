@@ -52,7 +52,7 @@ function MidBar() {
 
                 <div className={styles.midBarNav}>
 
-                    <Location ></Location>
+                    <Location/>
                     <WishList className={styles.midBarNavItems}></WishList>
                     <div className={styles.midBarNavCartIconDiv}  onClick={OpenCart}>
                     <ShopingCart className={styles.midBarNavItems}></ShopingCart>

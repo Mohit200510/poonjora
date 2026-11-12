@@ -4,6 +4,7 @@ import Container from '../common/Container';
 import TopBar from "./TopBar";
 import MidBar from "./MidBar"
 import BottomBar from './BottomBar';
+// import Location from './Location';
 
 function Header() {
   return (
@@ -17,6 +18,7 @@ function Header() {
         <MidBar></MidBar>
         </div>
         <BottomBar></BottomBar>
+        {/* <Location/> */}
        
     
 

@@ -1,0 +1,569 @@
+/* POONJORA — Festival details tabs. Flexbox only; no CSS Grid. */
+.tabRoot {
+  --tab-purple: var(--color-primary, #36014f);
+  --tab-border: var(--color-border, #eedfd5);
+  --tab-surface: var(--color-surface, #fff);
+  --tab-ink: var(--color-text-primary, #27182c);
+  color: var(--tab-ink);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 3px 0 28px;
+}
+.tabIntro { display: flex; align-items: center; gap: 14px; padding: 20px 22px; background: #fff8f0; border: 1px solid var(--tab-border); border-radius: 17px; }
+.introIcon { flex: 0 0 50px; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 14px; background: #f3e7ef; color: var(--tab-purple); }
+.tabIntro h2 { margin: 0 0 6px; color: var(--tab-purple); font: 600 clamp(21px, 2.2vw, 27px)/1.25 Georgia, serif; }
+.tabIntro p { margin: 0; color: var(--color-text-secondary, #625767); font-size: 13px; }
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.twoColumns { display: flex; align-items: stretch; flex-wrap: wrap; gap: 16px; }
+.twoColumns > .panel { flex: 1 1 calc(50% - 8px); min-width: min(100%, 320px); }
+.panel { display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: 20px 22px; border: 1px solid var(--tab-border); border-radius: 17px; background: var(--tab-surface); }
+.panelTitle { display: flex; align-items: center; gap: 10px; color: var(--tab-purple); }
+.panelTitle h3 { margin: 0; font: 600 21px/1.3 Georgia, serif; }
+.emptyState { display: flex; align-items: flex-start; gap: 10px; padding: 17px; border: 1px dashed #e6cfc2; border-radius: 12px; background: #fffaf5; color: var(--color-text-secondary, #665d69); }
+.emptyState svg { flex-shrink: 0; color: var(--tab-purple); margin-top: 1px; }
+.emptyState p { margin: 0; font-size: 13px; line-height: 1.55; }
+.bodyCopy, .storyParagraph { margin: 0; font-size: 14px; line-height: 1.75; }
+.textList { margin: 0; padding-left: 22px; font-size: 14px; line-height: 1.85; }
+.stepList { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.step { display: flex; align-items: flex-start; gap: 13px; padding: 12px 0; border-bottom: 1px solid var(--tab-border); }
+.step:last-child { border-bottom: 0; }
+.stepNumber { display: flex; align-items: center; justify-content: center; flex: 0 0 35px; width: 35px; height: 35px; border-radius: 50%; background: #f5e8f0; color: var(--tab-purple); font-weight: 700; }
+.step h4 { margin: 0 0 5px; color: var(--tab-purple); font-size: 15px; }
+.step p { margin: 0; font-size: 13px; line-height: 1.65; }
+.itemList { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.itemList li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; background: #fffaf5; border-radius: 9px; font-size: 13px; }
+.itemList small { color: var(--color-text-muted, #756778); }
+.smallNote { display: flex; align-items: flex-start; gap: 10px; padding: 13px 16px; background: #fff1d9; border-radius: 13px; font-size: 12px; line-height: 1.6; }
+.smallNote svg { flex-shrink: 0; color: var(--tab-purple); }
+.cityRow { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.cityRow > span { font-size: 13px; font-weight: 600; }
+.cityControl { position: relative; }
+.cityButton { display: flex; align-items: center; gap: 10px; padding: 9px 13px; border: 1px solid var(--tab-border); border-radius: 24px; background: #fff; color: var(--tab-purple); font: inherit; font-size: 12px; cursor: pointer; }
+.cityPopup { position: absolute; z-index: 30; top: calc(100% + 8px); right: 0; width: min(330px, 85vw); max-height: 360px; overflow-y: auto; background: #fff; border-radius: 12px; box-shadow: var(--shadow-md, 0 10px 30px #0002); }
+.timesList { display: flex; flex-wrap: wrap; gap: 10px; }
+.timeRow { display: flex; flex: 1 1 calc(50% - 5px); min-width: min(100%, 240px); align-items: center; justify-content: space-between; gap: 15px; padding: 15px; border: 1px solid var(--tab-border); border-radius: 11px; background: #fffaf6; }
+.timeLabel { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+.timeRow strong { color: var(--color-text-muted, #766e79); font-size: 12px; text-align: right; }
+.importantTime { background: var(--tab-purple); color: #fff; }
+.importantTime strong { color: #ffedbb; }
+.segment { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; width: fit-content; padding: 5px; border: 1px solid var(--tab-border); border-radius: 24px; background: #fffaf5; }
+.segment button { min-width: 110px; padding: 9px 14px; border: 0; border-radius: 20px; background: transparent; color: var(--tab-purple); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.segment button.selectedSegment { background: var(--tab-purple); color: #fff; }
+.recitation { display: flex; flex-direction: column; gap: 10px; padding: 16px; border: 1px solid var(--tab-border); border-radius: 12px; }
+.recitation h4 { margin: 0; color: var(--tab-purple); }
+.recitation p { margin: 0; line-height: 1.75; }
+.devanagari {
+  white-space: pre-line;
+  font-size: 17px;
+  line-height: 2;
+}
+.faqList { display: flex; flex-direction: column; gap: 10px; }
+.faqItem { border: 1px solid var(--tab-border); border-radius: 11px; overflow: hidden; }
+.faqItem summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; cursor: pointer; list-style: none; color: var(--tab-purple); font-size: 14px; font-weight: 600; }
+.faqItem summary::-webkit-details-marker { display: none; }
+.faqItem[open] summary svg { transform: rotate(180deg); }
+.faqItem > p { padding: 0 16px 16px; margin: 0; font-size: 13px; line-height: 1.7; }
+button:focus-visible, summary:focus-visible { outline: 2px solid var(--tab-purple); outline-offset: 3px; }
+@media (max-width: 700px) {
+  .tabRoot { gap: 11px; }
+  .tabIntro { padding: 15px; gap: 10px; }
+  .introIcon { flex-basis: 42px; width: 42px; height: 42px; }
+  .tabIntro h2 { font-size: 20px; }
+  .panel { padding: 15px; }
+  .panelTitle h3 { font-size: 19px; }
+  .twoColumns { flex-direction: column; gap: 11px; }
+  .twoColumns > .panel { min-width: 0; flex: 1 1 auto; }
+  .timeRow { flex: 1 1 100%; min-width: 0; }
+  .cityControl { max-width: 100%; }
+  .cityPopup { right: 0; }
+}
+
+/* POONJORA — PREMIUM PUJA SAMAGRI */
+/* No JSX changes required */
+
+/* Cards */
+.twoColumns {
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.twoColumns > .panel {
+  position: relative;
+  overflow: hidden;
+  flex: 1 1 calc(50% - 9px);
+  min-width: min(100%, 320px);
+  padding: 26px 24px 24px;
+  border: 1px solid #e9dedc;
+  border-radius: 18px;
+  background: linear-gradient(
+    160deg,
+    #fffaf6 0%,
+    #ffffff 35%
+  );
+  box-shadow: 0 8px 28px rgba(54, 1, 79, 0.055);
+}
+
+/* Thin signature accent */
+.twoColumns > .panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 24px;
+  width: 76px;
+  height: 3px;
+  border-radius: 0 0 6px 6px;
+  background: #36014f;
+}
+
+/* Headings */
+.twoColumns .panelTitle {
+  gap: 11px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #eee5e2;
+}
+
+.twoColumns .panelTitle svg {
+  width: 21px;
+  height: 21px;
+  color: #36014f;
+}
+
+.twoColumns .panelTitle h3 {
+  color: #36014f;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Items */
+.itemList {
+  gap: 8px;
+}
+
+.itemList li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 47px;
+  padding: 11px 14px 11px 29px;
+  border: 1px solid #f1e9e3;
+  border-radius: 10px;
+  background: #fffdfb;
+  color: #302431;
+  font-size: 13px;
+  line-height: 1.5;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Small purple dot */
+.itemList li::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #9d75aa;
+  transform: translateY(-50%);
+}
+
+.itemList li:hover {
+  background: #fcf7fc;
+  border-color: #e5d5e9;
+  box-shadow: 0 2px 8px rgba(54, 1, 79, 0.035);
+}
+
+.itemList li span {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemList li small {
+  flex-shrink: 0;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #f7f0f7;
+  color: #68476f;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .twoColumns {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .twoColumns > .panel {
+    width: 100%;
+    min-width: 0;
+    padding: 21px 15px 17px;
+  }
+
+  .twoColumns > .panel::before {
+    left: 16px;
+  }
+
+  .twoColumns .panelTitle {
+    padding-bottom: 14px;
+  }
+
+  .twoColumns .panelTitle h3 {
+    font-size: 19px;
+  }
+
+  .itemList li {
+    min-height: 44px;
+    padding: 10px 10px 10px 25px;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .itemList li::before {
+    left: 11px;
+  }
+
+  .itemList li small {
+    padding: 4px 6px;
+    font-size: 10px;
+    white-space: normal;
+    text-align: right;
+  }
+}
+
+
+
+/* Katha — Main section heading */
+.kathaTraditions {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Each tradition */
+.kathaTradition {
+  position: relative;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee5df;
+}
+
+.kathaTradition:first-child {
+  padding-top: 6px;
+}
+
+.kathaTradition:last-child {
+  padding-bottom: 4px;
+  border-bottom: none;
+}
+
+/* Smaller tradition headings */
+.kathaTradition h4 {
+  position: relative;
+  width: fit-content;
+  margin: 0 0 15px;
+  padding-bottom: 9px;
+
+  color: #453344;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+/* Elegant short underline */
+.kathaTradition h4::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 42px;
+  height: 2px;
+  border-radius: 4px;
+  background: #b48bba;
+}
+
+/* Description */
+.kathaTradition p {
+  margin: 0;
+  color: #665c65;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .kathaTradition {
+    padding: 16px 0;
+  }
+
+  .kathaTradition h4 {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .kathaTradition p {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+}/* Main heading bottom border */
+.kathaTraditions {
+  margin-top: 4px;
+}
+
+/* Main panel heading */
+.panel:has(.kathaTraditions) .panelTitle {
+  padding-bottom: 16px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e9ddd9;
+}
+
+/* Small purple accent on the border */
+.panel:has(.kathaTraditions) .panelTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 75px;
+  height: 3px;
+  border-radius: 3px;
+  background: #36014f;
+}
+
+.panel:has(.kathaTraditions) .panelTitle {
+  position: relative;
+}
+.kathaTradition {
+  padding: 15px 0;
+}
+
+.kathaTradition h4 {
+  margin-bottom: 12px;
+}
+
+.kathaTradition p {
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .kathaTradition {
+    padding: 13px 0;
+  }
+}
+
+
+
+/* Compact Mantra Cards */
+
+.mantraGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.compactMantra {
+  flex: 1 1 calc(50% - 9px);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid #e4c88e;
+  border-radius: 14px;
+  background: #fffcf6;
+}
+
+/* Heading at top-left */
+
+.mantraHeading {
+  align-self: flex-start;
+  margin: 0;
+  color: #36014f;
+  font-size: 17px;
+  font-weight: 650;
+  text-align: left;
+}
+
+/* Om + Mantra Content */
+
+.mantraContent {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+.mantraOm {
+  flex: 0 0 65px;
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddb978;
+  border-radius: 50%;
+  background: #fff5e5;
+  color: #36014f;
+  font-size: 34px;
+}
+
+.mantraBody {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.mantraVerse {
+  margin: 0;
+  color: #36014f;
+  font-family: "Noto Sans Devanagari", sans-serif;
+  font-size: clamp(20px, 2.1vw, 27px);
+  font-weight: 600;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.mantraLine {
+  width: 80%;
+  height: 1px;
+  margin: 12px auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #d8ae69,
+    transparent
+  );
+}
+
+.mantraDescription {
+  margin: 0;
+  color: #735c4d;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.mantraCopy {
+  margin-top: 14px;
+  padding: 8px 17px;
+  border: 1px solid #36014f;
+  border-radius: 22px;
+  background: transparent;
+  color: #36014f;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.mantraCopy:hover {
+  background: #36014f;
+  color: white;
+}
+
+/* Aarti */
+
+.aartiList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.devanagari {
+  white-space: pre-line;
+  line-height: 2;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .compactMantra {
+    flex-basis: 100%;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .mantraGrid {
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  .compactMantra {
+    gap: 12px;
+    padding: 16px 12px;
+  }
+
+  .mantraHeading {
+    font-size: 15px;
+  }
+
+  .mantraContent {
+    gap: 12px;
+  }
+
+  .mantraOm {
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    font-size: 25px;
+  }
+
+  .mantraVerse {
+    font-size: 20px;
+  }
+
+  .mantraDescription {
+    font-size: 12px;
+  }
+
+  .mantraCopy {
+    margin-top: 10px;
+  }
+}
+
+.mantraVerse {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0;
+  padding: 9px 18px;
+
+  background: linear-gradient(
+    120deg,
+    #f9f0fb 0%,
+    #fff8ef 55%,
+    #f9f0fb 100%
+  );
+
+  border: 1px solid #ead9e7;
+  border-radius: 9px;
+
+  box-shadow: 0 2px 8px rgba(54, 1, 79, 0.035);
+
+  color: #36014f;
+  font-family: "Noto Sans Devanagari", sans-serif;
+  font-size: clamp(20px, 2.1vw, 27px);
+  font-weight: 600;
+  line-height: 1.8;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .mantraVerse {
+    padding: 8px 10px;
+    font-size: 20px;
+  }
+}
