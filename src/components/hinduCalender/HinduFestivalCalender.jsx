@@ -214,6 +214,9 @@ function formatTithiTiming(value) {
 export default function HinduFestivalCalendar() {
 
   const currentIST =getCurrentISTMonthYear();
+  
+  const minYear = currentIST.year;
+const maxYear = currentIST.year + 1;
 
   const [selectedYear, setSelectedYear] =useState(currentIST.year);
 
@@ -237,40 +240,25 @@ export default function HinduFestivalCalendar() {
   // ====================================================
 
   const handlePreviousMonth = () => {
+    if (selectedYear === minYear && selectedMonth === 0) return;
+
     if (selectedMonth === 0) {
-      if (selectedYear > 2026) {
-        setSelectedMonth(11);
-
-        setSelectedYear(
-          (prev) => prev - 1
-        );
-      }
-
-      return;
+      setSelectedYear((prev) => prev - 1);
+      setSelectedMonth(11);
+    } else {
+      setSelectedMonth((prev) => prev - 1);
     }
-
-    setSelectedMonth(
-      (prev) => prev - 1
-    );
   };
 
-
   const handleNextMonth = () => {
+    if (selectedYear === maxYear && selectedMonth === 11) return;
+
     if (selectedMonth === 11) {
-      if (selectedYear < 2035) {
-        setSelectedMonth(0);
-
-        setSelectedYear(
-          (prev) => prev + 1
-        );
-      }
-
-      return;
+      setSelectedYear((prev) => prev + 1);
+      setSelectedMonth(0);
+    } else {
+      setSelectedMonth((prev) => prev + 1);
     }
-
-    setSelectedMonth(
-      (prev) => prev + 1
-    );
   };
 
 
@@ -379,6 +367,7 @@ export default function HinduFestivalCalendar() {
 
        if (!data.cached) {
          setFestivals([]);
+         setCacheMissing(true);
          return;
        }
 
@@ -386,6 +375,7 @@ export default function HinduFestivalCalendar() {
        // UPDATE FESTIVALS
        // ==========================================
 
+       setCacheMissing(false);
        setFestivals(
          Array.isArray(data.festivals)
            ? data.festivals
@@ -680,7 +670,7 @@ const filteredFestivals = festivals
                 }
 
                 disabled={
-                  selectedYear === 2026 &&
+                  selectedYear === minYear &&
                   selectedMonth === 0
                 }
 
@@ -730,7 +720,7 @@ const filteredFestivals = festivals
                 }
 
                 disabled={
-                  selectedYear === 2035 &&
+                  selectedYear === maxYear &&
                   selectedMonth === 11
                 }
 

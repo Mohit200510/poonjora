@@ -1,328 +1,269 @@
-import React, {
-  useEffect,
-  useState
-} from "react";
 
+import React, { useEffect, useId, useRef, useState } from "react";
 import { supabase } from "../../supabaseClient";
-
 import {
   MapPin,
   Search,
-  LoaderCircle
-} 
-from "lucide-react";
-
+  LoaderCircle,
+  ChevronDown,
+  Check
+} from "lucide-react";
 import styles from "./CitySelector.module.css";
-
-
 
 export default function CitySelector({
   onCitySelect,
-  selectedCity
+  selectedCity,
+  compact = false
 }) {
+  const selectedText = selectedCity
+    ? [selectedCity.city, selectedCity.state]
+        .filter(Boolean)
+        .join(", ")
+    : "";
 
-  const [query, setQuery] =
-    useState("");
+  const [query, setQuery] = useState(selectedText);
+  const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
 
-  const [cities, setCities] =
-    useState([]);
+  const wrapperRef = useRef(null);
+  const inputRef = useRef(null);
+  const resultsId = useId();
 
-  const [loading, setLoading] =
-    useState(false);
-
-  const [open, setOpen] =
-    useState(false);
-
-
-  // ====================================================
-  // KEEP INPUT SYNCED WITH SHARED SELECTED CITY
-  // ====================================================
-
+  // Synchronize the input with the shared city.
   useEffect(() => {
-
-    if (!selectedCity) {
-      return;
-    }
-
-    setQuery(
-      `${selectedCity.city}, ${selectedCity.state}`
-    );
-
+    setQuery(selectedText);
     setOpen(false);
     setCities([]);
+  }, [selectedText]);
 
-  }, [
-    selectedCity?.id,
-    selectedCity?.city,
-    selectedCity?.state
-  ]);
-
-
-  // ====================================================
-  // SEARCH CITIES
-  // ====================================================
-
+  // Close the list when clicking outside.
   useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target)
+      ) {
+        setOpen(false);
+        setQuery(selectedText);
+      }
+    };
+
+    document.addEventListener("pointerdown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener(
+        "pointerdown",
+        handleOutsideClick
+      );
+    };
+  }, [selectedText]);
+
+  // Load available cities or search by city/state.
+  useEffect(() => {
+    if (!open) {
+      setLoading(false);
+      return;
+    }
 
     const search = query.trim();
 
-
-    if (search.length < 2) {
-
-      setCities([]);
-      setLoading(false);
-
-      return;
-    }
-
-
-    // If query is simply showing the currently
-    // selected city, don't search Supabase again.
-
-    const selectedCityText =
-      selectedCity
-        ? `${selectedCity.city}, ${selectedCity.state}`
-        : "";
-
-
-    if (search === selectedCityText) {
-
-      setCities([]);
-      setLoading(false);
-
-      return;
-    }
-
-
     let cancelled = false;
 
-
-    const timer = setTimeout(
-      async () => {
-
-        setLoading(true);
-
-
-        const {
-          data,
-          error
-        } =
-          await supabase
-            .from("indian_cities")
-            .select(
-              "id, city, state, latitude, longitude"
-            )
-            .ilike(
-              "city",
-              `${search}%`
-            )
-            .order("city")
-            .limit(10);
-
-
-        if (cancelled) {
-          return;
-        }
-
-
-        if (error) {
-
-          console.error(
-            "City search failed:",
-            error
-          );
-
-          setCities([]);
-
-        } else {
-
-          setCities(
-            data || []
-          );
-
-        }
-
-
-        setLoading(false);
-
-      },
-      300
-    );
-
-
-    return () => {
-
-      cancelled = true;
-
-      clearTimeout(timer);
-
-    };
-
-  }, [
-    query,
-    selectedCity?.id,
-    selectedCity?.city,
-    selectedCity?.state
-  ]);
-
-
-  // ====================================================
-  // SELECT CITY
-  // ====================================================
-
-  const handleSelect = (city) => {
-
-    setQuery(
-      `${city.city}, ${city.state}`
-    );
-
-    setOpen(false);
-
+    setLoading(true);
+    setError(false);
     setCities([]);
 
-    onCitySelect?.(city);
+    const timer = setTimeout(async () => {
+      let request = supabase
+        .from("indian_cities")
+        .select("id, city, state, latitude, longitude");
 
-  };
+      if (search) {
+        const safeSearch = search
+          .replace(/[(),.%*\\]/g, "")
+          .trim();
 
+        if (safeSearch) {
+          request = request.or(
+            `city.ilike.${safeSearch}%,state.ilike.${safeSearch}%`
+          );
+        }
+      }
 
-  // ====================================================
-  // INPUT CHANGE
-  // ====================================================
+      const { data, error: fetchError } = await request
+        .order("city")
+        .order("state")
+        .limit(15);
 
-  const handleInputChange = (e) => {
+      if (cancelled) return;
 
-    setQuery(
-      e.target.value
-    );
+      if (fetchError) {
+        console.error("City search failed:", fetchError);
+        setError(true);
+        setCities([]);
+      } else {
+        setCities(data || []);
+      }
 
+      setLoading(false);
+    }, search ? 300 : 0);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [query, open]);
+
+  const handleOpen = () => {
+    setQuery("");
     setOpen(true);
-
   };
 
+  const handleSelect = (city) => {
+  const cityName = [city.city, city.state]
+    .filter(Boolean)
+    .join(", ");
 
-  // ====================================================
-  // UI
-  // ====================================================
+  setQuery(cityName);
+  setOpen(false);
+  setCities([]);
+
+  // Update shared selected city
+  onCitySelect?.(city);
+
+  // Remove focus from search field
+  inputRef.current?.blur();
+};
+
+  const handleToggle = () => {
+    if (open) {
+      setOpen(false);
+      setQuery(selectedText);
+    } else {
+      handleOpen();
+      inputRef.current?.focus();
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      setOpen(false);
+      setQuery(selectedText);
+      inputRef.current?.blur();
+    }
+  };
 
   return (
-
-    <div className={styles.wrapper}>
-
+    <div
+      ref={wrapperRef}
+      className={`${styles.wrapper} ${
+        compact ? styles.compact : ""
+      }`}
+    >
       <div className={styles.searchBox}>
-
-        <Search size={18} />
-
+        {compact ? (
+          <MapPin size={16} aria-hidden="true" />
+        ) : (
+          <Search size={18} aria-hidden="true" />
+        )}
 
         <input
+          ref={inputRef}
           type="text"
-          placeholder="Search your city..."
           value={query}
-
-          onChange={
-            handleInputChange
+          placeholder={
+            selectedText || "Search city or state"
           }
-
           onFocus={() => {
-
-            // Only open dropdown when the user
-            // has entered something different
-            // from the selected city.
-
-            const selectedCityText =
-              selectedCity
-                ? `${selectedCity.city}, ${selectedCity.state}`
-                : "";
-
-
-            if (
-              query.trim() !==
-              selectedCityText
-            ) {
-
-              setOpen(true);
-
-            }
-
+            if (!open) handleOpen();
           }}
+          onChange={(event) => {
+            setQuery(event.target.value);
+            setOpen(true);
+          }}
+          onKeyDown={handleKeyDown}
+          aria-label="Search city or state"
+          aria-expanded={open}
+          aria-controls={resultsId}
+          aria-autocomplete="list"
+          autoComplete="off"
         />
 
-
         {loading && (
-
           <LoaderCircle
             size={17}
-            className={
-              styles.spinner
-            }
+            className={styles.spinner}
+            aria-label="Loading cities"
           />
-
         )}
 
+        {compact && (
+          <button
+            type="button"
+            className={styles.dropdownToggle}
+            aria-label="Show available cities"
+            aria-expanded={open}
+            onMouseDown={(event) => event.preventDefault()}
+            onClick={handleToggle}
+          >
+            <ChevronDown
+              size={16}
+              className={open ? styles.rotated : ""}
+            />
+          </button>
+        )}
       </div>
 
+      {open && (
+        <div
+          id={resultsId}
+          className={styles.dropdown}
+        >
+          {!query.trim() && (
+            <p className={styles.listHeading}>
+              Available Cities
+            </p>
+          )}
 
-      {/* ============================================= */}
-      {/* SEARCH RESULTS                                */}
-      {/* ============================================= */}
+          {cities.map((city) => (
+            <button
+              type="button"
+              key={city.id}
+              className={styles.cityOption}
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => handleSelect(city)}
+            >
+              <MapPin size={16} aria-hidden="true" />
 
-      {open &&
-        query.trim().length >= 2 && (
+              <span className={styles.cityDetails}>
+                <strong>{city.city}</strong>
+                <small>{city.state}</small>
+              </span>
 
-          <div className={styles.dropdown}>
-
-
-            {cities.map(
-              (city) => (
-
-                <button
-                  type="button"
-                  key={city.id}
-
-                  className={
-                    styles.cityOption
-                  }
-
-                  onClick={() =>
-                    handleSelect(city)
-                  }
-                >
-
-                  <MapPin size={16} />
-
-
-                  <span>
-
-                    <strong>
-                      {city.city}
-                    </strong>
-
-                    <small>
-                      {city.state}
-                    </small>
-
-                  </span>
-
-                </button>
-
-              )
-            )}
-
-
-            {!loading &&
-              cities.length === 0 && (
-
-                <p className={styles.empty}>
-                  No matching cities found
-                </p>
-
+              {selectedCity?.id === city.id && (
+                <Check
+                  size={16}
+                  className={styles.selectedMark}
+                />
               )}
+            </button>
+          ))}
 
-          </div>
+          {!loading && error && (
+            <p className={styles.empty}>
+              Unable to load cities. Please try again.
+            </p>
+          )}
 
-        )}
-
+          {!loading && !error && cities.length === 0 && (
+            <p className={styles.empty}>
+              No matching cities found
+            </p>
+          )}
+        </div>
+      )}
     </div>
-
   );
-
 }

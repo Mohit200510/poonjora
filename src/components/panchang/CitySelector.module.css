@@ -1,5 +1,4 @@
 
-
 .wrapper {
   position: relative;
   width: 100%;
@@ -11,25 +10,32 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
   padding: 12px 14px;
   background: #fff;
   border: 1px solid #e6dce9;
   border-radius: 10px;
   color: #36014f;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s ease;
 }
 
 .searchBox:focus-within {
   border-color: #36014f;
 }
 
+.searchBox > svg {
+  flex-shrink: 0;
+}
+
 .searchBox input {
   flex: 1;
+  width: 100%;
   min-width: 0;
+  padding: 0;
   border: none;
   outline: none;
   background: transparent;
-  font: inherit;
+  font-family: inherit;
   font-size: 14px;
   color: #29212d;
 }
@@ -51,40 +57,75 @@
   border: 1px solid #eee5ef;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(40, 10, 50, 0.1);
+  scrollbar-width: thin;
+  scrollbar-color: #cbb8d2 transparent;
+}
+
+.dropdown::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background: #cbb8d2;
+  border-radius: 10px;
+}
+
+.listHeading {
+  margin: 0;
+  padding: 8px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #817586;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .cityOption {
-  width: 100%;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 11px 12px;
+  width: 100%;
+  padding: 10px 12px;
   border: none;
   border-radius: 7px;
   background: transparent;
   color: #36014f;
+  font-family: inherit;
   text-align: left;
   cursor: pointer;
+  transition: background 0.15s ease;
 }
 
-.cityOption:hover {
+.cityOption:hover,
+.cityOption:focus-visible {
   background: #faf5fc;
 }
 
-.cityOption span {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+.cityOption > svg {
+  flex-shrink: 0;
 }
 
-.cityOption strong {
+.cityDetails {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.cityDetails strong {
   font-size: 13px;
   font-weight: 600;
 }
 
-.cityOption small {
+.cityDetails small {
   font-size: 11px;
   color: #817586;
+}
+
+.selectedMark {
+  margin-left: auto;
+  color: #36014f;
 }
 
 .empty {
@@ -96,11 +137,91 @@
 }
 
 .spinner {
+  flex-shrink: 0;
   animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Dropdown arrow */
+
+.dropdownToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 2px;
+  border: none;
+  background: transparent;
+  color: #36014f;
+  cursor: pointer;
+}
+
+.dropdownToggle svg {
+  transition: transform 0.2s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+/* Compact selector for Festival Details */
+
+.compact {
+  width: 100%;
+  max-width: none;
+}
+
+.compact .searchBox {
+  gap: 7px;
+  padding: 9px 11px;
+  border: 1px solid #88004f;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.compact .searchBox input {
+  font-size: 12px;
+  font-weight: 600;
+  color: #36014f;
+}
+
+.compact .dropdown {
+  top: calc(100% + 6px);
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: 240px;
+  max-width: calc(100vw - 24px);
+  max-height: 190px;
+  padding: 5px;
+  border: 1px solid #eadde5;
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(54, 1, 79, 0.12);
+}
+
+.compact .cityOption {
+  padding: 9px 10px;
+}
+
+@media (max-width: 600px) {
+  .compact .searchBox {
+    gap: 5px;
+    padding: 8px 9px;
+  }
+
+  .compact .searchBox input {
+    font-size: 11px;
+  }
+
+  .compact .dropdown {
+    left: auto;
+    right: 0;
+    transform: none;
+    width: 220px;
   }
 }
