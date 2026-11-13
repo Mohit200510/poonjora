@@ -567,3 +567,256 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--tab-purpl
     font-size: 20px;
   }
 }
+
+
+/* PUJA VIDHI — reference-matched, scoped to this section only */
+.vidhiPanel {
+  --vidhi-purple: #36014f;
+  min-width: 0;
+  padding: 30px 32px 32px;
+  background: #fff;
+  background-color: #fffDFA;
+  border: 1px solid #e4dce6;
+  border-radius: 24px;
+  box-shadow: 0 2px 9px rgba(54, 1, 79, .045);
+  color: #302c34;
+}
+.vidhiHeader {
+  font-family: "lora",sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #e8d7ec;
+}
+.vidhiLotus {
+  flex: 0 0 62px;
+  width: 62px;
+  height: 62px;
+  padding-right: 17px;
+  border-right: 2px solid #d9b8df;
+  color: var(--vidhi-purple);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.vidhiLotus svg { display: block; width: 45px; height: 45px; }
+.vidhiHeader h2 {
+  margin: 0 0 4px;
+  color: var(--vidhi-purple);
+  font-family: Poppins, Inter, sans-serif;
+  font-size: clamp(22px, 2.25vw, 31px);
+  font-weight: 700;
+  line-height: 1.3;
+}
+.vidhiHeader p {
+  margin: 0;
+  color: #4d4850;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.vidhiContent { min-width: 0; }
+.vidhiSubheading {
+  margin: 0 0 6px;
+  color: var(--vidhi-purple);
+  font-family: Poppins, Inter, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.vidhiIntro {
+  margin: 0 0 18px;
+  color: #454049;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.vidhiSteps { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+.vidhiStep {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e9e2eb;
+}
+.vidhiStep:last-child { border-bottom: 0; }
+.vidhiNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 43px;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: #f1e5f3;
+  color: var(--vidhi-purple);
+  font-size: 20px;
+  font-weight: 700;
+}
+.vidhiStepContent { flex: 1; min-width: 0; }
+.vidhiStepContent h4 {
+  margin: 0 0 2px;
+  color: var(--vidhi-purple);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+.vidhiStepContent p { margin: 0; color: #36323a; font-size: 14px; line-height: 1.65; }
+.vidhiNotes {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin-top: 28px;
+  padding: 20px 24px;
+  border-radius: 15px;
+  background: #f8f3fa;
+}
+.vidhiNotesHeading {
+  display: flex;
+  flex: 0 0 235px;
+  align-items: center;
+  gap: 15px;
+  color: var(--vidhi-purple);
+}
+.vidhiNotesHeading svg { flex: 0 0 auto; width: 28px; height: 28px; stroke-width: 1.8; }
+.vidhiNotesHeading h3 {
+  margin: 0;
+  padding-left: 15px;
+  border-left: 2px solid #c9a2d0;
+  color: var(--vidhi-purple);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.vidhiNotes .textList {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding-left: 19px;
+  color: #39333c;
+  font-size: 13px;
+  line-height: 1.85;
+}
+.vidhiNotes .textList li + li { margin-top: 4px; }
+.vidhiNotes .textList li::marker { color: var(--vidhi-purple); }
+@media (max-width: 700px) {
+  .vidhiPanel { padding: 20px 16px; border-radius: 16px; }
+  .vidhiHeader { gap: 13px; padding-bottom: 18px; margin-bottom: 20px; }
+  .vidhiLotus { flex-basis: 44px; width: 44px; height: 45px; padding-right: 9px; }
+  .vidhiLotus svg { width: 33px; height: 33px; }
+  .vidhiHeader h2 { font-size: 20px; }
+  .vidhiHeader p { font-size: 12px; }
+  .vidhiSubheading { font-size: 18px; }
+  .vidhiIntro { font-size: 13px; margin-bottom: 12px; }
+  .vidhiStep { gap: 12px; padding: 14px 0; }
+  .vidhiNumber { flex-basis: 34px; width: 34px; height: 34px; font-size: 15px; }
+  .vidhiStepContent h4 { font-size: 14px; }
+  .vidhiStepContent p { font-size: 12px; }
+  .vidhiNotes { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 20px; padding: 15px; }
+  .vidhiNotesHeading { flex: 0 0 auto; }
+  .vidhiNotesHeading h3 { font-size: 15px; }
+  .vidhiNotes .textList { font-size: 12px; }
+}
+
+
+/* IMPORTANT GUIDANCE — HEADING AT TOP */
+
+.vidhiNotes {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  padding: 22px 26px;
+  background: #f8f4fa;
+  border-radius: 16px;
+}
+
+.vidhiNotesHeading {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e8ddeb;
+  color: #36014F;
+}
+
+.vidhiNotesHeading h3 {
+  margin: 0;
+  color: #36014F;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.vidhiNotes .textList {
+  width: 100%;
+  margin: 0;
+  padding-left: 22px;
+  color: #352b3a;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.vidhiNotes .textList li {
+  margin-bottom: 8px;
+}
+
+.vidhiNotes .textList li::marker {
+  color: #36014F;
+}
+
+@media (max-width: 700px) {
+  .vidhiNotes {
+    padding: 18px 16px;
+    gap: 12px;
+  }
+
+  .vidhiNotesHeading h3 {
+    font-size: 16px;
+  }
+
+  .vidhiNotes .textList {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+}
+/* Important Guidance — remove excessive spacing */
+
+.vidhiNotes {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 22px 26px;
+}
+
+.vidhiNotesHeading {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  margin: 0 0 16px;
+  padding: 0 0 14px;
+  border-bottom: 1px solid #e8ddeb;
+}
+
+.vidhiNotes .textList {
+  flex: 0 0 auto;
+  margin: 0;
+  padding-left: 22px;
+}
+
+@media (max-width: 700px) {
+  .vidhiNotes {
+    padding: 18px 16px;
+  }
+
+  .vidhiNotesHeading {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+  }
+}

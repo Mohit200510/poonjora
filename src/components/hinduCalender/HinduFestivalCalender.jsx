@@ -14,9 +14,12 @@ import {
   Pencil,
   ChevronLeft,
   ChevronRight,
-  CalendarDays
+  CalendarDays,
+  Clock3,
+  ArrowUpRight
 } from "lucide-react";
 
+import { Link } from "react-router-dom";
 import styles from "./HinduFestivalCalender.module.css";
 
 
@@ -820,12 +823,22 @@ const filteredFestivals = festivals
         }
       >
 
+        <div className={styles.compactFestivalHeading}>
+  <h2>
+    {monthNames[selectedMonth]} {selectedYear}
+  </h2>
+
+  <span>
+    {filteredFestivals.length} festivals &amp; vrats
+  </span>
+</div>
+
 
         {/* ================================================= */}
         {/* FESTIVAL SECTION HEADING                          */}
         {/* ================================================= */}
 
-        <div
+        {/* <div
           className={
             styles.festivalHeading
           }
@@ -915,7 +928,7 @@ const filteredFestivals = festivals
 
           )}
 
-        </div>
+        </div> */}
 
 
         {/* ================================================= */}
@@ -1026,202 +1039,67 @@ const filteredFestivals = festivals
           !cacheMissing &&
           filteredFestivals.length > 0 && (
 
-            <div
-              className={
-                styles.festivalTimeline
-              }
-            >
+            <div className={styles.festivalGrid}>
+              {filteredFestivals.map((item, index) => {
+                const dateParts = getFestivalDateParts(item.festivalDateCandidate);
+                const tithiStart = formatTithiTiming(item.sourceStart);
+                const tithiEnd = formatTithiTiming(item.sourceEnd);
+                const tithiName = item.tithi
+                  ? `${item.tithi} Tithi`
+                  : "Tithi information unavailable";
 
-              
-{filteredFestivals.map((item, index) => {
+                // Prefer the canonical slug from your festival data when provided.
+                // Confirm this fallback matches the slug used by your details route.
+                const slug = item.slug || item.festivalSlug || String(item.name || "")
+                  .toLowerCase()
+                  .normalize("NFKD")
+                  .replace(/[\u0300-\u036f]/g, "")
+                  .replace(/[^a-z0-9]+/g, "-")
+                  .replace(/^-|-$/g, "");
 
-  const isEkadashi =
-    item.festivalType === "ekadashi";
+                const detailPath = `/festivals/${encodeURIComponent(slug)}/${selectedYear}`;
+                const timingRange = item.sourceStart && item.sourceEnd
+                  ? `${tithiStart.date}, ${tithiStart.time} – ${tithiEnd.date}, ${tithiEnd.time}`
+                  : "Tithi timings unavailable";
 
-  const candidate =
-    item.festivalDateCandidate;
+                return (
+                  <Link
+                    key={`${item.festivalType}-${item.name}-${item.festivalDateCandidate}-${index}`}
+                    to={detailPath}
+                    className={styles.festivalEntry}
+                    aria-label={`View ${item.name} festival details`}
+                  >
+                    <div className={styles.entryDate} aria-hidden="true">
+                      <strong>{dateParts.day}</strong>
+                      <span>{dateParts.weekday} · {dateParts.month}</span>
+                    </div>
 
-  const dateParts =
-    getFestivalDateParts(candidate);
-
-  const tithiStart =
-    formatTithiTiming(item.sourceStart);
-
-  const tithiEnd =
-    formatTithiTiming(item.sourceEnd);
-
-    const hasTithiTimings =
-  Boolean(item.sourceStart && item.sourceEnd);
-
-  
-    const festivalName = item.name;
-
-  const festivalBadge = isEkadashi
+                    <div className={styles.entryBody}>
+                      <span className={styles.festivalCategory}>
+  {item.festivalType === "ekadashi"
     ? "VRAT · EKADASHI"
-    : "MAJOR FESTIVAL";
+    : "MAJOR FESTIVAL"}
+</span>
 
-  const tithiTitle = `${
-  item.tithi || "Ekadashi"
-   } TITHI`.toUpperCase();
-
-  return (
-
-    <article
-      className={styles.timelineItem}
-      key={`${item.festivalType}-${item.name}-${item.sourceStart}-${index}`}
-    >
-
-      {/* DATE */}
-
-      <div className={styles.timelineDate}>
-
-        <span className={styles.dateMonth}>
-          {dateParts.month}
-        </span>
-
-        <strong>
-          {dateParts.day}
-        </strong>
-
-        <span className={styles.dateWeekday}>
-          {dateParts.weekday}
-        </span>
-
-      </div>
-
-
-      {/* TIMELINE RAIL */}
-
-      <div className={styles.timelineRail}>
-
-        <span className={styles.timelineMarker}>
-          ◇
-        </span>
-
-      </div>
-
-
-      {/* FESTIVAL CARD */}
-
-      <div className={styles.festivalCard}>
-
-        <div className={styles.festivalCardHeader}>
-
-          <div>
-
-            <h3>
-              {festivalName}
-            </h3>
-
-            <p>
-              {[
-                item.month,
-                item.paksha
-              ]
-                .filter(Boolean)
-                .join(" · ")}
-            </p>
-
-          </div>
-
-
-          <span className={styles.festivalBadge}>
-            {festivalBadge}
-          </span>
-
-        </div>
-
-
-        {/* TITHI BOX */}
-
-        <div className={styles.tithiBox}>
-
-          <p className={styles.tithiTitle}>
-            {tithiTitle}
-          </p>
-
-
-         <div className={styles.tithiTimings}>
-
-  {/* BEGINS */}
-
-  <div className={styles.tithiTime}>
-
-    <span className={styles.tithiIcon}>
-      ◐
-    </span>
-
-    <div>
-
-      <small>
-        Begins
-      </small>
-
-      <strong>
-        {item.sourceStart
-          ? tithiStart.date
-          : "Timing unavailable"}
-      </strong>
-
-      {item.sourceStart && tithiStart.time && (
-        <span>
-          {tithiStart.time}
-        </span>
-      )}
-
-    </div>
-
-  </div>
-
-
-  <span className={styles.tithiDivider} />
-
-
-  {/* ENDS */}
-
-  <div className={styles.tithiTime}>
-
-    <span className={styles.tithiIcon}>
-      ◉
-    </span>
-
-    <div>
-
-      <small>
-        Ends
-      </small>
-
-      <strong>
-        {item.sourceEnd
-          ? tithiEnd.date
-          : "Timing unavailable"}
-      </strong>
-
-      {item.sourceEnd && tithiEnd.time && (
-        <span>
-          {tithiEnd.time}
-        </span>
-      )}
-
-    </div>
-
-  </div>
-
-</div>
-
-        </div>
-
-      </div>
-
-    </article>
-
-  );
-
-})}
-
-
+<h3>{item.name}</h3>
+                      {(item.month || item.paksha) && (
+                        <p className={styles.entryPaksha}>
+                          {[item.month, item.paksha].filter(Boolean).join(" · ")}
+                        </p>
+                      )}
+                      <p className={styles.entryTithi}>{tithiName}</p>
+                      <p className={styles.entryTiming}>
+                        <Clock3 size={15} aria-hidden="true" />
+                        <span>{timingRange}</span>
+                      </p>
+                    </div>
+                    <span className={styles.entryArrow} aria-hidden="true">
+                      <ArrowUpRight size={19} />
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
-
           )}
 
       </div>

@@ -62,29 +62,48 @@ function TextItems({ items, ordered = false }) {
   );
 }
 
-function VidhiPanel({ section }) {
+function VidhiPanel({ section, festivalTitle }) {
   return (
-    <div className={styles.stack}>
-      <Panel title="Worship procedure" Icon={ListChecks}>
-        {section.intro && <p className={styles.bodyCopy}>{section.intro}</p>}
+    <section className={styles.vidhiPanel} aria-labelledby="vidhi-heading">
+      <header className={styles.vidhiHeader}>
+        {/* <Flower2 className={styles.vidhiHeaderIcon} size={30} strokeWidth={1.7} aria-hidden="true" /> */}
+        <div>
+          <h2 id="vidhi-heading">{festivalTitle} Puja Vidhi</h2>
+          <p>Step-by-step worship guidance</p>
+        </div>
+      </header>
+
+      <div className={styles.vidhiContent}>
+        {/* <h3 className={styles.vidhiSubheading}>Worship Procedure</h3> */}
+        {/* {section.intro && <p className={styles.vidhiIntro}>{section.intro}</p>} */}
+
         {section.steps.length ? (
-          <ol className={styles.stepList}>
+          <ol className={styles.vidhiSteps}>
             {section.steps.map((step, index) => (
-              <li key={index} className={styles.step}>
-                <span className={styles.stepNumber}>{index + 1}</span>
-                <div>
+              <li key={index} className={styles.vidhiStep}>
+                <span className={styles.vidhiNumber} aria-hidden="true">{index + 1}</span>
+                <div className={styles.vidhiStepContent}>
                   <h4>{step.title}</h4>
                   <p>{step.description}</p>
                 </div>
               </li>
             ))}
           </ol>
-        ) : <EmptyState message="The researched step-by-step Puja Vidhi will appear here." />}
-      </Panel>
-      <Panel title="Important guidance" Icon={Info}>
-        <TextItems items={section.notes} />
-      </Panel>
-    </div>
+        ) : (
+          <EmptyState message="The researched step-by-step Puja Vidhi will appear here." />
+        )}
+
+        {section.notes?.length > 0 && (
+          <aside className={styles.vidhiNotes}>
+            <div className={styles.vidhiNotesHeading}>
+              <Info size={20} aria-hidden="true" />
+              <h3>Important Guidance</h3>
+            </div>
+            <TextItems items={section.notes} />
+          </aside>
+        )}
+      </div>
+    </section>
   );
 }
 
@@ -396,11 +415,15 @@ export default function FestivalTabSections({ activeTab, content, selectedCity }
 
   return (
     <div className={styles.tabRoot}>
-      <div className={styles.tabIntro}>
-        <div className={styles.introIcon}><Icon size={27} aria-hidden="true" /></div>
-        <div><h2>{title} — {content.title}</h2><p>{subtitle}</p></div>
-      </div>
-      {activeTab === "vidhi" && <VidhiPanel section={sections.vidhi} />}
+      {activeTab !== "vidhi" && (
+        <div className={styles.tabIntro}>
+          <div className={styles.introIcon}><Icon size={27} aria-hidden="true" /></div>
+          <div><h2>{title} — {content.title}</h2><p>{subtitle}</p></div>
+        </div>
+      )}
+      {activeTab === "vidhi" && (
+        <VidhiPanel section={sections.vidhi} festivalTitle={content.title} />
+      )}
       {activeTab === "samagri" && <SamagriPanel section={sections.samagri} />}
       {activeTab === "timings" && <TimingsPanel selectedCity={selectedCity} />}
       {activeTab === "katha" && <KathaPanel section={sections.katha} festivalTitle={content.title} />}

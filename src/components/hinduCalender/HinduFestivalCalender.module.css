@@ -689,468 +689,126 @@
 
 
 /* =========================================================
-   FESTIVAL TIMELINE
-========================================================= */
-
-.festivalTimeline {
-  width: min(100%, 1120px);
-
+   COMPACT EDITORIAL FESTIVAL GRID
+   ========================================================= */
+.festivalGrid {
+  width: min(100%, 1200px);
   margin: 0 auto;
-}
-
-
-/* =========================================================
-   TIMELINE ITEM
-========================================================= */
-
-.timelineItem {
-  position: relative;
-
   display: grid;
-
-  grid-template-columns:
-    105px
-    50px
-    minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 32px;
 }
 
-
-/* =========================================================
-   DATE COLUMN
-========================================================= */
-
-.timelineDate {
-  padding-top: 17px;
-
-  color: #36014f;
-
-  text-align: center;
-}
-
-.dateMonth {
-  display: block;
-
-  margin-bottom: 2px;
-
-  color: #725477;
-
-  font-family:
-    "cormonant",
-    Georgia,
-    serif;
-
-  font-size: 14px;
-  font-weight: 700;
-
-  letter-spacing: 2.2px;
-}
-
-.timelineDate strong {
-  display: block;
-
-  margin: 0;
-
-  color: #36014f;
-
-  font-family:
-    "cormonant",
-    Georgia,
-    serif;
-
-  font-size: 58px;
-  font-weight: 600;
-
-  line-height: 0.95;
-}
-
-.dateWeekday {
-  display: block;
-
-  margin-top: 8px;
-
-  color: #806d82;
-
-  font-family:
-    "cormonant",
-    Georgia,
-    serif;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  letter-spacing: 1.8px;
-}
-
-
-/* =========================================================
-   TIMELINE RAIL
-========================================================= */
-
-.timelineRail {
-  position: relative;
-
-  display: flex;
-  justify-content: center;
-}
-
-.timelineRail::before {
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  bottom: 0;
-  left: 50%;
-
-  width: 1px;
-
-  transform: translateX(-50%);
-
-  background: #d8c5c9;
-}
-
-.timelineItem:first-child
-.timelineRail::before {
-  top: 44px;
-}
-
-.timelineItem:last-child
-.timelineRail::before {
-  bottom: calc(100% - 58px);
-}
-
-
-/* =========================================================
-   TIMELINE MARKER
-========================================================= */
-
-.timelineMarker {
-  position: relative;
-  z-index: 2;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 30px;
-  height: 30px;
-
-  margin-top: 43px;
-
-  color: #8c6874;
-
-  background: #fffaf3;
-
-  font-size: 21px;
-
-  line-height: 1;
-}
-
-
-/* =========================================================
-   FESTIVAL CARD
-========================================================= */
-
-.festivalCard {
-  position: relative;
-
+.festivalEntry {
   min-width: 0;
-
-  margin-bottom: 30px;
-
-  padding:
-    25px
-    27px
-    26px;
-
-  background:
-    rgba(255, 255, 255, 0.82);
-
-  border:
-    1px solid
-    #e8d9d6;
-
-  border-radius: 17px;
-
-  box-shadow:
-    0 8px 30px
-    rgba(54, 1, 79, 0.035);
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr) 34px;
+  gap: 18px;
+  align-items: start;
+  padding: 24px 14px 26px;
+  border-bottom: 1px solid #e6d9d5;
+  border-radius: 8px 8px 0 0;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 180ms ease;
 }
 
-.festivalCard::before {
-  content: "";
-
-  position: absolute;
-
-  left: -7px;
-  top: 49px;
-
-  width: 13px;
-  height: 13px;
-
-  background: #fffdfb;
-
-  border-left:
-    1px solid
-    #e8d9d6;
-
-  border-bottom:
-    1px solid
-    #e8d9d6;
-
-  transform: rotate(45deg);
+.festivalEntry:hover,
+.festivalEntry:focus-visible {
+  background: #f6edf6;
 }
 
+.festivalEntry:focus-visible {
+  outline: 2px solid #6b287e;
+  outline-offset: -2px;
+}
 
-/* =========================================================
-   FESTIVAL CARD HEADER
-========================================================= */
+.entryDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 15px;
+  border-right: 1px solid #cf9879;
+  color: #36014f;
+}
 
-.festivalCardHeader {
+.entryDate strong {
+  font-family: "cormonant", Georgia, serif;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.entryDate span {
+  margin-top: 7px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .6px;
+  white-space: nowrap;
+  color: #725477;
+}
+
+.entryBody { min-width: 0; }
+.entryBody h3 {
+  margin: 0 0 5px;
+  font-family: "cormonant", Georgia, serif;
+  font-size: clamp(23px, 2vw, 29px);
+  line-height: 1.13;
+  color: #36014f;
+}
+.entryPaksha {
+  margin: 0 0 12px;
+  color: #75647a;
+  font-size: 13px;
+}
+.entryTithi {
+  margin: 0 0 6px;
+  color: #36014f;
+  font-size: 14px;
+  font-weight: 650;
+}
+.entryTiming {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-
-  gap: 24px;
-
-  margin-bottom: 19px;
-}
-
-.festivalCardHeader > div {
-  min-width: 0;
-}
-
-.festivalCardHeader h3 {
-  margin: 0 0 5px;
-
-  color: #36014f;
-
-  font-family:
-    "cormonant",
-    Georgia,
-    serif;
-
-  font-size: 29px;
-  font-weight: 700;
-
-  line-height: 1.15;
-}
-
-.festivalCardHeader p {
+  gap: 7px;
   margin: 0;
-
-  color: #76647a;
-
-  font-family:
-   "cormonant",
-    Georgia,
-    serif;
-
-  font-size: 17px;
-
-  line-height: 1.4;
+  color: #66566b;
+  font-size: 12px;
+  line-height: 1.5;
 }
-
-
-/* =========================================================
-   FESTIVAL BADGE
-========================================================= */
-
-.festivalBadge {
-  flex-shrink: 0;
-
-  padding:
-    7px
-    16px;
-
-  color: #65376e;
-
-  background: #f3e8f4;
-
-  border:
-    1px solid
-    rgba(101, 55, 110, 0.08);
-
-  border-radius: 999px;
-
-  font-size: 10px;
-  font-weight: 700;
-
-  letter-spacing: 1.5px;
-}
-
-
-/* =========================================================
-   TITHI BOX
-========================================================= */
-
-.tithiBox {
-  padding:
-    18px
-    22px
-    19px;
-
-  background: #fbf5ef;
-
-  border:
-    1px solid
-    rgba(167, 135, 121, 0.08);
-
-  border-radius: 12px;
-}
-
-
-/* =========================================================
-   TITHI TITLE
-========================================================= */
-
-.tithiTitle {
-  position: relative;
-
-  margin: 0 0 15px;
-
-  padding-left: 17px;
-
-  color: #72556d;
-
-  font-family:
-    "cormonant",
-    Georgia,
-    serif;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  letter-spacing: 1.15px;
-}
-
-.tithiTitle::before {
-  content: "◇";
-
-  position: absolute;
-
-  left: 0;
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  color: #96717b;
-
-  font-size: 13px;
-}
-
-
-/* =========================================================
-   TITHI TIMINGS
-========================================================= */
-
-.tithiTimings {
+.entryTiming svg { flex-shrink: 0; margin-top: 1px; }
+.entryTiming span { min-width: 0; }
+.entryArrow {
   display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    1px
-    minmax(0, 1fr);
-
-  align-items: center;
-
-  gap: 28px;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #36014f;
+  background: #f4eaf4;
+  transition: transform 180ms ease, background-color 180ms ease;
 }
+.festivalEntry:hover .entryArrow { transform: translate(2px, -2px); background: #e9d8ec; }
 
-
-/* =========================================================
-   SINGLE TITHI TIME
-========================================================= */
-
-.tithiTime {
-  display: flex;
-  align-items: center;
-
-  min-width: 0;
-
-  gap: 13px;
+@media (max-width: 900px) {
+  .festivalGrid { grid-template-columns: 1fr; }
 }
-
-.tithiIcon {
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 34px;
-  height: 34px;
-
-  color: #8f6976;
-
-  font-size: 24px;
-
-  line-height: 1;
+@media (max-width: 650px) {
+  .festivalEntry {
+    grid-template-columns: 62px minmax(0, 1fr) 27px;
+    gap: 11px;
+    padding: 20px 5px;
+  }
+  .entryDate { padding-right: 9px; }
+  .entryDate strong { font-size: 38px; }
+  .entryDate span { font-size: 9px; letter-spacing: 0; }
+  .entryBody h3 { font-size: 23px; }
+  .entryPaksha { font-size: 12px; margin-bottom: 9px; }
+  .entryTithi { font-size: 13px; }
+  .entryTiming { font-size: 11px; }
+  .entryArrow { width: 27px; height: 27px; }
 }
-
-.tithiTime > div {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-
-  min-width: 0;
-
-  column-gap: 9px;
-  row-gap: 2px;
-}
-
-.tithiTime small {
-  width: 100%;
-
-  margin-bottom: 1px;
-
-  color: #857385;
-
-  font-family:
-    "cormonant",
-    Georgia,
-    serif;
-
-  font-size: 14px;
-}
-
-.tithiTime strong {
-  color: #49344e;
-
-  font-family:
-    "cormonant",
-    Georgia,
-    serif;
-
-  font-size: 16px;
-  font-weight: 600;
-
-  line-height: 1.35;
-}
-
-.tithiTime > div > span {
-  color: #705d73;
-
-  font-size: 13px;
-  font-weight: 500;
-
-  white-space: nowrap;
-}
-
-
-/* =========================================================
-   TITHI DIVIDER
-========================================================= */
-
-.tithiDivider {
-  display: block;
-
-  width: 1px;
-  height: 48px;
-
-  background: #dfd0cc;
-}
-
 
 /* =========================================================
    STATES
@@ -1277,30 +935,10 @@
     margin-bottom: 45px;
   }
 
-  .timelineItem {
-    grid-template-columns:
-      88px
-      40px
-      minmax(0, 1fr);
-  }
 
-  .timelineDate strong {
-    font-size: 49px;
-  }
 
-  .festivalCard {
-    padding:
-      22px
-      21px;
-  }
 
-  .festivalCardHeader h3 {
-    font-size: 26px;
-  }
 
-  .tithiTimings {
-    gap: 20px;
-  }
 
 }
 
@@ -1520,152 +1158,27 @@
   }
 
 
-  /* TIMELINE */
-
-  .timelineItem {
-    grid-template-columns:
-      58px
-      21px
-      minmax(0, 1fr);
-  }
-
-  .timelineDate {
-    padding-top: 19px;
-  }
-
-  .dateMonth {
-    font-size: 10px;
-
-    letter-spacing: 1.5px;
-  }
-
-  .timelineDate strong {
-    font-size: 36px;
-  }
-
-  .dateWeekday {
-    margin-top: 6px;
-
-    font-size: 9px;
-
-    letter-spacing: 1.3px;
-  }
-
-  .timelineMarker {
-    width: 18px;
-    height: 18px;
-
-    margin-top: 43px;
-
-    font-size: 14px;
-  }
-
-  .timelineItem:first-child
-  .timelineRail::before {
-    top: 43px;
-  }
-
-  .timelineItem:last-child
-  .timelineRail::before {
-    bottom:
-      calc(100% - 52px);
-  }
 
 
-  /* CARD */
-
-  .festivalCard {
-    margin-bottom: 20px;
-
-    padding:
-      17px
-      13px;
-
-    border-radius: 13px;
-  }
-
-  .festivalCard::before {
-    left: -6px;
-    top: 47px;
-
-    width: 11px;
-    height: 11px;
-  }
-
-  .festivalCardHeader {
-    gap: 10px;
-
-    margin-bottom: 14px;
-  }
-
-  .festivalCardHeader h3 {
-    margin-bottom: 4px;
-
-    font-size: 21px;
-  }
-
-  .festivalCardHeader p {
-    font-size: 14px;
-  }
-
-  .festivalBadge {
-    padding:
-      5px
-      9px;
-
-    font-size: 8px;
-
-    letter-spacing: 1px;
-  }
 
 
-  /* TITHI */
 
-  .tithiBox {
-    padding:
-      14px
-      12px;
-  }
 
-  .tithiTitle {
-    margin-bottom: 12px;
 
-    font-size: 11px;
-  }
 
-  .tithiTimings {
-    grid-template-columns: 1fr;
 
-    gap: 12px;
-  }
 
-  .tithiDivider {
-    width: 100%;
-    height: 1px;
-  }
 
-  .tithiTime {
-    gap: 8px;
-  }
 
-  .tithiIcon {
-    width: 27px;
-    height: 27px;
 
-    font-size: 19px;
-  }
 
-  .tithiTime small {
-    font-size: 12px;
-  }
 
-  .tithiTime strong {
-    font-size: 14px;
-  }
 
-  .tithiTime > div > span {
-    font-size: 12px;
-  }
+
+
+
+
+
 
 }
 
@@ -1725,34 +1238,10 @@
     padding-right: 9px;
   }
 
-  .timelineItem {
-    grid-template-columns:
-      51px
-      18px
-      minmax(0, 1fr);
-  }
 
-  .timelineDate strong {
-    font-size: 32px;
-  }
 
-  .festivalCard {
-    padding:
-      15px
-      11px;
-  }
 
-  .festivalCardHeader h3 {
-    font-size: 19px;
-  }
 
-  .festivalBadge {
-    padding:
-      4px
-      7px;
-
-    font-size: 7px;
-  }
 
 }
 
@@ -1777,39 +1266,76 @@
     padding: 0;
   }
 
-  .festivalCardHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 9px;
-    margin-bottom: 15px;
-  }
 
-  .festivalBadge {
-    align-self: flex-start;
-    padding: 5px 10px;
-    font-size: 9px;
-    letter-spacing: 0.8px;
-    line-height: 1.3;
-  }
 
-  .festivalCardHeader h3 {
-    font-size: 22px;
-    line-height: 1.18;
-  }
 
-  .tithiTime strong {
-    font-size: 15px;
-  }
   
 }
 
 @media (max-width: 390px) {
-  .festivalCardHeader h3 {
-    font-size: 20px;
+
+
+}
+
+
+.festivalCategory {
+  display: block;
+  margin-bottom: 5px;
+  color: #815c89;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.compactFestivalHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 18px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid #e8dfe7;
+}
+
+.compactFestivalHeading h2 {
+  margin: 0;
+  color: #36014F;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.compactFestivalHeading span {
+  color: #786b7d;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+@media (max-width: 650px) {
+  .compactFestivalHeading {
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
   }
 
-  .festivalBadge {
-    font-size: 9px;
-    padding: 5px 9px;
+  .compactFestivalHeading h2 {
+    font-size: 16px;
+  }
+
+  .compactFestivalHeading span {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 650px) {
+  /* Calendar navigation box */
+  .calendarNavigation {
+    padding: 14px 12px;
+  }
+
+  /* Keep month and year on one line */
+  .calendarNavigation h2 {
+    font-size: 18px;
+    white-space: nowrap;
+    line-height: 1.3;
   }
 }
