@@ -6,6 +6,7 @@ import {
   CircleHelp, ClockArrowUp,ClockArrowDown, Flower2, House,
   List, MapPin, ShoppingBag, ShoppingBasket, Music2,Moon,Clock3
 } from "lucide-react";
+import { Flower } from "lucide-react";
 import { CityContext } from "../../context/CityContext";
 import CitySelector from "../../components/panchang/CitySelector";
 import { supabase } from "../../supabaseClient";
@@ -37,7 +38,7 @@ const TABS = [
   { id: "timings", label: "Muhurat & Timings", Icon: Clock3 },
   { id: "katha", label: "Katha (Story)", Icon: BookOpen },
   { id: "mantra", label: "Mantra & Aarti", Icon: Music2 },
-  { id: "traditions", label: "Vrat & Traditions", Icon: Flower2 },
+  { id: "traditions", label: "Vrat & Traditions", Icon: Flower },
   { id: "faq", label: "FAQ", Icon: CircleHelp },
 ];
 

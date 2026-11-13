@@ -486,3 +486,51 @@
   color: #36014F;
   font-weight: 600;
 }
+
+
+
+/* Festival navigation — MOBILE ONLY */
+@media (max-width: 600px) {
+
+  .tabs {
+    gap: 5px;
+    padding: 6px;
+    border-radius: 13px;
+    background: #fffaf6;
+    box-shadow: 0 3px 12px rgba(54, 1, 79, 0.05);
+  }
+
+  .tab {
+    flex: 0 0 auto;
+    gap: 7px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: transparent;
+    color: #36014F;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .tab svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  /* Remove vertical separators */
+  .tab:not(:last-child):not(.activeTab)::after {
+    display: none;
+  }
+
+  /* Soft jamun-purple active tab */
+  .activeTab,
+  .activeTab:hover {
+    background: #F3E7F5;
+    color: #36014F;
+    font-weight: 600;
+  }
+
+  .tab:hover:not(.activeTab) {
+    background: #F9F1FA;
+  }
+}
