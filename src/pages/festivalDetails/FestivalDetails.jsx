@@ -103,7 +103,9 @@ const formatTithiTime = (value) => {
   }).format(date);
 };
 
-export default function FestivalDetails() {
+export default function FestivalDetails({
+  initialContent = null,
+}) {
   const { slug, year } = useParams();
 
 const currentYear = Number(
@@ -120,8 +122,13 @@ const validYear =
   Number(year) <= 2100;
 
 const selectedYear = validYear ? Number(year) : null;
-  const [festivalContent, setFestivalContent] = useState(null);
-const [contentLoading, setContentLoading] = useState(true);
+const [festivalContent, setFestivalContent] = useState(
+  () => initialContent?.slug === slug ? initialContent : null
+);
+
+const [contentLoading, setContentLoading] = useState(
+  () => initialContent?.slug !== slug
+);
 const [contentError, setContentError] = useState("");
 
 const content = festivalContent;
@@ -134,47 +141,53 @@ const content = festivalContent;
   const scrollingToRef = useRef(null);
 
   useEffect(() => {
-  let cancelled = false;
+    let cancelled = false;
 
-  const fetchContent = async () => {
-    setContentLoading(true);
-    setContentError("");
-    setFestivalContent(null);
-
-    const { data, error } = await supabase
-      .from("festival_content")
-      .select("*")
-      .eq("slug", slug)
-      .eq("is_published", true)
-      .maybeSingle();
-
-    if (cancelled) return;
-
-    if (error) {
-      console.error("Festival content error:", error);
-      setContentError("Unable to load festival information.");
-    } else if (!data) {
-      setContentError("Festival content is not available.");
-    } else {
-      setFestivalContent({
-        ...data,
-        alternate: data.alternate_name,
-        artwork: {
-          left: data.hero_left_image,
-          right: data.hero_right_image,
-        },
-      });
+    // Build-time content is reused when it matches the current route.
+    // Do not clear it or refetch it after hydration.
+    if (initialContent?.slug === slug) {
+      setFestivalContent(initialContent);
+      setContentError("");
+      setContentLoading(false);
+      return () => { cancelled = true; };
     }
 
-    setContentLoading(false);
-  };
+    const fetchContent = async () => {
+      setContentLoading(true);
+      setContentError("");
+      setFestivalContent(null);
 
-  fetchContent();
+      const { data, error } = await supabase
+        .from("festival_content")
+        .select("*")
+        .eq("slug", slug)
+        .eq("is_published", true)
+        .maybeSingle();
 
-  return () => {
-    cancelled = true;
-  };
-}, [slug]);
+      if (cancelled) return;
+
+      if (error) {
+        console.error("Festival content error:", error);
+        setContentError("Unable to load festival information.");
+      } else if (!data) {
+        setContentError("Festival content is not available.");
+      } else {
+        setFestivalContent({
+          ...data,
+          alternate: data.alternate_name,
+          artwork: {
+            left: data.hero_left_image,
+            right: data.hero_right_image,
+          },
+        });
+      }
+
+      setContentLoading(false);
+    };
+
+    fetchContent();
+    return () => { cancelled = true; };
+  }, [slug, initialContent]);
 
   
 

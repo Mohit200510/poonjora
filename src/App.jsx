@@ -24,7 +24,7 @@ import ScrollToTop from './components/common/ScrollToTopjsx'
 import DivineGallery from './components/divineGallery/DivineGallery'
 import FestivalDetails from './pages/festivalDetails/FestivalDetails'
 
-function App() {
+function App({ initialFestivalContent = null }) {
 
   const {closeCart,CloseCart,showToast} =useContext(CartContext)
   const location = useLocation();
@@ -60,9 +60,8 @@ function App() {
       <Route path="/hindu-festival-calender" element={<FestivalCalender/>}></Route>
       <Route path='/collections/products' element={<AllProducts/>}></Route>
       <Route path="/divine-gallery" element={<DivineGallery/>}></Route>
-      <Route path="/festivals/:slug/:year" element={<FestivalDetails/>}></Route>
-
-      <Route path="/festivals/:slug" element={<FestivalDetails/>}></Route>
+      <Route path="/festivals/:slug/:year" element={<FestivalDetails initialContent={initialFestivalContent}/>}/>
+      <Route path="/festivals/:slug"element={<FestivalDetails initialContent={initialFestivalContent}/> }/>
      
     </Routes>
 

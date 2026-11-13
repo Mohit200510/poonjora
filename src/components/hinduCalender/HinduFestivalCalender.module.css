@@ -1326,3 +1326,16 @@
   }
 }
 
+@media (max-width: 650px) {
+  /* Calendar navigation box */
+  .calendarNavigation {
+    padding: 14px 12px;
+  }
+
+  /* Keep month and year on one line */
+  .calendarNavigation h2 {
+    font-size: 18px;
+    white-space: nowrap;
+    line-height: 1.3;
+  }
+}
