@@ -60,6 +60,8 @@ function App() {
       <Route path="/hindu-festival-calender" element={<FestivalCalender/>}></Route>
       <Route path='/collections/products' element={<AllProducts/>}></Route>
       <Route path="/divine-gallery" element={<DivineGallery/>}></Route>
+      <Route path="/festivals/:slug/:year" element={<FestivalDetails/>}></Route>
+
       <Route path="/festivals/:slug" element={<FestivalDetails/>}></Route>
      
     </Routes>

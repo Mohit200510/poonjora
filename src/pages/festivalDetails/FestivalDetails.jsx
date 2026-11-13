@@ -1,33 +1,34 @@
 
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import {
   ArrowRight, BookOpen, CalendarDays, ChevronRight,
-  CircleHelp, Clock3, Flower2, House, Hourglass, Info,
-  List, MapPin, ShoppingBag, ShoppingBasket, Sun, Sunset, Music2
+  CircleHelp, ClockArrowUp,ClockArrowDown, Flower2, House,
+  List, MapPin, ShoppingBag, ShoppingBasket, Music2,Moon,Clock3
 } from "lucide-react";
 import { CityContext } from "../../context/CityContext";
 import CitySelector from "../../components/panchang/CitySelector";
 import { supabase } from "../../supabaseClient";
 import styles from "./FestivalDetails.module.css";
-import diwaliLeft from "../../assets/diwali-hero-left.png";
-import diwaliright from "../../assets/diwali-hero-right.png";
-import aboutArt from "../../assets/diwali-about-art.png";
-import significanceArt from "../../assets/diwali-significance-art.png";
+
 import FestivalTabSections from "./FestivalTabSections";
 
-// Festival content. Dates and timings are fetched separately.
-const FESTIVAL_CONTENT = {
-  diwali: {
-    title: "Diwali",
-    alternate: "दीपावली",
-    subtitle: "The Festival of Lights",
-    description: "Diwali, also known as Deepavali, is one of India's most widely celebrated festivals. Known as the Festival of Lights, it symbolizes the triumph of light over darkness, knowledge over ignorance, and good over evil. Families celebrate by lighting diyas, decorating their homes, sharing sweets, and offering prayers. In many North Indian households, Goddess Lakshmi and Lord Ganesha are worshipped for prosperity, wisdom, and auspicious beginnings.",
-    significance: "Diwali represents spiritual renewal, gratitude, and hope. In popular Hindu tradition, the festival is associated with Lord Rama's return to Ayodhya, while other traditions commemorate Lord Krishna's victory over Narakasura. Lighting diyas symbolizes the removal of darkness and the welcoming of positive beginnings. Customs and religious observances vary across different regions and communities.",
-    timingLabels: { tithi: "Amavasya Tithi (End)", period: "Pradosh Kaal", puja: "Lakshmi Puja Muhurat" },
-    artwork: { left: diwaliLeft, right: diwaliright },
-  },
+
+
+const IMAGE_BASE =
+  "https://cffhhqqkcrcxxivilosk.supabase.co/storage/v1/object/public/festival-images/common";
+
+const COMMON_IMAGES = {
+  about: `${IMAGE_BASE}/diwali-about-art.webp`,
+  significance: `${IMAGE_BASE}/diwali-significance-art.webp`,
+  vidhi: `${IMAGE_BASE}/diwali-vidhi.webp`,
+  samagri: `${IMAGE_BASE}/diwali-samagri.webp`,
+  katha: `${IMAGE_BASE}/diwali-katha.webp`,
+  mantra: `${IMAGE_BASE}/diwali-mantra.webp`,
+  traditions: `${IMAGE_BASE}/diwali-traditions.webp`,
+  faq: `${IMAGE_BASE}/diwali-faq.webp`,
 };
+
 
 const TABS = [
   { id: "overview", label: "Overview", Icon: House },
@@ -40,14 +41,40 @@ const TABS = [
   { id: "faq", label: "FAQ", Icon: CircleHelp },
 ];
 
+
 const EXPLORE = [
-  { id: "vidhi", subtitle: "Step-by-step worship process", image: new URL("../../assets/diwali-vidhi.png", import.meta.url).href },
-  { id: "samagri", subtitle: "Complete list of required items", image: new URL("../../assets/diwali-samagri.png", import.meta.url).href },
-  { id: "katha", subtitle: "The story and spiritual background", image: new URL("../../assets/diwali-katha.png", import.meta.url).href },
-  { id: "mantra", subtitle: "Key mantras and aarti", image: new URL("../../assets/diwali-mantra.png", import.meta.url).href },
-  { id: "traditions", subtitle: "Fasting rules and regional customs", image: new URL("../../assets/diwali-traditions.png", import.meta.url).href },
-  { id: "faq", subtitle: "Common questions and answers", image: new URL("../../assets/diwali-faq.png", import.meta.url).href },
+  {
+    id: "vidhi",
+    subtitle: "Step-by-step worship process",
+    image: COMMON_IMAGES.vidhi,
+  },
+  {
+    id: "samagri",
+    subtitle: "Complete list of required items",
+    image: COMMON_IMAGES.samagri,
+  },
+  {
+    id: "katha",
+    subtitle: "The story and spiritual background",
+    image: COMMON_IMAGES.katha,
+  },
+  {
+    id: "mantra",
+    subtitle: "Key mantras and aarti",
+    image: COMMON_IMAGES.mantra,
+  },
+  {
+    id: "traditions",
+    subtitle: "Fasting rules and regional customs",
+    image: COMMON_IMAGES.traditions,
+  },
+  {
+    id: "faq",
+    subtitle: "Common questions and answers",
+    image: COMMON_IMAGES.faq,
+  },
 ];
+
 
 const Pending = ({ children = "Unavailable" }) => <span className={styles.pending}>{children}</span>;
 
@@ -76,26 +103,85 @@ const formatTithiTime = (value) => {
 };
 
 export default function FestivalDetails() {
-  const { slug } = useParams();
-  const content = FESTIVAL_CONTENT[slug];
+  const { slug, year } = useParams();
+
+const currentYear = Number(
+  new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+  }).format(new Date())
+);
+
+const validYear =
+  year !== undefined &&
+  /^\d{4}$/.test(year) &&
+  Number(year) >= 2000 &&
+  Number(year) <= 2100;
+
+const selectedYear = validYear ? Number(year) : null;
+  const [festivalContent, setFestivalContent] = useState(null);
+const [contentLoading, setContentLoading] = useState(true);
+const [contentError, setContentError] = useState("");
+
+const content = festivalContent;
   const { selectedCity, setSelectedCity } = useContext(CityContext);
 
   const [activeTab, setActiveTab] = useState("overview");
   const [festivalData, setFestivalData] = useState(null);
   const [festivalLoading, setFestivalLoading] = useState(false);
   const [festivalError, setFestivalError] = useState("");
-  const tabsRef = useRef(null);
+  const scrollingToRef = useRef(null);
 
-  // Current IST year. Later we can connect the calendar's selected year.
-  const selectedYear = Number(new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Kolkata", year: "numeric"
-  }).format(new Date()));
+  useEffect(() => {
+  let cancelled = false;
+
+  const fetchContent = async () => {
+    setContentLoading(true);
+    setContentError("");
+    setFestivalContent(null);
+
+    const { data, error } = await supabase
+      .from("festival_content")
+      .select("*")
+      .eq("slug", slug)
+      .eq("is_published", true)
+      .maybeSingle();
+
+    if (cancelled) return;
+
+    if (error) {
+      console.error("Festival content error:", error);
+      setContentError("Unable to load festival information.");
+    } else if (!data) {
+      setContentError("Festival content is not available.");
+    } else {
+      setFestivalContent({
+        ...data,
+        alternate: data.alternate_name,
+        artwork: {
+          left: data.hero_left_image,
+          right: data.hero_right_image,
+        },
+      });
+    }
+
+    setContentLoading(false);
+  };
+
+  fetchContent();
+
+  return () => {
+    cancelled = true;
+  };
+}, [slug]);
+
+  
 
   useEffect(() => {
     setActiveTab("overview");
   }, [slug]);
 
-  // Fetch city-wise Diwali data from the existing Edge Function.
+  // Fetch city-wise festival data from the existing Edge Function (Diwali currently supported).
   useEffect(() => {
     let cancelled = false;
 
@@ -103,9 +189,9 @@ export default function FestivalDetails() {
       setFestivalData(null);
       setFestivalError("");
 
-      if (slug !== "diwali" || !selectedCity?.id) {
-        setFestivalLoading(false);
-        return;
+      if (!selectedCity?.id || !selectedYear) {
+       setFestivalLoading(false);
+      return;
       }
 
       setFestivalLoading(true);
@@ -122,13 +208,17 @@ export default function FestivalDetails() {
         if (error) throw error;
         if (!data?.success) throw new Error(data?.error || "Unable to fetch festival data.");
 
-        const diwali = data.festivals?.find(item => item.festivalType === "diwali");
+        const festival = data.festivals?.find(
+           (item) => item.festivalType === slug
+         );
 
-        if (diwali) {
-          setFestivalData(diwali);
-        } else {
-          setFestivalError("Diwali data is not available for this city and year.");
-        }
+        if (festival) {
+          setFestivalData(festival);
+       } else {
+        setFestivalError(
+         "Festival date information is not available for this city and year."
+        );
+       }
       } catch (error) {
         console.error("Festival details error:", error);
         if (!cancelled) setFestivalError("Unable to load festival details.");
@@ -141,25 +231,105 @@ export default function FestivalDetails() {
     return () => { cancelled = true; };
   }, [slug, selectedCity?.id, selectedYear]);
 
-  const cityName = selectedCity?.city || "Select City";
   const cityDisplay = selectedCity
     ? [selectedCity.city, selectedCity.state].filter(Boolean).join(", ")
     : "Chandigarh";
 
+  // Keep navigation highlighting in sync with the section in view.
+  useEffect(() => {
+    if (!content) return;
+    let frame = 0;
+    const updateActiveSection = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        if (scrollingToRef.current) return;
+        const offset = 180;
+        let current = "overview";
+        for (const { id } of TABS) {
+          const section = document.getElementById(`festival-section-${id}`);
+          if (section && section.getBoundingClientRect().top <= offset) current = id;
+        }
+        setActiveTab(current);
+      });
+    };
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    updateActiveSection();
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, [slug, content]);
+
   const selectTab = (id) => {
+    const target = document.getElementById(`festival-section-${id}`);
+    if (!target) return;
     setActiveTab(id);
-    requestAnimationFrame(() => tabsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    scrollingToRef.current = id;
+    const top = target.getBoundingClientRect().top + window.scrollY - 120;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+    // Clear the click lock when scrolling settles, without changing the URL.
+    if (scrollingToRef.timer) clearTimeout(scrollingToRef.timer);
+    scrollingToRef.timer = setTimeout(() => { scrollingToRef.current = null; }, 950);
   };
 
-  if (!content) {
-    return (
-      <main className={styles.notFound}>
-        <h1>Festival details are not available yet</h1>
-        <p>This festival has not been prepared for publication.</p>
-        <Link to="/hindu-festival-calender">Back to Festival Calendar</Link>
-      </main>
-    );
-  }
+  // Redirect old festival URLs to the current year
+if (year === undefined) {
+  return (
+    <Navigate
+      to={`/festivals/${slug}/${currentYear}`}
+      replace
+    />
+  );
+}
+
+// Handle invalid years
+if (!validYear) {
+  return (
+    <main className={styles.notFound}>
+      <h1>Invalid festival year</h1>
+      <p>Please select a valid year between 2000 and 2100.</p>
+      <Link to="/hindu-festival-calender">
+        Back to Festival Calendar
+      </Link>
+    </main>
+  );
+}
+
+
+if (contentLoading) {
+  return (
+    <main className={styles.page}>
+      <div className={styles.container}>
+        <p>Loading festival information...</p>
+      </div>
+    </main>
+  );
+}
+
+if (contentError) {
+  return (
+    <main className={styles.page}>
+      <div className={styles.container}>
+        <p role="alert">{contentError}</p>
+      </div>
+    </main>
+  );
+}
+
+// Handle festivals that are not yet available
+if (!content) {
+  return (
+    <main className={styles.notFound}>
+      <h1>Festival details are not available yet</h1>
+      <p>This festival has not been prepared for publication.</p>
+      <Link to="/hindu-festival-calender">
+        Back to Festival Calendar
+      </Link>
+    </main>
+  );
+}
 
   const fullTitle = `${content.title}${content.alternate ? ` (${content.alternate})` : ""}`;
   const factValue = (value) => festivalLoading
@@ -198,8 +368,12 @@ export default function FestivalDetails() {
 
         {/* Festival hero */}
         <section className={styles.hero} aria-label={`${content.title} festival`}>
-          <img src={content.artwork.left} className={styles.heroLeft} alt="" aria-hidden="true" />
-          <img src={content.artwork.right} className={styles.heroRight} alt="" aria-hidden="true" />
+          {content.artwork?.left && (
+            <img src={content.artwork.left} className={styles.heroLeft} alt="" aria-hidden="true" />
+          )}
+          {content.artwork?.right && (
+            <img src={content.artwork.right} className={styles.heroRight} alt="" aria-hidden="true" />
+          )}
           <div className={styles.heroCopy}>
             <h1>{content.title}<span>{content.alternate && ` (${content.alternate})`}</span></h1>
             <p>{content.subtitle}</p>
@@ -217,7 +391,7 @@ export default function FestivalDetails() {
           </div>
 
           <div className={styles.fact}>
-            <Flower2 />
+            <Moon />
             <div>
               <b>Tithi</b>
               {factValue(festivalData?.tithi)}
@@ -225,7 +399,7 @@ export default function FestivalDetails() {
           </div>
 
           <div className={styles.fact}>
-            <Clock3 />
+            <ClockArrowUp />
             <div>
               <b>Tithi Begins</b>
               {factValue(formatTithiTime(festivalData?.sourceStart))}
@@ -233,7 +407,7 @@ export default function FestivalDetails() {
           </div>
 
           <div className={styles.fact}>
-            <Clock3 />
+            <ClockArrowDown />
             <div>
               <b>Tithi Ends</b>
               {factValue(formatTithiTime(festivalData?.sourceEnd))}
@@ -242,15 +416,13 @@ export default function FestivalDetails() {
         </section>
 
         {/* Navigation tabs */}
-        <div className={styles.tabs} ref={tabsRef} role="tablist" aria-label="Festival information sections">
+        <div className={styles.tabs} aria-label="Festival information sections">
           {TABS.map(({ id, label, Icon }) => (
             <button
               key={id}
-              id={`festival-tab-${id}`}
               type="button"
-              role="tab"
-              aria-selected={activeTab === id}
-              aria-controls="festival-tab-panel"
+              aria-current={activeTab === id ? "location" : undefined}
+              aria-controls={`festival-section-${id}`}
               className={`${styles.tab} ${activeTab === id ? styles.activeTab : ""}`}
               onClick={() => selectTab(id)}
             >
@@ -259,13 +431,13 @@ export default function FestivalDetails() {
           ))}
         </div>
 
-        {/* Tab content */}
-        <div id="festival-tab-panel" role="tabpanel" aria-labelledby={`festival-tab-${activeTab}`}>
-          {activeTab === "overview" ? (
+        {/* All sections remain mounted and visible for in-page navigation. */}
+        <div className={styles.allSections}>
+          <section id="festival-section-overview" className={styles.scrollSection} aria-label="Festival overview">
             <div className={styles.overview}>
               <div className={styles.overviewRow}>
 
-                {/* About Diwali */}
+                {/* Festival overview */}
                 <section className={styles.about}>
                   <div className={styles.heading}>
                     <Flower2 />
@@ -275,37 +447,16 @@ export default function FestivalDetails() {
                   <p className={styles.aboutCopy}>{content.description}</p>
 
                   <div className={styles.significance}>
-                    <img src={significanceArt} alt="Diwali diya" className={styles.significanceImage} />
+                    <img src={COMMON_IMAGES.significance} alt="" className={styles.significanceImage} />
                     <div>
                       <h3>Significance</h3>
                       <p>{content.significance}</p>
                     </div>
                   </div>
 
-                  <img src={aboutArt} alt="" className={styles.aboutDecoration} />
+                  <img src={COMMON_IMAGES.about} alt="" className={styles.aboutDecoration} />
                 </section>
 
-                {/* City-wise puja timings - pending independent validation */}
-                <section className={styles.timings}>
-                  <div className={styles.timingHeader}>
-                    <div className={styles.heading}><MapPin /><h2>City-Wise Puja Timings</h2></div>
-                  </div>
-
-                  <div className={styles.timingStrip}>
-                    <div className={styles.timingCell}><Sun /><b>Sunrise</b><Pending /></div>
-                    <div className={styles.timingCell}><Sunset /><b>Sunset</b><Pending /></div>
-                    <div className={styles.timingCell}><List /><b>{content.timingLabels.tithi}</b><Pending /></div>
-                    <div className={styles.timingCell}><Hourglass /><b>{content.timingLabels.period}</b><Pending /></div>
-                    <div className={`${styles.timingCell} ${styles.highlightTiming}`}>
-                      <Flower2 /><b>{content.timingLabels.puja}</b><Pending />
-                    </div>
-                  </div>
-
-                  <div className={styles.timingNote}>
-                    <Info size={17} />
-                    <span>Timings for {cityName} (IST) are pending validation. They may vary by location.</span>
-                  </div>
-                </section>
               </div>
 
               {/* Explore more sections */}
@@ -337,15 +488,22 @@ export default function FestivalDetails() {
                 <Link to="/collections/products">View All Products <ArrowRight size={18} /></Link>
               </section>
             </div>
-          ) : (
-            <FestivalTabSections
-              key={slug}
-              activeTab={activeTab}
-              content={content}
-              selectedCity={selectedCity}
-              setSelectedCity={setSelectedCity}
-            />
-          )}
+          </section>
+          {TABS.filter(({ id }) => id !== "overview").map(({ id }) => (
+            <section
+              key={`${slug}-${id}`}
+              id={`festival-section-${id}`}
+              className={styles.scrollSection}
+              aria-label={TABS.find((tab) => tab.id === id)?.label}
+            >
+              <FestivalTabSections
+                activeTab={id}
+                content={content}
+                selectedCity={selectedCity}
+                setSelectedCity={setSelectedCity}
+              />
+            </section>
+          ))}
         </div>
       </div>
     </main>
