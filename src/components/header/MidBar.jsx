@@ -40,19 +40,20 @@ function MidBar() {
                 <div className={styles.hamBurgerIcon}>
                     <Menu size={28}  color="#f7f3ee" ></Menu>
                 </div>
+                    <Location/>
+
 
                 <div onClick={navigateHome} className={styles.logoWrap}>
                     <img src={logo}></img>
                 </div>
 
-                <div className={styles.searchBarMain}>
+                {/* <div className={styles.searchBarMain}>
                     <SearchBar></SearchBar>
                   
-                </div>
+                </div> */}
 
                 <div className={styles.midBarNav}>
 
-                    <Location/>
                     <WishList className={styles.midBarNavItems}></WishList>
                     <div className={styles.midBarNavCartIconDiv}  onClick={OpenCart}>
                     <ShopingCart className={styles.midBarNavItems}></ShopingCart>
