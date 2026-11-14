@@ -278,10 +278,28 @@ try {
       const seoDescription =
         `Explore ${content.title} ${year} puja vidhi, samagri, katha, mantras, traditions and festival significance on Poonjora.`;
 
-      const seoTags = `
+      const socialImage = content.artwork?.left || "";
+
+const seoTags = `
 <title>${escapeHtml(seoTitle)}</title>
 <meta name="description" content="${escapeHtml(seoDescription)}" />
 <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Poonjora" />
+<meta property="og:title" content="${escapeHtml(seoTitle)}" />
+<meta property="og:description" content="${escapeHtml(seoDescription)}" />
+<meta property="og:url" content="${escapeHtml(canonicalUrl)}" />
+
+${socialImage ? `
+<meta property="og:image" content="${escapeHtml(socialImage)}" />
+<meta property="og:image:alt" content="${escapeHtml(content.title)}" />
+` : ""}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${escapeHtml(seoTitle)}" />
+<meta name="twitter:description" content="${escapeHtml(seoDescription)}" />
+${socialImage ? `<meta name="twitter:image" content="${escapeHtml(socialImage)}" />` : ""}
 `;
 
       let html = baseTemplate.replace(
