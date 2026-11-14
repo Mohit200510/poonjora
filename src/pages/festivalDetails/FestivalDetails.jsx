@@ -511,11 +511,12 @@ if (!content) {
               aria-label={TABS.find((tab) => tab.id === id)?.label}
             >
               <FestivalTabSections
-                activeTab={id}
-                content={content}
-                selectedCity={selectedCity}
-                setSelectedCity={setSelectedCity}
-              />
+  activeTab={id}
+  content={content}
+  selectedCity={selectedCity}
+  setSelectedCity={setSelectedCity}
+  year={selectedYear}
+/>
             </section>
           ))}
         </div>
