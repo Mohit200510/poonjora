@@ -278,7 +278,10 @@ try {
       const seoDescription =
         `Explore ${content.title} ${year} puja vidhi, samagri, katha, mantras, traditions and festival significance on Poonjora.`;
 
-      const socialImage = content.artwork?.left || "";
+      const socialImage =
+      slug === "chhath-puja"
+    ? "https://cffhhqqkcrcxxivilosk.supabase.co/storage/v1/object/public/festival-images/chhath-puja/poonjora-chhath-puja-social-1200x630.jpg"
+    : content.artwork?.left || "";
 
 const seoTags = `
 <title>${escapeHtml(seoTitle)}</title>
