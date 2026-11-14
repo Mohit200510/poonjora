@@ -267,8 +267,7 @@ try {
       const festivalPath =
         `/festivals/${slug}/${year}`;
 
-     const canonicalUrl =
-  `${SITE_URL}${festivalPath}/`;
+    const canonicalUrl = `${SITE_URL}${festivalPath}/`;
 
       const seoTitle =
         `${content.title} ${year}: Puja Vidhi, Samagri & Katha | Poonjora`;
