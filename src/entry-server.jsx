@@ -7,12 +7,19 @@ import { Flower2 } from "lucide-react";
 import FestivalTabSections from "./pages/festivalDetails/FestivalTabSections";
 import styles from "./pages/festivalDetails/FestivalDetails.module.css";
 
+// Common illustrations shared across all festivals
 const IMAGE_BASE =
   "https://cffhhqqkcrcxxivilosk.supabase.co/storage/v1/object/public/festival-images/common";
 
 const COMMON_IMAGES = {
   about: `${IMAGE_BASE}/diwali-about-art.webp`,
   significance: `${IMAGE_BASE}/diwali-significance-art.webp`,
+  vidhi: `${IMAGE_BASE}/diwali-vidhi.webp`,
+  samagri: `${IMAGE_BASE}/diwali-samagri.webp`,
+  katha: `${IMAGE_BASE}/diwali-katha.webp`,
+  mantra: `${IMAGE_BASE}/diwali-mantra.webp`,
+  traditions: `${IMAGE_BASE}/diwali-traditions.webp`,
+  faq: `${IMAGE_BASE}/diwali-faq.webp`,
 };
 
 const SECTIONS = [
