@@ -35,6 +35,9 @@ const FESTIVAL_YEARS = [2026, 2027];
 // Diwali 2027 is not approved yet.
 const APPROVED_FESTIVAL_ROUTES = new Set([
   "/festivals/diwali/2026",
+  "/festivals/diwali/2027",
+  "/festivals/chhath-puja/2026",
+  "/festivals/chhath-puja/2027",
 ]);
 
 const MAX_RECORDS = 1000;
