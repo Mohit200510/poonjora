@@ -24,20 +24,38 @@ if (!supabaseUrl || !supabaseKey) {
 }
 
 // ========================================
-// 2. Festival configuration
+// 2. Configuration
 // ========================================
 
-const festivalSlug = "diwali";
-const festivalYear = "2026";
+const SITE_URL = "https://poonjora.in";
 
-const festivalPath =
-  `/festivals/${festivalSlug}/${festivalYear}`;
+const FESTIVAL_YEARS = [2026, 2027];
 
-const canonicalUrl =
-  `https://poonjora.in${festivalPath}`;
+// Only approved URLs appear in the sitemap.
+// Diwali 2027 is not approved yet.
+const APPROVED_FESTIVAL_ROUTES = new Set([
+  "/festivals/diwali/2026",
+]);
+
+const MAX_RECORDS = 1000;
+
+const distDirectory = path.resolve(
+  process.cwd(),
+  "dist"
+);
+
+const templatePath = path.join(
+  distDirectory,
+  "index.html"
+);
+
+const sitemapPath = path.join(
+  distDirectory,
+  "sitemap.xml"
+);
 
 // ========================================
-// 3. HTML escaping helper
+// 3. HTML and XML escaping
 // ========================================
 
 function escapeHtml(value) {
@@ -50,7 +68,18 @@ function escapeHtml(value) {
 }
 
 // ========================================
-// 4. Start Vite SSR module loader
+// 4. Validate festival slug
+// ========================================
+
+function isValidSlug(slug) {
+  return (
+    typeof slug === "string" &&
+    /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)
+  );
+}
+
+// ========================================
+// 5. Start Vite SSR module loader
 // ========================================
 
 const server = await createServer({
@@ -66,7 +95,7 @@ try {
   );
 
   // ========================================
-  // 5. Load festival rendering function
+  // 6. Load festival renderer
   // ========================================
 
   const { renderFestivalSections } =
@@ -74,17 +103,18 @@ try {
       "/src/entry-server.jsx"
     );
 
+  if (typeof renderFestivalSections !== "function") {
+    throw new Error(
+      "renderFestivalSections is not available."
+    );
+  }
+
   // ========================================
-  // 6. Fetch published festival content
+  // 7. Fetch published festival content
   // ========================================
 
   const url = new URL(
     `${supabaseUrl.replace(/\/$/, "")}/rest/v1/festival_content`
-  );
-
-  url.searchParams.set(
-    "slug",
-    `eq.${festivalSlug}`
   );
 
   url.searchParams.set(
@@ -95,6 +125,16 @@ try {
   url.searchParams.set(
     "select",
     "*"
+  );
+
+  url.searchParams.set(
+    "order",
+    "slug.asc"
+  );
+
+  url.searchParams.set(
+    "limit",
+    String(MAX_RECORDS)
   );
 
   const response = await fetch(url, {
@@ -115,155 +155,243 @@ try {
 
   const records = await response.json();
 
-  if (
-    !Array.isArray(records) ||
-    records.length !== 1
-  ) {
+  if (!Array.isArray(records)) {
     throw new Error(
-      "Expected exactly one published Diwali record in festival_content."
+      "Invalid festival_content response."
     );
   }
 
-  const data = records[0];
-
-  // ========================================
-  // 7. Prepare festival content
-  // ========================================
-
-  const content = {
-    ...data,
-
-    alternate: data.alternate_name,
-
-    artwork: {
-      left: data.hero_left_image,
-      right: data.hero_right_image,
-    },
-  };
-
-  console.log(
-    `Loaded festival: ${content.title}`
-  );
-
-  // ========================================
-  // 8. Generate festival HTML
-  // ========================================
-
-  const festivalHtml =
-    renderFestivalSections(content);
-
-  if (
-    !festivalHtml ||
-    !festivalHtml.trim()
-  ) {
+  if (records.length === 0) {
     throw new Error(
-      "Festival HTML generation returned empty content."
+      "No published festival content found."
+    );
+  }
+
+  if (records.length >= MAX_RECORDS) {
+    throw new Error(
+      "Festival record limit reached. Pagination is required."
     );
   }
 
   console.log(
-    "Festival editorial HTML generated."
+    `Published festivals: ${records.length}`
   );
 
   // ========================================
-  // 9. Read production Vite HTML
+  // 8. Read production HTML
   // ========================================
 
-  const distDirectory = path.resolve(
-    process.cwd(),
-    "dist"
-  );
-
-  const templatePath = path.join(
-    distDirectory,
-    "index.html"
-  );
-
-  let template = await fs.readFile(
+  const baseTemplate = await fs.readFile(
     templatePath,
     "utf8"
   );
 
-  // ========================================
-  // 10. Insert editorial HTML into root
-  // ========================================
-
   const rootPattern =
     /<div\s+id=["']root["']\s*><\/div>/i;
 
-  if (!rootPattern.test(template)) {
+  if (!rootPattern.test(baseTemplate)) {
     throw new Error(
       "React root element not found in dist/index.html"
     );
   }
 
-  template = template.replace(
-    rootPattern,
-    `<div id="root">${festivalHtml}</div>`
-  );
-
-  // ========================================
-  // 11. Add SEO metadata
-  // ========================================
-
-  const seoTitle =
-    `${content.title} ${festivalYear}: Puja Vidhi, Samagri & Katha | Poonjora`;
-
-  const seoDescription =
-    `Explore ${content.title} ${festivalYear} puja vidhi, samagri, katha, mantras, traditions and festival significance on Poonjora.`;
-
-  const seoTags = `
-<title>${escapeHtml(seoTitle)}</title>
-<meta name="description" content="${escapeHtml(seoDescription)}" />
-<link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
-`;
-
-  if (!template.includes("</head>")) {
+  if (!baseTemplate.includes("</head>")) {
     throw new Error(
       "HTML head closing tag not found."
     );
   }
 
-  template = template.replace(
-    "</head>",
-    `${seoTags}\n</head>`
-  );
-
   // ========================================
-  // 12. Create festival route directory
+  // 9. Generate festival HTML pages
   // ========================================
 
-  const outputDirectory = path.join(
-    distDirectory,
-    "festivals",
-    festivalSlug,
-    festivalYear
-  );
+  let generatedCount = 0;
 
-  await fs.mkdir(
-    outputDirectory,
-    {
-      recursive: true,
+  const generatedRoutes = [];
+  const seenSlugs = new Set();
+
+  for (const data of records) {
+    const slug = data.slug;
+
+    if (!isValidSlug(slug)) {
+      throw new Error(
+        `Invalid festival slug: ${slug}`
+      );
     }
-  );
+
+    if (seenSlugs.has(slug)) {
+      throw new Error(
+        `Duplicate published festival slug: ${slug}`
+      );
+    }
+
+    seenSlugs.add(slug);
+
+    if (
+      typeof data.title !== "string" ||
+      !data.title.trim()
+    ) {
+      throw new Error(
+        `Missing festival title: ${slug}`
+      );
+    }
+
+    const content = {
+      ...data,
+
+      alternate: data.alternate_name,
+
+      artwork: {
+        left: data.hero_left_image,
+        right: data.hero_right_image,
+      },
+    };
+
+    console.log(
+      `Rendering: ${content.title}`
+    );
+
+    const festivalHtml =
+      renderFestivalSections(content);
+
+    if (
+      typeof festivalHtml !== "string" ||
+      !festivalHtml.trim()
+    ) {
+      throw new Error(
+        `Empty editorial HTML for ${slug}`
+      );
+    }
+
+    for (const year of FESTIVAL_YEARS) {
+      const festivalPath =
+        `/festivals/${slug}/${year}`;
+
+     const canonicalUrl =
+  `${SITE_URL}${festivalPath}/`;
+
+      const seoTitle =
+        `${content.title} ${year}: Puja Vidhi, Samagri & Katha | Poonjora`;
+
+      const seoDescription =
+        `Explore ${content.title} ${year} puja vidhi, samagri, katha, mantras, traditions and festival significance on Poonjora.`;
+
+      const seoTags = `
+<title>${escapeHtml(seoTitle)}</title>
+<meta name="description" content="${escapeHtml(seoDescription)}" />
+<link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
+`;
+
+      let html = baseTemplate.replace(
+        rootPattern,
+        `<div id="root">${festivalHtml}</div>`
+      );
+
+      html = html.replace(
+        "</head>",
+        `${seoTags}\n</head>`
+      );
+
+      // Unapproved pages remain accessible
+      // for testing but are marked noindex.
+      if (
+        !APPROVED_FESTIVAL_ROUTES.has(festivalPath)
+      ) {
+        html = html.replace(
+          "</head>",
+          '<meta name="robots" content="noindex,follow" />\n</head>'
+        );
+      }
+
+      const outputDirectory = path.join(
+        distDirectory,
+        "festivals",
+        slug,
+        String(year)
+      );
+
+      await fs.mkdir(
+        outputDirectory,
+        {
+          recursive: true,
+        }
+      );
+
+      const outputFile = path.join(
+        outputDirectory,
+        "index.html"
+      );
+
+      await fs.writeFile(
+        outputFile,
+        html,
+        "utf8"
+      );
+
+      generatedRoutes.push(festivalPath);
+
+      generatedCount++;
+
+      console.log(
+        `Generated: ${festivalPath}`
+      );
+    }
+  }
 
   // ========================================
-  // 13. Write production HTML
+  // 10. Generate sitemap
   // ========================================
 
-  const outputFile = path.join(
-    outputDirectory,
-    "index.html"
+  let sitemap = await fs.readFile(
+    sitemapPath,
+    "utf8"
   );
+
+  if (!sitemap.includes("</urlset>")) {
+    throw new Error(
+      "Invalid sitemap.xml: missing </urlset>."
+    );
+  }
+
+  const approvedRoutes = generatedRoutes.filter(
+    (route) =>
+      APPROVED_FESTIVAL_ROUTES.has(route)
+  );
+
+  for (const route of approvedRoutes) {
+   const fullUrl = `${SITE_URL}${route}/`;
+
+    const escapedUrl = escapeHtml(fullUrl);
+
+    // Avoid duplicate entries.
+    if (
+      sitemap.includes(
+        `<loc>${escapedUrl}</loc>`
+      )
+    ) {
+      continue;
+    }
+
+    const sitemapEntry = `
+  <url>
+    <loc>${escapedUrl}</loc>
+  </url>
+`;
+
+    sitemap = sitemap.replace(
+      "</urlset>",
+      `${sitemapEntry}\n</urlset>`
+    );
+  }
 
   await fs.writeFile(
-    outputFile,
-    template,
+    sitemapPath,
+    sitemap,
     "utf8"
   );
 
   // ========================================
-  // 14. Success
+  // 11. Final summary
   // ========================================
 
   console.log(
@@ -275,23 +403,33 @@ try {
   );
 
   console.log(
-    `Festival: ${content.title}`
+    `Published festivals: ${records.length}`
   );
 
   console.log(
-    `Year: ${festivalYear}`
+    `Years: ${FESTIVAL_YEARS.join(", ")}`
   );
 
   console.log(
-    `Route: ${festivalPath}`
+    `Generated pages: ${generatedCount}`
   );
 
   console.log(
-    `Output: ${outputFile}`
+    `Approved sitemap URLs: ${approvedRoutes.length}`
   );
 
   console.log(
-    `HTML size: ${Buffer.byteLength(template)} bytes`
+    "Generated routes:"
+  );
+
+  generatedRoutes.forEach((route) => {
+    console.log(
+      `  ${route}`
+    );
+  });
+
+  console.log(
+    `Sitemap: ${sitemapPath}`
   );
 
   console.log(
