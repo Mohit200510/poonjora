@@ -7,8 +7,19 @@ import React, {
 
 export const CityContext = createContext();
 
+
+
 export function CityProvider({ children }) {
-  const [selectedCity, setSelectedCity] = useState(null);
+
+
+  // const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedCity, setSelectedCity] = useState({
+  id: 382,
+  city: "Chandigarh",
+  state: "Chandigarh",
+  latitude: 30.7333,
+  longitude: 76.7794,
+});
 
   useEffect(() => {
     try {

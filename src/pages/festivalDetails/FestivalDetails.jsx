@@ -247,7 +247,7 @@ const content = festivalContent;
 
   const cityDisplay = selectedCity
     ? [selectedCity.city, selectedCity.state].filter(Boolean).join(", ")
-    : "Chandigarh";
+    : "No city Selected";
 
   // Keep navigation highlighting in sync with the section in view.
   useEffect(() => {

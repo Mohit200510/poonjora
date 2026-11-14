@@ -135,20 +135,111 @@ function SamagriPanel({ section }) {
   );
 }
 
-function TimingsPanel({ selectedCity }) {
-  const cityName = selectedCity?.city || "your selected city";
+
+const formatRitualTime = (value) => {
+  if (!/^\d{2}:\d{2}$/.test(value || "")) return "—";
+
+  const [hour, minute] = value.split(":").map(Number);
+
+  if (hour > 23 || minute > 59) return "—";
+
+  return `${hour % 12 || 12}:${String(minute).padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`;
+};
+
+const formatRitualDate = (value) => {
+  if (!value) return "—";
+
+  const date = new Date(`${value}T12:00:00Z`);
+
+  if (
+    Number.isNaN(date.getTime()) ||
+    date.toISOString().slice(0, 10) !== value
+  ) return "—";
+
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "numeric",
+    month: "short",
+    year: "numeric"
+  }).format(date);
+};
+
+function TimingsPanel({ muhurat, year }) {
+  const data = muhurat?.[String(year)];
+
+  if (
+    data?.status !== "approved" ||
+    !Array.isArray(data?.cities) ||
+    !data.cities.length
+  ) {
+    return (
+      <EmptyState message="Verified ritual timings for this festival and year are not yet available." />
+    );
+  }
+
   return (
-    <div className={styles.stack}>
-      <Panel title="Muhurat verification in progress" Icon={Clock3}>
-        <p className={styles.bodyCopy}>
-          Puja muhurat and location-specific observance timings for {cityName} will be
-          published after independent verification. Please consult a trusted local
-          Panchang or qualified priest for time-sensitive worship planning.
-        </p>
-      </Panel>
+    <div className={styles.muhuratSection}>
+      <div className={styles.muhuratHeader}>
+        <div>
+          <h3 style={{color:"#2b2b2b" ,fontFamily:"'poppins',sans-sarif"}}>Sandhya & Usha Arghya Timings</h3>
+          {/* <p>Sunrise and sunset timings for major Indian cities</p> */}
+        </div>
+        <span className={styles.muhuratTimezone}>
+          <Clock3 size={15} />
+          IST
+        </span>
+      </div>
+
+      <div className={styles.muhuratDates}>
+        <div>
+          <span>Sandhya Arghya</span>
+          <strong>
+            {formatRitualDate(data.sandhya_arghya_date)}
+          </strong>
+        </div>
+        <div>
+          <span>Usha Arghya</span>
+          <strong>
+            {formatRitualDate(data.usha_arghya_date)}
+          </strong>
+        </div>
+      </div>
+
+      <div className={styles.muhuratTableScroll}>
+        <table className={styles.muhuratTable}>
+          <thead>
+            <tr>
+              <th scope="col">City</th>
+              <th scope="col">Sandhya Arghya</th>
+              <th scope="col">Usha Arghya</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.cities.map((item) => (
+              <tr key={`${item.state}-${item.city}`}>
+                <th scope="row">
+  <span className={styles.muhuratCity}>
+    {item.city}
+  </span>
+</th>
+                <td>{formatRitualTime(item.sandhya)}</td>
+                <td>{formatRitualTime(item.usha)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p className={styles.muhuratDisclaimer}>
+        Timings are city-specific and shown in Indian Standard
+        Time (IST). Sandhya Arghya corresponds to local sunset
+        and Usha Arghya to local sunrise. Actual observance
+        practices may vary.
+      </p>
     </div>
   );
 }
+
 
 function KathaPanel({ section, festivalTitle }) {
   return (
@@ -397,7 +488,7 @@ function FAQPanel({ section }) {
   );
 }
 
-export default function FestivalTabSections({ activeTab, content, selectedCity }) {
+export default function FestivalTabSections({ activeTab, content, selectedCity,year }) {
   const config = TITLES[activeTab];
   if (!config) return null;
   const { title, subtitle, Icon } = config;
@@ -425,7 +516,7 @@ export default function FestivalTabSections({ activeTab, content, selectedCity }
         <VidhiPanel section={sections.vidhi} festivalTitle={content.title} />
       )}
       {activeTab === "samagri" && <SamagriPanel section={sections.samagri} />}
-      {activeTab === "timings" && <TimingsPanel selectedCity={selectedCity} />}
+      {activeTab === "timings" && (<TimingsPanel muhurat={supplied.muhurat} year={year}/>)}
       {activeTab === "katha" && <KathaPanel section={sections.katha} festivalTitle={content.title} />}
       {activeTab === "mantra" && <MantraPanel section={sections.mantra} />}
       {activeTab === "traditions" && <TraditionsPanel section={sections.traditions} />}
@@ -433,3 +524,5 @@ export default function FestivalTabSections({ activeTab, content, selectedCity }
     </div>
   );
 }
+
+

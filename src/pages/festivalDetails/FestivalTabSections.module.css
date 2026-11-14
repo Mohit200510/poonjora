@@ -820,3 +820,179 @@ button:focus-visible, summary:focus-visible { outline: 2px solid var(--tab-purpl
     padding-bottom: 12px;
   }
 }
+
+
+/* MUHURAT & TIMINGS */
+
+.muhuratSection {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px;
+  background: #fffdfa;
+  border: 1px solid #eadfe7;
+  border-radius: 16px;
+  min-width: 0;
+}
+
+.muhuratHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.muhuratHeader h3 {
+  margin: 0 0 6px;
+  color: #36014f;
+  font: 600 21px/1.35 Georgia, serif;
+}
+
+.muhuratHeader p {
+  margin: 0;
+  color: #756b78;
+  font-size: 13px;
+}
+
+.muhuratTimezone {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  color: #36014f;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.muhuratDates {
+  display: flex;
+  gap: 12px;
+}
+
+.muhuratDates > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  background: #fbf6fb;
+  border: 1px solid #ebdfeb;
+  border-radius: 10px;
+}
+
+.muhuratDates span {
+  color: #756777;
+  font-size: 12px;
+}
+
+.muhuratDates strong {
+  color: #36014f;
+  font-size: 15px;
+}
+
+.muhuratTableScroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.muhuratTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.muhuratTable thead {
+  background: #f5ecf6;
+}
+
+.muhuratTable th,
+.muhuratTable td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee6ec;
+}
+
+.muhuratTable thead th {
+  color: #36014f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.muhuratTable tbody th {
+  font-weight: 500;
+}
+
+.muhuratTable td {
+  color: #36014f;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.muhuratTable tbody tr:hover {
+  background: #fcf8fc;
+}
+
+.muhuratCity {
+  display: block;
+  color: #35263a;
+  font-weight: 600;
+}
+
+.muhuratTable small {
+  display: block;
+  margin-top: 3px;
+  color: #827785;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.muhuratDisclaimer {
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid #eee6ec;
+  color: #766c78;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .muhuratSection {
+    padding: 14px 10px;
+    gap: 14px;
+  }
+
+  .muhuratHeader h3 {
+    font-size: 18px;
+  }
+
+  .muhuratHeader p {
+    font-size: 12px;
+  }
+
+  .muhuratDates {
+    gap: 8px;
+  }
+
+  .muhuratDates > div {
+    padding: 12px 10px;
+  }
+
+  .muhuratDates strong {
+    font-size: 13px;
+  }
+
+  .muhuratTable th,
+  .muhuratTable td {
+    padding: 12px 9px;
+    font-size: 12px;
+  }
+
+  .muhuratTable thead th {
+    font-size: 11px;
+  }
+
+  .muhuratTable small {
+    font-size: 10px;
+  }
+}
+
