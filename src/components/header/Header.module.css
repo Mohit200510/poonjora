@@ -1,11 +1,10 @@
 .logoWrap{
-    width: 132px;
+  
     /* height: 20px; */
-    margin-top: 5px;
     cursor: pointer;
 }
 .logoWrap img{
-    width: 155px;
+    width: 150px;
 }
 .logo{
    width: 100%;
@@ -456,7 +455,7 @@
 .midBarNav{
     display: flex;
     align-items: center;
-    gap: 31px;
+    gap: 26px;
 }
 
 .midBarNavItems{
@@ -722,37 +721,6 @@
 
 
 
-/* bottom bar */
-
-.bottomBar{
-    width: 100%;
-    background-color: var(--color-bg);
-}
-
-.bottomBarUl{
-    padding: 10px 0;
-    display: flex;
-    /* gap: 90px; */
-    align-items: center;
-    justify-content: center;
-    list-style: none;
-}
-.bottomBarUl li{
-    display: inline-block;
-    margin-right: 80px ;
-}
-
-
-.bottomBarNavItemsLink{
-    text-decoration: none;
-    color: var(--color-text-primary);
-    font-size: 15px;
-    font-weight: 500;
-    transition: 0.4s color ease-in;
-    &:hover{
-        color: var(--color-primary);
-    }
-}
 
 
 
@@ -972,7 +940,6 @@
         height: auto;
         flex-wrap: wrap;
         row-gap: 12px;
-        padding: 8px 0 15px 0
 
     }
     .headerSearch{
@@ -980,9 +947,7 @@
         width: 100%;
         height: 46px;
     }
-    .logoWrap{
-        width: 120px;
-    }
+    
 }
 
 @media (max-width: 768px) {
