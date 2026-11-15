@@ -230,15 +230,14 @@
 .loginBox{
     /* background: url("../../assets/login_bg.webp"); */
     background: url("../../assets/checkout_bg.png");
-
     background-size: cover;
     background-position: left;
     width: 100%;
     height: 100%;
     padding: 30px;
-    touch-action: none;
-    
+    touch-action: none;  
 }
+
 .loginBoxCrossIcon{
     position: absolute;
     right: 14px;
@@ -251,9 +250,13 @@
 .loginBoxLogo img{
     width: 56px;
 }
+
+
 .LoginBoxHeading{
     margin: 10px 0 10px 0;
 }
+
+
 .LoginBoxHeading h3{
     font-size: 26px;
     font-weight: 600;
@@ -262,6 +265,7 @@
     margin-bottom: 8px;
     color: var(--color-accent);
 }
+
 .LoginBoxHeading h3 span{
     color: var(--color-primary);
     font-family: "inter",sans-serif;
@@ -269,10 +273,14 @@
     font-weight: 600;
     
 }
+
+
 .LoginBoxHeading p{
     color: var(--color-text-secondary);
     font-size: 15px;
 }
+
+
 .LoginBoxBrandImage img{
     width: 275px;
 }
@@ -345,12 +353,27 @@
     font-size: 14px;
 }
 
-.loginBoxGuestBtn a{
-    font-size: 16px;
-    color: var(--color-primary);
-    text-decoration:  none;
-    font-weight: 500;
+.loginBoxGuestBtn button {
+  font-size: 16px;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
 
+.loginBoxGuestBtn button:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+  background: none;
+}
+
+.loginBoxGuestBtn button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 .loginBoxBottom{
     margin-top: 20px;
@@ -371,6 +394,7 @@
 .loginBoxBottom svg{
     font-size: 19px;
 }
+
 
 
 @media screen and (max-width:780px) {
@@ -398,7 +422,6 @@
   }
 
   .loginBoxGoogleBtn button{
-    
     gap: 10px;
     font-size: 15px;
     padding: 12px 25px 12px 15px;

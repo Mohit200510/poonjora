@@ -11,7 +11,18 @@
 }
 
 
+.header {
+  width: 100%;
+  display: contents;
+}
 
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: #36014F;
+}
 
 /* ==========================================
    POONJORA ANIMATED TOP BAR

@@ -12,12 +12,21 @@ function Header() {
     <header className={styles.header}>
 
       
-        <div className={styles.midBarContainer}>
+      
 
         <TopBar></TopBar>
+
+        
+      <div className={styles.stickyHeader}>
         <MidBar></MidBar>
-        </div>
+        
         <BottomBar></BottomBar>
+        </div>
+
+
+
+
+
         {/* <Location/> */}
        
     
