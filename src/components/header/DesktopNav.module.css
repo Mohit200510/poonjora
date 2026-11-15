@@ -32,7 +32,7 @@
 .navRight {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 34px;
   flex-shrink: 0;
 }
 
@@ -71,6 +71,7 @@
 .dropdownTrigger svg {
   font-size: 20px;
   color: #716b75;
+  color: var(--color-primary);
   flex-shrink: 0;
 
   transition: color 0.25s ease;
@@ -189,6 +190,7 @@
 .featureLink svg {
   font-size: 21px;
   color: #716b75;
+  color: var(--color-primary);
   flex-shrink: 0;
 
   transition: color 0.25s ease;

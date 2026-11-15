@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from "./Cart.module.css"
 import { X } from 'lucide-react'
 import { GoTrash } from "react-icons/go";
@@ -21,8 +21,15 @@ function Cart() {
     
     const {CloseCart,closeCart,setCloseCart,cartItems,setCartItems,decreaseQuantity,increaseQuantity,cartPriceTotal,cartMRPTotal,cartDiscount} = useContext(CartContext);
 
-    const [openCheckout,setOpenCheckout]=useState(false)
+    const [openCheckout, setOpenCheckout] = useState(
+  () => sessionStorage.getItem("poonjora-checkout-open") === "true");
 
+useEffect(() => {
+  sessionStorage.setItem(
+    "poonjora-checkout-open",
+    String(openCheckout && cartItems.length > 0)
+  );
+}, [openCheckout, cartItems.length]);
     
 
     const deleteItem = (id) => {
@@ -165,7 +172,9 @@ function Cart() {
 
                 </div>
             </div>
-             {openCheckout?<Checkout setOpenCheckout = {setOpenCheckout} />:null}
+             {openCheckout && cartItems.length > 0 && (
+              <Checkout setOpenCheckout={setOpenCheckout} />
+               )}
         </div>
         
 

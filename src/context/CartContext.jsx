@@ -11,7 +11,14 @@ export const CartProvider = ({children})=> {
     return savedCart? JSON.parse(savedCart):[];
   });
 
-  const[closeCart,setCloseCart] = useState(true);
+ const [closeCart, setCloseCart] = useState(
+  () => sessionStorage.getItem("closeCart") !== "false"
+);
+
+useEffect(() => {
+  sessionStorage.setItem("closeCart", closeCart);
+}, [closeCart]);
+
   const[showToast,setShowToast]=useState()
 
   useEffect(()=>{

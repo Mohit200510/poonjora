@@ -650,7 +650,7 @@
     position: absolute;
     color: #111;
     /* bottom: 0; */
-    right: -59%;
+    right: -81%;
 
     /* display: none; */
     /* transform: translateX(-57%); */
@@ -664,7 +664,7 @@
     background: var(--color-surface);
     /* transition: 5s all ease-in; */
     box-shadow: var(--shadow-lg);
-    z-index: 10;
+    z-index: 1000;
     
 }
 .locationToggleBoxContainer{

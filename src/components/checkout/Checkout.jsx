@@ -33,7 +33,7 @@ function Checkout({ setOpenCheckout }) {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://poonjora.in/",
+        redirectTo: window.location.href,
         queryParams: {
           prompt: "select_account",
         },
