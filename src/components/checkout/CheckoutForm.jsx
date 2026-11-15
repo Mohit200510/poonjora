@@ -30,6 +30,7 @@ import Address from './addressForm/Address';
 import Overlay from '../common/Overlay';
 import ReviewBox from './formUX/ReviewBox';
 import DialogBox from './dialogBox/DialogBox';
+import CheckoutOfferStrip from './checkoutOfferStrip/CheckoutOfferStrip';
 
 function CheckoutForm({setOpenCheckout}) {
 
@@ -273,6 +274,8 @@ const { data, error } = await supabase.functions.invoke(
           </div>
           <p>100% Secured Checkout <IoMdLock/></p>
         </div>
+
+        <CheckoutOfferStrip/>
 
         <div className={styles.CheckoutFormBody}>
 

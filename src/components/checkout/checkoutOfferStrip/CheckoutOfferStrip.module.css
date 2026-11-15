@@ -1,0 +1,174 @@
+
+/* MAIN STRIP */
+
+.ribbon {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: 44px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background: linear-gradient(
+    90deg,
+    #fcf9fd 0%,
+    #f6edf9 50%,
+    #fcf9fd 100%
+  );
+
+  border-top: 1px solid #f0e5f4;
+  border-bottom: 1px solid #f0e5f4;
+}
+
+/* VIEWPORT */
+
+.viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* OFFER ROW */
+
+.offer {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-width: 0;
+  padding: 0 12px;
+  box-sizing: border-box;
+
+  will-change: transform, opacity;
+}
+
+/* ICON */
+
+.iconBox {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f0e5f5;
+  color: #704781;
+  border-radius: 7px;
+}
+
+.icon {
+  font-size: 15px;
+}
+
+/* TEXT */
+
+.message {
+  min-width: 0;
+  color: #36014f;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* STATIONARY */
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* EXIT: GENTLE UPWARD MOTION */
+
+.exit {
+  animation: offerExit 220ms ease-in both;
+}
+
+/* ENTER: SMOOTH RISE */
+
+.enter {
+  animation: offerEnter 380ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes offerExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes offerEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+  .ribbon {
+    height: 40px;
+  }
+
+  .offer {
+    gap: 7px;
+    padding: 0 8px;
+  }
+
+  .iconBox {
+    width: 22px;
+    height: 22px;
+    flex-basis: 22px;
+    border-radius: 6px;
+  }
+
+  .icon {
+    font-size: 14px;
+  }
+
+  .message {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  .message {
+    font-size: 10px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .exit,
+  .enter {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
