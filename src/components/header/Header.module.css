@@ -707,7 +707,7 @@
     display: flex;
     /* gap: 90px; */
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     list-style: none;
 }
 .bottomBarUl li{
@@ -733,6 +733,7 @@
 /* PANCHANG BUTTON */
 
 .panchangButton {
+  margin-left: 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -754,6 +755,7 @@
   line-height: 1.2;
   white-space: nowrap;
   text-decoration: none;
+  
 
   box-shadow:
     0 3px 10px rgba(186, 124, 28, 0.16),
@@ -810,86 +812,91 @@
 /* CALEDNER BUTTON */
 
 
-.calendarNavGroup {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.navDivider {
-  width: 1.5px;
-  height: 30px;
-  background: #b5b0b5;
-  flex-shrink: 0;
-}
-
 .festivalCalendarLink {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 9px;
 
-  padding: 10px 4px;
-  position: relative;
-  color: #36014F;
-  font-size: 15.5px;
-  font-weight: 600;
-  font-family: inherit;
-
+  padding: 10px 12px;
   text-decoration: none;
   white-space: nowrap;
-  cursor: pointer;
 
-  transition: color 0.3s ease;
+  color: #333039;
+  font-size: 15px;
+  font-weight: 500;
+
+  border-radius: 6px;
+  transition: color 0.25s ease, background-color 0.25s ease;
 }
 
-/* Calendar icon */
 .festivalCalendarLink svg {
-     /* color: #C89432; */
-  width: 23px;
-  height: 23px;
+  font-size: 21px;
+  color: #716b75;
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: color 0.25s ease;
 }
 
-/* Golden underline */
-.festivalCalendarLink::after {
-  content: "";
-  position: absolute;
-
-  bottom: 2px;
-  left: 50%;
-
-  width: 0;
-  height: 2px;
-
-  background-color: #e6aa35;
-  border-radius: 10px;
-
-  transform: translateX(-50%);
-  transition: width 0.3s ease;
-}
-
-/* Hover effects */
 .festivalCalendarLink:hover {
-  color: #5b1674;
-}
-
-.festivalCalendarLink:hover::after {
-  width: 85%;
+  color: #36014f;
+  background-color: #f3edf5;
 }
 
 .festivalCalendarLink:hover svg {
-  transform: translateY(-2px);
+  color: #36014f;
 }
 
-/* Keyboard accessibility */
-.festivalCalendarLink:focus-visible {
-  outline: 2px solid #e6aa35;
-  outline-offset: 4px;
-  border-radius: 4px;
+
+
+
+/* gallery button */
+
+
+
+
+
+.galleryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 10px 12px;
+  text-decoration: none;
+  white-space: nowrap;
+
+  color: #333039;
+  font-size: 15px;
+  font-weight: 500;
+
+  border-radius: 6px;
+  transition: color 0.25s ease, background-color 0.25s ease;
 }
 
+.galleryButton svg {
+  font-size: 21px;
+  color: #716b75;
+  flex-shrink: 0;
+  transition: color 0.25s ease;
+}
+
+.galleryButton:hover {
+  color: #36014f;
+  background-color: #f3edf5;
+}
+
+.galleryButton:hover svg {
+  color: #36014f;
+}
+
+.navDivider {
+  display: inline-block;
+  width: 1px;
+  height: 26px;
+  background-color: #d8d0d8;
+  flex-shrink: 0;
+  margin: 0 14px;
+}
 
 
 

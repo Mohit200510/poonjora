@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import {
   ArrowRight, BookOpen, CalendarDays, ChevronRight,
-  CircleHelp, ClockArrowUp,ClockArrowDown, Flower2, House,
-  List, MapPin, ShoppingBag, ShoppingBasket, Music2,Moon,Clock3
+  CircleHelp, ClockArrowUp,ClockArrowDown, House,
+  List, MapPin, ShoppingBag, ShoppingBasket, Music2,Moon,Clock3,BookOpenText
 } from "lucide-react";
 import { Flower } from "lucide-react";
 import { CityContext } from "../../context/CityContext";
@@ -454,7 +454,7 @@ if (!content) {
                 {/* Festival overview */}
                 <section className={styles.about}>
                   <div className={styles.heading}>
-                    <Flower2 />
+                    <BookOpenText />
                     <h2>About {content.title}</h2>
                   </div>
 

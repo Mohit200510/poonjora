@@ -5,6 +5,8 @@ import { LuCalendarDays, LuArrowRight } from "react-icons/lu";
 import { LuSun } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { FiClock } from "react-icons/fi";
+import { MdOutlinePhotoLibrary } from "react-icons/md";
+
 
 
 function BottomBar() {
@@ -21,35 +23,52 @@ function BottomBar() {
                         <li><a className={styles.bottomBarNavItemsLink} href=''>All</a></li> 
                         </Link>
                         <li><a className={styles.bottomBarNavItemsLink} href=''>Puja Kits</a></li>
-                        <li><a className={styles.bottomBarNavItemsLink} href=''>Chameli Oil</a></li>
-                        <li><a className={styles.bottomBarNavItemsLink} href=''>Kapoor</a></li>
+                        {/* <li><a className={styles.bottomBarNavItemsLink} href=''>Chameli Oil</a></li> */}
+                        {/* <li><a className={styles.bottomBarNavItemsLink} href=''>Kapoor</a></li> */}
                         {/* <li><a className={styles.bottomBarNavItemsLink} href=''>Brass Items</a></li> */}
-                        <li><a className={styles.bottomBarNavItemsLink} href=''>Gangajal</a></li>
+                        <li><a className={styles.bottomBarNavItemsLink} href=''>Puja Essentials</a></li>
                         {/* <li><a className={styles.bottomBarNavItemsLink} href=''>Rudraksha</a></li> */}
-                        <li><a className={styles.bottomBarNavItemsLink} href=''>Puja Oil</a></li>
-                        <li><a className={styles.bottomBarNavItemsLink} href=''>Festive</a></li>
+                        {/* <li><a className={styles.bottomBarNavItemsLink} href=''>Puja Oil</a></li> */}
+                        {/* <li><a className={styles.bottomBarNavItemsLink} href=''>Festive</a></li> */}
                     </div>
+
+                     <span className={styles.navDivider}></span>
+
 
                     <div className={styles.calendarNavGroup}>
                         
-                        <Link
+                    <Link
                       to="/hindu-festival-calender"
                       className={styles.festivalCalendarLink}
                     >
-                       <LuCalendarDays size={23} />
-                       <span>Festival Calendar</span>
+                       <LuCalendarDays size={20} />
+                       <span>Upcoming Festivals</span>
                     </Link>
 
                     
                     
 
-                     <span className={styles.navDivider}></span>
+
+                    
+
+                    <Link to="/divine-gallery" className={styles.galleryButton}>
+                    <MdOutlinePhotoLibrary/>
+                    <span>Divine Gallery</span>
+
+
+                    </Link>
+
+
 
                     <Link to="/panchang" className={styles.panchangButton}>
                         <FiClock className={styles.panchangIcon} />
                         <span>आज का पंचांग</span>
                         <LuArrowRight className={styles.panchangArrow} />
                     </Link>
+
+
+
+
                     </div>
                     
                     {/* <li><a className={styles.bottomBarNavItemsLink} href=''>Sale</a></li> */}
