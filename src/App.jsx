@@ -23,6 +23,7 @@ import GoogleAnalyticsTracker from './components/GoogleAnalyticsTracker'
 import ScrollToTop from './components/common/ScrollToTopjsx'
 import DivineGallery from './components/divineGallery/DivineGallery'
 import FestivalDetails from './pages/festivalDetails/FestivalDetails'
+import MobileBottomNav from './components/header/mobileStickyNaviagtion/MobileBottomNav'
 
 function App({ initialFestivalContent = null }) {
 
@@ -74,6 +75,7 @@ function App({ initialFestivalContent = null }) {
     
     
     <Cart/>
+    <MobileBottomNav/>
 
       
     </>

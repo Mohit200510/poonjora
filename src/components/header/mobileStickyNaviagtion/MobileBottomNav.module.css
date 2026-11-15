@@ -1,0 +1,171 @@
+
+/* ==================================
+   MOBILE STICKY BOTTOM NAVIGATION
+================================== */
+
+.bottomNav {
+  display: none;
+}
+
+/* ==================================
+   MOBILE ONLY
+================================== */
+
+@media (max-width: 1024px) {
+
+  .bottomNav {
+    display: block;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    z-index: 900;
+
+    background: #fffdfa;
+
+    border: none;
+    border-radius: 18px 18px 0 0;
+
+    box-shadow:
+      0 -5px 24px rgba(54, 1, 79, 0.09);
+
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* NAVIGATION ITEMS CONTAINER */
+
+  .navItems {
+    width: 100%;
+    min-height: 65px;
+
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+    align-items: center;
+
+    padding: 6px 5px;
+    gap: 2px;
+  }
+
+  /* INDIVIDUAL NAV ITEM */
+
+  .navItem {
+    min-width: 0;
+    min-height: 54px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+    padding: 7px 2px;
+
+    background: transparent;
+    border-radius: 13px;
+
+    color: #57515c;
+
+    text-decoration: none;
+    text-align: center;
+
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  /* ICON */
+
+  .navIcon {
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    color: #625b69;
+
+    transition: color 0.2s ease;
+  }
+
+  /* LABEL */
+
+  .navLabel {
+    width: 100%;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.25;
+
+    white-space: nowrap;
+    text-align: center;
+
+    letter-spacing: -0.15px;
+  }
+
+  /* ==================================
+     ACTIVE NAVIGATION
+  ================================== */
+
+  .active {
+    background: #f4eaf7;
+    color: #36014f;
+  }
+
+  .active .navIcon {
+    color: #36014f;
+  }
+
+  .active .navLabel {
+    font-weight: 700;
+  }
+
+  /* TOUCH FEEDBACK */
+
+  .navItem:active {
+    background: #eee0f2;
+  }
+
+  .navItem:focus-visible {
+    outline: 2px solid #36014f;
+    outline-offset: -2px;
+  }
+}
+
+/* ==================================
+   SMALL MOBILE SCREENS
+================================== */
+
+@media (max-width: 375px) {
+
+  .navItems {
+    padding-left: 3px;
+    padding-right: 3px;
+    gap: 0;
+  }
+
+  .navIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .navLabel {
+    font-size: 9px;
+    letter-spacing: -0.25px;
+  }
+}
+
+/* ==================================
+   REDUCED MOTION
+================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .navItem,
+  .navIcon {
+    transition: none;
+  }
+}
