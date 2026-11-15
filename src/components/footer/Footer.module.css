@@ -65,6 +65,7 @@
     text-decoration: none;
     color: var(--color-text-secondary);
     font-family: "lora", sans-serif;
+    font-family: cursive;
 }
 .footerQuickLinks ul a {
   text-decoration: none;

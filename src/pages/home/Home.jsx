@@ -17,7 +17,7 @@ function Home() {
   return (
     <>
 
-    <Helmet>
+  <Helmet>
   <title>Poonjora - Puja Items & Puja Essentials Online</title>
 
   <meta
@@ -25,7 +25,7 @@ function Home() {
     content="Shop authentic puja items and puja essentials online at Poonjora. Discover products for everyday worship, festivals, puja rituals and sacred occasions."
   />
 
-  <link
+   <link
     rel="canonical"
     href="https://poonjora.in/"
   />

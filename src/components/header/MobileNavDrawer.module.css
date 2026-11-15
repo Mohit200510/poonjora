@@ -1,0 +1,424 @@
+
+/* ==================================
+   MOBILE NAVIGATION OVERLAY
+================================== */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  background: rgba(20, 10, 25, 0.48);
+}
+
+/* ==================================
+   MOBILE DRAWER
+================================== */
+
+.drawer {
+  width: min(340px, 88vw);
+  height: 100vh;
+  height: 100dvh;
+
+  background: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 8px 0 30px rgba(0, 0, 0, 0.12);
+
+  animation: slideIn 0.25s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ==================================
+   DRAWER HEADER
+================================== */
+
+.header {
+  padding: 22px 20px 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #eee9ed;
+}
+
+.header h2 {
+  margin: 0;
+
+  color: #36014f;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.closeButton {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: none;
+
+  color: #55505b;
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #36014f;
+}
+
+/* ==================================
+   SCROLLABLE CONTENT
+================================== */
+
+.content {
+  flex: 1;
+  min-height: 0;
+
+  padding: 15px 16px 28px;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  scrollbar-width: thin;
+  scrollbar-color: #ded5e2 transparent;
+}
+
+/* ==================================
+   NORMAL NAVIGATION ITEMS
+================================== */
+
+.navItem {
+  width: 100%;
+  min-height: 52px;
+
+  padding: 12px 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+
+  color: #302c33;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  text-align: left;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.navItem > svg:first-child {
+  font-size: 21px;
+  color: #716b75;
+  flex-shrink: 0;
+
+  transition: color 0.2s ease;
+}
+
+.navItem span {
+  flex: 1;
+}
+
+.navItem:hover {
+  background: #f8f5fa;
+  color: #36014f;
+}
+
+.navItem:hover > svg:first-child {
+  color: #36014f;
+}
+
+/* ==================================
+   NAVIGATION ARROWS
+================================== */
+
+.arrow {
+  font-size: 18px;
+  color: #9b95a0;
+
+  margin-left: auto;
+  flex-shrink: 0;
+
+  transition: transform 0.2s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+/* ==================================
+   PUJA ESSENTIALS SUBMENU
+================================== */
+
+.subMenu {
+  margin: 0 0 5px 42px;
+  padding-left: 14px;
+
+  border-left: 1px solid #e9e0ec;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.subMenu a {
+  display: block;
+
+  padding: 10px 8px;
+  border-radius: 6px;
+
+  color: #59535e;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.subMenu a:hover {
+  background: #f8f5fa;
+  color: #36014f;
+}
+
+/* ==================================
+   EXPLORE MORE HEADING
+================================== */
+
+.sectionTitle {
+  margin: 12px 10px 12px;
+  padding-top: 14px;
+
+  border-top: 1px solid #eee9ed;
+
+  color: #827b86;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+/* ==================================
+   HIGHLIGHTED FEATURE GROUP
+================================== */
+
+.featureGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+/* ==================================
+   DIVINE GALLERY & FESTIVALS
+================================== */
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 15px 16px;
+
+  background: #f7f2f9;
+  border: 1px solid #eee6f1;
+  border-radius: 10px;
+
+  color: #36014f;
+  font-family: inherit;
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.featureItem:hover {
+  background: #f2eaf6;
+  border-color: #e6d8ec;
+}
+
+/* Keep equal spacing between the two boxes */
+
+.featureItem + .featureItem {
+  margin-top: 0;
+  padding-top: 15px;
+  border-top: 1px solid #eee6f1;
+}
+
+/* ==================================
+   FEATURE ICONS
+================================== */
+
+.featureItem > svg:first-child,
+.panchangItem > svg:first-child {
+  font-size: 22px;
+  color: #36014f;
+  flex-shrink: 0;
+}
+
+/* ==================================
+   FEATURE TEXT
+================================== */
+
+.featureItem div,
+.panchangItem div {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+
+  flex-direction: column;
+  gap: 4px;
+}
+
+.featureItem strong,
+.panchangItem strong {
+  color: #36014f;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.featureItem small,
+.panchangItem small {
+  color: #79717d;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ==================================
+   PANCHANG HIGHLIGHT
+================================== */
+
+.panchangItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 12px;
+  padding: 15px 16px;
+
+  background: #fff1d6;
+  border: 1px solid #f2d59c;
+  border-radius: 12px;
+
+  color: #36014f;
+  font-family: inherit;
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.panchangItem:hover {
+  background: #ffe9bf;
+  border-color: #ebc981;
+}
+
+.panchangItem small {
+  color: #745a36;
+}
+
+/* ==================================
+   FOCUS ACCESSIBILITY
+================================== */
+
+.closeButton:focus-visible,
+.navItem:focus-visible,
+.subMenu a:focus-visible,
+.featureItem:focus-visible,
+.panchangItem:focus-visible {
+  outline: 2px solid #36014f;
+  outline-offset: 3px;
+}
+
+/* ==================================
+   SMALL MOBILE SCREENS
+================================== */
+
+@media (max-width: 360px) {
+  .drawer {
+    width: min(320px, 90vw);
+  }
+
+  .header {
+    padding: 18px 16px 15px;
+  }
+
+  .header h2 {
+    font-size: 18px;
+  }
+
+  .content {
+    padding: 12px 12px 24px;
+  }
+
+  .navItem {
+    font-size: 14px;
+    gap: 12px;
+  }
+
+  .featureItem,
+  .panchangItem {
+    gap: 10px;
+    padding: 13px 12px;
+  }
+
+  .featureItem + .featureItem {
+    padding-top: 13px;
+  }
+}
+
+/* ==================================
+   REDUCED MOTION
+================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer {
+    animation: none;
+  }
+
+  .drawer *,
+  .drawer *::before,
+  .drawer *::after {
+    transition: none;
+  }
+}

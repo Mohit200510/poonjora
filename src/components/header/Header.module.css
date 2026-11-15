@@ -361,6 +361,33 @@
 
 }
 
+.hamBurgerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  cursor: pointer;
+  appearance: none;
+}
+
+.hamBurgerIcon svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+  color: #f7f3ee;
+  fill: none;
+  stroke: currentColor;
+}
+
 .midBar{
     background-color: var(--color-primary);
     width: 100%;
@@ -898,9 +925,14 @@
   margin: 0 14px;
 }
 
+.allProducts{
+    text-decoration: none;
+    color: var(--color-text-primary);
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.4s color ease-in;
 
-
-
+}
 
 /* media quires */
 

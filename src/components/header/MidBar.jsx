@@ -1,6 +1,7 @@
 import React from 'react'
 import Container from '../common/Container'
 import styles from "./Header.module.css";
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import logo from "../../assets/poonjora_logo.png";
 import logo from "../../assets/logooo.png";
@@ -14,12 +15,14 @@ import { Menu } from 'lucide-react';
 
 import { useContext } from 'react';
 import CartContext from '../../context/CartContext';
+import MobileNavDrawer from './MobileNavDrawer';
 
 
 function MidBar() {
 
     const {closeCart,setCloseCart,cartItems} = useContext(CartContext)
     const navigate =useNavigate();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     
     function OpenCart(){
@@ -37,9 +40,19 @@ function MidBar() {
 
             <div className={styles.midBarContent}>
 
-                <div className={styles.hamBurgerIcon}>
-                    <Menu size={28}  color="#f7f3ee" ></Menu>
-                </div>
+                <button
+                      type="button"
+                      className={styles.hamBurgerIcon}
+                      onClick={() => setIsMenuOpen(true)}
+                       aria-label="Open navigation menu"
+                        aria-expanded={isMenuOpen}
+                       aria-controls="mobile-navigation-drawer"
+                       >
+                 <Menu size={28} />
+              </button>
+
+
+
                     <Location/>
 
 
@@ -66,8 +79,13 @@ function MidBar() {
             </div>
 
         </Container>
+        <MobileNavDrawer
+  isOpen={isMenuOpen}
+  onClose={() => setIsMenuOpen(false)}
+/>
         
     </div>
+    
   )
 }
 

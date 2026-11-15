@@ -1,0 +1,369 @@
+
+/* ==================================
+   MAIN DESKTOP NAVIGATION
+================================== */
+
+.navbar {
+  width: 100%;
+  position: relative;
+  z-index: 50;
+
+  background: #f8f5f0;
+  border-bottom: 1px solid #e8e0da;
+
+  box-shadow: 0 5px 18px rgba(42, 20, 35, 0.07);
+}
+
+.navContainer {
+  width: 100%;
+  min-height: 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+/* ==================================
+   NAVIGATION GROUPS
+================================== */
+
+.navLeft,
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-shrink: 0;
+}
+
+/* ==================================
+   SHOPPING LINKS
+================================== */
+
+.navLink,
+.dropdownTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 10px 0;
+
+  background: transparent;
+  border: none;
+
+  color: #27252a;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition: color 0.25s ease;
+}
+
+/* SHOPPING ICONS */
+
+.navLink svg,
+.dropdownTrigger svg {
+  font-size: 20px;
+  color: #716b75;
+  flex-shrink: 0;
+
+  transition: color 0.25s ease;
+}
+
+/* HOVER EFFECTS */
+
+.navLink:hover,
+.dropdownTrigger:hover {
+  color: #36014f;
+}
+
+.navLink:hover svg,
+.dropdownTrigger:hover svg {
+  color: #36014f;
+}
+
+/* ==================================
+   VERTICAL DIVIDERS
+================================== */
+
+.divider {
+  display: block;
+  flex-shrink: 0;
+
+  width: 1px;
+  height: 28px;
+
+  background: #d8cfd5;
+}
+
+/* ==================================
+   PUJA ESSENTIALS DROPDOWN
+================================== */
+
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdownTrigger {
+  cursor: pointer;
+}
+
+.dropdownTrigger .chevron {
+  font-size: 17px;
+  margin-left: 2px;
+  transition: transform 0.25s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: -15px;
+
+  min-width: 195px;
+  padding: 8px;
+
+  background: #ffffff;
+  border: 1px solid #eee5e9;
+  border-radius: 10px;
+
+  box-shadow: 0 12px 30px rgba(35, 10, 45, 0.12);
+  z-index: 100;
+}
+
+.dropdownItem {
+  display: block;
+
+  padding: 11px 13px;
+  border-radius: 6px;
+
+  color: #333039;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.dropdownItem:hover {
+  background: #f5eff6;
+  color: #36014f;
+}
+
+/* ==================================
+   DIVINE GALLERY & FESTIVAL CALENDAR
+================================== */
+
+.featureLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 10px 0;
+
+  color: #27252a;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: color 0.25s ease;
+}
+
+.featureLink svg {
+  font-size: 21px;
+  color: #716b75;
+  flex-shrink: 0;
+
+  transition: color 0.25s ease;
+}
+
+.featureLink:hover,
+.featureLink:hover svg {
+  color: #36014f;
+}
+
+/* ==================================
+   PANCHANG BUTTON
+================================== */
+
+.panchangButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+
+  padding: 11px 19px;
+
+  background: #fff0d2;
+  border: 1px solid #f4b82c;
+  border-radius: 999px;
+
+  color: #36014f;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  box-shadow: 0 4px 10px rgba(100, 55, 10, 0.1);
+
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.panchangButton:hover {
+  background: #ffe6b2;
+
+  box-shadow: 0 6px 14px rgba(100, 55, 10, 0.14);
+  transform: translateY(-1px);
+}
+
+.clockIcon {
+  font-size: 22px;
+  color: #36014f;
+  flex-shrink: 0;
+}
+
+.arrowIcon {
+  font-size: 19px;
+  color: #36014f;
+  flex-shrink: 0;
+
+  transition: transform 0.25s ease;
+}
+
+.panchangButton:hover .arrowIcon {
+  transform: translateX(3px);
+}
+
+
+/* ==================================
+   KEYBOARD ACCESSIBILITY
+================================== */
+
+.navLink:focus-visible,
+.dropdownTrigger:focus-visible,
+.dropdownItem:focus-visible,
+.featureLink:focus-visible,
+.panchangButton:focus-visible {
+  outline: 2px solid #36014f;
+  outline-offset: 4px;
+}
+
+/* ==================================
+   RESPONSIVE DESKTOP
+================================== */
+
+@media (max-width: 1450px) {
+  .navContainer {
+    gap: 16px;
+  }
+
+  .navLeft,
+  .navRight {
+    gap: 16px;
+  }
+
+  .navLink,
+  .dropdownTrigger,
+  .featureLink {
+    font-size: 14px;
+    gap: 7px;
+  }
+
+  .navLink svg,
+  .dropdownTrigger svg,
+  .featureLink svg {
+    font-size: 19px;
+  }
+
+  .panchangButton {
+    padding: 10px 14px;
+    font-size: 14px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .navContainer {
+    gap: 12px;
+  }
+
+  .navLeft,
+  .navRight {
+    gap: 11px;
+  }
+
+  .navLink,
+  .dropdownTrigger,
+  .featureLink {
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .navLink svg,
+  .dropdownTrigger svg,
+  .featureLink svg {
+    font-size: 17px;
+  }
+
+  .divider {
+    height: 24px;
+  }
+
+  .panchangButton {
+    padding: 9px 11px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .clockIcon {
+    font-size: 18px;
+  }
+
+  .arrowIcon {
+    font-size: 16px;
+  }
+}
+
+/* ==================================
+   HIDE ON MOBILE
+================================== */
+
+@media (max-width: 1024px) {
+  .navbar {
+    display: none;
+  }
+}
+
+/* ==================================
+   REDUCED MOTION
+================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar *,
+  .navbar *::before,
+  .navbar *::after {
+    transition: none;
+  }
+}
