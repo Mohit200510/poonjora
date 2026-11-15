@@ -13,7 +13,7 @@
     border-bottom-left-radius: 30px;
     background-color: #fff;
     /* border: 1px black solid; */
-    padding: 18px 15px 0 15px;
+    padding: 18px 0px 0 0px;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     transition: 0.4s all linear;
@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 15px;
+    padding: 0 15px 15px 15px;
     /* border-bottom: 1px var(--color-border) solid; */
     touch-action: none;
 
@@ -75,12 +75,13 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    width: 100%;
+    /* width: 100%; */
     text-align: center;
     background-color: var(--color-primary-light);
     color: #fff;
     border-radius: 8px;
     padding: 6px 0;
+    margin: 0 15px;
     touch-action: none;
     /* font-family: 'dormonant',sans-serif; */
 }
@@ -107,7 +108,7 @@
     flex: 1;
     min-height: 0;
     
-    margin-top: 14px;
+   margin: 14px 15px 0;
     /* overflow-y: scroll; */
     
     overflow-y: auto;
@@ -135,23 +136,31 @@
     border-bottom: 1px var(--color-border) solid;
 }
 .cartItemImage {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px var(--color-border) solid;
-    background: #fff;
-    border-radius: 12px;
-    /* width: 23%; */
-    width: 72px !important;
-    height: 72px !important;
-    min-width: 72px;
-    min-height: 72px;
-    padding: 2px;
-    /* padding: 2px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 72px;
+  height: 72px;
+  min-width: 72px;
+  min-height: 72px;
+
+  flex: 0 0 72px;
+  box-sizing: border-box;
+
+  padding: 2px;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
 }
-.cartItemImage img{
-    width: 100%;
-    height: 100%;
+
+.cartItemImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .cartItemDetails {
@@ -263,6 +272,8 @@
     box-shadow: rgba(175, 175, 175, 0.3) 0px -1px 5px 0px;
     touch-action: none;
     flex-shrink: 0;
+     padding: 0 12px;
+
 }
 .cartBottmDiv{
     padding: 0 0px 20px;
