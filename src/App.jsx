@@ -50,6 +50,7 @@ function App({ initialFestivalContent = null }) {
   
 
     <Routes>
+      
       <Route path='/' element={<Home/>}></Route>
       <Route path='/order-confirmation/:orderId' element={<OrderSuccess/>}></Route>
       <Route path='/product/:id' element={<Product/>}></Route>

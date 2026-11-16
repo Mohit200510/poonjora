@@ -223,8 +223,8 @@ const content = festivalContent;
         if (!data?.success) throw new Error(data?.error || "Unable to fetch festival data.");
 
         const festival = data.festivals?.find(
-           (item) => item.festivalType === slug
-         );
+  (item) => item.festivalType?.replaceAll("_", "-") === slug
+);
 
         if (festival) {
           setFestivalData(festival);

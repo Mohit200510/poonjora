@@ -38,6 +38,8 @@ const APPROVED_FESTIVAL_ROUTES = new Set([
   "/festivals/diwali/2027",
   "/festivals/chhath-puja/2026",
   "/festivals/chhath-puja/2027",
+  "/festivals/akshaya-navami/2026",
+  "/festivals/akshaya-navami/2027",
 ]);
 
 const MAX_RECORDS = 1000;

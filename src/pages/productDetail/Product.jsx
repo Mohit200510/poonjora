@@ -78,6 +78,7 @@ function Product() {
               {galleryImages.length > 1 && (
                 <div className={styles.productGallery}>
                   <div className={styles.productGalleryContainer}>
+
                     {galleryImages.map((image, index) => (
                       <button
                         type="button"
@@ -92,6 +93,7 @@ function Product() {
                   </div>
                 </div>
               )}
+
               <div className={styles.productVisual}>
                 <img src={templeArch} alt="" aria-hidden="true" className={styles.templeArch} />
                 {galleryImages[activeImage] && (
@@ -99,6 +101,7 @@ function Product() {
                 )}
                 
               </div>
+              
             </div>
 
 
@@ -151,26 +154,28 @@ function Product() {
                 </div>
 
                 <div className={styles.actions}>
-     <button
-  type="button"
-  className={`${styles.cartButton} ${
-    alreadyInCart ? styles.cartAdded : ""
-  }`}
-  onClick={handleAddToCart}
-  disabled={
-    alreadyInCart ||
-    (product.stock != null && Number(product.stock) <= 0)
-  }
->
-  {alreadyInCart ? (
-    <>
-      <span className={styles.cartCheck}>✓</span>
-      Added to Cart
-    </>
-  ) : (
-    "Add to Cart"
-  )}
-</button>
+
+            <button
+              type="button"
+              className={`${styles.cartButton} ${
+               alreadyInCart ? styles.cartAdded : ""
+              }`}
+              onClick={handleAddToCart}
+             disabled={
+              alreadyInCart ||
+               (product.stock != null && Number(product.stock) <= 0)
+              }
+            >
+               {alreadyInCart ? (
+              <>
+                  <span className={styles.cartCheck}>✓</span>
+                Added to Cart
+                </>
+               ) : (
+              "Add to Cart"
+                 )}
+               </button>
+
                   <button type="button" className={styles.buyButton} disabled title="Buy Now checkout connection pending">Buy Now</button>
                 </div>
 
