@@ -19,7 +19,7 @@ function PincodeChecker({setOpenToggle}) {
 
     const {pincode,setPincode,deliveryResult,setDeliveryResult} = useContext(PincodeContext)
 
-
+// d
 
 
     const handleCheck = async () => {
