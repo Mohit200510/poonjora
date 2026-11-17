@@ -29,18 +29,10 @@ if (!supabaseUrl || !supabaseKey) {
 
 const SITE_URL = "https://poonjora.in";
 
-const FESTIVAL_YEARS = [2026, 2027];
+const FESTIVAL_YEARS = [2026];
 
-// Only approved URLs appear in the sitemap.
-// Diwali 2027 is not approved yet.
-const APPROVED_FESTIVAL_ROUTES = new Set([
-  "/festivals/diwali/2026",
-  "/festivals/diwali/2027",
-  "/festivals/chhath-puja/2026",
-  "/festivals/chhath-puja/2027",
-  "/festivals/akshaya-navami/2026",
-  "/festivals/akshaya-navami/2027",
-]);
+
+
 
 const MAX_RECORDS = 1000;
 
@@ -317,16 +309,7 @@ ${socialImage ? `<meta name="twitter:image" content="${escapeHtml(socialImage)}"
         `${seoTags}\n</head>`
       );
 
-      // Unapproved pages remain accessible
-      // for testing but are marked noindex.
-      if (
-        !APPROVED_FESTIVAL_ROUTES.has(festivalPath)
-      ) {
-        html = html.replace(
-          "</head>",
-          '<meta name="robots" content="noindex,follow" />\n</head>'
-        );
-      }
+      
 
       const outputDirectory = path.join(
         distDirectory,
@@ -378,10 +361,7 @@ ${socialImage ? `<meta name="twitter:image" content="${escapeHtml(socialImage)}"
     );
   }
 
-  const approvedRoutes = generatedRoutes.filter(
-    (route) =>
-      APPROVED_FESTIVAL_ROUTES.has(route)
-  );
+  const approvedRoutes = generatedRoutes;
 
   for (const route of approvedRoutes) {
    const fullUrl = `${SITE_URL}${route}/`;
