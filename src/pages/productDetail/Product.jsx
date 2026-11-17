@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import styles from "./Product.module.css";
-import { useParams } from "react-router-dom";
+import mobile from "./ProductMobile.module.css";
+import { Link, useParams } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
 import Container from "../../components/common/Container";
 import { CartContext } from "../../context/CartContext";
@@ -30,20 +31,23 @@ function Product() {
     setActiveImage(0);
 
     const fetchProduct = async () => {
-      const { data, error: fetchError } = await supabase
-        .from("products")
-        .select("*")
-        .eq("id", id)
-        .single();
-
-      if (cancelled) return;
-      if (fetchError) {
-        console.error("Product fetch failed:", fetchError);
-        setError("We couldn't load this product. Please try again.");
-      } else {
+      try {
+        const { data, error: fetchError } = await supabase
+          .from("products")
+          .select("*")
+          .eq("id", id)
+          .single();
+        if (cancelled) return;
+        if (fetchError) throw fetchError;
         setProduct(data);
+      } catch (fetchError) {
+        if (!cancelled) {
+          console.error("Product fetch failed:", fetchError);
+          setError("We couldn't load this product. Please try again.");
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
       }
-      setLoading(false);
     };
     fetchProduct();
     return () => { cancelled = true; };
@@ -59,141 +63,135 @@ function Product() {
   const discount = mrp > salePrice && mrp > 0
     ? Math.round(((mrp - salePrice) / mrp) * 100)
     : 0;
+  const outOfStock = product.stock != null && Number(product.stock) <= 0;
+  const maxQuantity = product.stock == null ? Infinity : Math.max(0, Math.floor(Number(product.stock)));
   const alreadyInCart = cartItems.some((item) => String(item.id) === String(product.id));
   const galleryImages = [product.image_url].filter(Boolean);
+  const formatPrice = (value) => `₹${value.toLocaleString("en-IN")}`;
 
   const handleAddToCart = () => {
-    if (alreadyInCart || (product.stock != null && Number(product.stock) <= 0)) return;
+    if (alreadyInCart || outOfStock) return;
     addToCart({ ...product, quantity });
   };
 
+  const quantitySelector = (
+    <div className={`${styles.quantity} ${mobile.mobileQuantity}`}>
+      <button type="button" disabled={quantity <= 1 || alreadyInCart || outOfStock}
+        onClick={() => setQuantity((q) => Math.max(1, q - 1))} aria-label="Decrease quantity">−</button>
+      <span aria-live="polite">{quantity}</span>
+      <button type="button" disabled={alreadyInCart || outOfStock || quantity >= maxQuantity}
+        onClick={() => setQuantity((q) => Math.min(maxQuantity, q + 1))} aria-label="Increase quantity">+</button>
+    </div>
+  );
+
+  const cartButton = (
+    <button type="button"
+      className={`${styles.cartButton} ${mobile.mobileCart} ${alreadyInCart ? `${styles.cartAdded} ${mobile.mobileAdded}` : ""}`}
+      onClick={handleAddToCart} disabled={alreadyInCart || outOfStock}>
+      {outOfStock ? "Out of Stock" : alreadyInCart ? <><span className={styles.cartCheck}>✓</span> Added to Cart</> : "Add to Cart"}
+    </button>
+  );
+
   return (
-    <main className={styles.productDetail}>
-      <section className={styles.productHero}>
-            <Container>
-
-        
-          <div className={styles.productHeroContent}>
-            <div className={styles.productVisualMain}>
+    <main className={`${styles.productDetail} ${mobile.mobileRoot}`}>
+      <section className={`${styles.productHero} ${mobile.mobileHero}`}>
+        <Container>
+          <nav className={mobile.mobileBreadcrumb} aria-label="Breadcrumb">
+            <Link to="/">Home</Link>
+            <span aria-hidden="true">›</span>
+            <Link to="/collections/products">All Products</Link>
+            <span aria-hidden="true">›</span>
+            <span className={mobile.currentBreadcrumb} aria-current="page" title={product.name}>{product.name}</span>
+          </nav>
+          <div className={`${styles.productHeroContent} ${mobile.mobileContent}`}>
+            <div className={`${styles.productVisualMain} ${mobile.mobileVisualMain}`}>
               {galleryImages.length > 1 && (
-                <div className={styles.productGallery}>
-                  <div className={styles.productGalleryContainer}>
-
+                <div className={`${styles.productGallery} ${mobile.mobileGallery}`}>
+                  <div className={`${styles.productGalleryContainer} ${mobile.mobileGalleryItems}`}>
                     {galleryImages.map((image, index) => (
-                      <button
-                        type="button"
-                        key={`${image}-${index}`}
+                      <button type="button" key={`${image}-${index}`}
                         className={`${styles.productGalleryBox} ${activeImage === index ? styles.productGalleryBoxSelected : ""}`}
-                        onClick={() => setActiveImage(index)}
-                        aria-label={`View product image ${index + 1}`}
-                      >
+                        onClick={() => setActiveImage(index)} aria-label={`View product image ${index + 1}`}>
                         <img src={image} alt={`${product.name} view ${index + 1}`} />
                       </button>
                     ))}
                   </div>
                 </div>
               )}
-
-              <div className={styles.productVisual}>
-                <img src={templeArch} alt="" aria-hidden="true" className={styles.templeArch} />
+              <div className={`${styles.productVisual} ${mobile.mobileVisual}`}>
+                <img src={templeArch} alt="" aria-hidden="true" className={`${styles.templeArch} ${mobile.mobileArch}`} />
                 {galleryImages[activeImage] && (
-                  <img className={styles.productMainImage} src={galleryImages[activeImage]} alt={product.name} />
+                  <img className={`${styles.productMainImage} ${mobile.mobileImage}`} src={galleryImages[activeImage]} alt={product.name} />
                 )}
-                
               </div>
-              
             </div>
 
-
-
-            <div className={styles.productInfo}>
-              <div className={styles.productInfoInner}>
-                <div className={styles.productEyebrow}><BiLeaf /> Puja Essential</div>
-                <div className={styles.heading}>
+            <div className={`${styles.productInfo} ${mobile.mobileInfo}`}>
+              <div className={`${styles.productInfoInner} ${mobile.mobileInner}`}>
+                <div className={`${styles.productEyebrow} ${mobile.mobileEyebrow}`}><BiLeaf /> Puja Essential</div>
+                <div className={`${styles.heading} ${mobile.mobileHeading}`}>
                   <h1>{product.name}</h1>
-                  <p>{product.description || "Pure essentials for your everyday puja, rituals and sacred occasions."}</p>
+                  <p>{product.description || "Essentials for your everyday puja, rituals and sacred occasions."}</p>
                 </div>
 
                 {product.rating != null && (
-                  <div className={styles.rating}>
+                  <div className={`${styles.rating} ${mobile.mobileRating}`}>
                     <div className={styles.stars} aria-label={`${product.rating} out of 5 stars`}>★</div>
                     <span>{product.rating}{product.review_count != null ? ` (${product.review_count} reviews)` : ""}</span>
                   </div>
                 )}
 
-                <div className={styles.price}>
-                  <strong>₹{salePrice.toLocaleString("en-IN")}</strong>
-                  {mrp > salePrice && <span>₹{mrp.toLocaleString("en-IN")}</span>}
-                  {discount > 0 && <div className={styles.discount}>{discount}% OFF</div>}
+                <div className={`${styles.price} ${mobile.mobilePrice}`}>
+                  <strong>{formatPrice(salePrice)}</strong>
+                  {mrp > salePrice && <span>{formatPrice(mrp)}</span>}
+                  {discount > 0 && <div className={`${styles.discount} ${mobile.mobileDiscount}`}>{discount}% OFF</div>}
                 </div>
+                <div className={mobile.mobileTax}>Inclusive of all taxes</div>
+
 
                 {product.weight && (
-                  <div className={styles.packSection}>
-                    <p>Pack / Weight</p>
-                    <div className={styles.packOptions}>
-                      <button type="button" className={styles.selectedPack} disabled>
+                  <div className={`${styles.packSection} ${mobile.mobilePack}`}>
+                    <p>Net Quantity / Weight</p>
+                    <div className={`${styles.packOptions} ${mobile.mobilePackOptions}`}>
+                      <div className={`${styles.selectedPack} ${mobile.mobileSelectedPack}`}>
                         <span>{product.weight}</span>
-                        <strong>₹{salePrice.toLocaleString("en-IN")}</strong>
-                      </button>
+                      </div>
                     </div>
                   </div>
                 )}
 
-                <div className={styles.quantityRow}>
+                <div className={`${styles.quantityRow} ${mobile.mobileQuantityRow}`}>
                   <div>
                     <p>Quantity</p>
-                    <div className={styles.quantity}>
-                      <button type="button" disabled={quantity === 1 || alreadyInCart} onClick={() => setQuantity(q => Math.max(1, q - 1))} aria-label="Decrease quantity">−</button>
-                      <span>{quantity}</span>
-                      <button type="button" disabled={alreadyInCart} onClick={() => setQuantity(q => q + 1)} aria-label="Increase quantity">+</button>
-                    </div>
+                    {quantitySelector}
                   </div>
-                  {product.stock != null && (
-                    <span className={styles.stock}>{Number(product.stock) > 0 ? "● In Stock" : "Out of Stock"}</span>
-                  )}
+                {product.stock != null && (
+                  <div className={`${styles.stockStatus} ${mobile.mobileStock} ${outOfStock ? styles.unavailable : ""}`}>
+                    {outOfStock ? "Out of Stock" : "● In Stock"}
+                  </div>
+                )}
                 </div>
 
-                <div className={styles.actions}>
-
-            <button
-              type="button"
-              className={`${styles.cartButton} ${
-               alreadyInCart ? styles.cartAdded : ""
-              }`}
-              onClick={handleAddToCart}
-             disabled={
-              alreadyInCart ||
-               (product.stock != null && Number(product.stock) <= 0)
-              }
-            >
-               {alreadyInCart ? (
-              <>
-                  <span className={styles.cartCheck}>✓</span>
-                Added to Cart
-                </>
-               ) : (
-              "Add to Cart"
-                 )}
-               </button>
-
-                  <button type="button" className={styles.buyButton} disabled title="Buy Now checkout connection pending">Buy Now</button>
+                <div className={`${styles.actions} ${mobile.mobileActions}`}>
+                  {cartButton}
+                  <button type="button" className={`${styles.buyButton} ${mobile.mobileBuy}`} disabled title="Buy Now checkout connection pending">Buy Now</button>
                 </div>
 
-                <div className={styles.deliveryPanel}>
-                  <div className={styles.deliveryHeading}><FiTruck /> Check Delivery to Your Pincode</div>
+                <div className={`${styles.deliveryPanel} ${mobile.mobileDelivery}`}>
+                  <div className={`${styles.deliveryHeading} ${mobile.mobileDeliveryHeading}`}><FiTruck /> Delivery &amp; Shipping</div>
                   <PincodeChecker />
+
                 </div>
 
-                <div className={styles.trust}>
-                  <div className={styles.trustItem}><BiLeaf /><div><h3>Authentic Products</h3><p>Quality Assured</p></div></div>
-                  <div className={styles.trustItem}><FaShippingFast /><div><h3>Fast Shipping</h3><p>Across India</p></div></div>
-                  <div className={styles.trustItem}><MdOutlineLock /><div><h3>Secure Checkout</h3><p>Safe &amp; protected</p></div></div>
+                <div className={`${styles.trust} ${mobile.mobileTrust}`}>
+                  <div className={`${styles.trustItem} ${mobile.mobileTrustItem}`}><BiLeaf /><div><h3>Quality Assured</h3><p>Carefully selected</p></div></div>
+                  <div className={`${styles.trustItem} ${mobile.mobileTrustItem}`}><FaShippingFast /><div><h3>Pan India Delivery</h3><p>Check your pincode</p></div></div>
+                  <div className={`${styles.trustItem} ${mobile.mobileTrustItem}`}><MdOutlineLock /><div><h3>Secure Payment</h3><p>Protected checkout</p></div></div>
                 </div>
               </div>
             </div>
           </div>
-            </Container>
-
+        </Container>
       </section>
     </main>
   );

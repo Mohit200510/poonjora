@@ -1,0 +1,489 @@
+
+/* =========================================
+   POONJORA — MOBILE PRODUCT PAGE
+   Primary: #36014F
+   Mobile-only stylesheet
+========================================= */
+
+.mobileBreadcrumb {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .mobileRoot {
+    --mobile-jamun: #36014F;
+    background: #ffffff;
+    overflow-x: clip;
+  }
+
+  /* BREADCRUMBS */
+
+  .mobileRoot .mobileBreadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 0;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .mobileRoot .mobileBreadcrumb::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobileRoot .mobileBreadcrumb a {
+    color: #77717d;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .mobileRoot .mobileBreadcrumb > span[aria-hidden="true"] {
+    color: #aaa2ad;
+    flex-shrink: 0;
+  }
+
+  .mobileRoot .currentBreadcrumb {
+    color: #36014F;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* HERO */
+
+  .mobileRoot .mobileHero {
+    background: #ffffff;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .mobileRoot .mobileHero::after {
+    display: none;
+  }
+
+  .mobileRoot .mobileContent {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    gap: 0;
+  }
+
+  /* PRODUCT IMAGE */
+
+  .mobileRoot .mobileVisualMain {
+    width: 100%;
+    min-height: 0;
+    padding: 8px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mobileRoot .mobileVisual {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #eee7f1;
+    border-radius: 18px;
+    background: #faf7fb;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 24px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .mobileRoot .mobileArch {
+    display: none;
+  }
+
+  .mobileRoot .mobileImage {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    object-fit: contain;
+    background: transparent;
+    filter: none;
+  }
+
+  /* PRODUCT GALLERY */
+
+  .mobileRoot .mobileGallery {
+    order: 2;
+    width: 100%;
+  }
+
+  .mobileRoot .mobileGalleryItems {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+  }
+
+  /* PRODUCT INFORMATION */
+
+  .mobileRoot .mobileInfo {
+    display: block;
+    width: 100%;
+    padding: 20px 0 40px;
+  }
+
+  .mobileRoot .mobileInner {
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mobileRoot .mobileEyebrow {
+    display: none;
+  }
+
+  /* PRODUCT TITLE */
+
+  .mobileRoot .mobileHeading {
+    order: 1;
+  }
+
+  .mobileRoot .mobileHeading h1 {
+    margin: 0 0 8px;
+    font-size: clamp(23px, 6vw, 28px);
+    font-weight: 650;
+    line-height: 1.25;
+    color: #36014F;
+  }
+
+  .mobileRoot .mobileHeading p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #635e66;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* HIDE RATINGS */
+
+  .mobileRoot .mobileRating {
+    display: none;
+  }
+
+  /* PRICE */
+
+  .mobileRoot .mobilePrice {
+    order: 3;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .mobileRoot .mobilePrice strong {
+    color: #36014F;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .mobileRoot .mobilePrice > span {
+    font-size: 15px;
+    color: #88828c;
+  }
+
+  .mobileRoot .mobileDiscount {
+    border: none;
+    background: #e9f7ee;
+    color: #167344;
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .mobileRoot .mobileTax {
+    order: 4;
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #77717b;
+  }
+
+  /* WEIGHT / NET QUANTITY */
+
+  .mobileRoot .mobilePack {
+    order: 5;
+    margin-top: 24px;
+  }
+
+  .mobileRoot .mobilePack > p,
+  .mobileRoot .mobileQuantityRow p {
+    margin: 0 0 10px;
+    color: #2b2530;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .mobileRoot .mobilePackOptions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .mobileRoot .mobileSelectedPack {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
+    min-width: 0;
+    padding: 11px 16px;
+    border: 1.5px solid #36014F;
+    border-radius: 10px;
+    background: #f9f5fb;
+    color: #36014F;
+    opacity: 1;
+    font-size: 14px;
+  }
+
+  /* QUANTITY */
+
+  .mobileRoot .mobileQuantityRow {
+    order: 6;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 22px;
+    gap: 12px;
+  }
+
+  .mobileRoot .mobileQuantity {
+    display: flex;
+    border: 1px solid #ded6e3;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .mobileRoot .mobileQuantity button,
+  .mobileRoot .mobileQuantity span {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #36014F;
+  }
+
+  .mobileRoot .mobileQuantity button {
+    font-size: 20px;
+    border: 0;
+  }
+
+  .mobileRoot .mobileStock {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #21824c;
+  }
+
+  /* DELIVERY & SHIPPING */
+
+  .mobileRoot .mobileDelivery {
+    order: 7;
+    margin-top: 24px;
+    width: 100%;
+    padding: 18px 16px;
+    background: #fbf9fc;
+    border: 1px solid #ece5f0;
+    border-radius: 14px;
+    box-sizing: border-box;
+  }
+
+  .mobileRoot .mobileDeliveryHeading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 14px;
+    color: #36014F;
+    font-size: 15px;
+    font-weight: 650;
+  }
+
+  .mobileRoot .mobileDeliveryHeading svg {
+    font-size: 19px;
+  }
+
+  /* ADD TO CART */
+
+  .mobileRoot .mobileActions {
+    order: 8;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    margin-top: 18px;
+  }
+
+  .mobileRoot .mobileActions button {
+    width: 100%;
+    flex: none;
+    min-height: 52px;
+    border-radius: 11px;
+    font-size: 15px;
+    font-weight: 650;
+  }
+
+  .mobileRoot .mobileCart {
+    background: #36014F;
+    border: 1px solid #36014F;
+    color: #ffffff;
+    transition: background 0.2s ease;
+  }
+
+  .mobileRoot .mobileCart:not(:disabled):active {
+    background: #51096c;
+  }
+
+  .mobileRoot .mobileBuy {
+    display: none;
+  }
+
+  .mobileRoot .mobileCart.mobileAdded {
+    background: #f5edf8;
+    color: #36014F;
+    border-color: #dcc5e5;
+    opacity: 1;
+  }
+
+  .mobileRoot .mobileCart:disabled {
+    cursor: not-allowed;
+  }
+
+  /* =========================================
+     NEW TRUST SECTION
+     Borderless premium design
+  ========================================= */
+
+  .mobileRoot .mobileTrust {
+    order: 9;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-top: 28px;
+    padding: 12px 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .mobileRoot .mobileTrustItem,
+  .mobileRoot .mobileTrustItem:last-child {
+    grid-column: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    text-align: center;
+    gap: 9px;
+
+    min-width: 0;
+    padding: 0 2px;
+
+    border: none;
+    background: transparent;
+  }
+
+  .mobileRoot .mobileTrustItem + .mobileTrustItem {
+    border-left: none;
+  }
+
+  /* Circular lavender icons */
+
+  .mobileRoot .mobileTrustItem svg {
+    width: 52px;
+    height: 52px;
+    padding: 14px;
+    box-sizing: border-box;
+
+    flex-shrink: 0;
+
+    color: #36014F;
+    background: #f3eaf7;
+    border-radius: 50%;
+  }
+
+  /* Trust headings */
+
+  .mobileRoot .mobileTrustItem h3 {
+    margin: 0;
+    color: #36014F;
+    font-size: 11px;
+    font-weight: 650;
+    line-height: 1.4;
+    overflow-wrap: normal;
+  }
+
+  /* Trust descriptions */
+
+  .mobileRoot .mobileTrustItem p {
+    margin: 4px 0 0;
+    color: #77717d;
+    font-size: 10px;
+    line-height: 1.45;
+  }
+}
+
+/* Desktop remains unaffected */
+
+@media (min-width: 769px) {
+  .mobileTax,
+  .mobileBreadcrumb {
+    display: none;
+  }
+}
+
+/* Small mobile screens */
+
+@media (max-width: 360px) {
+  .mobileRoot .mobileTrust {
+    gap: 4px;
+  }
+
+  .mobileRoot .mobileTrustItem h3 {
+    font-size: 10px;
+  }
+
+  .mobileRoot .mobileTrustItem p {
+    font-size: 9px;
+  }
+
+  .mobileRoot .mobileTrustItem svg {
+    width: 46px;
+    height: 46px;
+    padding: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobileRoot .mobileCart {
+    transition: none;
+  }
+}
