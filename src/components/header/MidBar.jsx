@@ -18,6 +18,8 @@ import CartContext from '../../context/CartContext';
 import MobileNavDrawer from './MobileNavDrawer';
 
 
+
+
 function MidBar() {
 
     const {closeCart,setCloseCart,cartItems} = useContext(CartContext)

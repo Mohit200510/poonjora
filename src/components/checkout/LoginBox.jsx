@@ -15,7 +15,7 @@ import { IoMdLock } from "react-icons/io";
 
 
 
-function LoginBox({googleLoginForm,setOpenCheckout,handleGuestContinue,loadingGuest}) {
+function LoginBox({googleLoginForm,setOpenCheckout,handleGuestContinue,loadingGuest,showGuestLogin = true}) {
 
 
   return (
@@ -45,21 +45,25 @@ function LoginBox({googleLoginForm,setOpenCheckout,handleGuestContinue,loadingGu
                         <button onClick={googleLoginForm} type='button'><FcGoogle className={styles.googleIcon}/><PiLineVerticalThin className={styles.line} />Continue with Google<FiArrowRight className={styles.arrow}/></button>
                     </div>
 
-                    <div className={styles.loginBoxDividerLine}>
-                        <span></span>
-                        <p>OR</p>
-                        <span></span>
-                    </div>
+                    {showGuestLogin && (
+  <>
+    <div className={styles.loginBoxDividerLine}>
+      <span></span>
+      <p>OR</p>
+      <span></span>
+    </div>
 
-                    <div className={styles.loginBoxGuestBtn}>
-                      <button
-                        type="button"
-                        onClick={handleGuestContinue}
-                        disabled={loadingGuest}
-                        >
-                        {loadingGuest ? "Please wait..." : "Continue as Guest"}
-                      </button>
-                    </div>
+    <div className={styles.loginBoxGuestBtn}>
+      <button
+        type="button"
+        onClick={handleGuestContinue}
+        disabled={loadingGuest}
+      >
+        {loadingGuest ? "Please wait..." : "Continue as Guest"}
+      </button>
+    </div>
+  </>
+)}
                     
 
                 </div>

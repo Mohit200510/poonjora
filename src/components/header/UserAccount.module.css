@@ -1,0 +1,246 @@
+
+/* ================================
+   ACCOUNT ICON
+================================ */
+
+.accountWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.accountIconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.accountIcon {
+  width: 27px;
+  height: 27px;
+  color: #fff;
+  transition: opacity 0.2s ease;
+}
+
+.accountIconButton:hover .accountIcon {
+  opacity: 0.8;
+}
+
+.accountIconButton:focus-visible {
+  outline: 2px solid #e6bb63;
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+
+
+/* ================================
+   ACCOUNT DROPDOWN
+================================ */
+
+.accountDropdown {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: -12px;
+  width: 320px;
+  max-width: calc(100vw - 24px);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(30, 0, 45, 0.14);
+  z-index: 1000;
+  color: #36014f;
+  font-family: inherit;
+}
+
+
+/* Dropdown pointer */
+
+.accountDropdown::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  right: 18px;
+  width: 14px;
+  height: 14px;
+  background: #fbf5e9;
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+
+/* ================================
+   CUSTOMER INFORMATION
+================================ */
+
+.accountUserInfo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 20px;
+  background: #fbf5e9;
+  border-radius: 16px 16px 0 0;
+}
+
+.accountAvatar {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #36014f;
+  color: #fff;
+  font-size: 23px;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.accountAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.accountUserDetails {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.accountGreeting {
+  color: #a56a16;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.accountUserDetails strong {
+  display: block;
+  max-width: 100%;
+  color: #36014f;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.accountEmail {
+  display: block;
+  max-width: 100%;
+  font-size: 13px;
+  color: #8b7a92;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* ================================
+   MENU
+================================ */
+
+.accountMenu {
+  padding: 14px 20px 10px;
+  background: #fff;
+  border-radius: 0 0 16px 16px;
+}
+
+.accountMenu button {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  padding: 15px 4px;
+  border: none;
+  background: transparent;
+  color: #36014f;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.accountMenu button:hover {
+  background: #faf7fc;
+}
+
+.accountMenu button:focus-visible {
+  outline: 2px solid #36014f;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.accountMenu svg {
+  flex-shrink: 0;
+}
+
+
+/* Menu divider */
+
+.accountDivider {
+  height: 1px;
+  margin: 10px 0 5px;
+  background: #e6d9ce;
+}
+
+
+/* Logout button */
+
+.accountMenu .accountLogout {
+  color: #bb4545;
+}
+
+.accountMenu .accountLogout:hover {
+  background: #fff5f5;
+}
+
+
+/* ================================
+   MOBILE RESPONSIVENESS
+================================ */
+
+@media (max-width: 480px) {
+  .accountDropdown {
+    width: 290px;
+    right: -8px;
+    top: calc(100% + 16px);
+  }
+
+  .accountUserInfo {
+    padding: 18px 16px;
+    gap: 12px;
+  }
+
+  .accountAvatar {
+    width: 46px;
+    height: 46px;
+    font-size: 20px;
+  }
+
+  .accountUserDetails strong {
+    font-size: 15px;
+  }
+
+  .accountEmail {
+    font-size: 12px;
+  }
+
+  .accountMenu {
+    padding: 10px 16px;
+  }
+
+  .accountMenu button {
+    gap: 14px;
+    padding: 13px 4px;
+    font-size: 14px;
+  }
+}
