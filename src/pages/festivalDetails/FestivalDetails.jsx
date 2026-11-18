@@ -1,6 +1,6 @@
 
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams, useLocation, useNavigate } from "react-router-dom";
 import {
   ArrowRight, BookOpen, CalendarDays, ChevronRight,
   CircleHelp, ClockArrowUp,ClockArrowDown, House,
@@ -108,6 +108,12 @@ export default function FestivalDetails({
 }) {
   const { slug, year } = useParams();
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+const isHindi = location.pathname.startsWith("/hi/");
+const language = isHindi ? "hi" : "en";
+
 const currentYear = Number(
   new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Kolkata",
@@ -122,12 +128,15 @@ const validYear =
   Number(year) <= 2100;
 
 const selectedYear = validYear ? Number(year) : null;
-const [festivalContent, setFestivalContent] = useState(
-  () => initialContent?.slug === slug ? initialContent : null
-);
+// Only reuse English prerendered content on an English route.
+const hasMatchingInitialContent =
+  !isHindi && initialContent?.slug === slug;
 
+const [festivalContent, setFestivalContent] = useState(
+  () => hasMatchingInitialContent ? initialContent : null
+);
 const [contentLoading, setContentLoading] = useState(
-  () => initialContent?.slug !== slug
+  () => !hasMatchingInitialContent
 );
 const [contentError, setContentError] = useState("");
 
@@ -135,6 +144,7 @@ const content = festivalContent;
   const { selectedCity, setSelectedCity } = useContext(CityContext);
 
   const [activeTab, setActiveTab] = useState("overview");
+  const [showLanguageHint, setShowLanguageHint] = useState(false);
   const [festivalData, setFestivalData] = useState(null);
   const [festivalLoading, setFestivalLoading] = useState(false);
   const [festivalError, setFestivalError] = useState("");
@@ -143,9 +153,7 @@ const content = festivalContent;
   useEffect(() => {
     let cancelled = false;
 
-    // Build-time content is reused when it matches the current route.
-    // Do not clear it or refetch it after hydration.
-    if (initialContent?.slug === slug) {
+    if (hasMatchingInitialContent) {
       setFestivalContent(initialContent);
       setContentError("");
       setContentLoading(false);
@@ -157,43 +165,94 @@ const content = festivalContent;
       setContentError("");
       setFestivalContent(null);
 
-      const { data, error } = await supabase
-        .from("festival_content")
-        .select("*")
-        .eq("slug", slug)
-        .eq("is_published", true)
-        .maybeSingle();
+      try {
+        const { data: english, error: englishError } = await supabase
+          .from("festival_content")
+          .select("*")
+          .eq("slug", slug)
+          .eq("is_published", true)
+          .maybeSingle();
 
-      if (cancelled) return;
+        if (englishError) throw englishError;
+        if (!english) throw new Error("Festival content is not available.");
 
-      if (error) {
-        console.error("Festival content error:", error);
-        setContentError("Unable to load festival information.");
-      } else if (!data) {
-        setContentError("Festival content is not available.");
-      } else {
+        let translated = null;
+        if (isHindi) {
+          const { data, error } = await supabase
+            .from("festival_content_translations")
+            .select("*")
+            .eq("festival_id", english.id)
+            .eq("language_code", "hi")
+            .eq("is_published", true)
+            .maybeSingle();
+
+          if (error) throw error;
+          if (!data) throw new Error("Hindi translation is not published yet.");
+          translated = data;
+        }
+
+        if (cancelled) return;
+
         setFestivalContent({
-          ...data,
-          alternate: data.alternate_name,
+          ...english,
+          ...(translated && {
+            title: translated.title,
+            alternate: translated.alternate_name,
+            subtitle: translated.subtitle,
+            description: translated.description,
+            significance: translated.significance,
+            sections: translated.sections,
+            seo_title: translated.seo_title,
+            seo_description: translated.seo_description,
+          }),
+          ...(!translated && { alternate: english.alternate_name }),
           artwork: {
-            left: data.hero_left_image,
-            right: data.hero_right_image,
+            left: english.hero_left_image,
+            right: english.hero_right_image,
           },
         });
+      } catch (error) {
+        if (cancelled) return;
+        console.error("Festival content error:", error);
+        setContentError(error.message || "Unable to load festival information.");
+      } finally {
+        if (!cancelled) setContentLoading(false);
       }
-
-      setContentLoading(false);
     };
 
     fetchContent();
     return () => { cancelled = true; };
-  }, [slug, initialContent]);
-
-  
+  }, [slug, language, initialContent, hasMatchingInitialContent]);
 
   useEffect(() => {
     setActiveTab("overview");
   }, [slug]);
+
+  // One-time hint, dismissed permanently on this browser.
+  useEffect(() => {
+    try {
+      setShowLanguageHint(localStorage.getItem("poonjora-language-hint-seen") !== "1");
+    } catch { /* storage may be unavailable */ }
+  }, []);
+
+  const dismissLanguageHint = () => {
+    setShowLanguageHint(false);
+    try { localStorage.setItem("poonjora-language-hint-seen", "1"); } catch { /* ignore */ }
+  };
+
+  // Restore the section after the translated page has finished loading.
+  useEffect(() => {
+    if (!content || contentLoading) return;
+    const id = location.hash.replace(/^#festival-section-/, "");
+    if (!TABS.some(tab => tab.id === id)) return;
+    const timer = window.setTimeout(() => {
+      const section = document.getElementById(`festival-section-${id}`);
+      if (!section) return;
+      setActiveTab(id);
+      window.scrollTo({ top: Math.max(0, section.getBoundingClientRect().top + window.scrollY - 120), behavior: "instant" });
+    }, 100);
+    return () => window.clearTimeout(timer);
+  }, [content, contentLoading, location.hash, language]);
 
   // Fetch city-wise festival data from the existing Edge Function (Diwali currently supported).
   useEffect(() => {
@@ -288,11 +347,17 @@ const content = festivalContent;
     scrollingToRef.timer = setTimeout(() => { scrollingToRef.current = null; }, 950);
   };
 
+  const switchLanguage = () => {
+    dismissLanguageHint();
+    const target = `${isHindi ? "" : "/hi"}/festivals/${slug}/${selectedYear}/#festival-section-${activeTab}`;
+    navigate(target);
+  };
+
   // Redirect old festival URLs to the current year
 if (year === undefined) {
   return (
     <Navigate
-      to={`/festivals/${slug}/${currentYear}`}
+      to={`${isHindi ? "/hi" : ""}/festivals/${slug}/${currentYear}`}
       replace
     />
   );
@@ -353,6 +418,25 @@ if (!content) {
   return (
     <main className={styles.page}>
       <div className={styles.container}>
+
+        {/* Language switcher: below the sticky site header */}
+        <div className={styles.languageBar}>
+          {showLanguageHint && (
+            <div className={styles.languageHint} role="status">
+              <span>{isHindi ? "Read in English" : "हिंदी में पढ़ें"}</span>
+              <button type="button" onClick={dismissLanguageHint} aria-label="Dismiss language hint">×</button>
+            </div>
+          )}
+          <button
+            type="button"
+            className={styles.languageToggle}
+            onClick={switchLanguage}
+            aria-label={isHindi ? "Read in English" : "हिंदी में पढ़ें"}
+            title={isHindi ? "Read in English" : "हिंदी में पढ़ें"}
+          >
+            {isHindi ? "A" : "अ"}
+          </button>
+        </div>
 
         {/* Breadcrumb navigation */}
         <nav className={styles.breadcrumbs} aria-label="Breadcrumb">

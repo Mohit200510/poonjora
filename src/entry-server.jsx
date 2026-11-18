@@ -31,15 +31,21 @@ const SECTIONS = [
   "faq",
 ];
 
-export function renderFestivalSections(content) {
+export function renderFestivalSections(content, language = "en") {
   if (!content?.title) {
     throw new Error("Festival content or title is missing.");
   }
 
+  if (!["en", "hi"].includes(language)) {
+    throw new Error(`Unsupported festival language: ${language}`);
+  }
+
   return renderToString(
     <MemoryRouter>
-      <article aria-label={`${content.title} festival guide`}>
-
+      <article
+        lang={language}
+        aria-label={`${content.title} festival guide`}
+      >
         {/* Overview and Significance */}
         <section
           id="festival-section-overview"
@@ -91,10 +97,10 @@ export function renderFestivalSections(content) {
             <FestivalTabSections
               activeTab={section}
               content={content}
+              language={language}
             />
           </section>
         ))}
-
       </article>
     </MemoryRouter>
   );

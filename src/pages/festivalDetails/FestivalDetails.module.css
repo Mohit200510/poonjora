@@ -190,6 +190,54 @@
 .notFound p { margin: 0; }
 .notFound a { color: var(--color-primary); }
 
+
+/* Festival language switcher — adjust --festival-header-offset to the actual sticky header height. */
+.languageBar {
+  position: sticky;
+  top: var(--festival-header-offset, 88px);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  height: 44px;
+  margin-bottom: 8px;
+  pointer-events: none;
+}
+.languageToggle {
+  pointer-events: auto;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: #36014F;
+  color: #fff;
+  font: 600 20px/1 inherit;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(54, 1, 79, .16);
+}
+.languageToggle:hover { background: #4c0867; }
+.languageToggle:focus-visible,
+.languageHint button:focus-visible { outline: 3px solid #d9b66f; outline-offset: 3px; }
+.languageHint {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100vw - 100px);
+  padding: 7px 10px;
+  border: 1px solid #e9dff0;
+  border-radius: 8px;
+  background: #fff;
+  color: #36014F;
+  font-size: 13px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.08);
+}
+.languageHint button { border: 0; background: transparent; color: inherit; font-size: 20px; cursor: pointer; }
+
+
+
 @media (max-width: 1150px) {
   .overviewRow { flex-direction: column; }
   .about, .timings { flex: 1 1 auto; width: 100%; }

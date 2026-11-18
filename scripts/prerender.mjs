@@ -3,136 +3,49 @@ import { createServer, loadEnv } from "vite";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-// ========================================
-// 1. Load Supabase environment variables
-// ========================================
-
 const env = loadEnv("production", process.cwd(), "VITE_");
-
 const supabaseUrl =
-  process.env.VITE_SUPABASE_URL ||
-  env.VITE_SUPABASE_URL;
-
+  process.env.VITE_SUPABASE_URL || env.VITE_SUPABASE_URL;
 const supabaseKey =
   process.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
   env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
-  throw new Error(
-    "Missing VITE_SUPABASE_URL or VITE_SUPABASE_PUBLISHABLE_KEY"
-  );
+  throw new Error("Missing Supabase environment variables");
 }
 
-// ========================================
-// 2. Configuration
-// ========================================
-
 const SITE_URL = "https://poonjora.in";
-
 const FESTIVAL_YEARS = [2026];
-
-
-
-
 const MAX_RECORDS = 1000;
 
-const distDirectory = path.resolve(
-  process.cwd(),
-  "dist"
-);
+const distDirectory = path.resolve(process.cwd(), "dist");
+const templatePath = path.join(distDirectory, "index.html");
+const sitemapPath = path.join(distDirectory, "sitemap.xml");
 
-const templatePath = path.join(
-  distDirectory,
-  "index.html"
-);
-
-const sitemapPath = path.join(
-  distDirectory,
-  "sitemap.xml"
-);
-
-// ========================================
-// 3. HTML and XML escaping
-// ========================================
-
-function escapeHtml(value) {
-  return String(value ?? "")
+const escapeHtml = (value) =>
+  String(value ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
-}
 
-// ========================================
-// 4. Validate festival slug
-// ========================================
+const isValidSlug = (slug) =>
+  typeof slug === "string" &&
+  /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug);
 
-function isValidSlug(slug) {
-  return (
-    typeof slug === "string" &&
-    /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)
-  );
-}
+const rootPattern =
+  /<div\s+id=["']root["']\s*><\/div>/i;
 
-// ========================================
-// 5. Start Vite SSR module loader
-// ========================================
-
-const server = await createServer({
-  server: {
-    middlewareMode: true,
-  },
-  appType: "custom",
-});
-
-try {
-  console.log(
-    "Starting Poonjora festival pre-rendering..."
-  );
-
-  // ========================================
-  // 6. Load festival renderer
-  // ========================================
-
-  const { renderFestivalSections } =
-    await server.ssrLoadModule(
-      "/src/entry-server.jsx"
-    );
-
-  if (typeof renderFestivalSections !== "function") {
-    throw new Error(
-      "renderFestivalSections is not available."
-    );
-  }
-
-  // ========================================
-  // 7. Fetch published festival content
-  // ========================================
-
+async function fetchPublished(table, order) {
   const url = new URL(
-    `${supabaseUrl.replace(/\/$/, "")}/rest/v1/festival_content`
+    `${supabaseUrl.replace(/\/$/, "")}/rest/v1/${table}`
   );
 
-  url.searchParams.set(
-    "is_published",
-    "eq.true"
-  );
-
-  url.searchParams.set(
-    "select",
-    "*"
-  );
-
-  url.searchParams.set(
-    "order",
-    "slug.asc"
-  );
-
-  url.searchParams.set(
-    "limit",
-    String(MAX_RECORDS)
-  );
+  url.searchParams.set("is_published", "eq.true");
+  url.searchParams.set("select", "*");
+  url.searchParams.set("order", order);
+  url.searchParams.set("limit", String(MAX_RECORDS));
 
   const response = await fetch(url, {
     headers: {
@@ -143,212 +56,282 @@ try {
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
-
     throw new Error(
-      `Supabase request failed (${response.status}): ${errorText}`
+      `${table} fetch failed (${response.status}): ${await response.text()}`
     );
   }
 
   const records = await response.json();
 
   if (!Array.isArray(records)) {
-    throw new Error(
-      "Invalid festival_content response."
-    );
-  }
-
-  if (records.length === 0) {
-    throw new Error(
-      "No published festival content found."
-    );
+    throw new Error(`Invalid ${table} response`);
   }
 
   if (records.length >= MAX_RECORDS) {
-    throw new Error(
-      "Festival record limit reached. Pagination is required."
-    );
+    throw new Error(`${table} limit reached; implement pagination`);
   }
 
-  console.log(
-    `Published festivals: ${records.length}`
-  );
+  return records;
+}
 
-  // ========================================
-  // 8. Read production HTML
-  // ========================================
+function normalizeContent(record) {
+  return {
+    ...record,
+    alternate: record.alternate_name,
+    artwork: {
+      left: record.hero_left_image,
+      right: record.hero_right_image,
+    },
+  };
+}
 
-  const baseTemplate = await fs.readFile(
-    templatePath,
-    "utf8"
-  );
+function buildSeo(content, language, year, canonicalUrl, alternateUrl) {
+  const seoTitle =
+    content.seo_title?.trim() ||
+    (language === "hi"
+      ? `${content.title} ${year}: पूजा विधि, सामग्री और कथा | Poonjora`
+      : `${content.title} ${year}: Puja Vidhi, Samagri & Katha | Poonjora`);
 
-  const rootPattern =
-    /<div\s+id=["']root["']\s*><\/div>/i;
+  const seoDescription =
+    content.seo_description?.trim() ||
+    (language === "hi"
+      ? `${content.title} ${year} की पूजा विधि, सामग्री, कथा, मंत्र और धार्मिक महत्व जानें।`
+      : `Explore ${content.title} ${year} puja vidhi, samagri, katha, mantras, traditions and festival significance on Poonjora.`);
 
-  if (!rootPattern.test(baseTemplate)) {
-    throw new Error(
-      "React root element not found in dist/index.html"
-    );
+  const socialImage =
+    content.slug === "chhath-puja"
+      ? "https://cffhhqqkcrcxxivilosk.supabase.co/storage/v1/object/public/festival-images/chhath-puja/poonjora-chhath-puja-social-1200x630.jpg"
+      : content.artwork?.left || "";
+
+  return `
+<title>${escapeHtml(seoTitle)}</title>
+<meta name="description" content="${escapeHtml(seoDescription)}" />
+<link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
+
+${
+  alternateUrl
+    ? `<link rel="alternate" hreflang="en-IN" href="${escapeHtml(
+        language === "en" ? canonicalUrl : alternateUrl
+      )}" />
+<link rel="alternate" hreflang="hi-IN" href="${escapeHtml(
+        language === "hi" ? canonicalUrl : alternateUrl
+      )}" />`
+    : ""
+}
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Poonjora" />
+<meta property="og:locale" content="${language === "hi" ? "hi_IN" : "en_IN"}" />
+<meta property="og:title" content="${escapeHtml(seoTitle)}" />
+<meta property="og:description" content="${escapeHtml(seoDescription)}" />
+<meta property="og:url" content="${escapeHtml(canonicalUrl)}" />
+
+${
+  socialImage
+    ? `<meta property="og:image" content="${escapeHtml(socialImage)}" />
+<meta property="og:image:alt" content="${escapeHtml(content.title)}" />`
+    : ""
+}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${escapeHtml(seoTitle)}" />
+<meta name="twitter:description" content="${escapeHtml(seoDescription)}" />
+${
+  socialImage
+    ? `<meta name="twitter:image" content="${escapeHtml(socialImage)}" />`
+    : ""
+}
+`;
+}
+
+const server = await createServer({
+  server: { middlewareMode: true },
+  appType: "custom",
+});
+
+try {
+  console.log("Starting multilingual festival prerendering...");
+
+  const { renderFestivalSections } =
+    await server.ssrLoadModule("/src/entry-server.jsx");
+
+  if (typeof renderFestivalSections !== "function") {
+    throw new Error("renderFestivalSections unavailable");
   }
 
-  if (!baseTemplate.includes("</head>")) {
-    throw new Error(
-      "HTML head closing tag not found."
-    );
+  const [records, translations] = await Promise.all([
+    fetchPublished("festival_content", "slug.asc"),
+    fetchPublished(
+      "festival_content_translations",
+      "festival_id.asc"
+    ),
+  ]);
+
+  if (!records.length) {
+    throw new Error("No published English festival content found");
   }
 
-  // ========================================
-  // 9. Generate festival HTML pages
-  // ========================================
+  const hindiByFestivalId = new Map();
 
-  let generatedCount = 0;
+  for (const row of translations) {
+    if (row.language_code !== "hi") continue;
+
+    if (hindiByFestivalId.has(String(row.festival_id))) {
+      throw new Error(
+        `Duplicate Hindi translation for festival ${row.festival_id}`
+      );
+    }
+
+    hindiByFestivalId.set(String(row.festival_id), row);
+  }
+
+  console.log(`Published English festivals: ${records.length}`);
+  console.log(`Published Hindi translations: ${hindiByFestivalId.size}`);
+
+  const baseTemplate = await fs.readFile(templatePath, "utf8");
+
+  if (
+    !rootPattern.test(baseTemplate) ||
+    !baseTemplate.includes("</head>")
+  ) {
+    throw new Error("Invalid dist/index.html template");
+  }
 
   const generatedRoutes = [];
   const seenSlugs = new Set();
 
-  for (const data of records) {
-    const slug = data.slug;
+  async function writePage(content, language, year, alternateUrl) {
+    const route =
+      `${language === "hi" ? "/hi" : ""}/festivals/${content.slug}/${year}`;
 
-    if (!isValidSlug(slug)) {
-      throw new Error(
-        `Invalid festival slug: ${slug}`
-      );
-    }
+    const canonicalUrl = `${SITE_URL}${route}/`;
 
-    if (seenSlugs.has(slug)) {
-      throw new Error(
-        `Duplicate published festival slug: ${slug}`
-      );
-    }
-
-    seenSlugs.add(slug);
-
-    if (
-      typeof data.title !== "string" ||
-      !data.title.trim()
-    ) {
-      throw new Error(
-        `Missing festival title: ${slug}`
-      );
-    }
-
-    const content = {
-      ...data,
-
-      alternate: data.alternate_name,
-
-      artwork: {
-        left: data.hero_left_image,
-        right: data.hero_right_image,
-      },
-    };
-
-    console.log(
-      `Rendering: ${content.title}`
-    );
-
-    const festivalHtml =
-      renderFestivalSections(content);
+    const festivalHtml = renderFestivalSections(content, language);
 
     if (
       typeof festivalHtml !== "string" ||
       !festivalHtml.trim()
     ) {
-      throw new Error(
-        `Empty editorial HTML for ${slug}`
-      );
+      throw new Error(`Empty HTML: ${route}`);
     }
 
-    for (const year of FESTIVAL_YEARS) {
-      const festivalPath =
-        `/festivals/${slug}/${year}`;
+    let html = baseTemplate.replace(
+      rootPattern,
+      `<div id="root">${festivalHtml}</div>`
+    );
 
-    const canonicalUrl = `${SITE_URL}${festivalPath}/`;
+    html = html.replace(
+      /<html\b([^>]*)>/i,
+      (full, attrs) =>
+        `<html${
+          /\blang\s*=/.test(attrs)
+            ? attrs.replace(
+                /\blang\s*=\s*(["']).*?\1/i,
+                `lang="${language}"`
+              )
+            : `${attrs} lang="${language}"`
+        }>`
+    );
 
-      const seoTitle =
-        `${content.title} ${year}: Puja Vidhi, Samagri & Katha | Poonjora`;
+    // Remove generic metadata before adding page-specific SEO.
+    html = html.replace(
+      /<title\b[^>]*>[\s\S]*?<\/title>/gi,
+      ""
+    );
 
-      const seoDescription =
-        `Explore ${content.title} ${year} puja vidhi, samagri, katha, mantras, traditions and festival significance on Poonjora.`;
+    html = html.replace(
+      /<meta\s+name=["']description["'][^>]*\/?>/gi,
+      ""
+    );
 
-      const socialImage =
-      slug === "chhath-puja"
-    ? "https://cffhhqqkcrcxxivilosk.supabase.co/storage/v1/object/public/festival-images/chhath-puja/poonjora-chhath-puja-social-1200x630.jpg"
-    : content.artwork?.left || "";
+    html = html.replace(
+      /<link\s+rel=["']canonical["'][^>]*\/?>/gi,
+      ""
+    );
 
-const seoTags = `
-<title>${escapeHtml(seoTitle)}</title>
-<meta name="description" content="${escapeHtml(seoDescription)}" />
-<link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
+    html = html.replace(
+      "</head>",
+      `${buildSeo(
+        content,
+        language,
+        year,
+        canonicalUrl,
+        alternateUrl
+      )}\n</head>`
+    );
 
-<meta property="og:type" content="article" />
-<meta property="og:site_name" content="Poonjora" />
-<meta property="og:title" content="${escapeHtml(seoTitle)}" />
-<meta property="og:description" content="${escapeHtml(seoDescription)}" />
-<meta property="og:url" content="${escapeHtml(canonicalUrl)}" />
+    const outputDirectory = path.join(
+      distDirectory,
+      ...route.slice(1).split("/")
+    );
 
-${socialImage ? `
-<meta property="og:image" content="${escapeHtml(socialImage)}" />
-<meta property="og:image:alt" content="${escapeHtml(content.title)}" />
-` : ""}
+    await fs.mkdir(outputDirectory, {
+      recursive: true,
+    });
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="${escapeHtml(seoTitle)}" />
-<meta name="twitter:description" content="${escapeHtml(seoDescription)}" />
-${socialImage ? `<meta name="twitter:image" content="${escapeHtml(socialImage)}" />` : ""}
-`;
+    await fs.writeFile(
+      path.join(outputDirectory, "index.html"),
+      html,
+      "utf8"
+    );
 
-      let html = baseTemplate.replace(
-        rootPattern,
-        `<div id="root">${festivalHtml}</div>`
-      );
-
-      html = html.replace(
-        "</head>",
-        `${seoTags}\n</head>`
-      );
-
-      
-
-      const outputDirectory = path.join(
-        distDirectory,
-        "festivals",
-        slug,
-        String(year)
-      );
-
-      await fs.mkdir(
-        outputDirectory,
-        {
-          recursive: true,
-        }
-      );
-
-      const outputFile = path.join(
-        outputDirectory,
-        "index.html"
-      );
-
-      await fs.writeFile(
-        outputFile,
-        html,
-        "utf8"
-      );
-
-      generatedRoutes.push(festivalPath);
-
-      generatedCount++;
-
-      console.log(
-        `Generated: ${festivalPath}`
-      );
-    }
+    generatedRoutes.push(route);
+    console.log(`Generated: ${route}`);
   }
 
-  // ========================================
-  // 10. Generate sitemap
-  // ========================================
+  for (const record of records) {
+    if (!isValidSlug(record.slug)) {
+      throw new Error(`Invalid slug: ${record.slug}`);
+    }
+
+    if (seenSlugs.has(record.slug)) {
+      throw new Error(`Duplicate slug: ${record.slug}`);
+    }
+
+    seenSlugs.add(record.slug);
+
+    if (!record.title?.trim()) {
+      throw new Error(`Missing title: ${record.slug}`);
+    }
+
+    const english = normalizeContent(record);
+
+    const translation = hindiByFestivalId.get(
+      String(record.id)
+    );
+
+    const hindi = translation
+      ? normalizeContent({
+          ...record,
+          ...translation,
+          id: record.id,
+          slug: record.slug,
+          hero_left_image: record.hero_left_image,
+          hero_right_image: record.hero_right_image,
+          seo_title: translation.seo_title,
+          seo_description: translation.seo_description,
+        })
+      : null;
+
+    for (const year of FESTIVAL_YEARS) {
+      const enUrl =
+        `${SITE_URL}/festivals/${record.slug}/${year}/`;
+
+      const hiUrl =
+        `${SITE_URL}/hi/festivals/${record.slug}/${year}/`;
+
+      await writePage(
+        english,
+        "en",
+        year,
+        hindi ? hiUrl : null
+      );
+
+      if (hindi) {
+        await writePage(hindi, "hi", year, enUrl);
+      }
+    }
+  }
 
   let sitemap = await fs.readFile(
     sitemapPath,
@@ -356,36 +339,23 @@ ${socialImage ? `<meta name="twitter:image" content="${escapeHtml(socialImage)}"
   );
 
   if (!sitemap.includes("</urlset>")) {
-    throw new Error(
-      "Invalid sitemap.xml: missing </urlset>."
-    );
+    throw new Error("Invalid sitemap.xml");
   }
 
-  const approvedRoutes = generatedRoutes;
-
-  for (const route of approvedRoutes) {
-   const fullUrl = `${SITE_URL}${route}/`;
-
+  for (const route of generatedRoutes) {
+    const fullUrl = `${SITE_URL}${route}/`;
     const escapedUrl = escapeHtml(fullUrl);
 
-    // Avoid duplicate entries.
-    if (
-      sitemap.includes(
-        `<loc>${escapedUrl}</loc>`
-      )
-    ) {
+    if (sitemap.includes(`<loc>${escapedUrl}</loc>`)) {
       continue;
     }
 
-    const sitemapEntry = `
-  <url>
-    <loc>${escapedUrl}</loc>
-  </url>
-`;
-
     sitemap = sitemap.replace(
       "</urlset>",
-      `${sitemapEntry}\n</urlset>`
+      `  <url>
+    <loc>${escapedUrl}</loc>
+  </url>
+</urlset>`
     );
   }
 
@@ -395,60 +365,18 @@ ${socialImage ? `<meta name="twitter:image" content="${escapeHtml(socialImage)}"
     "utf8"
   );
 
-  // ========================================
-  // 11. Final summary
-  // ========================================
-
-  console.log(
-    "--------------------------------------"
-  );
-
-  console.log(
-    "Poonjora festival pre-rendering successful!"
-  );
-
-  console.log(
-    `Published festivals: ${records.length}`
-  );
-
-  console.log(
-    `Years: ${FESTIVAL_YEARS.join(", ")}`
-  );
-
-  console.log(
-    `Generated pages: ${generatedCount}`
-  );
-
-  console.log(
-    `Approved sitemap URLs: ${approvedRoutes.length}`
-  );
-
-  console.log(
-    "Generated routes:"
-  );
-
-  generatedRoutes.forEach((route) => {
-    console.log(
-      `  ${route}`
-    );
-  });
-
-  console.log(
-    `Sitemap: ${sitemapPath}`
-  );
-
-  console.log(
-    "--------------------------------------"
-  );
+  console.log("--------------------------------------");
+  console.log("Poonjora multilingual prerendering successful!");
+  console.log(`English festivals: ${records.length}`);
+  console.log(`Published Hindi translations: ${hindiByFestivalId.size}`);
+  console.log(`Generated pages: ${generatedRoutes.length}`);
+  console.log(`Years: ${FESTIVAL_YEARS.join(", ")}`);
+  console.log(`Sitemap: ${sitemapPath}`);
+  console.log("--------------------------------------");
 
 } catch (error) {
-  console.error(
-    "Festival pre-rendering failed:",
-    error
-  );
-
+  console.error("Festival prerendering failed:", error);
   process.exitCode = 1;
-
 } finally {
   await server.close();
 }

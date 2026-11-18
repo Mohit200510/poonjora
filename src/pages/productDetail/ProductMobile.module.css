@@ -487,3 +487,18 @@
     transition: none;
   }
 }
+
+
+@media (max-width: 768px) {
+  .mobileRoot .mobileActions {
+    order: 7;
+  }
+
+  .mobileRoot .mobileDelivery {
+    order: 8;
+  }
+
+  .mobileRoot .mobileTrust {
+    order: 9;
+  }
+}

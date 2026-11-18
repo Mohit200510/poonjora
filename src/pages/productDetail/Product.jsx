@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import styles from "./Product.module.css";
+
 import mobile from "./ProductMobile.module.css";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
@@ -172,6 +173,8 @@ function Product() {
                 )}
                 </div>
 
+                
+
                 <div className={`${styles.actions} ${mobile.mobileActions}`}>
                   {cartButton}
                   <button type="button" className={`${styles.buyButton} ${mobile.mobileBuy}`} disabled title="Buy Now checkout connection pending">Buy Now</button>
@@ -182,6 +185,8 @@ function Product() {
                   <PincodeChecker />
 
                 </div>
+
+                
 
                 <div className={`${styles.trust} ${mobile.mobileTrust}`}>
                   <div className={`${styles.trustItem} ${mobile.mobileTrustItem}`}><BiLeaf /><div><h3>Quality Assured</h3><p>Carefully selected</p></div></div>

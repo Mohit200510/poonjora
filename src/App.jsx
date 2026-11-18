@@ -64,6 +64,8 @@ function App({ initialFestivalContent = null }) {
       <Route path="/divine-gallery" element={<DivineGallery/>}></Route>
       <Route path="/festivals/:slug/:year" element={<FestivalDetails initialContent={initialFestivalContent}/>}/>
       <Route path="/festivals/:slug"element={<FestivalDetails initialContent={initialFestivalContent}/> }/>
+      <Route path="/hi/festivals/:slug/:year" element={<FestivalDetails />} />
+      <Route path="/hi/festivals/:slug" element={<FestivalDetails />} />
      
     </Routes>
 
