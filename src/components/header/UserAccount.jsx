@@ -92,7 +92,10 @@ function UserAccount() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.href,
+        redirectTo:
+          window.location.origin +
+          window.location.pathname +
+          window.location.search,
         queryParams: {
           prompt: "select_account",
         },
@@ -106,15 +109,16 @@ function UserAccount() {
 
   // Logout
   const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut();
+  const { error } = await supabase.auth.signOut();
 
-    if (error) {
-      console.error("Logout failed:", error);
-      return;
-    }
+  if (error) {
+    console.error("Logout failed:", error);
+    return;
+  }
 
-    setShowDropdown(false);
-  };
+  setShowDropdown(false);
+  setShowLogin(true);
+};
 
   // Navigate to account pages
   const handleNavigation = (path) => {

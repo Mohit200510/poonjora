@@ -228,6 +228,9 @@
 /* login box of poonjora css separate */
 
 .loginBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     /* background: url("../../assets/login_bg.webp"); */
     background: url("../../assets/checkout_bg.png");
     background-size: cover;
