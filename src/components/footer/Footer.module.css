@@ -582,9 +582,58 @@
   line-height: 1.4;
 }
 
-  
+.trustItem {
+  flex: 0 0 33.333%;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
+  padding: 10px 4px;
+  border: none;
+}
 
- 
+.trustItem:first-child,
+.trustItem:nth-child(3) {
+  border: none;
+}
+
+.trustItem:nth-child(3) {
+  flex: 0 0 33.333%;
+}
+
+.trustItem svg {
+  width: 29px;
+  height: 29px;
+}
+
+.trustItem h4 {
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.trustItem p {
+  display: none;
+}
+
+.trustBar {
+  padding: 16px 0;
+  row-gap: 0;
+}
+
+.trustItem {
+  padding: 8px 3px;
+  gap: 8px;
+}
+
+.trustItem h4 {
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.paymentItem {
+  padding: 16px 0 8px;
+  margin-top: 6px;
+}
 
   .trustItem svg {
     width: 34px;
