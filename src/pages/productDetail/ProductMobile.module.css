@@ -77,42 +77,39 @@
 
   /* PRODUCT IMAGE */
 
-  .mobileRoot .mobileVisualMain {
-    width: 100%;
-    min-height: 0;
-    padding: 8px 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
   .mobileRoot .mobileVisual {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    border: 1px solid #eee7f1;
-    border-radius: 18px;
-    background: #faf7fb;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    padding: 24px;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  box-sizing: border-box;
+
+  border: 1px solid #eee7f1;
+  border-radius: 18px;
+  background: #faf7fb;
+
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  overflow: hidden;
+}
 
   .mobileRoot .mobileArch {
     display: none;
   }
 
   .mobileRoot .mobileImage {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    object-fit: contain;
-    background: transparent;
-    filter: none;
-  }
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  object-fit: cover;
+  object-position: center;
+  background: transparent;
+  filter: none;
+  border-radius: 0;
+}
 
   /* PRODUCT GALLERY */
 
