@@ -1471,3 +1471,36 @@
     height: 15px;
   }
 }
+
+/* PRODUCT IMAGE TEST */
+
+.featureProductBoxImgWrapper {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: #f7f2eb;
+}
+
+.featureProductBoxImgWrapper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+}
+
+@media (max-width: 599px) {
+  .featureProductBoxImgWrapper {
+    height: auto;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+  }
+
+  .featureProductBoxImgWrapper img {
+    object-fit: cover;
+  }
+}

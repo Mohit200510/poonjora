@@ -39,13 +39,13 @@ function FeatureProduct({product}) {
    
         <>
 
-                        <div className={styles.featureProductBoxWishlist}>
-                            <Heart stroke='var(--color-primary)' size={24}/>
-                        </div>
+         <div className={styles.featureProductBoxWishlist}>
+            <Heart stroke='var(--color-primary)' size={24}/>
+        </div>
 
-                        <div className={styles.featureProductBoxBadge}>
-                            23% OFF
-                        </div>
+        <div className={styles.featureProductBoxBadge}>
+             23% OFF
+        </div>
 
                         
 
@@ -105,6 +105,7 @@ function FeatureProduct({product}) {
                                 <span> <b>4.8</b> (122)</span>
                             </div>
 
+                            
 
 
                             <div className={styles.featureProductBoxPrice}>
@@ -135,6 +136,8 @@ function FeatureProduct({product}) {
 
                                 </div>
                             </div>)}
+
+
                             
 
                            
