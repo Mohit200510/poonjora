@@ -67,7 +67,15 @@ function Product() {
   const outOfStock = product.stock != null && Number(product.stock) <= 0;
   const maxQuantity = product.stock == null ? Infinity : Math.max(0, Math.floor(Number(product.stock)));
   const alreadyInCart = cartItems.some((item) => String(item.id) === String(product.id));
-  const galleryImages = [product.image_url].filter(Boolean);
+ const galleryImages = [
+  product.image_url,
+  ...(Array.isArray(product.images) ? product.images : [])
+].filter(
+  (image, index, images) =>
+    typeof image === "string" &&
+    image.trim() !== "" &&
+    images.indexOf(image) === index
+);
   const formatPrice = (value) => `₹${value.toLocaleString("en-IN")}`;
 
   const handleAddToCart = () => {
@@ -147,6 +155,7 @@ function Product() {
                   {mrp > salePrice && <span>{formatPrice(mrp)}</span>}
                   {discount > 0 && <div className={`${styles.discount} ${mobile.mobileDiscount}`}>{discount}% OFF</div>}
                 </div>
+
                 <div className={mobile.mobileTax}>Inclusive of all taxes</div>
 
 
