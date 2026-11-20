@@ -71,12 +71,12 @@ export default function AllProducts() {
       {/* HERO */}
 
      <div className={styles.breadcrumbBar}>
-  <div className={styles.breadcrumb}>
-    <Link to="/">Home</Link>
-    <span>›</span>
-    <span>Products</span>
-  </div>
-</div>
+     <div className={styles.breadcrumb}>
+      <Link to="/">Home</Link>
+      <span>›</span>
+       <span>Products</span>
+     </div>
+    </div>
 
 <section
   className={`${styles.hero} ${mobile.mobileHero}`}
@@ -95,6 +95,8 @@ export default function AllProducts() {
       Discover authentic puja essentials to bring positivity,
       peace and prosperity to your home.
     </p>
+
+
   </div>
 </section>
 
@@ -289,6 +291,8 @@ export default function AllProducts() {
                         >
                           <Plus size={18} />
                         </button>
+
+
                       </div>
                     )}
                   </div>
@@ -302,6 +306,7 @@ export default function AllProducts() {
       {/* TRUST STRIP */}
 
 <section className={styles.trustStrip}>
+  
   <div className={styles.trustItem}>
     <BadgeCheck size={26} strokeWidth={1.7} />
     <span>Authentic Quality</span>
@@ -321,6 +326,7 @@ export default function AllProducts() {
     <HeartHandshake size={26} strokeWidth={1.7} />
     <span>Trusted by Families</span>
   </div>
+
 </section>
 
     </main>

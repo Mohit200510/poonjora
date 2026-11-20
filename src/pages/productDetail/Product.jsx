@@ -203,6 +203,8 @@ function Product() {
                   <div className={`${styles.trustItem} ${mobile.mobileTrustItem}`}><FaShippingFast /><div><h3>Pan India Delivery</h3><p>Check your pincode</p></div></div>
                   <div className={`${styles.trustItem} ${mobile.mobileTrustItem}`}><MdOutlineLock /><div><h3>Secure Payment</h3><p>Protected checkout</p></div></div>
                 </div>
+
+                
               </div>
             </div>
           </div>

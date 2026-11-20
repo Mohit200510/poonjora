@@ -19,7 +19,7 @@
 
   :global(body) {
     overflow-x: hidden;
-  }
+  }  
 
   .mobileGrid {
     display: grid;
@@ -89,6 +89,7 @@
 
     border-radius: 0;
   }
+  
 
   .mobileCard:hover .mobileImageWrapper img {
     transform: none;
@@ -215,21 +216,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: 30px;
     min-width: 30px;
     height: 100%;
     min-height: 0;
     flex-shrink: 0;
-
     padding: 0;
     margin: 0;
-
     background: transparent;
     border: none;
     border-radius: 0;
-
     cursor: pointer;
+
+
   }
 
   .mobileQtyControl button:first-child {

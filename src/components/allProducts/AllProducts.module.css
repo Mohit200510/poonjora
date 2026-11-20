@@ -146,41 +146,28 @@
 }
 
 /* PRODUCT IMAGE */
-
 .imageWrapper {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  display: block;
   width: 100%;
-  aspect-ratio: 1.25;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-
   background: #f8f2ed;
 }
 
 .imageWrapper a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  display: block;
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
 .imageWrapper img {
   display: block;
   width: 100%;
   height: 100%;
-
-  padding: 12px;
-  box-sizing: border-box;
-
-  object-fit: contain;
+  padding: 0;
+  object-fit: cover;
   object-position: center;
-
   transition: transform 0.4s ease;
 }
 
@@ -285,8 +272,8 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-
   margin: 12px 0 15px;
+
 }
 
 .priceRow strong {
@@ -494,9 +481,7 @@
     gap: 14px;
   }
 
-  .imageWrapper {
-    aspect-ratio: 1.15;
-  }
+  
 
   .imageWrapper img {
     padding: 10px;
