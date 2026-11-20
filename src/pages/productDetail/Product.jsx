@@ -64,6 +64,7 @@ function Product() {
   const discount = mrp > salePrice && mrp > 0
     ? Math.round(((mrp - salePrice) / mrp) * 100)
     : 0;
+    
   const outOfStock = product.stock != null && Number(product.stock) <= 0;
   const maxQuantity = product.stock == null ? Infinity : Math.max(0, Math.floor(Number(product.stock)));
   const alreadyInCart = cartItems.some((item) => String(item.id) === String(product.id));

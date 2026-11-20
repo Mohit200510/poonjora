@@ -1,0 +1,446 @@
+
+/* =========================================
+   POONJORA — ALL PRODUCTS MOBILE
+   MOBILE ONLY: 599px AND BELOW
+========================================= */
+
+/* HIDE MOBILE CART ON DESKTOP / TABLET */
+
+.mobileCartButton,
+.mobileQtyControl {
+  display: none;
+}
+
+/* MOBILE STYLING */
+
+@media screen and (max-width: 599px) {
+
+  /* HERO */
+
+  :global(body) {
+    overflow-x: hidden;
+  }
+
+  .mobileGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 12px;
+    align-items: stretch;
+  }
+
+  /* PRODUCT CARD */
+
+  .mobileCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    height: 100%;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .mobileCard:hover {
+    transform: none;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  /* PRODUCT IMAGE */
+
+  .mobileImageWrapper {
+    position: relative;
+    display: block;
+
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+
+    flex-shrink: 0;
+
+    padding: 0;
+    margin-bottom: 12px;
+
+    background: #f7f2eb;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .mobileImageWrapper a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .mobileImageWrapper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 0;
+  }
+
+  .mobileCard:hover .mobileImageWrapper img {
+    transform: none;
+  }
+
+  /* WISHLIST */
+
+  .mobileWishlistIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 6;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    background: rgba(255, 255, 255, 0.9);
+    color: #36014f;
+
+    border-radius: 10px;
+    box-shadow: none;
+  }
+
+  .mobileWishlistIcon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* DISCOUNT BADGE */
+
+  .mobileBadge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+
+    padding: 4px 7px;
+
+    background: #c99c66;
+    color: #fff;
+
+    border-radius: 5px;
+
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  /* MOBILE ADD TO CART */
+
+  .mobileCartButton {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    z-index: 5;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    width: auto;
+    min-width: 0;
+    min-height: 32px;
+
+    padding: 7px 11px;
+    margin: 0;
+
+    background: #36014f;
+    color: #fff;
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+
+    font-family: "inter", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 10px rgba(54, 1, 79, 0.16);
+  }
+
+  .mobileCartButton svg {
+    display: block;
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+
+  .mobileCartButton:hover {
+    background: #570b74;
+  }
+
+  /* MOBILE QUANTITY CONTROL */
+
+  .mobileQtyControl {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+
+    width: 105px;
+    height: 30px;
+
+    background: #fff;
+    border: 1.5px solid #36014f;
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow: 0 3px 10px rgba(54, 1, 79, 0.12);
+  }
+
+  .mobileQtyControl button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    min-width: 30px;
+    height: 100%;
+    min-height: 0;
+    flex-shrink: 0;
+
+    padding: 0;
+    margin: 0;
+
+    background: transparent;
+    border: none;
+    border-radius: 0;
+
+    cursor: pointer;
+  }
+
+  .mobileQtyControl button:first-child {
+    background: #f3e8f5;
+    color: #36014f;
+  }
+
+  .mobileQtyControl button:last-child {
+    background: #36014f;
+    color: #fff;
+  }
+
+  .mobileQtyControl span {
+    flex: 1;
+    min-width: 0;
+
+    text-align: center;
+
+    font-family: "inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #36014f;
+  }
+
+  .mobileQtyControl svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* PRODUCT INFO */
+
+  .mobileInfo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    min-width: 0;
+    padding: 0 2px 12px;
+  }
+
+  /* PRODUCT NAME */
+
+  .mobileName {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+
+    overflow: hidden;
+
+    min-height: 38px;
+    margin: 0 0 6px;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    color: #211923;
+    text-decoration: none;
+  }
+
+  /* WEIGHT */
+
+  .mobileWeight {
+    display: block;
+    margin: 0 0 7px;
+
+    font-family: "inter", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #786b7e;
+  }
+
+  /* PRICE */
+
+  .mobilePrice {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 5px 8px;
+
+    margin: 12px 0 0;
+  }
+
+  .mobilePrice strong {
+    font-family: "inter", sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #36014f;
+  }
+
+  .mobilePrice del {
+    font-family: "inter", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #999;
+  }
+
+  /* HIDE SAVING BADGE UNDER PRICE */
+
+  .mobileSaving {
+    display: none;
+  }
+}
+
+/* VERY SMALL PHONES */
+
+@media screen and (max-width: 359px) {
+  .mobileGrid {
+    gap: 10px 8px;
+  }
+
+  .mobileName {
+    font-size: 12px;
+    line-height: 17px;
+  }
+
+  .mobilePrice strong {
+    font-size: 16px;
+  }
+
+  .mobileCartButton {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .mobileQtyControl {
+    width: 96px;
+  }
+}
+
+
+
+/* =========================================
+   POONJORA — MOBILE HERO REDESIGN
+========================================= */
+
+@media screen and (max-width: 599px) {
+  .mobileHero {
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(255, 250, 245, 0.96) 0%,
+        rgba(255, 250, 245, 0.88) 55%,
+        rgba(255, 250, 245, 0.42) 100%
+      ),
+      var(--hero-image);
+
+    background-size: cover;
+    background-position: 65% center;
+  }
+
+  .mobileHeroInner {
+    width: 90%;
+    padding: 30px 0;
+  }
+
+  .mobileBreadcrumb {
+    margin-bottom: 15px;
+    font-size: 11px;
+    gap: 8px;
+  }
+
+  .mobileOrnament {
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+
+  .mobileOrnament span {
+    width: 28px;
+  }
+
+  .mobileOrnament svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .mobileHero h1 {
+    max-width: 300px;
+    margin-bottom: 12px;
+
+    font-family: Georgia, serif;
+    font-size: clamp(27px, 7vw, 32px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+
+    color: #36014f;
+  }
+
+  .mobileHero p {
+    max-width: 285px;
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.65;
+    color: #6d5966;
+  }
+}
+
+@media (max-width: 599px) {
+  .mobileHero {
+    min-height: 250px;
+    background-position: 65% center;
+  }
+
+  .mobileHeroInner {
+    padding: 28px 0;
+  }
+}
