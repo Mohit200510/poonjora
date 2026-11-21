@@ -137,7 +137,7 @@ function DesktopNav() {
             </NavLink>
 
             <NavLink
-              to="/hindu-festival-calender"
+              to="/hindu-festival-calendar"
               className={styles.featureLink}
             >
               <LuCalendarDays />

@@ -59,7 +59,7 @@ function App({ initialFestivalContent = null }) {
       <Route path='/shipping-policy' element={<ShippingPolicy/>}></Route>
       <Route path="/refund-cancellation-policy" element={<RefundCancellation/>}></Route>
       <Route path="/panchang" element={<PanchangPage/>}></Route>
-      <Route path="/hindu-festival-calender" element={<FestivalCalender/>}></Route>
+      <Route path="/hindu-festival-calendar" element={<FestivalCalender/>}></Route>
       <Route path='/collections/products' element={<AllProducts/>}></Route>
       <Route path="/divine-gallery" element={<DivineGallery/>}></Route>
       <Route path="/festivals/:slug/:year" element={<FestivalDetails initialContent={initialFestivalContent}/>}/>

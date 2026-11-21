@@ -369,7 +369,7 @@ if (!validYear) {
     <main className={styles.notFound}>
       <h1>Invalid festival year</h1>
       <p>Please select a valid year between 2000 and 2100.</p>
-      <Link to="/hindu-festival-calender">
+      <Link to="/hindu-festival-calendar">
         Back to Festival Calendar
       </Link>
     </main>
@@ -403,7 +403,7 @@ if (!content) {
     <main className={styles.notFound}>
       <h1>Festival details are not available yet</h1>
       <p>This festival has not been prepared for publication.</p>
-      <Link to="/hindu-festival-calender">
+      <Link to="/hindu-festival-calendar">
         Back to Festival Calendar
       </Link>
     </main>
@@ -441,7 +441,7 @@ if (!content) {
         {/* Breadcrumb navigation */}
         <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
           <Link to="/">Home</Link><ChevronRight size={15} />
-          <Link to="/hindu-festival-calender">Festival Calendar</Link><ChevronRight size={15} />
+          <Link to="/hindu-festival-calendar">Festival Calendar</Link><ChevronRight size={15} />
           <strong>{fullTitle}</strong>
         </nav>
 

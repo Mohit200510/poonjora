@@ -126,7 +126,7 @@ function MobileNavDrawer({ isOpen, onClose }) {
             </Link>
 
             <Link
-              to="/hindu-festival-calender"
+              to="/hindu-festival-calendar"
               className={styles.featureItem}
               onClick={onClose}
             >

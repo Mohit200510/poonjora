@@ -32,7 +32,7 @@ const navItems = [
   },
   {
     label: "Festivals",
-    path: "/hindu-festival-calender",
+    path: "/hindu-festival-calendar",
     icon: LuCalendarDays,
   },
   {
