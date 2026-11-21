@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ShoppingCart,
   Heart,
@@ -25,6 +25,7 @@ export default function AllProducts() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const {
     addToCart,
@@ -39,7 +40,7 @@ export default function AllProducts() {
     async function loadProducts() {
       const { data, error } = await supabase
         .from("products")
-        .select("*")
+        .select("*, product_variants(id)")
         .order("created_at", { ascending: false });
 
       if (!active) return;
@@ -70,35 +71,33 @@ export default function AllProducts() {
     <main className={styles.page}>
       {/* HERO */}
 
-     <div className={styles.breadcrumbBar}>
-     <div className={styles.breadcrumb}>
-      <Link to="/">Home</Link>
-      <span>›</span>
-       <span>Products</span>
-     </div>
-    </div>
+      <div className={styles.breadcrumbBar}>
+        <div className={styles.breadcrumb}>
+          <Link to="/">Home</Link>
+          <span>›</span>
+          <span>Products</span>
+        </div>
+      </div>
 
-<section
-  className={`${styles.hero} ${mobile.mobileHero}`}
-  style={{ "--hero-image": `url(${collectionBanner})` }}
->
-  <div className={`${styles.heroInner} ${mobile.mobileHeroInner}`}>
-    <div className={styles.heroOrnament}>
-      <span />
-      <Sparkles size={20} />
-      <span />
-    </div>
+      <section
+        className={`${styles.hero} ${mobile.mobileHero}`}
+        style={{ "--hero-image": `url(${collectionBanner})` }}
+      >
+        <div className={`${styles.heroInner} ${mobile.mobileHeroInner}`}>
+          <div className={styles.heroOrnament}>
+            <span />
+            <Sparkles size={20} />
+            <span />
+          </div>
 
-    <h1>Our Sacred Collection</h1>
+          <h1>Our Sacred Collection</h1>
 
-    <p>
-      Discover authentic puja essentials to bring positivity,
-      peace and prosperity to your home.
-    </p>
-
-
-  </div>
-</section>
+          <p>
+            Discover authentic puja essentials to bring positivity,
+            peace and prosperity to your home.
+          </p>
+        </div>
+      </section>
 
       {/* PRODUCTS */}
 
@@ -126,17 +125,31 @@ export default function AllProducts() {
             className={`${styles.productGrid} ${mobile.mobileGrid}`}
           >
             {products.map((product) => {
+              const hasVariants =
+                product.product_variants?.length > 0;
+
               const price = Number(product.sale_price);
               const mrp = Number(product.mrp);
 
               const discount = discountPercent(price, mrp);
 
-              const cartProduct = cartItems.find(
-                (item) =>
-                  String(item.id) === String(product.id)
-              );
+              // Variant products are selected on their detail page.
+              const cartProduct = hasVariants
+                ? null
+                : cartItems.find(
+                    (item) =>
+                      String(item.id) === String(product.id) &&
+                      item.variant_id == null
+                  );
 
               const isInCart = Boolean(cartProduct);
+
+              const addProduct = () => {
+                addToCart({
+                  ...product,
+                  quantity: 1,
+                });
+              };
 
               return (
                 <article
@@ -177,11 +190,20 @@ export default function AllProducts() {
 
                     {/* MOBILE CART */}
 
-                    {!isInCart ? (
+                    {hasVariants ? (
+                      <button
+                      type="button"
+                      className={mobile.mobileCartButton}
+                      onClick={() => navigate(`/product/${product.id}`)}
+                      >
+                     <ShoppingCart size={15} />
+                     <span>Select Options</span>
+                      </button>
+                    ) : !isInCart ? (
                       <button
                         type="button"
                         className={mobile.mobileCartButton}
-                        onClick={() => addToCart(product)}
+                        onClick={addProduct}
                       >
                         <ShoppingCart size={15} />
                         <span>Add to Cart</span>
@@ -259,11 +281,18 @@ export default function AllProducts() {
 
                     {/* DESKTOP CART */}
 
-                    {!isInCart ? (
+                    {hasVariants ? (
+                      <Link
+                        to={`/product/${product.id}`}
+                        className={styles.cartButton}
+                      >
+                        Select Options
+                      </Link>
+                    ) : !isInCart ? (
                       <button
                         type="button"
                         className={styles.cartButton}
-                        onClick={() => addToCart(product)}
+                        onClick={addProduct}
                       >
                         <ShoppingCart size={17} />
                         Add to Cart
@@ -291,8 +320,6 @@ export default function AllProducts() {
                         >
                           <Plus size={18} />
                         </button>
-
-
                       </div>
                     )}
                   </div>
@@ -305,30 +332,27 @@ export default function AllProducts() {
 
       {/* TRUST STRIP */}
 
-<section className={styles.trustStrip}>
-  
-  <div className={styles.trustItem}>
-    <BadgeCheck size={26} strokeWidth={1.7} />
-    <span>Authentic Quality</span>
-  </div>
+      <section className={styles.trustStrip}>
+        <div className={styles.trustItem}>
+          <BadgeCheck size={26} strokeWidth={1.7} />
+          <span>Authentic Quality</span>
+        </div>
 
-  <div className={styles.trustItem}>
-    <Truck size={26} strokeWidth={1.7} />
-    <span>Pan India Delivery</span>
-  </div>
+        <div className={styles.trustItem}>
+          <Truck size={26} strokeWidth={1.7} />
+          <span>Pan India Delivery</span>
+        </div>
 
-  <div className={styles.trustItem}>
-    <ShieldCheck size={26} strokeWidth={1.7} />
-    <span>Secure Payments</span>
-  </div>
+        <div className={styles.trustItem}>
+          <ShieldCheck size={26} strokeWidth={1.7} />
+          <span>Secure Payments</span>
+        </div>
 
-  <div className={styles.trustItem}>
-    <HeartHandshake size={26} strokeWidth={1.7} />
-    <span>Trusted by Families</span>
-  </div>
-
-</section>
-
+        <div className={styles.trustItem}>
+          <HeartHandshake size={26} strokeWidth={1.7} />
+          <span>Trusted by Families</span>
+        </div>
+      </section>
     </main>
   );
 }
