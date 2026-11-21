@@ -21,7 +21,17 @@ function FeatureProducts() {
     async function getProducts(){
         const {data,error} = await supabase
         .from("products")
-        .select("*");
+        .select(`
+                *,
+                product_variants (
+                 id,
+               variant_name,
+              sale_price,
+              mrp,
+               stock,
+               is_default
+             )
+          `)
 
     if(error){
         console.log("error",error);

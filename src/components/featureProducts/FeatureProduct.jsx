@@ -1,17 +1,14 @@
 
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import { Heart } from "lucide-react";
-import styles from "./FeatureProducts.module.css";
-
-import CartContext from "../../context/CartContext";
 import { MdOutlineStar } from "react-icons/md";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
-function FeatureProduct({ product }) {
-  const navigate = useNavigate();
+import CartContext from "../../context/CartContext";
+import styles from "./FeatureProducts.module.css";
 
+function FeatureProduct({ product }) {
   const {
     addToCart,
     cartItems,
@@ -19,50 +16,81 @@ function FeatureProduct({ product }) {
     decreaseQuantity,
   } = useContext(CartContext);
 
-  // Check whether the product has variants
-  const hasVariants = product.product_variants?.length > 0;
+  const variants = product.product_variants || [];
+  const hasVariants = variants.length > 0;
 
-  // Normal products use their existing cart controls.
-  // Variant products are handled on the detail page.
-  const cartProduct = hasVariants
-    ? null
-    : cartItems.find(
-        (item) =>
-          String(item.id) === String(product.id) &&
-          item.variant_id == null
-      );
+  const [selectedVariantId, setSelectedVariantId] = useState(
+    () => (variants.find(v => v.is_default) || variants[0])?.id ?? null
+  );
+
+  const selectedVariant = hasVariants
+    ? variants.find(v => String(v.id) === String(selectedVariantId))
+      || variants.find(v => v.is_default)
+      || variants[0]
+    : null;
+
+  const price = Number(
+    selectedVariant?.sale_price ?? product.sale_price
+  );
+
+  const mrp = Number(
+    selectedVariant?.mrp ?? product.mrp
+  );
+
+  const stock = selectedVariant?.stock ?? product.stock;
+
+  const cartProduct = cartItems.find(
+    item =>
+      String(item.id) === String(product.id) &&
+      String(item.variant_id ?? "") ===
+        String(selectedVariant?.id ?? "")
+  );
 
   const isInCart = Boolean(cartProduct);
+  const outOfStock = stock != null && Number(stock) <= 0;
+
+  const cartKey = selectedVariant
+    ? `${product.id}-${selectedVariant.id}`
+    : String(product.id);
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
 
-    if (hasVariants) {
-      navigate(`/product/${product.id}`);
-      return;
-    }
+    if (isInCart || outOfStock) return;
 
     addToCart({
       ...product,
       quantity: 1,
+      variant_id: selectedVariant?.id ?? null,
+      variant_name: selectedVariant?.variant_name ?? null,
+      weight: selectedVariant?.variant_name ?? product.weight,
+      sale_price: price,
+      mrp,
+      stock,
     });
+  };
+
+  const changeQuantity = (e, action) => {
+    e.stopPropagation();
+
+    if (action === "increase") {
+      increaseQuantity(cartKey);
+    } else {
+      decreaseQuantity(cartKey);
+    }
   };
 
   return (
     <>
-      {/* WISHLIST */}
-
       <div className={styles.featureProductBoxWishlist}>
         <Heart stroke="var(--color-primary)" size={24} />
       </div>
 
-      {/* DISCOUNT BADGE */}
-
-      <div className={styles.featureProductBoxBadge}>
-        23% OFF
-      </div>
-
-      {/* PRODUCT IMAGE + MOBILE CART */}
+      {mrp > price && (
+        <div className={styles.featureProductBoxBadge}>
+          {Math.round(((mrp - price) / mrp) * 100)}% OFF
+        </div>
+      )}
 
       <div className={styles.featureProductBoxImgWrapper}>
         <img src={product.image_url} alt={product.name} />
@@ -72,20 +100,21 @@ function FeatureProduct({ product }) {
             type="button"
             className={styles.mobileCartButton}
             onClick={handleAddToCart}
+            disabled={outOfStock}
           >
             <PiShoppingCartSimpleBold size={17} />
             <span>
-              {hasVariants ? "Select Options" : "Add to Cart"}
+              {outOfStock ? "Out of Stock" : "Add to Cart"}
             </span>
           </button>
         ) : (
           <div
             className={styles.mobileQtyControl}
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
           >
             <button
               type="button"
-              onClick={() => decreaseQuantity(product.id)}
+              onClick={e => changeQuantity(e, "decrease")}
               aria-label="Decrease quantity"
             >
               <FiMinus />
@@ -95,7 +124,11 @@ function FeatureProduct({ product }) {
 
             <button
               type="button"
-              onClick={() => increaseQuantity(product.id)}
+              onClick={e => changeQuantity(e, "increase")}
+              disabled={
+                stock != null &&
+                cartProduct.quantity >= Number(stock)
+              }
               aria-label="Increase quantity"
             >
               <FiPlus />
@@ -104,64 +137,60 @@ function FeatureProduct({ product }) {
         )}
       </div>
 
-      {/* PRODUCT INFORMATION */}
-
       <div className={styles.featureProductBoxText}>
         <h3>{product.name}</h3>
 
-        <h4 className={styles.featureProductBoxWeight}>
-          {product.weight}
-        </h4>
-
-        {/* RATING */}
-
-        <div className={styles.featureProductBoxRating}>
-          <div>
-            <MdOutlineStar />
-            <MdOutlineStar />
-            <MdOutlineStar />
-            <MdOutlineStar />
-            <MdOutlineStar />
-          </div>
-
-          <span>
-            <b>4.8</b> (122)
-          </span>
-        </div>
-
-        {/* PRICE */}
+        {hasVariants ? (
+          <select
+            className={styles.variantSelect}
+            value={selectedVariant?.id ?? ""}
+            onClick={e => e.stopPropagation()}
+            onChange={e => {
+              e.stopPropagation();
+              setSelectedVariantId(e.target.value);
+            }}
+            aria-label={`Select pack size for ${product.name}`}
+          >
+            {variants.map(variant => (
+              <option key={variant.id} value={variant.id}>
+                {variant.variant_name} — ₹{Number(variant.sale_price)}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <h4 className={styles.featureProductBoxWeight}>
+            {product.weight}
+          </h4>
+        )}
 
         <div className={styles.featureProductBoxPrice}>
-          <h4>₹{product.sale_price}</h4>
+          <h4>₹{price}</h4>
 
-          <h5>
-            <del>₹{product.mrp}</del>
-          </h5>
-
-          <h6>
-            Save ₹{product.mrp - product.sale_price}
-          </h6>
+          {mrp > price && (
+            <>
+              <h5>
+                <del>₹{mrp}</del>
+              </h5>
+              <h6>Save ₹{mrp - price}</h6>
+            </>
+          )}
         </div>
-
-        {/* DESKTOP CART */}
 
         {!isInCart ? (
           <button
             type="button"
             style={{ background: "#36014f" }}
             onClick={handleAddToCart}
+            disabled={outOfStock}
           >
             <PiShoppingCartSimpleBold size={22} />
-            {hasVariants ? "Select Options" : "Add to Cart"}
+            {outOfStock ? "Out of Stock" : "Add to Cart"}
           </button>
         ) : (
           <div className={styles.productQtyChange}>
             <div className={styles.productQtyChangeInner}>
               <div
-                onClick={(e) => {
-                  e.stopPropagation();
-                  decreaseQuantity(product.id);
-                }}
+                onClick={e => changeQuantity(e, "decrease")}
               >
                 <FiMinus />
               </div>
@@ -169,9 +198,15 @@ function FeatureProduct({ product }) {
               <span>{cartProduct.quantity}</span>
 
               <div
-                onClick={(e) => {
-                  e.stopPropagation();
-                  increaseQuantity(product.id);
+                onClick={e => {
+                  if (
+                    stock == null ||
+                    cartProduct.quantity < Number(stock)
+                  ) {
+                    changeQuantity(e, "increase");
+                  } else {
+                    e.stopPropagation();
+                  }
                 }}
               >
                 <FiPlus />

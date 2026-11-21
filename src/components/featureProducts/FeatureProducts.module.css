@@ -1504,3 +1504,27 @@
     object-fit: cover;
   }
 }
+
+
+
+.variantSelect {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 7px 24px 7px 9px;
+  border: 1px solid #36014f;
+  border-radius: 7px;
+  background: #fff;
+  color: #36014f;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.variantSelect:focus-visible {
+  outline: 2px solid #36014f;
+  outline-offset: 2px;
+}
