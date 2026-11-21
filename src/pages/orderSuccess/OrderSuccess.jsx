@@ -188,7 +188,7 @@ if (fetchError) {
                             <div className={styles.orderSuccessRightBoxMidBody}>
 
                                 {order?.items?.map((item)=>(
-                                    <div   key={item.id} className={styles.orderSuccessRightBoxMidItem}>
+                                    <div   key={`${item.id}-${item.variant_id ?? "default"}`} className={styles.orderSuccessRightBoxMidItem}>
 
                                     <div className={styles.orderSuccessRightBoxMidItemLeft}>
                                         <div className={styles.orderSuccessRightBoxMidItemImageContainer}>
@@ -196,12 +196,12 @@ if (fetchError) {
                                         </div>
                                         <div>
                                             <h3>{item.name}</h3>
-                                            <p>{item.weight}</p>
+                                            <p>{item.variant_name || item.weight}</p>
                                         </div>
                                     </div>
 
                                     <div className={styles.orderSuccessRightBoxMidItemPrice}>
-                                        ₹{item.sale_price * item.quantity}.00
+                                        ₹{(Number(item.sale_price) * Number(item.quantity)).toFixed(2)}
                                     </div>
                                 </div>
                                 ))}
@@ -212,7 +212,7 @@ if (fetchError) {
 
                             <div className={styles.orderSuccessMidRightBoxBottom}>
                                 <h5>Grand Total</h5>
-                                <span> ₹{order?.total_amount}.00</span>
+                               <span>₹{Number(order?.total_amount).toFixed(2)}</span>
                             </div>
 
                         </div>

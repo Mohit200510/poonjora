@@ -19,7 +19,7 @@ import Checkout from '../checkout/Checkout';
 
 function Cart() {
     
-    const {CloseCart,closeCart,setCloseCart,cartItems,setCartItems,decreaseQuantity,increaseQuantity,cartPriceTotal,cartMRPTotal,cartDiscount} = useContext(CartContext);
+    const {CloseCart,closeCart,setCloseCart,cartItems,setCartItems,decreaseQuantity,increaseQuantity,cartPriceTotal,cartMRPTotal,cartDiscount,getCartKey} = useContext(CartContext);
 
     const [openCheckout, setOpenCheckout] = useState(
   () => sessionStorage.getItem("poonjora-checkout-open") === "true");
@@ -32,13 +32,11 @@ useEffect(() => {
 }, [openCheckout, cartItems.length]);
     
 
-    const deleteItem = (id) => {
-      const updatedCart = cartItems.filter((item) => {
-    return item.id !== id;
-    });
-
-    setCartItems(updatedCart);
-   };
+    const deleteItem = (cartKey) => {
+  setCartItems((prev) =>
+    prev.filter((item) => getCartKey(item) !== cartKey)
+       );
+     };
 
 
 
@@ -76,7 +74,7 @@ useEffect(() => {
                     
                         
 
-                        <div key={item.id} className={styles.cartItem}>
+                        <div key={getCartKey(item)} className={styles.cartItem}>
 
                         <div className={styles.cartItemImage}>
                             <img src={item.image_url}></img>
@@ -85,10 +83,10 @@ useEffect(() => {
                         <div className={styles.cartItemDetails}>
                             <div className={styles.cartItemMid}>
                                 <h2>{item.name}</h2>
-                                <h5>{item.weight}</h5>
+                               <h5>{item.variant_name || item.weight}</h5>
                                 <div className={styles.cartUpdationItems}>
                                     <div onClick={()=>{
-                                        deleteItem(item.id)
+                                       deleteItem(getCartKey(item))
                                     }} className={styles.cartBinIcon}>
                                         <GoTrash />
                                     </div>
@@ -96,13 +94,13 @@ useEffect(() => {
                                     <div className={styles.cartQtynBox}>
                                         
                                         <div onClick={()=>{
-                                            decreaseQuantity(item.id)
+                                            decreaseQuantity(getCartKey(item))
                                         }}>
                                         <FiMinus />
                                         </div>
                                         <span>{item.quantity}</span>
                                         <div onClick={()=>{
-                                            increaseQuantity(item.id)
+                                            increaseQuantity(getCartKey(item))
                                         }}>
                                         <FaPlus />
                                         </div>
@@ -115,7 +113,9 @@ useEffect(() => {
 
                             <div className={styles.cartItemprice}>
                                 <h4>₹{item.sale_price * item.quantity}</h4>
-                                <h5><del>₹{item.mrp * item.quantity}</del></h5>
+                                {item.mrp > item.sale_price && (
+                                 <h5><del>₹{item.mrp * item.quantity}</del></h5>
+)}
 
                             </div>
 

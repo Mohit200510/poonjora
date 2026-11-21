@@ -4,6 +4,12 @@ import { createContext } from 'react'
 
 export const CartContext = createContext();
 
+const getCartKey = (item) => {
+  return item.variant_id
+    ? `${item.id}-${item.variant_id}`
+    : String(item.id);
+};
+
 export const CartProvider = ({children})=> {
 
   const[cartItems,setCartItems] = useState(()=>{
@@ -36,59 +42,51 @@ useEffect(() => {
 
 
   // product addig to crt function
-  const addToCart = (product) => {
-
-  const alreadyAdded = cartItems.find(
-    (item) => item.id === product.id
+const addToCart = (product) => {
+  const alreadyAdded = cartItems.some(
+    (item) => getCartKey(item) === getCartKey(product)
   );
 
-  if (alreadyAdded) {
-    return;
-  }
+  if (alreadyAdded) return;
 
   setCartItems([...cartItems, product]);
 
-  setShowToast(true)
+  setShowToast(true);
 
   setTimeout(() => {
-    setShowToast(false)
+    setShowToast(false);
   }, 2500);
-
 };
 
 
   // updating product quantity in postive function
 
-  const increaseQuantity = (id) => {
-  const updatedCart = cartItems.map((item) => {
-    if (item.id === id) {
-      return {
-        ...item,
-        quantity: item.quantity + 1
-      };
-    }
-
-    return item;
-  });
-
-  setCartItems(updatedCart);
-  };
+ const increaseQuantity = (id) => {
+  setCartItems((prev) =>
+    prev.map((item) =>
+      getCartKey(item) === String(id)
+        ? {
+            ...item,
+            quantity: Math.min(
+              item.quantity + 1,
+              item.stock ?? Infinity
+            )
+          }
+        : item
+    )
+  );
+};
 
   // updating product quantity in negative function
 
-  const decreaseQuantity = (id) => {
-  const updatedCart = cartItems.map((item) => {
-    if (item.id === id && item.quantity > 1) {
-      return {
-        ...item,
-        quantity: item.quantity - 1
-      };
-    }
-
-    return item;
-  });
-
-  setCartItems(updatedCart);
+ const decreaseQuantity = (id) => {
+  setCartItems((prev) =>
+    prev.map((item) =>
+      getCartKey(item) === String(id) && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    )
+  );
 };
 
 // clear complete cart
@@ -110,7 +108,7 @@ const cartMRPTotal = cartItems.reduce((total, item) => {
 const cartDiscount = cartMRPTotal - cartPriceTotal;
 
   return (
-    <CartContext.Provider value={{CloseCart,closeCart,setCloseCart,addToCart,cartItems,setCartItems,increaseQuantity,decreaseQuantity,clearCart,cartPriceTotal,cartMRPTotal,cartDiscount,showToast}}>
+    <CartContext.Provider value={{CloseCart,closeCart,setCloseCart,addToCart,cartItems,setCartItems,increaseQuantity,decreaseQuantity,clearCart,cartPriceTotal,cartMRPTotal,cartDiscount,showToast,getCartKey}}>
       {children}
     </CartContext.Provider>
   );

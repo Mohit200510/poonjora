@@ -30,11 +30,12 @@ function PaymentBox({
   const addressId = selectedAddress?.id ?? null;
 
   const cartKey = JSON.stringify(
-    cartItems.map((item) => ({
-      id: Number(item.id),
-      quantity: Number(item.quantity),
-    }))
-  );
+  cartItems.map((item) => ({
+    id: Number(item.id),
+    variant_id: item.variant_id ?? null,
+    quantity: Number(item.quantity),
+  }))
+);
 
   const isCOD = selectedPaymentOption === "COD";
 

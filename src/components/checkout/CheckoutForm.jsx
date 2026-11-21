@@ -156,15 +156,19 @@ const handleCODOrder = async () => {
 
     // Only send product IDs and quantities to the backend.
     const items = cartItems.map((item) => ({
-      id: Number(item.id),
-      quantity: Number(item.quantity),
+     id: Number(item.id),
+      variant_id: item.variant_id ?? null,
+     quantity: Number(item.quantity),
     }));
-
     // Identify the current checkout contents.
     const checkoutFingerprint = JSON.stringify({
       userId,
       addressId: selectedAddress.id,
-      items: [...items].sort((a, b) => a.id - b.id),
+      items: [...items].sort(
+      (a, b) =>
+      a.id - b.id ||
+      (a.variant_id ?? 0) - (b.variant_id ?? 0)
+     ),
     });
 
     // Generate a new key only for a different checkout.
@@ -298,7 +302,7 @@ const { data, error } = await supabase.functions.invoke(
             <div className={styles.checkoutFormBottomCollaspseBox}>
               <div className={styles.checkoutFormBottomCollaspseBoxLeft}>
                 <FiShoppingBag/>
-                <span>(3 items in Cart)</span>
+                <span>({cartItems.reduce((total, item) => total + item.quantity, 0)} items in Cart)</span>
               </div>
               <span onClick={()=>{
                 setOpenReviewBox(true)
