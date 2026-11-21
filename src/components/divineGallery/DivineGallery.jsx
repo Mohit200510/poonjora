@@ -471,6 +471,8 @@ function DivineGallery() {
                         View Photo
                       </span>
                     </button>
+                    
+
                   ) : (
                     <div className={styles.imagePlaceholder}>
                       <span>✦</span>

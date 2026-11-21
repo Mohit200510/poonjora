@@ -135,6 +135,7 @@
     padding: 10px 12px;
     border-bottom: 1px var(--color-border) solid;
 }
+
 .cartItemImage {
   display: flex;
   align-items: center;
@@ -169,11 +170,14 @@
     justify-content: space-between;
     gap: 9px;
 }
+
 .cartItemMid{
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
+
+
 .cartItemMid h5 {
     font-size: 12px;
     color: var(--color-text-secondary);

@@ -141,7 +141,6 @@ useEffect(() => {
                         <div className={styles.cartBottomTotalLeft}>
                             <PiNewspaperFill/>
                             <p>Estimated Total</p>
-                            
                         </div>
 
                         <div className={styles.cartBottomTotalRight}>
