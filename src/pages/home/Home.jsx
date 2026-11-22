@@ -13,6 +13,8 @@ import mobbanner from "../../assets/chamelibanner.webp"
 
 import HomePanchang from '../../components/homePanchang/HomePanchang'
 
+import FloatingFestivalVideo from '../../components/floatingFestivalVideo/FloatingFestivalVideo';
+
 function Home() {
   return (
     <>
@@ -58,6 +60,10 @@ function Home() {
 
 
     </div>
+    
+
+  <FloatingFestivalVideo />
+
     </>
   )
 }

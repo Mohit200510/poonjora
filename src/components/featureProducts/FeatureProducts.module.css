@@ -1539,7 +1539,7 @@
 
 .variantSelect:focus-visible {
   outline: 1px solid #36014f;
-  outline-offset: 0.5px;
+  outline-offset: 0px;
 }
 
 
