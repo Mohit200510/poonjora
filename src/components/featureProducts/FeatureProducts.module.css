@@ -275,7 +275,7 @@
     flex-wrap: wrap;
 
     gap: 8px;
-    margin: 12px 0 14px;
+    margin: 4px 0 14px;
 }
 
 .featureProductBoxPrice h4 {
@@ -620,7 +620,7 @@
     }
 
     .featureProductBoxPrice {
-        margin: 10px 0 12px;
+        margin: 4px 0 12px;
         gap: 8px;
     }
 
@@ -783,7 +783,7 @@
 
   .featureProductBoxPrice {
     gap: 5px;
-    margin: 9px 0 11px;
+    margin: 4px 0 11px;
   }
 
   .featureProductBoxPrice h4 {
@@ -927,7 +927,7 @@
 
   .featureProductBoxPrice {
     gap: 5px;
-    margin: 9px 0 11px;
+    margin: 4px 0 11px;
   }
 
   .featureProductBoxPrice h4 {
@@ -1155,7 +1155,7 @@
     align-items: baseline;
     flex-wrap: wrap;
     gap: 5px 8px;
-    margin: 12px 0 0;
+    margin: 4px 0 0;
   }
 
   .featureProductBoxPrice h4 {
@@ -1513,7 +1513,7 @@
   min-width: 0;
   box-sizing: border-box;
 
-  margin: 4px 0 0;
+  margin: 4px 0 6px 0;
   padding: 7px 9px;
 
   background: transparent;
