@@ -1510,21 +1510,39 @@
 .variantSelect {
   display: block;
   width: 100%;
-  max-width: 100%;
   min-width: 0;
-  padding: 7px 24px 7px 9px;
-  border: 1px solid #36014f;
-  border-radius: 7px;
-  background: #fff;
+  box-sizing: border-box;
+
+  margin: 4px 0 0;
+  padding: 7px 9px;
+
+  background: transparent;
+  border: 1px solid rgba(54, 1, 79, 0.22);
+  border-radius: 8px;
+
   color: #36014f;
-  font: inherit;
+  font-family: "inter", sans-serif;
   font-size: 12px;
   font-weight: 500;
+
   cursor: pointer;
-  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.variantSelect:focus,
+.variantSelect:active {
+  outline: none;
+  box-shadow: none;
+  border-color: rgba(54, 1, 79, 0.35);
 }
 
 .variantSelect:focus-visible {
-  outline: 2px solid #36014f;
-  outline-offset: 2px;
+  outline: 1px solid #36014f;
+  outline-offset: 0.5px;
 }
+
+
+
+
+
