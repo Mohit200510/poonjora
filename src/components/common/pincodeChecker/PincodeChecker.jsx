@@ -11,7 +11,6 @@ import { PincodeContext } from '../../../context/PincodeContext'
 
 
 function PincodeChecker({setOpenToggle}) {
-// w    
     
     // const[pincode,setPincode] =useState("");
     const[checking,setChecking] =useState(false);
