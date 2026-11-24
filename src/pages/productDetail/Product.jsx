@@ -308,10 +308,7 @@ function Product() {
                   className={`${styles.heading} ${mobile.mobileHeading}`}
                 >
                   <h1>{product.name}</h1>
-                  <p>
-                    {product.description ||
-                      "Essentials for your everyday puja, rituals and sacred occasions."}
-                  </p>
+                 
                 </div>
 
                 {product.rating != null && (
@@ -482,6 +479,15 @@ function Product() {
             </div>
 
           </div>
+
+           {/* PRODUCT DESCRIPTION */}
+          {product.description && (
+            <section className={styles.productDescription}>
+              <h2>Product Description</h2>
+              <p>{product.description}</p>
+            </section>
+          )}
+          
         </Container>
       </section>
     </main>

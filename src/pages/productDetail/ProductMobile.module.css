@@ -1,4 +1,3 @@
-
 /* =========================================
    POONJORA — MOBILE PRODUCT PAGE
    Primary: #36014F
@@ -78,38 +77,35 @@
   /* PRODUCT IMAGE */
 
   .mobileRoot .mobileVisual {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  padding: 0;
-  box-sizing: border-box;
-
-  border: 1px solid #eee7f1;
-  border-radius: 18px;
-  background: #faf7fb;
-
-  box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-
-  overflow: hidden;
-}
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid #eee7f1;
+    border-radius: 18px;
+    background: #faf7fb;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    overflow: hidden;
+  }
 
   .mobileRoot .mobileArch {
     display: none;
   }
 
   .mobileRoot .mobileImage {
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  object-fit: cover;
-  object-position: center;
-  background: transparent;
-  filter: none;
-  border-radius: 0;
-}
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+    background: transparent;
+    filter: none;
+    border-radius: 0;
+  }
 
   /* PRODUCT GALLERY */
 
@@ -216,7 +212,9 @@
     color: #77717b;
   }
 
-  /* WEIGHT / NET QUANTITY */
+  /* =========================================
+     WEIGHT / NET QUANTITY
+  ========================================= */
 
   .mobileRoot .mobilePack {
     order: 5;
@@ -232,23 +230,59 @@
   }
 
   .mobileRoot .mobilePackOptions {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
     gap: 8px;
+    width: 100%;
   }
 
-  .mobileRoot .mobileSelectedPack {
+  .mobileRoot .mobilePackOptions > button {
     display: flex;
-    flex-direction: row;
-    gap: 14px;
     align-items: center;
+    justify-content: center;
+
+    width: 100%;
     min-width: 0;
-    padding: 11px 16px;
-    border: 1.5px solid #36014F;
-    border-radius: 10px;
-    background: #f9f5fb;
+    min-height: 44px;
+
+    margin: 0;
+    padding: 10px 12px;
+    box-sizing: border-box;
+
+    border: 1px solid #ded6e3;
+    border-radius: 8px;
+
+    background: #ffffff;
     color: #36014F;
-    opacity: 1;
+
+    font-family: inherit;
     font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: center;
+
+    box-shadow: none;
+    cursor: pointer;
+
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  /* SELECTED VARIANT */
+
+  .mobileRoot .mobilePackOptions > .mobileSelectedPack {
+    background: #36014F;
+    border-color: #36014F;
+    color: #ffffff;
+    font-weight: 600;
+    opacity: 1;
+  }
+
+  .mobileRoot .mobilePackOptions > button:focus-visible {
+    outline: 2px solid #36014F;
+    outline-offset: 2px;
   }
 
   /* QUANTITY */
@@ -293,37 +327,12 @@
     color: #21824c;
   }
 
-  /* DELIVERY & SHIPPING */
-
-  .mobileRoot .mobileDelivery {
-    order: 7;
-    margin-top: 24px;
-    width: 100%;
-    padding: 18px 16px;
-    background: #fbf9fc;
-    border: 1px solid #ece5f0;
-    border-radius: 14px;
-    box-sizing: border-box;
-  }
-
-  .mobileRoot .mobileDeliveryHeading {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    margin-bottom: 14px;
-    color: #36014F;
-    font-size: 15px;
-    font-weight: 650;
-  }
-
-  .mobileRoot .mobileDeliveryHeading svg {
-    font-size: 19px;
-  }
-
-  /* ADD TO CART */
+  /* =========================================
+     ADD TO CART
+  ========================================= */
 
   .mobileRoot .mobileActions {
-    order: 8;
+    order: 7;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -355,19 +364,64 @@
     display: none;
   }
 
+  /* =========================================
+     ADDED TO CART — OPTION 2
+     Minimal jamun outline
+  ========================================= */
+
   .mobileRoot .mobileCart.mobileAdded {
-    background: #f5edf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    background: #ffffff;
     color: #36014F;
-    border-color: #dcc5e5;
+    border: 1.5px solid #36014F;
+
+    font-size: 15px;
+    font-weight: 600;
     opacity: 1;
+  }
+
+  .mobileRoot .mobileCart.mobileAdded:not(:disabled):active {
+    background: #f9f5fb;
+    color: #36014F;
   }
 
   .mobileRoot .mobileCart:disabled {
     cursor: not-allowed;
   }
 
+  /* DELIVERY & SHIPPING */
+
+  .mobileRoot .mobileDelivery {
+    order: 8;
+    margin-top: 24px;
+    width: 100%;
+    padding: 18px 16px;
+    background: #fbf9fc;
+    border: 1px solid #ece5f0;
+    border-radius: 14px;
+    box-sizing: border-box;
+  }
+
+  .mobileRoot .mobileDeliveryHeading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 14px;
+    color: #36014F;
+    font-size: 15px;
+    font-weight: 650;
+  }
+
+  .mobileRoot .mobileDeliveryHeading svg {
+    font-size: 19px;
+  }
+
   /* =========================================
-     NEW TRUST SECTION
+     TRUST SECTION
      Borderless premium design
   ========================================= */
 
@@ -412,14 +466,13 @@
     border-left: none;
   }
 
-  /* Circular lavender icons */
+  /* CIRCULAR LAVENDER ICONS */
 
   .mobileRoot .mobileTrustItem svg {
     width: 52px;
     height: 52px;
     padding: 14px;
     box-sizing: border-box;
-
     flex-shrink: 0;
 
     color: #36014F;
@@ -427,7 +480,7 @@
     border-radius: 50%;
   }
 
-  /* Trust headings */
+  /* TRUST HEADINGS */
 
   .mobileRoot .mobileTrustItem h3 {
     margin: 0;
@@ -438,7 +491,7 @@
     overflow-wrap: normal;
   }
 
-  /* Trust descriptions */
+  /* TRUST DESCRIPTIONS */
 
   .mobileRoot .mobileTrustItem p {
     margin: 4px 0 0;
@@ -448,7 +501,9 @@
   }
 }
 
-/* Desktop remains unaffected */
+/* =========================================
+   DESKTOP REMAINS UNAFFECTED
+========================================= */
 
 @media (min-width: 769px) {
   .mobileTax,
@@ -457,9 +512,12 @@
   }
 }
 
-/* Small mobile screens */
+/* =========================================
+   SMALL MOBILE SCREENS
+========================================= */
 
 @media (max-width: 360px) {
+
   .mobileRoot .mobileTrust {
     gap: 4px;
   }
@@ -479,23 +537,14 @@
   }
 }
 
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
 @media (prefers-reduced-motion: reduce) {
-  .mobileRoot .mobileCart {
+
+  .mobileRoot .mobileCart,
+  .mobileRoot .mobilePackOptions > button {
     transition: none;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .mobileRoot .mobileActions {
-    order: 7;
-  }
-
-  .mobileRoot .mobileDelivery {
-    order: 8;
-  }
-
-  .mobileRoot .mobileTrust {
-    order: 9;
   }
 }

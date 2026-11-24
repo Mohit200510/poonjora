@@ -878,3 +878,30 @@
   font-weight: 700;
 }
 
+
+
+/* PRODUCT DESCRIPTION */
+
+.productDescription {
+  width: 100%;
+  /* margin-top: 24px; */
+  padding: 24px 0 32px;
+  border-top: 1px solid #eee7f1;
+  box-sizing: border-box;
+}
+
+.productDescription h2 {
+  margin: 0 0 14px;
+  color: #36014F;
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 600;
+}
+
+.productDescription p {
+  margin: 0;
+  color: #635e66;
+  font-size: 15px;
+  line-height: 1.8;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
