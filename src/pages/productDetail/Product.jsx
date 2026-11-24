@@ -367,10 +367,10 @@ function Product() {
                             type="button"
                             key={variant.id}
                             className={
-                              selectedVariant?.id === variant.id
-                                ? `${styles.selectedPack} ${mobile.mobileSelectedPack}`
-                                : styles.selectedPack
-                            }
+                               selectedVariant?.id === variant.id
+                              ? `${styles.selectedPack} ${mobile.mobileSelectedPack}`
+                              : ""
+                             }
                             onClick={() => {
                               setSelectedVariant(variant);
                               setQuantity(1);
