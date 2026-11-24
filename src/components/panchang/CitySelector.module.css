@@ -212,6 +212,7 @@
   .compact .searchBox {
     gap: 5px;
     padding: 8px 9px;
+    box-sizing: border-box;
   }
 
   .compact .searchBox input {
@@ -219,9 +220,11 @@
   }
 
   .compact .dropdown {
-    left: auto;
+    left: 0;
     right: 0;
     transform: none;
-    width: 220px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
