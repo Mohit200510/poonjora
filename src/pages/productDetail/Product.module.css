@@ -857,7 +857,7 @@
 
 .cartButton.cartAdded,
 .cartButton.cartAdded:disabled {
-  background: #f5edf8;
+  background: #fff;
   color: #36014f;
   border: 1.5px solid #dcc5e5;
   opacity: 1;
@@ -872,9 +872,9 @@
   width: 21px;
   height: 21px;
   margin-right: 8px;
-  border: 1px solid #b58b45;
+  border: 1px solid var(--color-text-primary);
   border-radius: 50%;
-  color: #b58b45;
+  color: var(--color-text-primary);
   font-size: 12px;
   font-weight: 700;
 }
