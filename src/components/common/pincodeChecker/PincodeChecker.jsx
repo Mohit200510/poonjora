@@ -2,7 +2,7 @@ import React from 'react'
 import { supabase } from '../../../supabaseClient'
 import { useState } from 'react'
 import { useContext } from 'react'
-import styles from "./PincodeChecker.module.css"
+import  styles from "./PincodeChecker.module.css"
 import { FaCheckCircle } from "react-icons/fa";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { PincodeContext } from '../../../context/PincodeContext'
@@ -52,7 +52,7 @@ function PincodeChecker({setOpenToggle}) {
         setChecking(false);
         setOpenToggle(false)
     }
-};
+    };
 
 
 

@@ -1,25 +1,28 @@
 .toast{
     font-family: "inter",sans-serif;
     position: fixed;
-    right: 20px;
-    top: 20px;
+    left: 50%;
+    top: 85%;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
     gap: 12px;
     justify-content: center;
-    background-color:#703274;
+    background-color:var(--color-primary);
     color: #fff;
     border: none;
     border-radius: 12px;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     padding: 13px 40px;
     z-index: 10000;
 
 }
+
+
 .toast svg{
     
-    font-size: 26px;
+    font-size: 22px;
     color: #fff;
 
 }

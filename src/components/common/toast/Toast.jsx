@@ -5,9 +5,11 @@ import { FaCheckCircle } from "react-icons/fa";
 
 function Toast({message}) {
   return (
+
     <div className={styles.toast}>
       < FaCheckCircle/>  {message}
     </div>
+    
   )
 }
 
