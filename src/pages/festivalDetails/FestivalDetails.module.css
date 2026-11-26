@@ -108,9 +108,9 @@
 /* About illustration: the left image from the banner doubles as a DIWA backdrop.
    It replaces the empty star. Keep decorative art away from text. */
 .aboutCopy { position: relative; z-index: 1; max-width: 80%; margin: 12px 0 11px; font-size: 13px; line-height: 1.56; }
-.aboutDecoration { position: absolute; z-index: 0; right: -15px; top: 43px; bottom: 85px; display: block; width: 34%; font-size: 0; opacity: .86; background: url('/festival-assets/diwali-about-art.png') center center / contain no-repeat; pointer-events: none; }
+.aboutDecoration { position: absolute; z-index: 0; right: -15px; top: 43px; bottom: 85px; display: block; width: 34%; font-size: 0; opacity: .86;  pointer-events: none; }
 .significance { position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; min-height: 91px; padding: 10px 14px; border-radius: 14px; background: linear-gradient(105deg, #fff0ce, #fff7e7); }
-.significanceImage { display: block; flex: 0 0 73px; height: 70px; font-size: 0; background: url('/festival-assets/diwali-significance-art.png') center / contain no-repeat; }
+.significanceImage { display: block; flex: 0 0 73px; height: 70px; font-size: 0; }
 .significance > div { min-width: 0; }
 .significance h3 { margin: 0 0 3px; color: var(--festival-berry); font-size: 16px; line-height: 1.1; }
 .significance p { margin: 0; font-size: 11px; line-height: 1.42; }
