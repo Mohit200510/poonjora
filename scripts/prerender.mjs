@@ -14,7 +14,7 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error("Missing Supabase environment variables");
 }
 
-const SITE_URL = "https://poonjora.in";
+const SITE_URL = "https://poonjora.com";
 const FESTIVAL_YEARS = [2026];
 const MAX_RECORDS = 1000;
 

@@ -14,7 +14,7 @@ function ShippingPolicy() {
         <div className={styles.introduction}>
           <p>
             At <strong>Poonjora</strong> (
-            <a href="https://poonjora.in">https://poonjora.in</a>),
+            <a href="https://poonjora.com">https://poonjora.com</a>),
             operated by <strong>Shree Balaji Enterprises</strong>,
             we aim to deliver your puja essentials safely and
             conveniently. This Shipping &amp; Delivery Policy explains

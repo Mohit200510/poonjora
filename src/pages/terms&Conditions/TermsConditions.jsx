@@ -13,7 +13,7 @@ function TermsConditions() {
         <div className={styles.introduction}>
           <p>
             Welcome to <strong>Poonjora</strong> (
-            <a href="https://poonjora.in">poonjora.in</a>),
+            <a href="https://poonjora.com">poonjora.com</a>),
             an online store operated by <strong>Shree Balaji Enterprises</strong>,
             India.
           </p>

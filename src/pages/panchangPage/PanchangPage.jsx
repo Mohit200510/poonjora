@@ -18,7 +18,7 @@ const PanchangPage = () => {
 
   <link
     rel="canonical"
-    href="https://poonjora.in/panchang"
+    href="https://poonjora.com/panchang"
   />
   </Helmet>
     

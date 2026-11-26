@@ -7,7 +7,7 @@ function FestivalCalender() {
   return (
     <>
       <Helmet>
-       <title>Hindu Festival Calendar | Festivals & Vrats | Poonjora</title>git
+       <title>Hindu Festival Calendar | Festivals & Vrats | Poonjora</title>
 
         <meta
           name="description"
@@ -16,7 +16,7 @@ function FestivalCalender() {
 
         <link
           rel="canonical"
-          href="https://poonjora.in/hindu-festival-calendar"
+          href="https://poonjora.com/hindu-festival-calendar"
         />
       </Helmet>
 

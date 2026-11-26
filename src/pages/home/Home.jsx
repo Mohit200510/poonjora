@@ -29,7 +29,7 @@ function Home() {
 
    <link
     rel="canonical"
-    href="https://poonjora.in/"
+    href="https://poonjora.com/"
   />
   </Helmet>
 

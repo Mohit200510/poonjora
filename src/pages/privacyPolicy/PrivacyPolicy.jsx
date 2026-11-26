@@ -9,7 +9,7 @@ function PrivacyPolicy() {
 
       <p>
         Welcome to <strong>Poonjora</strong> (
-        <a href="https://poonjora.in">https://poonjora.in</a>),
+        <a href="https://poonjora.com">https://poonjora.com</a>),
         an online store owned and operated by
         <strong> Shree Balaji Enterprises</strong>, India.
       </p>
@@ -376,7 +376,7 @@ function PrivacyPolicy() {
           <strong>Phone:</strong>{" "}
           <a href="tel:+919877956181">+91 98779 56181</a><br />
           <strong>Website:</strong>{" "}
-          <a href="https://poonjora.in">https://poonjora.in</a>
+          <a href="https://poonjora.com">https://poonjora.com</a>
         </p>
       </section>
 
