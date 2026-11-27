@@ -33,7 +33,6 @@ function App({ initialFestivalContent = null }) {
   const location = useLocation();
   return (
     
-    // 
     <>
     <ScrollToTop/>
     <GoogleAnalyticsTracker/>
