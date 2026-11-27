@@ -248,7 +248,7 @@ function PrivacyPolicy() {
         </p>
         <p>
           <strong>Email:</strong>{" "}
-          <a href="mailto:support@poonjora.in">support@poonjora.in</a>
+          <a href="mailto:support@poonjora.com">support@poonjora.com</a>
           <br />
           <strong>Subject:</strong> Account Deletion Request
         </p>
@@ -280,7 +280,7 @@ function PrivacyPolicy() {
         </ul>
         <p>
           To exercise these rights, please contact{" "}
-          <a href="mailto:support@poonjora.in">support@poonjora.in</a>.
+          <a href="mailto:support@poonjora.com">support@poonjora.com</a>.
         </p>
         <p>
           We will review and process requests in accordance with
@@ -372,7 +372,7 @@ function PrivacyPolicy() {
         </p>
         <p>
           <strong>Email:</strong>{" "}
-          <a href="mailto:support@poonjora.in">support@poonjora.in</a><br />
+          <a href="mailto:support@poonjora.com">support@poonjora.com</a><br />
           <strong>Phone:</strong>{" "}
           <a href="tel:+919877956181">+91 98779 56181</a><br />
           <strong>Website:</strong>{" "}
@@ -396,7 +396,7 @@ function PrivacyPolicy() {
           <strong>Business:</strong> Shree Balaji Enterprises<br />
           <strong>Brand:</strong> Poonjora<br />
           <strong>Email:</strong>{" "}
-          <a href="mailto:support@poonjora.in">support@poonjora.in</a><br />
+          <a href="mailto:support@poonjora.com">support@poonjora.com</a><br />
           <strong>Phone:</strong>{" "}
           <a href="tel:+919877956181">+91 98779 56181</a>
         </p>
@@ -425,8 +425,8 @@ function PrivacyPolicy() {
       </p>
       <p>
         For assistance, contact{" "}
-        <a href="mailto:support@poonjora.in">
-          <strong>support@poonjora.in</strong>
+        <a href="mailto:support@poonjora.com">
+          <strong>support@poonjora.com</strong>
         </a>.
       </p>
     </main>

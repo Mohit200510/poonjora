@@ -61,8 +61,8 @@ function RefundCancellation() {
           </p>
           <p>
             To report an issue, please contact{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>{" "}
             with:
           </p>
@@ -179,8 +179,8 @@ function RefundCancellation() {
           </p>
           <p>
             To request cancellation, email{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>{" "}
             with your order number.
           </p>
@@ -215,8 +215,8 @@ function RefundCancellation() {
           <p>
             If an order contains missing or incorrect items,
             customers should contact{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>
             , preferably within 7 days of delivery.
           </p>
@@ -267,8 +267,8 @@ function RefundCancellation() {
           </p>
           <p>
             <strong>Email:</strong>{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>
           </p>
           <p>
@@ -291,8 +291,8 @@ function RefundCancellation() {
             <strong>Grievance Officer:</strong> Janinder Jain
             <br />
             <strong>Email:</strong>{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>
             <br />
             <strong>Phone:</strong>{" "}

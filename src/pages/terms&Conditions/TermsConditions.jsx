@@ -147,7 +147,7 @@ function TermsConditions() {
             <p>
              Online orders are confirmed only after successful payment
             verification. If a payment is deducted but the order is not
-             confirmed, customers may contact us at support@poonjora.in
+             confirmed, customers may contact us at support@poonjora.com
             for assistance.
             </p>
 
@@ -203,8 +203,8 @@ function TermsConditions() {
           </p>
           <p>
             To request cancellation, customers should contact{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>{" "}
             with their order number.
           </p>
@@ -245,8 +245,8 @@ function TermsConditions() {
           <p>
             Customers are requested to report these issues within{" "}
             <strong>7 days of delivery</strong> by emailing{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>.
           </p>
           <p>
@@ -379,8 +379,8 @@ function TermsConditions() {
           </p>
           <p>
             <strong>Email:</strong>{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>
           </p>
           <p>
@@ -403,8 +403,8 @@ function TermsConditions() {
             <strong>Grievance Officer:</strong> Janinder Jain
             <br />
             <strong>Email:</strong>{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>
             <br />
             <strong>Phone:</strong>{" "}

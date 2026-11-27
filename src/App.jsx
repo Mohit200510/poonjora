@@ -24,6 +24,7 @@ import ScrollToTop from './components/common/ScrollToTopjsx'
 import DivineGallery from './components/divineGallery/DivineGallery'
 import FestivalDetails from './pages/festivalDetails/FestivalDetails'
 import MobileBottomNav from './components/header/mobileStickyNaviagtion/MobileBottomNav'
+import PujaKitDetails from './pages/PujaKitDetails/PujaKitDetails'
 
 function App({ initialFestivalContent = null }) {
 
@@ -66,6 +67,8 @@ function App({ initialFestivalContent = null }) {
       <Route path="/festivals/:slug"element={<FestivalDetails initialContent={initialFestivalContent}/> }/>
       <Route path="/hi/festivals/:slug/:year" element={<FestivalDetails />} />
       <Route path="/hi/festivals/:slug" element={<FestivalDetails />} />
+      <Route path="/puja-kits/:slug" element={<PujaKitDetails />}
+/>
      
     </Routes>
 

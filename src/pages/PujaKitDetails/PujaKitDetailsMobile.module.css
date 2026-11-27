@@ -1,0 +1,206 @@
+@media (max-width: 768px) {
+
+    /* ================= PRODUCT INFO ================= */
+
+    .productInfo {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+        padding: 12px 0 20px;
+    }
+
+
+    /* ================= IMAGE GALLERY ================= */
+
+    .gallery {
+        width: 100%;
+        gap: 10px;
+    }
+
+
+    /* ================= PRODUCT DETAILS ================= */
+
+    .productDetails {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .productTitle {
+        font-size: 22px;
+        line-height: 1.4;
+    }
+
+    .salePrice {
+        font-size: 27px;
+    }
+
+
+    /* ================= PRODUCT HIGHLIGHTS ================= */
+
+    .highlights {
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px 0;
+    }
+
+    .highlightItem {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+
+    /* ================= CONTENTS NAVIGATION ================= */
+
+    .contentsLinks {
+        gap: 12px;
+        padding: 12px 0;
+    }
+
+    .contentsLinks a {
+        flex: 1 1 125px;
+        justify-content: space-between;
+        font-size: 12px;
+        min-width: 0;
+    }
+
+
+    /* ================= QUANTITY ================= */
+
+    .quantityRow {
+        gap: 10px;
+    }
+
+
+    /* ================= PURCHASE BUTTONS ================= */
+
+    .purchaseActions {
+        gap: 10px;
+    }
+
+    .purchaseActions button {
+        font-size: 14px;
+        min-height: 48px;
+        padding: 10px 8px;
+    }
+
+}
+/* ================================================
+   MOBILE KIT CONTENTS
+================================================ */
+
+@media (max-width: 768px) {
+
+    .kitContents {
+        gap: 28px;
+        padding: 20px 0;
+    }
+
+    .contentsTitle {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+
+    /* ================= INCLUDED SAMAGRI ================= */
+
+    .samagriCards {
+        gap: 10px;
+    }
+
+    .samagriCard {
+        flex-basis: calc((100% - 20px) / 3);
+        border-radius: 7px;
+    }
+
+
+    /* ================= EXCLUDED SAMAGRI ================= */
+
+    .excludedList {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .excludedItem {
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 12px 0;
+    }
+
+}
+
+
+/* ================= SMALL MOBILE SCREENS ================= */
+
+@media (max-width: 360px) {
+
+    .samagriCard {
+        flex-basis: calc((100% - 10px) / 2);
+    }
+
+}
+
+
+/* ================================================
+   MOBILE PUJA KIT FAQ
+================================================ */
+
+@media (max-width: 768px) {
+
+    .faqSection {
+        gap: 18px;
+        padding: 20px 0 30px;
+    }
+
+    .faqTitle {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .faqQuestion {
+        min-height: 52px;
+        padding: 14px;
+        gap: 12px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .faqAnswer {
+        padding: 0 14px 16px;
+    }
+
+    .faqAnswer p {
+        font-size: 13px;
+        line-height: 1.8;
+    }
+
+}
+
+/* ================================================
+   MOBILE MAIN PUJA KIT PAGE
+================================================ */
+
+@media (max-width: 768px) {
+
+    /* Breadcrumbs */
+
+    .breadcrumbs {
+        gap: 5px;
+        padding: 12px 0 4px;
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+
+    /* Loading Skeleton */
+
+    .skeletonProduct {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .skeletonImage {
+        width: 100%;
+    }
+
+}

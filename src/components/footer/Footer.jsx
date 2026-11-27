@@ -128,7 +128,7 @@ function Footer() {
                         </div>
                         <div className={styles.ContactInfo}>
                             <h6>Email</h6>
-                        <a href="mailto:support@poonjora.in">support@poonjora.in</a>
+                        <a href="mailto:support@poonjora.com">support@poonjora.com</a>
                         </div>
                     </div>
 

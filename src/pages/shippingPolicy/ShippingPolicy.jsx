@@ -130,8 +130,8 @@ function ShippingPolicy() {
           <p>
             If customers need to correct their delivery information,
             they should contact{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>{" "}
             as soon as possible. Address changes may not be possible
             once an order has been dispatched.
@@ -208,8 +208,8 @@ function ShippingPolicy() {
           </p>
           <p>
             Please email{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>{" "}
             with the order number, a description of the issue,
             and relevant photographs where available.
@@ -245,8 +245,8 @@ function ShippingPolicy() {
           <p>
             Customers may request cancellation before the packing
             process begins by contacting{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>.
           </p>
           <p>
@@ -275,8 +275,8 @@ function ShippingPolicy() {
           </p>
           <p>
             <strong>Email:</strong>{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>
           </p>
           <p>
@@ -299,8 +299,8 @@ function ShippingPolicy() {
             <strong>Grievance Officer:</strong> Janinder Jain
             <br />
             <strong>Email:</strong>{" "}
-            <a href="mailto:support@poonjora.in">
-              support@poonjora.in
+            <a href="mailto:support@poonjora.com">
+              support@poonjora.com
             </a>
             <br />
             <strong>Phone:</strong>{" "}

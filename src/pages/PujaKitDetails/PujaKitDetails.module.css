@@ -1,0 +1,1099 @@
+/* ================= PRODUCT INFO ================= */
+
+.productInfo {
+    display: flex;
+    align-items: flex-start;
+    gap: 36px;
+    padding: 24px 0;
+}
+
+
+/* ================= IMAGE GALLERY ================= */
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: 12px;
+    width: 45%;
+    min-width: 0;
+}
+
+.mainImage {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.mainImage img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* ================= IMAGE PLACEHOLDER ================= */
+
+.imagePlaceholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    height: 100%;
+    color: #999;
+    font-size: 14px;
+}
+
+
+/* ================= GALLERY THUMBNAILS ================= */
+
+.thumbnails {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.thumbnail {
+    flex-shrink: 0;
+    width: 72px;
+    height: 72px;
+    padding: 4px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.thumbnail img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.activeThumbnail {
+    border-color: #36014f;
+}
+
+
+/* ================= PRODUCT DETAILS ================= */
+
+.productDetails {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    gap: 12px;
+}
+
+.productCategory {
+    font-size: 13px;
+    font-weight: 500;
+    color: #777;
+}
+
+.productTitle {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #222;
+    margin: 0;
+}
+
+.hindiTitle {
+    font-size: 17px;
+    line-height: 1.5;
+    color: #666;
+    margin: 0;
+}
+
+
+/* ================= PRODUCT PRICING ================= */
+
+.priceSection {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 6px;
+}
+
+.priceBox {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.salePrice {
+    font-size: 30px;
+    font-weight: 600;
+    color: #36014f;
+}
+
+.mrp {
+    font-size: 18px;
+    color: #888;
+    text-decoration: line-through;
+}
+
+.taxInfo {
+    font-size: 12px;
+    color: #777;
+    margin: 0;
+}
+
+
+/* ================= PRODUCT DESCRIPTION ================= */
+
+.shortDescription {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555;
+    margin: 4px 0;
+}
+
+
+/* ================= PRODUCT HIGHLIGHTS ================= */
+
+.highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 12px 0;
+}
+
+.highlightItem {
+    display: flex;
+    align-items: center;
+    flex: 1 1 calc(50% - 8px);
+    gap: 10px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.highlightIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: #f7f2fa;
+    color: #36014f;
+    border-radius: 8px;
+}
+
+.highlightContent {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.highlightLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+    line-height: 1.4;
+}
+
+.highlightDescription {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.4;
+}
+
+
+/* ================= CONTENTS NAVIGATION ================= */
+
+.contentsLinks {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 14px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.contentsLinks a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #36014f;
+    text-decoration: none;
+}
+
+.contentsLinks a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.contentsLinks a svg {
+    flex-shrink: 0;
+}
+
+
+/* ================= PURCHASE SECTION ================= */
+
+.purchaseSection {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 10px 0;
+}
+
+
+/* ================= QUANTITY ================= */
+
+.quantityRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.quantityBox {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.quantityLabel {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.quantitySelector {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.quantitySelector button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 42px;
+    padding: 0;
+    border: none;
+    background: #fff;
+    color: #36014f;
+    cursor: pointer;
+}
+
+.quantitySelector button:not(:disabled):hover {
+    background: #f7f2fa;
+}
+
+.quantitySelector span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #222;
+}
+
+.quantitySelector button:disabled {
+    color: #bbb;
+    cursor: not-allowed;
+}
+
+
+/* ================= STOCK STATUS ================= */
+
+.stockStatus {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.stockDot {
+    flex-shrink: 0;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.inStock {
+    color: #218739;
+}
+
+.outOfStock {
+    color: #b42318;
+}
+
+
+/* ================= PURCHASE BUTTONS ================= */
+
+.purchaseActions {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.cartButton,
+.buyButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 8px;
+    min-width: 0;
+    min-height: 50px;
+    padding: 12px;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background 0.2s ease;
+}
+
+.cartButton {
+    background: #fff;
+    color: #36014f;
+    border: 1px solid #36014f;
+}
+
+.cartButton:not(:disabled):hover {
+    background: #f7f2fa;
+}
+
+.buyButton {
+    background: #36014f;
+    color: #fff;
+    border: 1px solid #36014f;
+}
+
+.buyButton:not(:disabled):hover {
+    background: #4b0967;
+}
+
+.cartButton:disabled,
+.buyButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cartAdded:disabled {
+    background: #eef8f0;
+    color: #218739;
+    border-color: #218739;
+    opacity: 1;
+}
+
+.cartButton svg,
+.buyButton svg {
+    flex-shrink: 0;
+}
+
+
+/* ================= DELIVERY & SHIPPING ================= */
+
+.deliverySection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+}
+
+
+/* ================= KEYBOARD ACCESSIBILITY ================= */
+
+.thumbnail:focus-visible,
+.contentsLinks a:focus-visible,
+.quantitySelector button:focus-visible,
+.cartButton:focus-visible,
+.buyButton:focus-visible {
+    outline: 2px solid #36014f;
+    outline-offset: -2px;
+}
+
+
+/* ================================================
+   KIT CONTENTS
+================================================ */
+
+.kitContents {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 30px 0;
+}
+
+.contentsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 0;
+    scroll-margin-top: 160px;
+}
+
+
+/* ================= SECTION HEADING ================= */
+
+.contentsHeading {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contentsTitleRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #36014f;
+}
+
+.contentsTitleRow svg {
+    flex-shrink: 0;
+}
+
+.contentsTitle {
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #36014f;
+    margin: 0;
+}
+
+.contentsSubtitle {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+}
+
+
+/* ================= SAMAGRI CATEGORY ================= */
+
+.samagriGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.categoryHeading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: #f7f3f9;
+    border-radius: 6px;
+    padding: 12px 16px;
+}
+
+.categoryHeading h3 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #36014f;
+    margin: 0;
+}
+
+.categoryHeading > span {
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #777;
+}
+
+
+/* ================= INCLUDED SAMAGRI CARDS ================= */
+
+.samagriCards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.samagriCard {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 calc((100% - 70px) / 6);
+    min-width: 0;
+    border: 1px solid #e7e7e7;
+    border-radius: 9px;
+    overflow: hidden;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+
+/* ================= SAMAGRI IMAGE ================= */
+
+.samagriImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #fafafa;
+}
+
+.samagriImage img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.samagriPlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #b5b5b5;
+}
+
+
+/* ================= SAMAGRI INFORMATION ================= */
+
+.samagriInfo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 5px;
+    padding: 12px;
+}
+
+.samagriName {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #222;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.samagriHindi {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #777;
+    margin: 0;
+}
+
+.samagriQuantity {
+    display: block;
+    margin-top: auto;
+    padding-top: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #36014f;
+}
+
+
+/* ================= EXCLUDED ITEMS ================= */
+
+.excludedList {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 24px;
+}
+
+.excludedItem {
+    display: flex;
+    align-items: flex-start;
+    flex: 0 0 calc((100% - 24px) / 2);
+    gap: 10px;
+    padding: 14px 4px;
+    min-width: 0;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+}
+
+.excludedIcon {
+    flex-shrink: 0;
+    color: #888;
+    margin-top: 2px;
+}
+
+.excludedInfo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 4px;
+    min-width: 0;
+}
+
+.excludedName {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #333;
+}
+
+.excludedHindi {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #777;
+}
+
+.excludedQuantity {
+    flex-shrink: 0;
+    max-width: 35%;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #666;
+    text-align: right;
+}
+
+
+/* ================= TRADITIONAL NOTE ================= */
+
+.contentsNote {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #666;
+    background: #faf9f6;
+    border-left: 3px solid #36014f;
+    padding: 14px 16px;
+    margin: 0;
+}
+
+
+/* ================= TABLET RESPONSIVE ================= */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .samagriCard {
+        flex-basis: calc((100% - 42px) / 4);
+    }
+
+}
+
+/* ================================================
+   PUJA KIT FAQ
+================================================ */
+
+.faqSection {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 30px 0 40px;
+    scroll-margin-top: 160px;
+}
+
+
+/* ================= FAQ HEADING ================= */
+
+.faqHeading {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.faqTitleRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #36014f;
+}
+
+.faqTitleRow svg {
+    flex-shrink: 0;
+}
+
+.faqTitle {
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #36014f;
+    margin: 0;
+}
+
+.faqSubtitle {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+}
+
+
+/* ================= FAQ LIST ================= */
+
+.faqList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+
+/* ================= FAQ ITEM ================= */
+
+.faqItem {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.faqItemActive {
+    border-color: #d8c8df;
+}
+
+.faqQuestionHeading {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ================= FAQ QUESTION ================= */
+
+.faqQuestion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 56px;
+    padding: 18px 20px;
+    border: none;
+    background: transparent;
+    color: #333;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    text-align: left;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.faqQuestion > span:first-child {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.faqQuestion:hover {
+    background: #faf8fb;
+}
+
+.faqItemActive .faqQuestion {
+    color: #36014f;
+}
+
+
+/* ================= TOGGLE ICON ================= */
+
+.faqToggleIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: #36014f;
+}
+
+
+/* ================= FAQ ANSWER ================= */
+
+.faqAnswer {
+    padding: 0 20px 20px;
+}
+
+.faqAnswer[hidden] {
+    display: none;
+}
+
+.faqAnswer p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #666;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+    margin: 0;
+}
+
+
+/* ================= ACCESSIBILITY ================= */
+
+.faqQuestion:focus-visible {
+    outline: 2px solid #36014f;
+    outline-offset: -2px;
+}
+
+/* ================================================
+   PUJA KIT BREADCRUMBS
+================================================ */
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 18px 0 4px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #777;
+}
+
+.breadcrumbs a {
+    color: #666;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    color: #36014f;
+    text-decoration: underline;
+}
+
+.breadcrumbs svg {
+    flex-shrink: 0;
+    color: #999;
+}
+
+.breadcrumbs span {
+    color: #36014f;
+    font-weight: 500;
+}
+
+
+/* ================================================
+   LOADING SKELETON
+================================================ */
+
+.skeletonWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px 0 40px;
+}
+
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    background: #eeeeee;
+    border-radius: 7px;
+}
+
+.skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.65),
+        transparent
+    );
+    animation: kitShimmer 1.5s infinite;
+}
+
+@keyframes kitShimmer {
+
+    100% {
+        transform: translateX(100%);
+    }
+
+}
+
+.skeletonBreadcrumb {
+    width: 65%;
+    max-width: 360px;
+    height: 16px;
+}
+
+.skeletonProduct {
+    display: flex;
+    align-items: flex-start;
+    gap: 36px;
+}
+
+.skeletonImage {
+    flex-shrink: 0;
+    width: 45%;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+}
+
+.skeletonDetails {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    gap: 16px;
+}
+
+.skeletonCategory {
+    width: 90px;
+    height: 15px;
+}
+
+.skeletonTitle {
+    width: 95%;
+    height: 34px;
+}
+
+.skeletonHindi {
+    width: 65%;
+    height: 20px;
+}
+
+.skeletonPrice {
+    width: 110px;
+    height: 32px;
+}
+
+.skeletonDescription {
+    width: 100%;
+    height: 16px;
+}
+
+.skeletonHighlights {
+    width: 100%;
+    height: 90px;
+}
+
+.skeletonActions {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.skeletonActions > div {
+    flex: 1;
+    height: 50px;
+}
+
+.skeletonDelivery {
+    width: 100%;
+    height: 110px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .skeleton::after {
+        animation: none;
+    }
+
+}
+
+
+/* ================================================
+   ERROR STATE
+================================================ */
+
+.errorState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 380px;
+    padding: 40px 16px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.errorIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: #f7f2fa;
+    color: #36014f;
+}
+
+.errorState h1 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #222;
+    margin: 0;
+}
+
+.errorState p {
+    max-width: 400px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666;
+    margin: 0;
+}
+
+.errorActions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.retryButton,
+.backButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 18px;
+    border: 1px solid #36014f;
+    border-radius: 7px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.retryButton {
+    background: #36014f;
+    color: #fff;
+}
+
+.backButton {
+    background: #fff;
+    color: #36014f;
+}
+
+.retryButton:hover {
+    background: #4b0967;
+}
+
+.backButton:hover {
+    background: #f7f2fa;
+}
+
+.retryButton:focus-visible,
+.backButton:focus-visible,
+.breadcrumbs a:focus-visible {
+    outline: 2px solid #36014f;
+    outline-offset: 3px;
+}
