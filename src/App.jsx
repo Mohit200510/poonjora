@@ -25,6 +25,7 @@ import DivineGallery from './components/divineGallery/DivineGallery'
 import FestivalDetails from './pages/festivalDetails/FestivalDetails'
 import MobileBottomNav from './components/header/mobileStickyNaviagtion/MobileBottomNav'
 import PujaKitDetails from './pages/PujaKitDetails/PujaKitDetails'
+import WhatsAppButton from './components/common/WhatsAppButton/WhatsAppButton'
 
 function App({ initialFestivalContent = null }) {
 
@@ -81,6 +82,12 @@ function App({ initialFestivalContent = null }) {
     
     
     <Cart/>
+
+    {closeCart &&
+  !location.pathname.includes("order-confirmation") && (
+    <WhatsAppButton />
+  )
+}
     <MobileBottomNav/>
 
       
