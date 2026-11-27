@@ -180,4 +180,4 @@ const KitFAQ = ({ kit }) => {
 
 };
 
-export default KitFAQ;
+export default KitFAQ;  

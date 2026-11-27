@@ -26,6 +26,7 @@ import FestivalDetails from './pages/festivalDetails/FestivalDetails'
 import MobileBottomNav from './components/header/mobileStickyNaviagtion/MobileBottomNav'
 import PujaKitDetails from './pages/PujaKitDetails/PujaKitDetails'
 import WhatsAppButton from './components/common/whatsAppButton/WhatsAppButton'
+import PujaKits from './pages/categoryPages/PujaKits'
 function App({ initialFestivalContent = null }) {
 
   const {closeCart,CloseCart,showToast} =useContext(CartContext)
@@ -66,8 +67,8 @@ function App({ initialFestivalContent = null }) {
       <Route path="/festivals/:slug"element={<FestivalDetails initialContent={initialFestivalContent}/> }/>
       <Route path="/hi/festivals/:slug/:year" element={<FestivalDetails />} />
       <Route path="/hi/festivals/:slug" element={<FestivalDetails />} />
-      <Route path="/puja-kits/:slug" element={<PujaKitDetails />}
-/>
+      <Route path="/puja-kits/:slug" element={<PujaKitDetails />} />
+      <Route path="/puja-kits" element={<PujaKits />} />
      
     </Routes>
 

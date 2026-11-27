@@ -167,18 +167,33 @@
 
 .highlights {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    gap: 16px;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
     padding: 12px 0;
 }
 
 .highlightItem {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    flex: 1 1 calc(50% - 8px);
+    justify-content: flex-start;
+    flex: 0 0 50%;
     gap: 10px;
     min-width: 0;
+    padding: 18px 12px;
+    text-align: center;
     box-sizing: border-box;
+}
+
+.highlightItem:nth-child(odd):not(:last-child) {
+    border-right: 1px solid #e8e8e8;
+}
+
+.highlightItem:nth-child(-n+2):nth-last-child(n+3) {
+    border-bottom: 1px solid #e8e8e8;
 }
 
 .highlightIcon {
@@ -186,31 +201,20 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     background: #f7f2fa;
     color: #36014f;
     border-radius: 8px;
 }
 
-.highlightContent {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    min-width: 0;
-}
-
 .highlightLabel {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: #222;
-    line-height: 1.4;
-}
-
-.highlightDescription {
-    font-size: 12px;
-    color: #777;
-    line-height: 1.4;
+    line-height: 1.5;
+    text-align: center;
+    overflow-wrap: anywhere;
 }
 
 

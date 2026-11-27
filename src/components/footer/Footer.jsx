@@ -4,7 +4,6 @@ import Container from '../common/Container';
 import { Link } from 'react-router-dom';
 import logo from "../../assets/footer_logo_reasnparent.png";
 import { FaFacebookF } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
@@ -51,7 +50,6 @@ function Footer() {
 
                 <div className={styles.footerSocialIcons}>
                     <FaFacebookF/>
-                    <FaTwitter/>
                     <a
                       href="https://www.instagram.com/poonjora/"
                        target="_blank"
