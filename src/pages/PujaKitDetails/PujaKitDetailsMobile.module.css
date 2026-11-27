@@ -1,6 +1,7 @@
 @media (max-width: 768px) {
 
     /* ================= PRODUCT INFO ================= */
+
     .productInfo {
         flex-direction: column;
         align-items: stretch;
@@ -8,13 +9,17 @@
         padding: 12px 0 20px;
     }
 
+
     /* ================= IMAGE GALLERY ================= */
+
     .gallery {
         width: 100%;
         gap: 10px;
     }
 
+
     /* ================= PRODUCT DETAILS ================= */
+
     .productDetails {
         width: 100%;
         gap: 10px;
@@ -29,24 +34,23 @@
         font-size: 27px;
     }
 
+
     /* ================= PRODUCT HIGHLIGHTS ================= */
+
     .highlights {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 0;
-        padding: 8px 0;
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px 0;
     }
 
     .highlightItem {
-        flex: 0 0 50%;
-        flex-direction: column;
-        align-items: center;
-        width: 50%;
-        padding: 14px 8px;
-        gap: 8px;
+        flex: 0 0 auto;
+        width: 100%;
     }
 
+
     /* ================= CONTENTS NAVIGATION ================= */
+
     .contentsLinks {
         gap: 12px;
         padding: 12px 0;
@@ -59,12 +63,16 @@
         min-width: 0;
     }
 
+
     /* ================= QUANTITY ================= */
+
     .quantityRow {
         gap: 10px;
     }
 
+
     /* ================= PURCHASE BUTTONS ================= */
+
     .purchaseActions {
         gap: 10px;
     }
@@ -74,12 +82,14 @@
         min-height: 48px;
         padding: 10px 8px;
     }
-}
 
+}
 /* ================================================
    MOBILE KIT CONTENTS
 ================================================ */
+
 @media (max-width: 768px) {
+
     .kitContents {
         gap: 28px;
         padding: 20px 0;
@@ -90,6 +100,9 @@
         line-height: 1.4;
     }
 
+
+    /* ================= INCLUDED SAMAGRI ================= */
+
     .samagriCards {
         gap: 10px;
     }
@@ -98,6 +111,9 @@
         flex-basis: calc((100% - 20px) / 3);
         border-radius: 7px;
     }
+
+
+    /* ================= EXCLUDED SAMAGRI ================= */
 
     .excludedList {
         flex-direction: column;
@@ -109,19 +125,27 @@
         width: 100%;
         padding: 12px 0;
     }
+
 }
 
+
 /* ================= SMALL MOBILE SCREENS ================= */
+
 @media (max-width: 360px) {
+
     .samagriCard {
         flex-basis: calc((100% - 10px) / 2);
     }
+
 }
+
 
 /* ================================================
    MOBILE PUJA KIT FAQ
 ================================================ */
+
 @media (max-width: 768px) {
+
     .faqSection {
         gap: 18px;
         padding: 20px 0 30px;
@@ -148,26 +172,5 @@
         font-size: 13px;
         line-height: 1.8;
     }
-}
 
-/* ================================================
-   MOBILE MAIN PUJA KIT PAGE
-================================================ */
-@media (max-width: 768px) {
-    .breadcrumbs {
-        gap: 5px;
-        padding: 12px 0 4px;
-        font-size: 11px;
-        line-height: 1.5;
-    }
-
-    .skeletonProduct {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 20px;
-    }
-
-    .skeletonImage {
-        width: 100%;
-    }
 }

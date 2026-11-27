@@ -5,7 +5,6 @@ import {
     PackageCheck,
     House,
     BookOpen,
-    Leaf,
     Minus,
     Plus,
     ShoppingCart,
@@ -94,11 +93,39 @@ const KitProductInfo = ({ product, kit }) => {
 
     const includedCount = kit.included_items?.length || 0;
 
+    const highlightIcons = {
+        house: House,
+        "book-open": BookOpen
+    };
+
     const highlights = [
-        { icon: PackageCheck, label: `${includedCount} Puja Essentials` },
-        { icon: BookOpen, label: "Katha & Puja Vidhi Booklet" },
-        { icon: Leaf, label: "Individually Packed" },
-        { icon: House, label: "Ideal for Home Puja" }
+        {
+            icon: PackageCheck,
+            label: `${includedCount} Puja Essentials`,
+            description: "Essential samagri in one kit"
+        },
+
+        ...(kit.highlights || [])
+            .filter((highlight) => {
+
+                if (highlight.icon === "house") {
+                    return true;
+                }
+
+                if (highlight.icon === "book-open") {
+                    return (
+                        kit.has_katha_booklet &&
+                        kit.has_vidhi_booklet
+                    );
+                }
+
+                return false;
+
+            })
+            .map((highlight) => ({
+                ...highlight,
+                icon: highlightIcons[highlight.icon]
+            }))
     ];
 
 
@@ -246,9 +273,17 @@ const KitProductInfo = ({ product, kit }) => {
                                     <Icon size={22} strokeWidth={1.8} />
                                 </div>
 
-                                <span className={styles.highlightLabel}>
-                                    {highlight.label}
-                                </span>
+                                <div className={styles.highlightContent}>
+
+                                    <span className={styles.highlightLabel}>
+                                        {highlight.label}
+                                    </span>
+
+                                    <span className={styles.highlightDescription}>
+                                        {highlight.description}
+                                    </span>
+
+                                </div>
 
                             </div>
                         );

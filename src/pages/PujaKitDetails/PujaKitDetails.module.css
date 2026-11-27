@@ -167,33 +167,18 @@
 
 .highlights {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    align-items: stretch;
-    width: 100%;
-    gap: 0;
+    gap: 16px;
     padding: 12px 0;
 }
 
 .highlightItem {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    flex: 0 0 50%;
+    flex: 1 1 calc(50% - 8px);
     gap: 10px;
     min-width: 0;
-    padding: 18px 12px;
-    text-align: center;
     box-sizing: border-box;
-}
-
-.highlightItem:nth-child(odd):not(:last-child) {
-    border-right: 1px solid #e8e8e8;
-}
-
-.highlightItem:nth-child(-n+2):nth-last-child(n+3) {
-    border-bottom: 1px solid #e8e8e8;
 }
 
 .highlightIcon {
@@ -201,20 +186,31 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     background: #f7f2fa;
     color: #36014f;
     border-radius: 8px;
 }
 
+.highlightContent {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
 .highlightLabel {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     color: #222;
-    line-height: 1.5;
-    text-align: center;
-    overflow-wrap: anywhere;
+    line-height: 1.4;
+}
+
+.highlightDescription {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.4;
 }
 
 
@@ -538,6 +534,7 @@
 }
 
 .samagriCard {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex: 0 0 calc((100% - 70px) / 6);
@@ -582,36 +579,95 @@
 /* ================= SAMAGRI INFORMATION ================= */
 
 .samagriInfo {
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    gap: 5px;
-    padding: 12px;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    min-width: 0;
+    min-height: 48px;
+    padding: 7px 8px;
+    padding-right: 64px;
+    background: rgba(255, 245, 230, 0.95);
+    border-radius: 7px;
+    box-sizing: border-box;
 }
 
 .samagriName {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
-    line-height: 1.4;
-    color: #222;
+    line-height: 1.35;
+    color: #36014f;
     margin: 0;
     overflow-wrap: anywhere;
 }
 
 .samagriHindi {
-    font-size: 12px;
-    line-height: 1.5;
-    color: #777;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #36014f;
     margin: 0;
+    overflow-wrap: anywhere;
 }
 
 .samagriQuantity {
-    display: block;
-    margin-top: auto;
-    padding-top: 5px;
-    font-size: 13px;
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 54px;
+    padding: 5px 6px;
+    border-radius: 5px;
+    background: #36014f;
+    color: #fff;
+    font-size: 11px;
     font-weight: 600;
-    color: #36014f;
+    line-height: 1.3;
+    text-align: center;
+    overflow-wrap: anywhere;
+    box-sizing: border-box;
+}
+
+/* Mobile: two square cards per row, compact side-by-side overlay. */
+@media (max-width: 768px) {
+    .samagriCards .samagriCard {
+        flex-basis: calc((100% - 10px) / 2);
+    }
+
+    .samagriInfo {
+        left: 3px;
+        right: 3px;
+        bottom: 3px;
+        padding: 5px 5px 5px 6px;
+        padding-right: 43px;
+        min-height: 38px;
+        gap: 1px;
+    }
+
+    .samagriName {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+    .samagriHindi {
+        font-size: 11px;
+        line-height: 1.3;
+    }
+
+    .samagriQuantity {
+        position: absolute;
+        right: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 35px;
+        padding: 4px;
+        font-size: 10px;
+        line-height: 1.2;
+    }
 }
 
 
