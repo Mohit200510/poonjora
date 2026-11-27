@@ -28,6 +28,16 @@ const excludedCategories = {
 };
 
 
+// Mobile-only labels; original names remain unchanged.
+const mobileNames = {
+    "Round Cotton Wicks": "Round Wicks",
+    "Long Cotton Wicks": "Long Wicks",
+    "Shri Satyanarayan Ji Photo": "Satyanarayan Photo",
+    "Katha & Puja Vidhi Booklet": "Puja & Katha Booklet",
+    "Yellow Puja Cloth": "Yellow Cloth",
+    "Red Puja Cloth": "Red Cloth",
+};
+
 // ================= GROUP ITEMS =================
 
 const groupItems = (items, categoryLabels) => {
@@ -215,17 +225,13 @@ const KitContents = ({ kit }) => {
 
                                         <div className={styles.samagriInfo}>
 
-                                            <h4 className={styles.samagriName}>
-                                                {item.name}
-                                                {item.name_hi && (
-                                                    <span className={styles.samagriHindiInline}>
-                                                        {" ("}{item.name_hi}{")"}
-                                                    </span>
-                                                )}
+                                            <h4 className={styles.samagriName} title={item.name}>
+                                                <span className={styles.samagriFullName}>{item.name}</span>
+                                                <span className={styles.samagriMobileName}>{mobileNames[item.name] || item.name}</span>
                                             </h4>
 
                                             {item.name_hi && (
-                                                <p className={styles.samagriHindi}>
+                                                <p className={styles.samagriHindi} title={item.name_hi}>
                                                     {item.name_hi}
                                                 </p>
                                             )}
