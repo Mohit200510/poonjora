@@ -5,10 +5,10 @@
 .delivery .deliveryField {
     position: relative;
     display: flex;
+    
 
     max-width: 420px;
 }
-/* kjkj */
 
 .delivery input {
     flex: 1;
