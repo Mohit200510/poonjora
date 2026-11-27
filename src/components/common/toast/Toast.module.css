@@ -1,4 +1,5 @@
 .toast{
+    /* width: 17%; */
     font-family: "inter",sans-serif;
     position: fixed;
     left: 50%;
@@ -14,7 +15,7 @@
     border-radius: 12px;
     font-size: 15px;
     font-weight: 500;
-    padding: 13px 40px;
+    padding: 13px 22px;
     z-index: 10000;
 
 }
@@ -25,4 +26,18 @@
     font-size: 22px;
     color: #fff;
 
+}
+
+@media screen and (max-width:599px) {
+    .toast svg{
+        font-size: 18px;
+    }
+
+    .toast{
+    font-size: 12px;
+    gap: 10px;
+
+        padding: 12px;
+    }
+    
 }

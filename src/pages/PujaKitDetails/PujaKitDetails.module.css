@@ -674,7 +674,7 @@
         box-sizing: border-box;
         padding: 0 3px;
         margin: 0;
-        background: #fff5e6;
+        background: rgba(255, 245, 230, 0.95);
         text-align: center;
         white-space: nowrap;
         overflow: hidden;
