@@ -9,6 +9,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import { VscLocation } from "react-icons/vsc";
+import { FaWhatsapp } from "react-icons/fa";
 
 
 import { RiCustomerService2Line } from "react-icons/ri";
@@ -51,8 +52,28 @@ function Footer() {
                 <div className={styles.footerSocialIcons}>
                     <FaFacebookF/>
                     <FaTwitter/>
-                    <FaInstagram/>
+                    <a
+                      href="https://www.instagram.com/poonjora/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                      aria-label="Follow Poonjora on Instagram"
+                      title="Follow us on Instagram"
+                      style={{ color: "inherit", display: "flex" }}
+                    >
+                    <FaInstagram />
+                    </a>
+
                     <FaLinkedinIn/>
+
+                    <a  href="https://wa.me/917986686161"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Chat with us on WhatsApp"
+                        title="Chat on WhatsApp"
+                        style={{ color: "inherit", display: "flex" }}
+                    >
+                    <FaWhatsapp />
+                    </a>
                 </div>
 
             </div>
