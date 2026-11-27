@@ -31,7 +31,7 @@ function App({ initialFestivalContent = null }) {
 
   const {closeCart,CloseCart,showToast} =useContext(CartContext)
   const location = useLocation();
-
+// s
   return (
     
     <>
