@@ -25,8 +25,7 @@ import DivineGallery from './components/divineGallery/DivineGallery'
 import FestivalDetails from './pages/festivalDetails/FestivalDetails'
 import MobileBottomNav from './components/header/mobileStickyNaviagtion/MobileBottomNav'
 import PujaKitDetails from './pages/PujaKitDetails/PujaKitDetails'
-import WhatsAppButton from './components/common/WhatsAppButton/WhatsAppButton'
-
+import WhatsAppButton from './components/common/whatsAppButton/WhatsAppButton'
 function App({ initialFestivalContent = null }) {
 
   const {closeCart,CloseCart,showToast} =useContext(CartContext)
