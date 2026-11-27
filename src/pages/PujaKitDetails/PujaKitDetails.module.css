@@ -632,45 +632,67 @@
     box-sizing: border-box;
 }
 
-/* Mobile: two square cards per row, compact side-by-side overlay. */
+.samagriHindiInline {
+    display: none;
+}
+
+/* Mobile: bilingual name overlay and top-right quantity. */
 @media (max-width: 768px) {
-    .samagriCards .samagriCard {
-        flex-basis: calc((100% - 10px) / 2);
+    .samagriCards {
+        gap: 8px;
+    }
+
+    .samagriCard {
+        flex: 0 0 calc((100% - 16px) / 3);
+        border-radius: 7px;
     }
 
     .samagriInfo {
-        left: 3px;
-        right: 3px;
-        bottom: 3px;
-        padding: 5px 5px 5px 6px;
-        padding-right: 43px;
-        min-height: 38px;
-        gap: 1px;
+        position: static;
+        display: contents;
     }
 
     .samagriName {
+        position: absolute;
+        left: 4px;
+        right: 4px;
+        bottom: 4px;
+        padding: 6px 4px;
+        background: rgba(255, 245, 230, 0.95);
+        border-radius: 6px;
         font-size: 12px;
-        line-height: 1.25;
+        line-height: 1.4;
+        text-align: center;
     }
 
     .samagriHindi {
+        display: none;
+    }
+
+    .samagriHindiInline {
+        display: inline;
+        font-weight: 500;
+    }
+
+    .samagriQuantity {
+        top: 6px;
+        right: 6px;
+        bottom: auto;
+        transform: none;
+        max-width: calc(100% - 12px);
+        padding: 4px 7px;
         font-size: 11px;
         line-height: 1.3;
     }
 
-    .samagriQuantity {
-        position: absolute;
-        right: 4px;
-        top: 50%;
-        transform: translateY(-50%);
-        max-width: 35px;
-        padding: 4px;
-        font-size: 10px;
-        line-height: 1.2;
+    
+}
+@media (max-width: 339px) {
+
+    .samagriCard {
+        flex-basis: calc((100% - 8px) / 2);
     }
 }
-
-
 /* ================= EXCLUDED ITEMS ================= */
 
 .excludedList {

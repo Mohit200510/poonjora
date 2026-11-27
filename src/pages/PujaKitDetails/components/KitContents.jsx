@@ -217,6 +217,11 @@ const KitContents = ({ kit }) => {
 
                                             <h4 className={styles.samagriName}>
                                                 {item.name}
+                                                {item.name_hi && (
+                                                    <span className={styles.samagriHindiInline}>
+                                                        {" ("}{item.name_hi}{")"}
+                                                    </span>
+                                                )}
                                             </h4>
 
                                             {item.name_hi && (
